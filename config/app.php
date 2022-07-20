@@ -95,7 +95,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'fa',
 
     /*
     |--------------------------------------------------------------------------
@@ -183,6 +183,11 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
+         * Modules Service Providers...
+         */
+        Modules\User\Providers\UserServiceProvider::class,
+        Modules\Share\Providers\ShareServiceProvider::class,
+        /**
          * Package Service Providers...
          */
 
@@ -194,7 +199,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
     ],
 
     /*
@@ -209,7 +213,6 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'ExampleClass' => App\Example\ExampleClass::class,
+        //
     ])->toArray(),
-
 ];
