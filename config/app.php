@@ -188,6 +188,7 @@ return [
         Modules\User\Providers\UserServiceProvider::class,
         Modules\Share\Providers\ShareServiceProvider::class,
         Modules\Home\Providers\HomeServiceProvider::class,
+        Modules\Auth\Providers\AuthServiceProvider::class,
         /**
          * Package Service Providers...
          */

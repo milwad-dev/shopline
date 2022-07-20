@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "16711d474837e4be197f07b6b1f3f6ca",
+    "content-hash": "43d37efe07cad7a7a212ddbfe204accb",
     "packages": [
         {
             "name": "brick/math",
@@ -1235,6 +1235,90 @@
             "time": "2022-06-09T08:26:02+00:00"
         },
         {
+            "name": "intervention/image",
+            "version": "2.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Intervention/image.git",
+                "reference": "04be355f8d6734c826045d02a1079ad658322dad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/04be355f8d6734c826045d02a1079ad658322dad",
+                "reference": "04be355f8d6734c826045d02a1079ad658322dad",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "guzzlehttp/psr7": "~1.1 || ^2.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9.2",
+                "phpunit/phpunit": "^4.8 || ^5.7 || ^7.5.15"
+            },
+            "suggest": {
+                "ext-gd": "to use GD library based image processing.",
+                "ext-imagick": "to use Imagick based image processing.",
+                "intervention/imagecache": "Caching extension for the Intervention Image library"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Intervention\\Image\\ImageServiceProvider"
+                    ],
+                    "aliases": {
+                        "Image": "Intervention\\Image\\Facades\\Image"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Intervention\\Image\\": "src/Intervention/Image"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oliver Vogel",
+                    "email": "oliver@intervention.io",
+                    "homepage": "https://intervention.io/"
+                }
+            ],
+            "description": "Image handling and manipulation library with support for Laravel integration",
+            "homepage": "http://image.intervention.io/",
+            "keywords": [
+                "gd",
+                "image",
+                "imagick",
+                "laravel",
+                "thumbnail",
+                "watermark"
+            ],
+            "support": {
+                "issues": "https://github.com/Intervention/image/issues",
+                "source": "https://github.com/Intervention/image/tree/2.7.2"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.me/interventionio",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/Intervention",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-05-21T17:30:32+00:00"
+        },
+        {
             "name": "laravel/framework",
             "version": "v9.17.0",
             "source": {
@@ -1940,6 +2024,79 @@
             "time": "2022-04-17T13:12:02+00:00"
         },
         {
+            "name": "mews/captcha",
+            "version": "3.2.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mewebstudio/captcha.git",
+                "reference": "29444eb2699ab32a4b065422375a85b75c0ac51f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mewebstudio/captcha/zipball/29444eb2699ab32a4b065422375a85b75c0ac51f",
+                "reference": "29444eb2699ab32a4b065422375a85b75c0ac51f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "illuminate/config": "~5|^6|^7|^8|^9",
+                "illuminate/filesystem": "~5|^6|^7|^8|^9",
+                "illuminate/hashing": "~5|^6|^7|^8|^9",
+                "illuminate/session": "~5|^6|^7|^8|^9",
+                "illuminate/support": "~5|^6|^7|^8|^9",
+                "intervention/image": "~2.5",
+                "php": "^7.2|^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^8.5|^9.0"
+            },
+            "type": "package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Mews\\Captcha\\CaptchaServiceProvider"
+                    ],
+                    "aliases": {
+                        "Captcha": "Mews\\Captcha\\Facades\\Captcha"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Mews\\Captcha\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Muharrem ERİN",
+                    "email": "me@mewebstudio.com",
+                    "homepage": "https://github.com/mewebstudio",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel 5 & 6 Captcha Package",
+            "homepage": "https://github.com/mewebstudio/captcha",
+            "keywords": [
+                "captcha",
+                "laravel5 Security",
+                "laravel6 Captcha",
+                "laravel6 Security"
+            ],
+            "support": {
+                "issues": "https://github.com/mewebstudio/captcha/issues",
+                "source": "https://github.com/mewebstudio/captcha/tree/3.2.8"
+            },
+            "time": "2022-07-20T12:11:44+00:00"
+        },
+        {
             "name": "milwad/laravel-crod",
             "version": "dev-main",
             "source": {
@@ -1994,6 +2151,62 @@
                 "source": "https://github.com/milwad-dev/laravel-crod/tree/main"
             },
             "time": "2022-07-17T20:09:49+00:00"
+        },
+        {
+            "name": "milwad/laravel-validate",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/milwad-dev/laravel-validate.git",
+                "reference": "d6de914136d05837e945e591ce0913832867bf73"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/milwad-dev/laravel-validate/zipball/d6de914136d05837e945e591ce0913832867bf73",
+                "reference": "d6de914136d05837e945e591ce0913832867bf73",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0|^8.1"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Milwad\\LaravelValidate\\LaravelValidateServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Milwad\\LaravelValidate\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "milwad khosravi",
+                    "email": "milwad.dev@gmail.com",
+                    "homepage": "https://milwad.ir",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Write rules easy & fast",
+            "keywords": [
+                "laravel-validate",
+                "milwad",
+                "regex",
+                "validate"
+            ],
+            "support": {
+                "issues": "https://github.com/milwad-dev/laravel-validate/issues",
+                "source": "https://github.com/milwad-dev/laravel-validate/tree/main"
+            },
+            "time": "2022-07-17T18:04:54+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -3175,6 +3388,96 @@
                 }
             ],
             "time": "2022-03-27T21:42:02+00:00"
+        },
+        {
+            "name": "realrashid/sweet-alert",
+            "version": "v5.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/realrashid/sweet-alert.git",
+                "reference": "fb837beaa52568fb3106d311ff3c7a7b8e543608"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/realrashid/sweet-alert/zipball/fb837beaa52568fb3106d311ff3c7a7b8e543608",
+                "reference": "fb837beaa52568fb3106d311ff3c7a7b8e543608",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^5.6|^6.0|^7.0|^8.0|^9.0|^9.11|9.14.*",
+                "php": "^7.2|^8.0"
+            },
+            "require-dev": {
+                "symfony/thanks": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "RealRashid\\SweetAlert\\SweetAlertServiceProvider"
+                    ],
+                    "aliases": {
+                        "Alert": "RealRashid\\SweetAlert\\Facades\\Alert"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
+                "psr-4": {
+                    "RealRashid\\SweetAlert\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rashid Ali",
+                    "email": "realrashid05@gmail.com",
+                    "homepage": "https://realrashid.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A BEAUTIFUL, RESPONSIVE, CUSTOMIZABLE, ACCESSIBLE (WAI-ARIA) REPLACEMENT FOR JAVASCRIPT'S POPUP BOXES FOR LARAVEL BY RASHID ALI",
+            "homepage": "https://github.com/realrashid/sweet-alert",
+            "keywords": [
+                "alert",
+                "laravel",
+                "laravel-package",
+                "notifier",
+                "noty",
+                "sweet-alert",
+                "sweet-alert2",
+                "toast"
+            ],
+            "support": {
+                "docs": "https://realrashid.github.io/sweet-alert/",
+                "email": "realrashid05@gmail.com",
+                "issues": "https://github.com/realrashid/sweet-alert/issues",
+                "source": "https://github.com/realrashid/sweet-alert"
+            },
+            "funding": [
+                {
+                    "url": "https://ko-fi.com/realrashid",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.buymeacoffee.com/realrashid",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://issuehunt.io/r/realrashid",
+                    "type": "issuehunt"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/realrashid/sweet-alert",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-05-28T13:28:03+00:00"
         },
         {
             "name": "symfony/console",
@@ -8195,7 +8498,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "milwad/laravel-crod": 20
+        "milwad/laravel-crod": 20,
+        "milwad/laravel-validate": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

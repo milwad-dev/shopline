@@ -10,7 +10,10 @@
         "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
-        "milwad/laravel-crod": "dev-main"
+        "mews/captcha": "^3.2",
+        "milwad/laravel-crod": "dev-main",
+        "milwad/laravel-validate": "dev-main",
+        "realrashid/sweet-alert": "^5.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -27,7 +30,8 @@
             "Database\\Seeders\\": "database/seeders/",
             "Modules\\User\\": "Modules/User/",
             "Modules\\Share\\": "Modules/Share/",
-            "Modules\\Home\\": "Modules/Home/"
+            "Modules\\Home\\": "Modules/Home/",
+            "Modules\\Auth\\": "Modules/Auth/"
         }
     },
     "autoload-dev": {
