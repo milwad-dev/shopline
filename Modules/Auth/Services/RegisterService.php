@@ -13,6 +13,7 @@ class RegisterService
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
+            'type' => $request->type,
             'password' => Hash::make($request->password),
         ]);
     }

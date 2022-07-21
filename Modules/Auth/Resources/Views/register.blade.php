@@ -48,22 +48,25 @@
                                             </div>
                                             <div class="form-group">
                                                 <input class="@error('password') is-invalid @enderror" type="password"
-                                                name="password" placeholder="Password" value="{{ old('password') }}">
+                                                name="password" placeholder="Password">
                                                 @error('password')
                                                     <span class="invalid-feedback text-danger" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
+                                                <p>
+                                                    Password must have a capital & lower letters with number & special character(Milwad123!).
+                                                </p>
                                             </div>
                                             <div class="login_footer form-group">
                                                 <div class="chek-form">
                                                     <input type="text" name="captcha" placeholder="Security code *">
-                                                    @error('captcha')
-                                                        <span class="invalid-feedback text-danger" role="alert">
-                                                            <strong>{{ $message }}</strong>
+                                                    @if ($errors->has('captcha'))
+                                                        <span class="text-danger" role="alert">
+                                                            <strong>{{ $errors->first('captcha') }}</strong>
                                                         </span>
-                                                    @enderror
-                                                </div>
+                                                    @endif
+                                                </div>{{-- TODO --}}
                                                 <span class="security-code">
                                                     {!! captcha_img() !!}
                                                 </span>
@@ -71,7 +74,7 @@
                                             <div class="payment_option mb-50">
                                                 <div class="custome-radio">
                                                     <input class="form-check-input" type="radio" name="type"
-                                                    id="typeCustomer" checked>
+                                                    id="typeCustomer" checked value="customer">
                                                     <label class="form-check-label" for="typeCustomer" data-bs-toggle="collapse"
                                                         data-target="#bankTranfer" aria-controls="bankTranfer">
                                                         I am a customer
@@ -79,17 +82,17 @@
                                                 </div>
                                                 <div class="custome-radio">
                                                     <input class="form-check-input" type="radio" name="type"
-                                                    id="typeVendor" checked>
+                                                    id="typeVendor" checked value="vendor">
                                                     <label class="form-check-label" for="typeVendor" data-bs-toggle="collapse"
                                                        data-target="#checkPayment" aria-controls="checkPayment">
                                                         I am a vendor
                                                     </label>
                                                 </div>
-                                                @error('type')
-                                                    <span class="invalid-feedback text-danger" role="alert">
-                                                        <strong>{{ $message }}</strong>
+                                                @if ($errors->has('type'))
+                                                    <span class="text-danger" role="alert">
+                                                        <strong>{{ $errors->first('type') }}</strong>
                                                     </span>
-                                                @enderror
+                                                @endif
                                             </div>
                                             <div class="login_footer form-group mb-50">
                                                 <div class="chek-form">
@@ -100,11 +103,11 @@
                                                             <span>I agree to terms &amp; Policy.</span>
                                                         </label>
                                                     </div>
-                                                    @error('policy')
-                                                        <span class="invalid-feedback text-danger" role="alert">
-                                                            <strong>{{ $message }}</strong>
+                                                    @if ($errors->has('policy'))
+                                                        <span class="text-danger" role="alert">
+                                                            <strong>{{ $errors->first('policy') }}</strong>
                                                         </span>
-                                                    @enderror
+                                                    @endif
                                                 </div>{{-- TODO --}}
                                                 <a href="page-privacy-policy.html"><i class="fi-rs-book-alt mr-5 text-muted"></i>Lean more</a>
                                             </div>
