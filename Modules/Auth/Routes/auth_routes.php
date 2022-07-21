@@ -15,7 +15,10 @@ Route::group([], static function ($router) {
     $router->post('login', 'LoginController@login')->name('login');
 
     // Verification
+    $router->get('email/verify', 'VerificationController@show')->name('verification.notice');
     $router->post('email/verify', 'VerificationController@verify')->name('verification.verify');
     $router->post('email/resend', 'VerificationController@resend')->name('verification.resend');
-    $router->get('email/verify', 'VerificationController@show')->name('verification.notice');
+
+    // Logout
+    $router->any('logout', 'LogoutController')->name('logout');
 });

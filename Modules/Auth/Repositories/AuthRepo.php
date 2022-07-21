@@ -2,9 +2,9 @@
 
 namespace Modules\Auth\Repositories;
 
+use Modules\Auth\Models\Auth;
 use Modules\Share\Contracts\Interface\RepositoriesInterface;
 use Modules\Share\Repositories\ShareRepo;
-use Modules\Auth\Models\Auth;
 
 class AuthRepo implements RepositoriesInterface
 {

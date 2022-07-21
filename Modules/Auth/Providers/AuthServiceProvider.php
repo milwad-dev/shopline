@@ -2,8 +2,8 @@
 
 namespace Modules\Auth\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -12,7 +12,7 @@ class AuthServiceProvider extends ServiceProvider
     public function register()
     {
         $this->loadViewsFrom(__DIR__ . '/../Resources/Views/', 'Auth');
-        Route::middleware(['web', 'verify'])
+        Route::middleware(['web'])
             ->namespace($this->namespace)
             ->group(__DIR__ . '/../Routes/auth_routes.php');
     }
