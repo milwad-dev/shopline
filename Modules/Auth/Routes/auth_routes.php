@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 Route::group([], static function ($router) {
+    // Logout
+    $router->any('logout', 'LogoutController')->name('logout');
+
     // Register
     $router->get('register', 'RegisterController@view')->name('register');
     $router->post('register', 'RegisterController@register')->name('register');
@@ -16,6 +19,13 @@ Route::group([], static function ($router) {
     $router->post('email/verify', 'VerificationController@verify')->name('verification.verify');
     $router->post('email/resend', 'VerificationController@resend')->name('verification.resend');
 
-    // Logout
-    $router->any('logout', 'LogoutController')->name('logout');
+    // Forgot Password
+    $router->get('password/reset', 'ForgotPasswordController@showVerifyCodeRequestForm')->name('password.request');
+    $router->get('password/reset/send', 'ForgotPasswordController@sendVerifyCodeEmail')->name('password.sendVerifyCodeEmail');
+    $router->post('password/reset/check-verify-code', 'ForgotPasswordController@checkVerifyCode')->name('password.checkVerifyCode')
+    ->middleware('throttle:5,1');
+
+    // Reset Password
+    $router->get('password/change', 'ResetPasswordController@showResetForm')->name('password.showResetForm')->middleware('auth');
+    $router->post('password/change', 'ResetPasswordController@reset')->name('password.update')->middleware('throttle:3,1');
 });
