@@ -25,9 +25,4 @@ class RegisterController extends Controller
         ShareService::successToast('You register successfully');
         return to_route('home.index');
     }
-
-    public function refreshCaptcha()
-    {
-        return response()->json(['captcha'=> captcha_img()]);
-    }
 }

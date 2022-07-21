@@ -3,9 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 Route::group([], static function ($router) {
-    // Captcha
-    $router->get('refresh-captcha', 'RegisterController@refreshCaptcha')->name('refresh-captcha');
-
     // Register
     $router->get('register', 'RegisterController@view')->name('register');
     $router->post('register', 'RegisterController@register')->name('register');
@@ -15,7 +12,7 @@ Route::group([], static function ($router) {
     $router->post('login', 'LoginController@login')->name('login');
 
     // Verification
-    $router->get('email/verify', 'VerificationController@show')->name('verification.notice');
+    $router->get('email/verify', 'VerificationController@view')->name('verification.notice');
     $router->post('email/verify', 'VerificationController@verify')->name('verification.verify');
     $router->post('email/resend', 'VerificationController@resend')->name('verification.resend');
 
