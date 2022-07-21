@@ -58,19 +58,6 @@
                                                     Password must have a capital & lower letters with number & special character(Milwad123!).
                                                 </p>
                                             </div>
-                                            <div class="login_footer form-group">
-                                                <div class="chek-form">
-                                                    <input type="text" name="captcha" placeholder="Security code *">
-                                                    @if ($errors->has('captcha'))
-                                                        <span class="text-danger" role="alert">
-                                                            <strong>{{ $errors->first('captcha') }}</strong>
-                                                        </span>
-                                                    @endif
-                                                </div>{{-- TODO --}}
-                                                <span class="security-code">
-                                                    {!! captcha_img() !!}
-                                                </span>
-                                            </div>
                                             <div class="payment_option mb-50">
                                                 <div class="custome-radio">
                                                     <input class="form-check-input" type="radio" name="type"

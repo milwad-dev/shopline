@@ -2,9 +2,9 @@
 
 namespace Modules\Home\Repositories;
 
+use Modules\Home\Models\Home;
 use Modules\Share\Contracts\Interface\RepositoriesInterface;
 use Modules\Share\Repositories\ShareRepo;
-use Modules\Home\Models\Home;
 
 class HomeRepo implements RepositoriesInterface
 {
