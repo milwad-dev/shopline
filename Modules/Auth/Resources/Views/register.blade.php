@@ -4,7 +4,6 @@
 
 @section('content')
     <main class="main pages">
-
         <div class="page-content pt-150 pb-150">
             <div class="container">
                 <div class="row">
@@ -129,18 +128,4 @@
             </div>
         </div>
     </main>
-@endsection
-
-@section('js')
-    <script>
-        $('#refresh-captcha').click(function () {
-            $.ajax({
-                type: 'GET',
-                url: '{{ route('refresh-captcha') }}',
-                success: function (data) {
-                    $(".fw-medium span").html(data.captcha);
-                }
-            });
-        });
-    </script>
 @endsection

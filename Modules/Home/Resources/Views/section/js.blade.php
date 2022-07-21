@@ -19,4 +19,5 @@
 <script src="{{ asset('home/js/plugins/jquery.elevatezoom.js') }}"></script>
 <script src="{{ asset('home/js/main.js') }}"></script>
 <script src="{{ asset('home/js/shop.js') }}"></script>
+@include('sweetalert::alert')
 @yield('js')
