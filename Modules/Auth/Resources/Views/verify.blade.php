@@ -1,6 +1,6 @@
 @extends('Home::layouts.master')
 
-@section('title', 'Login')
+@section('title', 'Verify account')
 
 @section('content')
     <main class="main pages">
@@ -13,47 +13,33 @@
                                 <div class="login_wrap widget-taber-content background-white">
                                     <div class="padding_eight_all bg-white">
                                         <div class="heading_s1">
-                                            <h1 class="mb-5">Login</h1>
-                                            <p class="mb-30">
-                                                Don't have an account?
-                                                <a href="{{ route('register') }}">Create here</a>
-                                            </p>
+                                            <h1 class="mb-5">Verify email</h1>
+                                            <p>Check the email and enter to verify code.</p>
                                         </div>
-                                        <form method="POST" action="{{ route('login') }}">
+                                        <form method="POST" action="{{ route('verification.verify') }}">
                                             @csrf
                                             <div class="form-group">
-                                                <input class="@error('email') is-invalid @enderror" type="text"
-                                                name="email" placeholder="Email" value="{{ old('email') }}">
-                                                @error('email')
-                                                    <span class="invalid-feedback text-danger" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <div class="form-group">
-                                                <input class="@error('password') is-invalid @enderror" type="password"
-                                                name="password" placeholder="Password">
-                                                @error('password')
+                                                <input class="@error('verify_code') is-invalid @enderror" type="number"
+                                                name="verify_code" placeholder="Verify code" value="{{ old('verify_code') }}">
+                                                @error('verify_code')
                                                     <span class="invalid-feedback text-danger" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
                                             </div>
                                             <div class="login_footer form-group mb-50">
-                                                <div class="chek-form">
-                                                    <div class="custome-checkbox">
-                                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" value="">
-                                                        <label class="form-check-label" for="exampleCheckbox1"><span>Remember me</span></label>
-                                                    </div>
-                                                </div>
-                                                <a class="text-muted" href="page-login.html#">Forgot password?</a>
+                                                <a class="text-white btn" href="#"
+                                                    onclick="event.preventDefault();document.getElementById('resend-code').submit()">
+                                                    Send again verify code
+                                                </a>
                                             </div>
                                             <div class="form-group mb-30">
                                                 <button type="submit" class="btn btn-fill-out btn-block hover-up font-weight-bold">
-                                                    Login
+                                                    Continue
                                                 </button>
                                             </div>
                                         </form>
+                                        <form id="resend-code" action="{{ route('verification.resend') }}" method="POST">@csrf</form>
                                     </div>
                                 </div>
                             </div>{{-- TODO --}}

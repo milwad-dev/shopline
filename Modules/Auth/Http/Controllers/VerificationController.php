@@ -45,7 +45,7 @@ class VerificationController extends Controller
         }
 
         auth()->user()->markEmailAsVerified();
-        ShareService::successToast('You verified successfully');
+        ShareService::successToast('Your account has been successfully verified.');
         return redirect()->route('home.index');
     }
 
