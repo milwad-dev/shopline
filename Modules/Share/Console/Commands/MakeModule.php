@@ -41,13 +41,14 @@ use Illuminate\Support\Facades\Route;
 
 class {$argument}ServiceProvider extends ServiceProvider
 {
-    public string $/namespace = 'Modules\\$argument\Http\Controllers';
+    public string \$namespace = 'Modules\\$argument\Http\Controllers';
 
     public function register()
     {
-        $/this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
-        $/this->loadViewsFrom(__DIR__ . '/../Resources/Views/', '{$argument}');
-        Route::middleware(['web', 'verify'])->namespace($/this->namespace)->group(__DIR__ . '/../Routes/{$argument}_routes.php');
+        \$this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        \$this->loadViewsFrom(__DIR__ . '/../Resources/Views/', $argument);
+        Route::middleware(['web', 'verify'])->namespace(\$this->namespace)
+        ->group(__DIR__ . '/../Routes/' . strtolower($argument) . '_routes.php');
     }
 }
 ";
@@ -56,14 +57,11 @@ class {$argument}ServiceProvider extends ServiceProvider
 
 namespace Modules\\$argument\Repositories;
 
-use Modules\Share\Contracts\Interface\RepositoriesInterface;
 use Modules\Share\Repositories\ShareRepo;
 use Modules\\$argument\Models\\$argument;
 
-class {$argument}Repo implements RepositoriesInterface
+class {$argument}Repo
 {
-    private string \$class = $argument::class;
-
     public function index()
     {
 
@@ -81,7 +79,7 @@ class {$argument}Repo implements RepositoriesInterface
 
     private function query()
     {
-        return ShareRepo::query(\$this->class);
+        return $argument::class;
     }
 }
 ";
@@ -98,14 +96,11 @@ Route::group([], function ($router) {
 
 namespace Modules\\{$argument}\Services;
 
-use Modules\Share\Contracts\Interface\ServicesInterface;
 use Modules\\{$argument}\Models\\{$argument};
 use Modules\Share\Repositories\ShareRepo;
 
-class {$argument}Service implements ServicesInterface
+class {$argument}Service
 {
-    private string \$class = {$argument}::class;
-
     public function store(\$request)
     {
         return \$this->query()->create([
@@ -122,7 +117,7 @@ class {$argument}Service implements ServicesInterface
 
     private function query()
     {
-        return ShareRepo::query(\$this->class);
+        return $argument::class;
     }
 }
         ";
