@@ -1,0 +1,1 @@
+$((function(){var e=$("#addNewAddressForm"),d=$("#modalAddressCountry");d.length&&d.wrap('<div class="position-relative"></div>').select2({dropdownParent:d.parent()}),e.length&&e.validate({rules:{modalAddressFirstName:{required:!0},modalAddressLastName:{required:!0}}})}));

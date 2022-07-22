@@ -1,0 +1,25 @@
+form span.error {
+  width: 100%;
+  font-size: 0.857rem; }
+
+form .error:not(input) {
+  color: #ea5455; }
+
+form input.error,
+form input.error:focus {
+  border-color: #ea5455 !important; }
+
+form textarea.error {
+  border-color: #ea5455 !important; }
+
+form .select2.error + .select2-container--classic .select2-selection--single,
+form .select2.error + .select2-container--default .select2-selection--single,
+form .select2.error + .select2-container--classic .select2-selection--multiple,
+form .select2.error + .select2-container--default .select2-selection--multiple {
+  border-color: #ea5455 !important; }
+
+.was-validated .form-select:invalid:not([multiple]):not([size]),
+.was-validated .form-select:invalid:not([multiple])[size='1'],
+.form-select.is-invalid:not([multiple]):not([size]),
+.form-select.is-invalid:not([multiple])[size='1'] {
+  background-position: right 1rem center, center right 2.5rem; }
