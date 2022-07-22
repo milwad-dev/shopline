@@ -46,11 +46,11 @@
                                                         <label class="form-check-label" for="exampleCheckbox1"><span>Remember me</span></label>
                                                     </div>
                                                 </div>
-                                                <a class="text-muted" href="page-login.html#">Forgot password?</a>
+                                                <a class="text-muted" href="{{ route('password.request') }}">Forgot password?</a>
                                             </div>
                                             <div class="form-group mb-30">
                                                 <button type="submit" class="btn btn-fill-out btn-block hover-up font-weight-bold">
-                                                    Login
+                                                    Send verify code
                                                 </button>
                                             </div>
                                         </form>

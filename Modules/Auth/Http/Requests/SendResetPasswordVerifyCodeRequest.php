@@ -15,7 +15,6 @@ class SendResetPasswordVerifyCodeRequest extends FormRequest
     {
         return [
             'email' => 'required|email|exists:users,email',
-            'captcha' => 'required|captcha',
         ];
     }
 }
