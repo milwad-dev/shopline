@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Shopline'),
 
     /*
     |--------------------------------------------------------------------------
@@ -189,6 +189,7 @@ return [
         Modules\Share\Providers\ShareServiceProvider::class,
         Modules\Home\Providers\HomeServiceProvider::class,
         Modules\Auth\Providers\AuthServiceProvider::class,
+        Modules\Panel\Providers\PanelServiceProvider::class,
         /**
          * Package Service Providers...
          */
