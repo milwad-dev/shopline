@@ -26,6 +26,6 @@ Route::group([], static function ($router) {
     ->middleware('throttle:5,1');
 
     // Reset Password
-    $router->get('password/change', 'ResetPasswordController@showResetForm')->name('password.showResetForm')->middleware('auth');
+    $router->get('password/change', 'ResetPasswordController@view')->name('password.showResetForm')->middleware('auth');
     $router->post('password/change', 'ResetPasswordController@reset')->name('password.update')->middleware('throttle:3,1');
 });
