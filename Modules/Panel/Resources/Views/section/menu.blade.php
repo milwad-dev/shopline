@@ -4,7 +4,7 @@
             <li class="nav-item me-auto">
                 <a class="navbar-brand" href="{{ route('panel.index') }}">
                     <span class="brand-logo">
-                        <svg viewbox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="24">
+                        <svg viewbox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg" height="24">
                           <defs>
                             <lineargradient id="linearGradient-1" x1="100%" y1="10.5120544%" x2="50%" y2="89.4879456%">
                               <stop stop-color="#000000" offset="0%"></stop>
@@ -40,6 +40,7 @@
                 <span data-i18n="Menus">Menus</span>
                 <i data-feather="more-horizontal"></i>
             </li>
+            {{-- Load menu from config file --}}
             @foreach (config('panelConfig.menus') as $menu)
                 <li class="nav-item {{ request()->url() === $menu['url'] ? 'active': null }}">
                     <a class="d-flex align-items-center" href="{{ $menu['url'] }}">

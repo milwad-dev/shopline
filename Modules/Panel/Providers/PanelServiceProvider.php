@@ -2,8 +2,8 @@
 
 namespace Modules\Panel\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 
 class PanelServiceProvider extends ServiceProvider
 {
@@ -21,7 +21,7 @@ class PanelServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->booted(static function () {
-            config()->set('panelConfig.menus.panel', [
+            config()->set('panelConfig.menus.panel', [ // Set menu for panel
                 'title' => 'Panel',
                 'icon'  => 'home',
                 'url'   => route('panel.index'),
