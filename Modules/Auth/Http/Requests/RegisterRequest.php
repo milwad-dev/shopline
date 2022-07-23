@@ -30,10 +30,10 @@ class RegisterRequest extends FormRequest
         return [
             'name'      => ['required', 'string', 'min:3', 'max:150'],
             'email'     => ['required', 'email', 'min:3', 'max:150', 'unique:users,email'],
-            'phone'     => ['required', 'numeric', 'digits:11', new ValidPhoneNumber()],
+            'phone'     => ['required', 'numeric', 'digits:11', 'unique:users,phone', new ValidPhoneNumber()],
             'type'      => ['required', 'string', new Enum(UserTypeEnum::class)],
             'policy'    => ['required'],
-            'password'  => ['required', 'string', 'min:8', 'max:150', new ValidStrongPassword()]
+            'password'  => ['required', 'string', 'min:8', 'max:150', new ValidStrongPassword()],
         ];
     }
 }
