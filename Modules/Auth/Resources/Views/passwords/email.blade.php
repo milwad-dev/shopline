@@ -20,11 +20,7 @@
                                             <div class="form-group">
                                                 <input class="@error('email') is-invalid @enderror" type="email"
                                                 name="email" placeholder="Email" value="{{ old('email') }}">
-                                                @error('email')
-                                                    <span class="invalid-feedback text-danger" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
+                                                <x-share-error name="email" />
                                             </div>
                                             <div class="form-group mb-30">
                                                 <button type="submit" class="btn btn-fill-out btn-block hover-up font-weight-bold">

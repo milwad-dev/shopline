@@ -21,11 +21,7 @@
                                             <div class="form-group">
                                                 <input class="@error('password') is-invalid @enderror" type="password"
                                                 name="password" placeholder="Password">
-                                                @error('password')
-                                                    <span class="invalid-feedback text-danger" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
+                                                <x-share-error name="password" />
                                                 <p>
                                                     Password must have a capital & lower letters with number & special character(Milwad123!).
                                                 </p>

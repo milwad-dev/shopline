@@ -24,20 +24,12 @@
                                             <div class="form-group">
                                                 <input class="@error('email') is-invalid @enderror" type="text"
                                                 name="email" placeholder="Email" value="{{ old('email') }}">
-                                                @error('email')
-                                                    <span class="invalid-feedback text-danger" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
+                                                <x-share-error name="email" />
                                             </div>
                                             <div class="form-group">
                                                 <input class="@error('password') is-invalid @enderror" type="password"
                                                 name="password" placeholder="Password">
-                                                @error('password')
-                                                    <span class="invalid-feedback text-danger" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
+                                                <x-share-error name="password" />
                                             </div>
                                             <div class="login_footer form-group mb-50">
                                                 <div class="chek-form">

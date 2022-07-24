@@ -21,11 +21,7 @@
                                             <div class="form-group">
                                                 <input class="@error('verify_code') is-invalid @enderror" type="number"
                                                 name="verify_code" placeholder="Verify code" value="{{ old('verify_code') }}">
-                                                @error('verify_code')
-                                                    <span class="invalid-feedback text-danger" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
+                                                <x-share-error name="verify_code" />
                                             </div>
                                             <div class="login_footer form-group mb-50">
                                                 <a class="text-white btn" href="#"
