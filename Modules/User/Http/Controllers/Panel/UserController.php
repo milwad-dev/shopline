@@ -53,7 +53,7 @@ class UserController extends Controller
         $user = $this->service->store($request);
 
         if ($request->has('email_verified_at')) {
-            $user->forceFill(['email_verified_at' => now()]);
+            $user->forceFill(['email_verified_at' => now()])->save();
         }
 
         return $this->successMessageWithRedirect('User created successfully');

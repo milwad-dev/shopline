@@ -11,4 +11,5 @@
         if (feather) feather.replace({ width: 14, height: 14 });
     })
 </script>
+@include('sweetalert::alert')
 @yield('js')

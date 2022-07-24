@@ -19,7 +19,7 @@ class UserService
 
     public function update($request, $id)
     {
-        return $this->query()->where('id', $id)->create([
+        return $this->query()->where('id', $id)->update([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,

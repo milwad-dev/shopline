@@ -22,6 +22,7 @@
                                     </li>
                                 </ol>
                             </div>
+                            <a href="{{ route('users.create') }}" class="btn btn-info">Create user</a>
                         </div>
                     </div>
                 </div>
