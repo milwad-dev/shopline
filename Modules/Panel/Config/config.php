@@ -3,5 +3,6 @@
 return [
     'menus' => [
         'panel' => [],
+        'users' => [],
     ],
 ];

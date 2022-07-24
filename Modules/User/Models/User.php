@@ -15,10 +15,25 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    /**
+     * Set fillable for columns.
+     *
+     * @var string[]
+     */
     protected $fillable = ['name', 'email', 'phone', 'type', 'password'];
 
+    /**
+     * Set column to hidden for columns.
+     *
+     * @var string[]
+     */
     protected $hidden = ['password', 'remember_token'];
 
+    /**
+     * Cast columns.
+     *
+     * @var string[]
+     */
     protected $casts = [
         'email_verified_at' => 'datetime',
         'type' => UserTypeEnum::class,
@@ -42,5 +57,30 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendResetPasswordRequestNotification()
     {
         $this->notify(new ResetPasswordRequestNotification());
+    }
+
+    // Methods
+    /*
+     * Get text email verified at.
+     */
+    public function getStatusEmailVerifiedAtText()
+    {
+        if ($this->email_verified_at) {
+            return 'Verified';
+        }
+
+        return 'Not confirmed';
+    }
+
+    /**
+     * Get css class for email verified at user.
+     */
+    public function getCssClassStatusEmailVerifiedAt()
+    {
+        if ($this->email_verified_at) {
+            return 'success';
+        }
+
+        return 'warning';
     }
 }

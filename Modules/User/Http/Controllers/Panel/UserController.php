@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = $this->repo->getLatestWithoutId(auth()->id())->paginate(10);
+        $users = $this->repo->getLatestWithoutId(auth()->id())->paginate(25);
 
         return view('User::Panel.index', compact('users'));
     }
