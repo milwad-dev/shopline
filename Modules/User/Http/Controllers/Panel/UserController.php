@@ -91,7 +91,7 @@ class UserController extends Controller
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete($id)
+    public function destroy($id)
     {
         $this->repo->delete($id);
         return AjaxResponses::SuccessResponse();
