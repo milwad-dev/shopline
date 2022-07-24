@@ -36,6 +36,7 @@ class ShareServiceProvider extends ServiceProvider
     {
         $this->loadViewComponentsAs('auth', [
             \Modules\Share\Components\Auth\Input::class,
+            \Modules\Share\Components\Auth\Button::class,
         ]);
     }
 
