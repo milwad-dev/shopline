@@ -82,9 +82,7 @@
                                                 <a href="page-privacy-policy.html"><i class="fi-rs-book-alt mr-5 text-muted"></i>Lean more</a>
                                             </div>
                                             <div class="form-group mb-30">
-                                                <button type="submit" class="btn btn-fill-out btn-block hover-up font-weight-bold">
-                                                    Submit &amp; Register
-                                                </button>
+                                                <x-share-button title="Submit &amp; Register" />
                                             </div>
                                         </form>
                                     </div>

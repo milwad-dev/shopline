@@ -30,9 +30,7 @@
                                                 </a>
                                             </div>
                                             <div class="form-group mb-30">
-                                                <button type="submit" class="btn btn-fill-out btn-block hover-up font-weight-bold">
-                                                    Continue
-                                                </button>
+                                                <x-share-button title="Continue" />
                                             </div>
                                         </form>
                                         <form id="resend-code" action="{{ route('verification.resend') }}" method="POST">@csrf</form>

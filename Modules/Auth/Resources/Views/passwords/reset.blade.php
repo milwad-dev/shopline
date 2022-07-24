@@ -32,9 +32,7 @@
                                                 type="password" placeholder="Confirm password" />
                                             </div>
                                             <div class="form-group mb-30">
-                                                <button type="submit" class="btn btn-fill-out btn-block hover-up font-weight-bold">
-                                                    Save & Continue
-                                                </button>
+                                                <x-share-button title="Save & Continue" />
                                             </div>
                                         </form>
                                     </div>

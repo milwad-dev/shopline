@@ -40,15 +40,12 @@
                                                 <a class="text-muted" href="{{ route('password.request') }}">Forgot password?</a>
                                             </div>
                                             <div class="form-group mb-30">
-                                                <button type="submit" class="btn btn-fill-out btn-block hover-up font-weight-bold">
-                                                    Send verify code
-                                                </button>
+                                                <x-share-button title="Login" />
                                             </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
-                            @include('Auth::section.login-social')
                         </div>
                     </div>
                 </div>
