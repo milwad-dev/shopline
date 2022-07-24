@@ -46,11 +46,7 @@
                                                     <input class="form-control @error('name') is-invalid @enderror"
                                                     type="text" id="name" name="name" placeholder="Enter name"
                                                     value="{{ $user->name }}">
-                                                    @error('name')
-                                                        <span class="invalid-feedback text-danger" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
+                                                    <x-share-error name="name" />
                                                 </div>
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12">
@@ -59,11 +55,7 @@
                                                     <input class="form-control @error('email') is-invalid @enderror"
                                                     type="email" id="email" name="email" placeholder="Enter email"
                                                     value="{{ $user->email }}">
-                                                    @error('email')
-                                                        <span class="invalid-feedback text-danger" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
+                                                    <x-share-error name="email" />
                                                 </div>
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12">
@@ -72,11 +64,7 @@
                                                     <input class="form-control @error('phone') is-invalid @enderror"
                                                     type="number" id="phone" name="phone" placeholder="Enter phone"
                                                     value="{{ $user->phone }}">
-                                                    @error('phone')
-                                                        <span class="invalid-feedback text-danger" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
+                                                    <x-share-error name="phone" />
                                                 </div>
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12">
@@ -85,11 +73,7 @@
                                                     <input class="form-control @error('password') is-invalid @enderror"
                                                     type="password" id="password" name="password" placeholder="Enter password"
                                                     value="{{ $user->password }}">
-                                                    @error('password')
-                                                        <span class="invalid-feedback text-danger" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
+                                                    <x-share-error name="password" />
                                                 </div>
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12">
@@ -103,11 +87,7 @@
                                                             </option>
                                                         @endforeach
                                                     </select>
-                                                    @error('type')
-                                                        <span class="invalid-feedback text-danger" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
+                                                    <x-share-error name="type" />
                                                 </div>
                                             </div>
                                             <button class="btn btn-primary waves-effect waves-float waves-light" type="submit">

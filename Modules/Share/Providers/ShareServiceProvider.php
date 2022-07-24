@@ -10,16 +10,21 @@ class ShareServiceProvider extends ServiceProvider
     public function register()
     {
         $this->loadViewsFrom(__DIR__ . '/../Resources/Views/', 'Share');
-        $this->commands([
-            MakeModule::class
-        ]);
+        $this->loadCommands();
         $this->loadShareComponents();
     }
 
     private function loadShareComponents()
     {
         $this->loadViewComponentsAs('share', [
+            \Modules\Share\Components\Share\Error::class,
+        ]);
+    }
 
+    private function loadCommands()
+    {
+        $this->commands([
+            MakeModule::class
         ]);
     }
 }
