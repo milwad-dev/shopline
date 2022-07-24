@@ -18,8 +18,8 @@
                                         </div>
                                         <form method="GET" action="{{ route('password.sendVerifyCodeEmail') }}">
                                             <div class="form-group">
-                                                <input class="@error('email') is-invalid @enderror" type="email"
-                                                name="email" placeholder="Email" value="{{ old('email') }}">
+                                                <x-auth-input name="email" id="email" value="{{ old('email') }}" type="email"
+                                                placeholder="Email" />
                                                 <x-share-error name="email" />
                                             </div>
                                             <div class="form-group mb-30">

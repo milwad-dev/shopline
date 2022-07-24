@@ -19,23 +19,23 @@
                                         <form method="POST" action="{{ route('register') }}">
                                             @csrf
                                             <div class="form-group">
-                                                <input class="@error('name') is-invalid @enderror" type="text"
-                                                name="name" placeholder="Name" value="{{ old('name') }}">
+                                                <x-auth-input name="name" id="name" value="{{ old('name') }}"
+                                                placeholder="Name" />
                                                 <x-share-error name="name" />
                                             </div>
                                             <div class="form-group">
-                                                <input class="@error('email') is-invalid @enderror" type="email"
-                                                name="email" placeholder="Email" value="{{ old('email') }}">
+                                                <x-auth-input name="email" id="email" value="{{ old('email') }}" type="email"
+                                                placeholder="Email" />
                                                 <x-share-error name="email" />
                                             </div>
                                             <div class="form-group">
-                                                <input class="@error('phone') is-invalid @enderror" type="number"
-                                                name="phone" placeholder="Phone" value="{{ old('phone') }}">
+                                                <x-auth-input name="phone" id="phone" value="{{ old('phone') }}" type="number"
+                                                placeholder="Phone" />
                                                 <x-share-error name="phone" />
                                             </div>
                                             <div class="form-group">
-                                                <input class="@error('password') is-invalid @enderror" type="password"
-                                                name="password" placeholder="Password">
+                                                <x-auth-input name="password" id="password" value="{{ old('password') }}"
+                                                type="password" placeholder="Password" />
                                                 <x-share-error name="password" />
                                                 <p>
                                                     Password must have a capital & lower letters with number & special character(Milwad123!).

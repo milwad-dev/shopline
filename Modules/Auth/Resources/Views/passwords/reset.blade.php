@@ -20,14 +20,16 @@
                                             @csrf
                                             <div class="form-group">
                                                 <input class="@error('password') is-invalid @enderror" type="password"
-                                                name="password" placeholder="Password">
+                                                name="" placeholder="">
+                                                <x-auth-input name="password" id="password" type="password" placeholder="Password" />
                                                 <x-share-error name="password" />
                                                 <p>
                                                     Password must have a capital & lower letters with number & special character(Milwad123!).
                                                 </p>
                                             </div>
                                             <div class="form-group">
-                                                <input type="password" name="password_confirmation" placeholder="Confirm password">
+                                                <x-auth-input name="password_confirmation" id="password_confirmation"
+                                                type="password" placeholder="Confirm password" />
                                             </div>
                                             <div class="form-group mb-30">
                                                 <button type="submit" class="btn btn-fill-out btn-block hover-up font-weight-bold">

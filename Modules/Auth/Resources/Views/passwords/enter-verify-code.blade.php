@@ -20,8 +20,8 @@
                                             @csrf
                                             <input type="hidden" name="email" value="{{ request()->email }}">
                                             <div class="form-group">
-                                                <input class="@error('verify_code') is-invalid @enderror" type="number"
-                                                name="verify_code" placeholder="Verify code" value="{{ old('verify_code') }}">
+                                                <x-auth-input name="verify_code" id="verify_code" value="{{ old('verify_code') }}"
+                                                type="number" placeholder="Verify code" />
                                                 <x-share-error name="verify_code" />
                                             </div>
                                             <div class="login_footer form-group mb-50">

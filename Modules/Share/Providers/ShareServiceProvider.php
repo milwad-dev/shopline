@@ -12,8 +12,14 @@ class ShareServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../Resources/Views/', 'Share');
         $this->loadCommands();
         $this->loadShareComponents();
+        $this->loadAuthComponents();
     }
 
+    /**
+     * Load component about share.
+     *
+     * @return void
+     */
     private function loadShareComponents()
     {
         $this->loadViewComponentsAs('share', [
@@ -21,6 +27,23 @@ class ShareServiceProvider extends ServiceProvider
         ]);
     }
 
+    /**
+     * Load component about auth.
+     *
+     * @return void
+     */
+    private function loadAuthComponents()
+    {
+        $this->loadViewComponentsAs('auth', [
+            \Modules\Share\Components\Auth\Input::class,
+        ]);
+    }
+
+    /**
+     * Load commands.
+     *
+     * @return void
+     */
     private function loadCommands()
     {
         $this->commands([

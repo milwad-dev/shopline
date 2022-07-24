@@ -22,13 +22,12 @@
                                         <form method="POST" action="{{ route('login') }}">
                                             @csrf
                                             <div class="form-group">
-                                                <input class="@error('email') is-invalid @enderror" type="text"
-                                                name="email" placeholder="Email" value="{{ old('email') }}">
+                                                <x-auth-input name="email" id="email" value="{{ old('email') }}"
+                                                placeholder="Email or phone" />
                                                 <x-share-error name="email" />
                                             </div>
                                             <div class="form-group">
-                                                <input class="@error('password') is-invalid @enderror" type="password"
-                                                name="password" placeholder="Password">
+                                                <x-auth-input type="password" name="password" id="password" placeholder="Password" />
                                                 <x-share-error name="password" />
                                             </div>
                                             <div class="login_footer form-group mb-50">
