@@ -190,6 +190,7 @@ return [
         Modules\Home\Providers\HomeServiceProvider::class,
         Modules\Auth\Providers\AuthServiceProvider::class,
         Modules\Panel\Providers\PanelServiceProvider::class,
+        Modules\Media\Providers\MediaServiceProvider::class,
         /**
          * Package Service Providers...
          */

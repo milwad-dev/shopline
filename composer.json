@@ -31,7 +31,8 @@
             "Modules\\Share\\": "Modules/Share/",
             "Modules\\Home\\": "Modules/Home/",
             "Modules\\Auth\\": "Modules/Auth/",
-            "Modules\\Panel\\": "Modules/Panel/"
+            "Modules\\Panel\\": "Modules/Panel/",
+            "Modules\\Media\\": "Modules/Media/"
         }
     },
     "autoload-dev": {
