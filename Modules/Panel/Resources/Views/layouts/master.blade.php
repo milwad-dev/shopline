@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
     <head>
-        {{-- Meta tags --}}
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        @include('Panel::section.meta') {{-- Include Meta tags file --}}
 
         <title>@yield('title') - {{ config('app.name') }}</title>
 

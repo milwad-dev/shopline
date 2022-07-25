@@ -16,4 +16,5 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('panel/css/pages/dashboard-ecommerce.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('panel/css/plugins/charts/chart-apex.min.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('panel/css/plugins/extensions/ext-component-toastr.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('panel/js/scripts/toast/jquery.toast.min.css') }}">
 @yield('css')

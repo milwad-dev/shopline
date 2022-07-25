@@ -6,6 +6,9 @@
 <script src="{{ asset('panel/js/core/app.min.js') }}"></script>
 <script src="{{ asset('panel/js/scripts/customizer.min.js') }}"></script>
 <script src="{{ asset('panel/js/scripts/pages/dashboard-ecommerce.min.js') }}"></script>
+<script src="{{ asset('panel/js/scripts/sweetalert/sweetalert.min.js') }}"></script>
+<script src="{{ asset('panel/js/scripts/toast/jquery.toast.min.js') }}"></script>
+<script src="{{ asset('panel/js/scripts/custom.js') }}"></script>
 <script>
     $(window).on('load',  function () {
         if (feather) feather.replace({ width: 14, height: 14 });
