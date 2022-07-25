@@ -6,7 +6,7 @@ use Illuminate\View\Component;
 
 class Button extends Component
 {
-    public string $name;
+    public string $title;
     public mixed $type;
 
     /**
@@ -14,9 +14,9 @@ class Button extends Component
      *
      * @return void
      */
-    public function __construct($name, $type = 'submit')
+    public function __construct($title, $type = 'submit')
     {
-        $this->name = $name;
+        $this->title = $title;
         $this->type = $type;
     }
 
@@ -27,6 +27,6 @@ class Button extends Component
      */
     public function render()
     {
-        return view('Auth::components.auth.button');
+        return view('Share::components.auth.button');
     }
 }

@@ -40,7 +40,7 @@
                                                 <a class="text-muted" href="{{ route('password.request') }}">Forgot password?</a>
                                             </div>
                                             <div class="form-group mb-30">
-                                                <x-share-button title="Login" />
+                                                <x-auth-button title="Login" />
                                             </div>
                                         </form>
                                     </div>

@@ -23,7 +23,7 @@
                                                 <x-share-error name="email" />
                                             </div>
                                             <div class="form-group mb-30">
-                                                <x-share-button title="Submit &amp; Register" />
+                                                <x-auth-button title="Submit &amp; Register" />
                                             </div>
                                         </form>
                                     </div>

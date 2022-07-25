@@ -31,7 +31,7 @@
                                                 </a>
                                             </div>
                                             <div class="form-group mb-30">
-                                                <x-share-button title="Continue" />
+                                                <x-auth-button title="Continue" />
                                             </div>
                                         </form>
                                         <form id="resend-code" action="{{ route('password.sendVerifyCodeEmail', request()->email) }}" method="GET"></form>

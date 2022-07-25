@@ -82,7 +82,7 @@
                                                 <a href="page-privacy-policy.html"><i class="fi-rs-book-alt mr-5 text-muted"></i>Lean more</a>
                                             </div>
                                             <div class="form-group mb-30">
-                                                <x-share-button title="Submit &amp; Register" />
+                                                <x-auth-button title="Submit &amp; Register" />
                                             </div>
                                         </form>
                                     </div>

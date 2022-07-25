@@ -32,7 +32,7 @@
                                                 type="password" placeholder="Confirm password" />
                                             </div>
                                             <div class="form-group mb-30">
-                                                <x-share-button title="Save & Continue" />
+                                                <x-auth-button title="Save & Continue" />
                                             </div>
                                         </form>
                                     </div>
