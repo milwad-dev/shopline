@@ -57,7 +57,6 @@ class {$argument}ServiceProvider extends ServiceProvider
 
 namespace Modules\\$argument\Repositories;
 
-use Modules\Share\Repositories\ShareRepo;
 use Modules\\$argument\Models\\$argument;
 
 class {$argument}Repo
@@ -79,7 +78,7 @@ class {$argument}Repo
 
     private function query()
     {
-        return $argument::class;
+        return $argument::query();
     }
 }
 ";
