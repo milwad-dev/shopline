@@ -101,7 +101,7 @@ class CategoryTest extends TestCase
         $this->createUserWithLogin();
         $category = $this->createCategory();
 
-        $response = $this->delete(route('categories.destroy', $category->id))->assertOk();
+        $this->delete(route('categories.destroy', $category->id))->assertOk();
     }
 
     /**
