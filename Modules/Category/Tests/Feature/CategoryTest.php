@@ -105,6 +105,32 @@ class CategoryTest extends TestCase
     }
 
     /**
+     * Test admin user can change status category to active.
+     *
+     * @return void
+     */
+    public function test_admin_user_can_change_status_category_to_active()
+    {
+        $this->createUserWithLogin();
+        $category = $this->createCategory();
+
+        $this->patch(route('categories.change.status.active', $category->id))->assertOk();
+    }
+
+    /**
+     * Test admin user can change status category to inactive.
+     *
+     * @return void
+     */
+    public function test_admin_user_can_change_status_category_to_inactive()
+    {
+        $this->createUserWithLogin();
+        $category = $this->createCategory();
+
+        $this->patch(route('categories.change.status.inactive', $category->id))->assertOk();
+    }
+
+    /**
      * Create user with login.
      *
      * @return void

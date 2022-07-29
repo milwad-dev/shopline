@@ -21,6 +21,11 @@ class CategoryRepo
         return $this->query()->where('id', $id)->delete();
     }
 
+    public function changeStatus($id, string $status)
+    {
+        return $this->query()->where('id', $id)->update(['status' => $status]);
+    }
+
     private function query()
     {
         return Category::query();

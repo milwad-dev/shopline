@@ -3,6 +3,7 @@
 namespace Modules\Category\Http\Controllers\Panel;
 
 use Illuminate\Http\Request;
+use Modules\Category\Enums\CategoryStatusEnum;
 use Modules\Category\Http\Requests\CategoryRequest;
 use Modules\Category\Repositories\CategoryRepo;
 use Modules\Category\Services\CategoryService;
@@ -92,6 +93,32 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $this->repo->delete($id);
+
+        return AjaxResponses::SuccessResponse();
+    }
+
+    /**
+     * Change category status to active.
+     *
+     * @param  $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function active($id)
+    {
+        $this->repo->changeStatus($id, CategoryStatusEnum::STATUS_ACTIVE->value);
+
+        return AjaxResponses::SuccessResponse();
+    }
+
+    /**
+     * Change category status to inactive.
+     *
+     * @param  $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function inactive($id)
+    {
+        $this->repo->changeStatus($id, CategoryStatusEnum::STATUS_INACTIVE->value);
 
         return AjaxResponses::SuccessResponse();
     }
