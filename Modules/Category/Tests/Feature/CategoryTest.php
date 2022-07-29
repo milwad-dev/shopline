@@ -92,6 +92,19 @@ class CategoryTest extends TestCase
     }
 
     /**
+     * Test admin user can delete category.
+     *
+     * @return void
+     */
+    public function test_admin_user_can_delete_category()
+    {
+        $this->createUserWithLogin();
+        $category = $this->createCategory();
+
+        $response = $this->delete(route('categories.destroy', $category->id))->assertOk();
+    }
+
+    /**
      * Create user with login.
      *
      * @return void

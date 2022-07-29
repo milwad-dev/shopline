@@ -7,6 +7,7 @@ use Modules\Category\Http\Requests\CategoryRequest;
 use Modules\Category\Repositories\CategoryRepo;
 use Modules\Category\Services\CategoryService;
 use Modules\Share\Http\Controllers\Controller;
+use Modules\Share\Responses\AjaxResponses;
 use Modules\Share\Services\ShareService;
 
 class CategoryController extends Controller
@@ -80,6 +81,19 @@ class CategoryController extends Controller
         $this->service->update($request, $id);
 
         return $this->successMessageWithRedirect('Update category');
+    }
+
+    /**
+     * Delete category by id.
+     *
+     * @param  $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function destroy($id)
+    {
+        $this->repo->delete($id);
+
+        return AjaxResponses::SuccessResponse();
     }
 
     /**
