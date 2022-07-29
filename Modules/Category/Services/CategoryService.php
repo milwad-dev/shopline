@@ -15,7 +15,7 @@ class CategoryService
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
      */
     public function store($request)
-    {Log::info(auth()->id());
+    {
         return $this->query()->create([
             'user_id' => auth()->id(),
             'parent_id' => $request->parent_id,

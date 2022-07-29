@@ -69,6 +69,20 @@ class CategoryController extends Controller
     }
 
     /**
+     * Update category by id.
+     *
+     * @param  CategoryRequest $request
+     * @param  $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(CategoryRequest $request, $id)
+    {
+        $this->service->update($request, $id);
+
+        return $this->successMessageWithRedirect('Update category');
+    }
+
+    /**
      * Show success message with redirect;
      *
      * @param  string $title

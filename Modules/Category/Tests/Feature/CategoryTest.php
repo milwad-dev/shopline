@@ -29,6 +29,8 @@ class CategoryTest extends TestCase
 
     /**
      * Test admin user can see create category page.
+     *
+     * @return void
      */
     public function test_admin_user_can_see_create_category_page()
     {
@@ -40,6 +42,8 @@ class CategoryTest extends TestCase
 
     /**
      * Test admin user can store category.
+     *
+     * @return void
      */
     public function test_admin_user_can_store_category()
     {
@@ -57,6 +61,8 @@ class CategoryTest extends TestCase
 
     /**
      * Test admin user can see edit category page.
+     *
+     * @return void
      */
     public function test_admin_user_can_see_edit_category_page()
     {
@@ -65,6 +71,24 @@ class CategoryTest extends TestCase
         $category = $this->createCategory();
         $response = $this->get(route('categories.edit', $category->id));
         $response->assertViewIs('Category::Panel.edit');
+    }
+
+    /**
+     * Test admin user can update category.
+     *
+     * @return void
+     */
+    public function test_admin_user_can_update_categoroy()
+    {
+        $this->createUserWithLogin();
+        $category = $this->createCategory();
+
+        $response = $this->patch(route('categories.update', $category->id), [
+            'id' => $category->id,
+            'title' => 'milwad dev',
+            'description' => 'shopline category',
+        ]);
+        $response->assertRedirect();
     }
 
     /**
