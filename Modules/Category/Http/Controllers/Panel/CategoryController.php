@@ -4,6 +4,7 @@ namespace Modules\Category\Http\Controllers\Panel;
 
 use Illuminate\Http\Request;
 use Modules\Category\Http\Requests\CategoryRequest;
+use Modules\Category\Repositories\CategoryRepo;
 use Modules\Category\Services\CategoryService;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Services\ShareService;
@@ -11,9 +12,11 @@ use Modules\Share\Services\ShareService;
 class CategoryController extends Controller
 {
     public CategoryService $service;
+    public CategoryRepo $repo;
 
-    public function __construct(CategoryService $categoryService)
+    public function __construct(CategoryService $categoryService, CategoryRepo $categoryRepo)
     {
+        $this->repo = $categoryRepo;
         $this->service = $categoryService;
     }
 
@@ -45,6 +48,17 @@ class CategoryController extends Controller
         $this->service->store($request);
 
         return $this->successMessageWithRedirect('Create category');
+    }
+
+    /**
+     *
+     */
+    public function edit($id)
+    {
+        $category = $this->repo->findById($id);
+        $categories = $this->repo->index()->get();
+
+        return view('Category::Panel.edit', compact(['category', 'categories']));
     }
 
     /**
