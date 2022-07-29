@@ -97,7 +97,6 @@ Route::group([], function ($router) {
 namespace Modules\\{$argument}\Services;
 
 use Modules\\{$argument}\Models\\{$argument};
-use Modules\Share\Repositories\ShareRepo;
 
 class {$argument}Service
 {
@@ -117,7 +116,7 @@ class {$argument}Service
 
     private function query()
     {
-        return $argument::class;
+        return $argument::query();
     }
 }
         ";
