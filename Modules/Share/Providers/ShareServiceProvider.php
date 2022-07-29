@@ -2,6 +2,7 @@
 
 namespace Modules\Share\Providers;
 
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\ServiceProvider;
 use Modules\Share\Console\Commands\MakeModule;
 
@@ -13,6 +14,7 @@ class ShareServiceProvider extends ServiceProvider
         $this->loadCommands();
         $this->loadShareComponents();
         $this->loadAuthComponents();
+        $this->loadFactories();
     }
 
     /**
@@ -50,5 +52,17 @@ class ShareServiceProvider extends ServiceProvider
         $this->commands([
             MakeModule::class
         ]);
+    }
+
+    /**
+     * Load factories.
+     *
+     * @return void
+     */
+    private function loadFactories()
+    {
+        Factory::guessFactoryNamesUsing(static function (string $modelName) {
+            return 'Modules\Share\Database\\Factories\\' . class_basename($modelName) . 'Factory';
+        });
     }
 }

@@ -17,9 +17,6 @@ class UserServiceProvider extends ServiceProvider
 
         Route::middleware(['web', 'verify'])->namespace($this->namespace)
             ->group(__DIR__ . '/../Routes/user_routes.php');
-        Factory::guessFactoryNamesUsing(static function (string $modelName) {
-            return 'Modules\User\Database\\Factories\\' . class_basename($modelName) . 'Factory';
-        });
     }
 
     public function boot()

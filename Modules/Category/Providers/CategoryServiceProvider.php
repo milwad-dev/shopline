@@ -2,9 +2,9 @@
 
 namespace Modules\Category\Providers;
 
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
-use Modules\Category\Enums\CategoryStatusEnum;
 
 class CategoryServiceProvider extends ServiceProvider
 {
