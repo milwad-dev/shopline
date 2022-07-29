@@ -13,4 +13,9 @@ class ShareService
     {
         return toast($title,'error')->autoClose(5000);
     }
+
+    public static function makeSlug($title)
+    {
+        return preg_replace('/\s+/', '-', str_replace('_', '', $title));
+    }
 }
