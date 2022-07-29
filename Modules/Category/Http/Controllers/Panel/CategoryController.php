@@ -51,7 +51,10 @@ class CategoryController extends Controller
     }
 
     /**
+     * Find category by id.
      *
+     * @param  $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
