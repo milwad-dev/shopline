@@ -27,7 +27,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('Category::Panel.index');
+        $categories = $this->repo->index()->paginate();
+
+        return view('Category::Panel.index', compact('categories'));
     }
 
     /**
@@ -37,7 +39,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('Category::Panel.create');
+        $categories = $this->repo->index()->get();
+
+        return view('Category::Panel.create', compact('categories'));
     }
 
     /**
