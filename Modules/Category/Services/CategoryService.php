@@ -7,6 +7,12 @@ use Modules\Share\Services\ShareService;
 
 class CategoryService
 {
+    /**
+     * Store category.
+     *
+     * @param $request
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
+     */
     public function store($request)
     {
         return $this->query()->create([
@@ -20,6 +26,13 @@ class CategoryService
         ]);
     }
 
+    /**
+     * Update category by id.
+     *
+     * @param $request
+     * @param $id
+     * @return int
+     */
     public function update($request, $id)
     {
         return $this->query()->where('id', $id)->update([
@@ -32,6 +45,11 @@ class CategoryService
         ]);
     }
 
+    /**
+     * Return category query.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     private function query()
     {
         return Category::query();

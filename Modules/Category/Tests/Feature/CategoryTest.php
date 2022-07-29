@@ -3,12 +3,14 @@
 namespace Modules\Category\Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Modules\Category\Enums\CategoryStatusEnum;
 use Modules\User\Models\User;
 use Tests\TestCase;
 
 class CategoryTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, WithFaker;
 
     /**
      * Test admin user can see list of category.
@@ -32,6 +34,23 @@ class CategoryTest extends TestCase
 
         $response = $this->get(route('categories.create'));
         $response->assertViewIs('Category::Panel.create');
+    }
+
+    /**
+     * Test admin user can store category.
+     */
+    public function test_admin_user_can_store_category()
+    {
+        $this->createUserWithLogin();
+
+        $response = $this->post(route('categories.store'), [
+            'parent_id' => null,
+            'title' => $this->faker->title,
+            'keywords' => $this->faker->text(),
+            'status' => CategoryStatusEnum::STATUS_ACTIVE->value,
+            'description' => null,
+        ]);
+        $response->assertRedirect();
     }
 
     /**

@@ -3,6 +3,8 @@
 namespace Modules\Category\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
+use Modules\User\Enums\UserTypeEnum;
 
 class CategoryRequest extends FormRequest
 {
@@ -13,7 +15,7 @@ class CategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +25,18 @@ class CategoryRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
+        $rules = [
+            'parent_id' => 'nullable|exists:categories,id',
+            'title' => 'required|string|min:3|max:255|unique:categories,title',
+            'keywords' => 'nullable|string|min:3|max:255',
+            'status' => ['required', 'string', new Enum(UserTypeEnum::class)],
+            'description' => 'nullable|string|min:3',
         ];
+
+        if (request()->method === 'PATCH') {
+            $rules['title'] = 'required|string|min:3|max:255|unique:categories,title,' . request()->id;
+        }
+
+        return $rules;
     }
 }
