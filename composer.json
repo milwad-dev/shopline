@@ -32,8 +32,12 @@
             "Modules\\Home\\": "Modules/Home/",
             "Modules\\Auth\\": "Modules/Auth/",
             "Modules\\Panel\\": "Modules/Panel/",
-            "Modules\\Media\\": "Modules/Media/"
-        }
+            "Modules\\Media\\": "Modules/Media/",
+            "Modules\\Category\\": "Modules/Category/"
+        },
+        "files": [
+            "Modules/Share/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

@@ -191,6 +191,7 @@ return [
         Modules\Auth\Providers\AuthServiceProvider::class,
         Modules\Panel\Providers\PanelServiceProvider::class,
         Modules\Media\Providers\MediaServiceProvider::class,
+        Modules\Category\Providers\CategoryServiceProvider::class,
         /**
          * Package Service Providers...
          */

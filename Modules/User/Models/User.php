@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Modules\Auth\Notifications\ResetPasswordRequestNotification;
 use Modules\Auth\Notifications\VerifyMailNotification;
+use Modules\Category\Models\Category;
 use Modules\User\Enums\UserTypeEnum;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -82,5 +83,16 @@ class User extends Authenticatable implements MustVerifyEmail
         }
 
         return 'warning';
+    }
+
+    // Relations
+    /**
+     * Relations to Category model, relation is one to many.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
     }
 }
