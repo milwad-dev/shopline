@@ -2,7 +2,6 @@
 
 namespace Modules\User\Providers;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 

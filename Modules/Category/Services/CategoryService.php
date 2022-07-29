@@ -2,7 +2,6 @@
 
 namespace Modules\Category\Services;
 
-use Illuminate\Support\Facades\Log;
 use Modules\Category\Models\Category;
 use Modules\Share\Services\ShareService;
 

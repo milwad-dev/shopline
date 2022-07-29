@@ -2,7 +2,6 @@
 
 namespace Modules\Category\Http\Controllers\Panel;
 
-use Illuminate\Http\Request;
 use Modules\Category\Enums\CategoryStatusEnum;
 use Modules\Category\Http\Requests\CategoryRequest;
 use Modules\Category\Repositories\CategoryRepo;

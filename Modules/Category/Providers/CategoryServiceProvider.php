@@ -2,9 +2,8 @@
 
 namespace Modules\Category\Providers;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 
 class CategoryServiceProvider extends ServiceProvider
 {
