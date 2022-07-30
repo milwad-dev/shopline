@@ -3,7 +3,6 @@
 namespace Modules\Share\Components\Panel;
 
 use Illuminate\View\Component;
-use ReflectionClass;
 
 class Button extends Component
 {

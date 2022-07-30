@@ -7,28 +7,11 @@
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper container-xxl p-0">
-            <div class="content-header row">
-                <div class="content-header-left col-md-9 col-12 mb-2">
-                    <div class="row breadcrumbs-top">
-                        <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">Update {{ $user->name }} user</h2>
-                            <div class="breadcrumb-wrapper">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item">
-                                        <a href="{{ route('panel.index') }}">Panel</a>
-                                    </li>
-                                    <li class="breadcrumb-item">
-                                        <a href="#">Users</a>
-                                    </li>
-                                    <li class="breadcrumb-item active">
-                                        Update user
-                                    </li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <x-panel-content-header title="Update {{ $user->name }} user">
+                <li class="breadcrumb-item active">
+                    Update user
+                </li>
+            </x-panel-content-header>
             <div class="content-body">
                 <section id="basic-input">
                     <div class="row">
@@ -42,57 +25,62 @@
                                             <input type="hidden" name="id" value="{{ $user->id }}">
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <div class="mb-1">
-                                                    <label class="form-label" for="name">Name</label>
-                                                    <input class="form-control @error('name') is-invalid @enderror"
-                                                    type="text" id="name" name="name" placeholder="Enter name"
-                                                    value="{{ $user->name }}">
+                                                    <x-panel-label for="name" title="Name" />
+                                                    <x-panel-input name="name" id="name" value="{{ $user->name }}"
+                                                    placeholder="Enter name" />
                                                     <x-share-error name="name" />
                                                 </div>
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <div class="mb-1">
-                                                    <label class="form-label" for="email">Email</label>
-                                                    <input class="form-control @error('email') is-invalid @enderror"
-                                                    type="email" id="email" name="email" placeholder="Enter email"
-                                                    value="{{ $user->email }}">
+                                                    <x-panel-label for="email" title="Email" />
+                                                    <x-panel-input name="email" id="email" value="{{ $user->email }}"
+                                                    type="email" placeholder="Enter email" />
                                                     <x-share-error name="email" />
                                                 </div>
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <div class="mb-1">
-                                                    <label class="form-label" for="phone">Phone</label>
-                                                    <input class="form-control @error('phone') is-invalid @enderror"
-                                                    type="number" id="phone" name="phone" placeholder="Enter phone"
-                                                    value="{{ $user->phone }}">
+                                                    <x-panel-label for="phone" title="Phone" />
+                                                    <x-panel-input name="phone" id="phone" value="{{ $user->phone }}"
+                                                    type="number" placeholder="Enter phone" />
                                                     <x-share-error name="phone" />
                                                 </div>
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <div class="mb-1">
-                                                    <label class="form-label" for="password">Password</label>
-                                                    <input class="form-control @error('password') is-invalid @enderror"
-                                                    type="password" id="password" name="password" placeholder="Enter password"
-                                                    value="{{ $user->password }}">
+                                                    <x-panel-label for="password" title="Password" />
+                                                    <x-panel-input name="password" id="password" type="password"
+                                                    placeholder="Enter password" />
                                                     <x-share-error name="password" />
+                                                    @include('Share::password-rules')
                                                 </div>
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <div class="mb-1">
-                                                    <label class="form-label" for="type">Type</label>
-                                                    <select class="form-control @error('type') is-invalid @enderror"
-                                                        name="type" id="type">
+                                                    <x-panel-label for="type" title="Type" />
+                                                    <x-panel-select name="type" id="type" selectedText="Select type user">
                                                         @foreach (Modules\User\Enums\UserTypeEnum::cases() as $type)
-                                                            <option @if ($user->type === $type->value) selected @endif
+                                                            <option @if ($user->type === $type) selected @endif
                                                                 value="{{ $type->value }}">{{ $type->value }}
                                                             </option>
                                                         @endforeach
-                                                    </select>
+                                                    </x-panel-select>
                                                     <x-share-error name="type" />
                                                 </div>
                                             </div>
-                                            <button class="btn btn-primary waves-effect waves-float waves-light" type="submit">
-                                                Submit
-                                            </button>
+                                            <div class="col-xl-4 col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <div class="form-check form-check-inline">
+                                                        <x-panel-label for="email_verified_at" title="Email verify"
+                                                        class="form-label-label" />
+                                                        <x-panel-input name="email_verified_at" id="email_verified_at"
+                                                        type="checkbox" class="form-check-input" value="1"
+                                                        @if ($user->email_verified_at) checked @endif />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <x-panel-button />
                                         </div>
                                     </form>
                                 </div>

@@ -2,6 +2,7 @@
 
 namespace Modules\User\Http\Controllers\Panel;
 
+use Illuminate\Support\Facades\Hash;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
 use Modules\Share\Services\ShareService;
@@ -80,7 +81,12 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
-        $this->service->update($request, $id);
+        $userId = $this->service->update($request, $id);
+
+        if ($request->password) {
+            $user = $this->repo->findById($userId);
+            $user->update(['password' => Hash::make($request->password)]);
+        }
 
         return $this->successMessageWithRedirect('User updated successfully');
     }

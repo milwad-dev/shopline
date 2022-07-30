@@ -2,6 +2,7 @@
 
 namespace Modules\User\Services;
 
+use Illuminate\Support\Facades\Hash;
 use Modules\User\Models\User;
 
 class UserService
@@ -13,7 +14,7 @@ class UserService
             'email' => $request->email,
             'phone' => $request->phone,
             'type' => $request->type,
-            'password' => $request->password,
+            'password' => Hash::make($request->password),
         ]);
     }
 
@@ -24,7 +25,6 @@ class UserService
             'email' => $request->email,
             'phone' => $request->phone,
             'type' => $request->type,
-            'password' => $request->password,
         ]);
     }
 
