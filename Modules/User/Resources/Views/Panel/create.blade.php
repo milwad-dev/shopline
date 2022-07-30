@@ -23,7 +23,7 @@
                                             @csrf
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <div class="mb-1">
-                                                    <label class="form-label" for="name">Name</label>
+                                                    <x-pane-label for="name" title="Name" />
                                                     <input class="form-control @error('name') is-invalid @enderror"
                                                     type="text" id="name" name="name" placeholder="Enter name"
                                                     value="{{ old('name') }}">
@@ -32,7 +32,7 @@
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <div class="mb-1">
-                                                    <label class="form-label" for="email">Email</label>
+                                                    <x-pane-label for="email" title="Email" />
                                                     <input class="form-control @error('email') is-invalid @enderror"
                                                     type="email" id="email" name="email" placeholder="Enter email"
                                                     value="{{ old('email') }}">
@@ -41,7 +41,7 @@
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <div class="mb-1">
-                                                    <label class="form-label" for="phone">Phone</label>
+                                                    <x-pane-label for="phone" title="Phone" />
                                                     <input class="form-control @error('phone') is-invalid @enderror"
                                                     type="number" id="phone" name="phone" placeholder="Enter phone"
                                                     value="{{ old('phone') }}">
@@ -50,7 +50,7 @@
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <div class="mb-1">
-                                                    <label class="form-label" for="password">Password</label>
+                                                    <x-pane-label for="password" title="Password" />
                                                     <input class="form-control @error('password') is-invalid @enderror"
                                                     type="password" id="password" name="password" placeholder="Enter password"
                                                     value="{{ old('password') }}">
@@ -62,7 +62,7 @@
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <div class="mb-1">
-                                                    <label class="form-label" for="type">Type</label>
+                                                    <x-pane-label for="type" title="Type" />
                                                     <select class="form-control @error('type') is-invalid @enderror"
                                                         name="type" id="type">
                                                         <option value="" selected>Select type user</option>
@@ -76,7 +76,8 @@
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <div class="mb-1">
                                                     <div class="form-check form-check-inline">
-                                                        <label class="form-label-label" for="email_verified_at">Email verify</label>
+                                                        <x-pane-label for="email_verified_at" title="Email verify"
+                                                        class="form-label-label" />
                                                         <input class="form-check-input"
                                                         type="checkbox" id="email_verified_at" name="email_verified_at"
                                                         @if (old('email_verified_at')) checked @endif value="1">
