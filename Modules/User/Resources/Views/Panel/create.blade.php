@@ -78,9 +78,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button class="btn btn-primary waves-effect waves-float waves-light" type="submit">
-                                                Submit
-                                            </button>
+                                            <x-panel-button />
                                         </div>
                                     </form>
                                 </div>
