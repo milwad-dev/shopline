@@ -19,13 +19,9 @@
                                         <form method="POST" action="{{ route('password.update') }}">
                                             @csrf
                                             <div class="form-group">
-                                                <input class="@error('password') is-invalid @enderror" type="password"
-                                                name="" placeholder="">
                                                 <x-auth-input name="password" id="password" type="password" placeholder="Password" />
                                                 <x-share-error name="password" />
-                                                <p>
-                                                    Password must have a capital & lower letters with number & special character(Milwad123!).
-                                                </p>
+                                                @include('Share::password-rules')
                                             </div>
                                             <div class="form-group">
                                                 <x-auth-input name="password_confirmation" id="password_confirmation"

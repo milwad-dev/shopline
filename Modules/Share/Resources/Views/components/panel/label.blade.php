@@ -1,1 +1,1 @@
-<label class="{{ $class }}" for="{{ $for }}">{{ $name }}</label>
+<label class="{{ $class }}" for="{{ $for }}">{{ $title }}</label>

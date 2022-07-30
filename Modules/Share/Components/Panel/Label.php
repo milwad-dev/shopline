@@ -29,6 +29,6 @@ class Label extends Component
      */
     public function render()
     {
-        return view('components.label');
+        return view('Share::components.panel.label');
     }
 }

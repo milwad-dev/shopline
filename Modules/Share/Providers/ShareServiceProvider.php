@@ -53,6 +53,7 @@ class ShareServiceProvider extends ServiceProvider
         $this->loadViewComponentsAs('panel', [
             \Modules\Share\Components\Panel\ContentHeader::class,
             \Modules\Share\Components\Panel\Label::class,
+            \Modules\Share\Components\Panel\Input::class,
         ]);
     }
 

@@ -23,46 +23,40 @@
                                             @csrf
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <div class="mb-1">
-                                                    <x-pane-label for="name" title="Name" />
-                                                    <input class="form-control @error('name') is-invalid @enderror"
-                                                    type="text" id="name" name="name" placeholder="Enter name"
-                                                    value="{{ old('name') }}">
+                                                    <x-panel-label for="name" title="Name" />
+                                                    <x-panel-input name="name" id="name" value="{{ old('name') }}"
+                                                    placeholder="Enter name" />
                                                     <x-share-error name="name" />
                                                 </div>
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <div class="mb-1">
-                                                    <x-pane-label for="email" title="Email" />
-                                                    <input class="form-control @error('email') is-invalid @enderror"
-                                                    type="email" id="email" name="email" placeholder="Enter email"
-                                                    value="{{ old('email') }}">
+                                                    <x-panel-label for="email" title="Email" />
+                                                    <x-panel-input name="email" id="email" value="{{ old('email') }}"
+                                                    type="email" placeholder="Enter email" />
                                                     <x-share-error name="email" />
                                                 </div>
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <div class="mb-1">
-                                                    <x-pane-label for="phone" title="Phone" />
-                                                    <input class="form-control @error('phone') is-invalid @enderror"
-                                                    type="number" id="phone" name="phone" placeholder="Enter phone"
-                                                    value="{{ old('phone') }}">
+                                                    <x-panel-label for="phone" title="Phone" />
+                                                    <x-panel-input name="phone" id="phone" value="{{ old('phone') }}"
+                                                    type="number" placeholder="Enter phone" />
                                                     <x-share-error name="phone" />
                                                 </div>
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <div class="mb-1">
-                                                    <x-pane-label for="password" title="Password" />
-                                                    <input class="form-control @error('password') is-invalid @enderror"
-                                                    type="password" id="password" name="password" placeholder="Enter password"
-                                                    value="{{ old('password') }}">
+                                                    <x-panel-label for="password" title="Password" />
+                                                    <x-panel-input name="password" id="password" value="{{ old('password') }}"
+                                                    type="password" placeholder="Enter password" />
                                                     <x-share-error name="password" />
-                                                    <p>
-                                                        Password must have a capital & lower letters with number & special character(Milwad123!).
-                                                    </p>
+                                                    @include('Share::password-rules')
                                                 </div>
                                             </div>
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <div class="mb-1">
-                                                    <x-pane-label for="type" title="Type" />
+                                                    <x-panel-label for="type" title="Type" />
                                                     <select class="form-control @error('type') is-invalid @enderror"
                                                         name="type" id="type">
                                                         <option value="" selected>Select type user</option>
@@ -76,11 +70,11 @@
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <div class="mb-1">
                                                     <div class="form-check form-check-inline">
-                                                        <x-pane-label for="email_verified_at" title="Email verify"
+                                                        <x-panel-label for="email_verified_at" title="Email verify"
                                                         class="form-label-label" />
-                                                        <input class="form-check-input"
-                                                        type="checkbox" id="email_verified_at" name="email_verified_at"
-                                                        @if (old('email_verified_at')) checked @endif value="1">
+                                                        <x-panel-input name="email_verified_at" id="email_verified_at"
+                                                        type="checkbox" class="form-check-input" value="1"
+                                                        @if (old('email_verified_at')) checked @endif />
                                                     </div>
                                                 </div>
                                             </div>
