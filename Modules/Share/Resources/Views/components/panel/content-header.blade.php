@@ -11,6 +11,7 @@
                         <li class="breadcrumb-item active">
                             {{ $title }}
                         </li>
+                        {{ $slot }}
                     </ol>
                 </div>
                 @if (! is_null($createTitle))
