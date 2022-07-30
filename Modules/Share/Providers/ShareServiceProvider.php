@@ -14,11 +14,12 @@ class ShareServiceProvider extends ServiceProvider
         $this->loadCommands();
         $this->loadShareComponents();
         $this->loadAuthComponents();
+        $this->loadPanelComponents();
         $this->loadFactories();
     }
 
     /**
-     * Load component about share.
+     * Load components about share.
      *
      * @return void
      */
@@ -30,7 +31,7 @@ class ShareServiceProvider extends ServiceProvider
     }
 
     /**
-     * Load component about auth.
+     * Load components about auth.
      *
      * @return void
      */
@@ -39,6 +40,18 @@ class ShareServiceProvider extends ServiceProvider
         $this->loadViewComponentsAs('auth', [
             \Modules\Share\Components\Auth\Input::class,
             \Modules\Share\Components\Auth\Button::class,
+        ]);
+    }
+
+    /**
+     * Load components about panel.
+     *
+     * @return void
+     */
+    private function loadPanelComponents()
+    {
+        $this->loadViewComponentsAs('panel', [
+            \Modules\Share\Components\Panel\ContentHeader::class,
         ]);
     }
 

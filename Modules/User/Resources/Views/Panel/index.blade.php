@@ -7,26 +7,7 @@
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper container-xxl p-0">
-            <div class="content-header row">
-                <div class="content-header-left col-md-9 col-12 mb-2">
-                    <div class="row breadcrumbs-top">
-                        <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">Latest users</h2>
-                            <div class="breadcrumb-wrapper">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item">
-                                        <a href="{{ route('panel.index') }}">Panel</a>
-                                    </li>
-                                    <li class="breadcrumb-item active">
-                                        Latest Users
-                                    </li>
-                                </ol>
-                            </div>
-                            <a href="{{ route('users.create') }}" class="btn btn-info">Create user</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <x-panel-content-header title="Latest users" createRoute="{{ route('users.create') }}" createTitle="Create user" />
             <div class="content-body">
                 <div class="row" id="table-hover-row">
                     <div class="col-12">
