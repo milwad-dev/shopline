@@ -55,6 +55,7 @@ class ShareServiceProvider extends ServiceProvider
             \Modules\Share\Components\Panel\Label::class,
             \Modules\Share\Components\Panel\Input::class,
             \Modules\Share\Components\Panel\Button::class,
+            \Modules\Share\Components\Panel\Select::class,
         ]);
     }
 

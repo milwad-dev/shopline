@@ -57,13 +57,11 @@
                                             <div class="col-xl-4 col-md-6 col-12">
                                                 <div class="mb-1">
                                                     <x-panel-label for="type" title="Type" />
-                                                    <select class="form-control @error('type') is-invalid @enderror"
-                                                        name="type" id="type">
-                                                        <option value="" selected>Select type user</option>
+                                                    <x-panel-select name="type" id="type" selectedText="Select type user">
                                                         @foreach (Modules\User\Enums\UserTypeEnum::cases() as $type)
                                                             <option value="{{ $type->value }}">{{ $type->value }}</option>
                                                         @endforeach
-                                                    </select>
+                                                    </x-panel-select>
                                                     <x-share-error name="type" />
                                                 </div>
                                             </div>
