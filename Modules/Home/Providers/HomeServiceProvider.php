@@ -17,4 +17,13 @@ class HomeServiceProvider extends ServiceProvider
             ->namespace($this->namespace)
             ->group(__DIR__ . '/../Routes/home_routes.php');
     }
+
+    public function boot()
+    {
+        config()->set('panelConfig.menus.home', [ // Set menu for panel
+            'title' => 'Home',
+            'icon'  => 'home',
+            'url'   => route('home.index'),
+        ]);
+    }
 }

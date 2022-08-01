@@ -20,7 +20,7 @@ class CategoryServiceProvider extends ServiceProvider
 
     public function boot()
     {
-        config()->set('panelConfig.menus.categories', [
+        config()->set('panelConfig.menus.categories', [ // Set menu for panel
             'title' => 'Category',
             'icon' => 'git-commit',
             'url' => route('categories.index'),
