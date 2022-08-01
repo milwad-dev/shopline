@@ -192,6 +192,7 @@ return [
         Modules\Panel\Providers\PanelServiceProvider::class,
         Modules\Media\Providers\MediaServiceProvider::class,
         Modules\Category\Providers\CategoryServiceProvider::class,
+        Modules\RolePermission\Providers\RolePermissionServiceProvider::class,
         /**
          * Package Service Providers...
          */
