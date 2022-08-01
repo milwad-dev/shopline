@@ -40,9 +40,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = $this->repo->index()->get();
+        $parents = $this->repo->index()->get();
 
-        return view('Category::Panel.create', compact('categories'));
+        return view('Category::Panel.create', compact('parents'));
     }
 
     /**
@@ -64,9 +64,9 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = $this->repo->findById($id);
-        $categories = $this->repo->index()->get();
+        $parents = $this->repo->index()->where('id', '!=', $category->id)->get();
 
-        return view('Category::Panel.edit', compact(['category', 'categories']));
+        return view('Category::Panel.edit', compact(['category', 'parents']));
     }
 
     /**

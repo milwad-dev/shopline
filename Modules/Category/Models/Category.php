@@ -4,6 +4,7 @@ namespace Modules\Category\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Category\Enums\CategoryStatusEnum;
 use Modules\User\Models\User;
 
 class Category extends Model
@@ -57,5 +58,21 @@ class Category extends Model
     public function subCategories()
     {
         return $this->hasMany(__CLASS__, 'parent_id');
+    }
+
+    // Methods
+
+    /**
+     * Return css class for category status.
+     *
+     * @return string
+     */
+    public function getCssClassStatus()
+    {
+        if ($this->status === CategoryStatusEnum::STATUS_ACTIVE->value) {
+            return 'success';
+        }
+
+        return 'warning';
     }
 }

@@ -1,1 +1,1 @@
-<label class="{{ $class }}" for="{{ $for }}">{{ $title }}</label>
+<label class="{{ $class }}" for="{{ $for }}">{{ $title }} @if ($nullable) (no required) @endif</label>

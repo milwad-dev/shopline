@@ -9,17 +9,19 @@ class Label extends Component
     public string $title;
     public ?string $for;
     public ?string $class;
+    public ?string $nullable;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($title, $for = null, $class = 'form-label')
+    public function __construct($title, $for = null, $class = 'form-label', $nullable = null)
     {
         $this->title = $title;
         $this->for = $for;
         $this->class = $class;
+        $this->nullable = $nullable;
     }
 
     /**

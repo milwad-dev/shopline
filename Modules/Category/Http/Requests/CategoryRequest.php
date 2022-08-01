@@ -4,7 +4,7 @@ namespace Modules\Category\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
-use Modules\User\Enums\UserTypeEnum;
+use Modules\Category\Enums\CategoryStatusEnum;
 
 class CategoryRequest extends FormRequest
 {
@@ -29,7 +29,7 @@ class CategoryRequest extends FormRequest
             'parent_id' => 'nullable|exists:categories,id',
             'title' => 'required|string|min:3|max:255|unique:categories,title',
             'keywords' => 'nullable|string|min:3|max:255',
-            'status' => ['required', 'string', new Enum(UserTypeEnum::class)],
+            'status' => ['required', 'string', new Enum(CategoryStatusEnum::class)],
             'description' => 'nullable|string|min:3',
         ];
 
