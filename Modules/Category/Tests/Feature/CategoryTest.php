@@ -4,6 +4,7 @@ namespace Modules\Category\Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Validation\Rules\Enum;
 use Modules\Category\Enums\CategoryStatusEnum;
 use Modules\Category\Models\Category;
 use Modules\Share\Services\ShareService;
@@ -41,6 +42,42 @@ class CategoryTest extends TestCase
     }
 
     /**
+     * Test validate for store category is successful.
+     *
+     * @return void
+     */
+    public function test_store_category_validate_successful()
+    {
+        $this->createUserWithLogin();
+
+        $response = $this->post(route('categories.store'), [])->assertSessionHasErrors([
+            'title',
+            'status',
+        ]);
+        $response->assertRedirect();
+    }
+
+    /**
+     * Test check parent id validation is successful.
+     *
+     * @return void
+     * @throws \Exception
+     */
+    public function test_parent_id_validation_successful()
+    {
+        $this->createUserWithLogin();
+
+        $response = $this->post(route('categories.store'), [
+            'parent_id' => random_int(1, 10)
+        ])->assertSessionHasErrors([
+            'title',
+            'status',
+            'parent_id',
+        ]);
+        $response->assertRedirect();
+    }
+
+    /**
      * Test admin user can store category.
      *
      * @return void
@@ -71,6 +108,26 @@ class CategoryTest extends TestCase
         $category = $this->createCategory();
         $response = $this->get(route('categories.edit', $category->id));
         $response->assertViewIs('Category::Panel.edit');
+    }
+
+    /**
+     * Test validate for store category is successful.
+     *
+     * @return void
+     */
+    public function test_update_category_validate_successful()
+    {
+        $this->createUserWithLogin();
+
+        $category = $this->createCategory();
+        $response = $this->patch(route('categories.update', $category->id), [
+            'id' => $category->id,
+        ])->assertSessionHasErrors([
+            'title',
+            'status',
+        ]);
+
+        $response->assertRedirect();
     }
 
     /**
