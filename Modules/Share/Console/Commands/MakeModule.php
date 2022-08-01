@@ -32,6 +32,7 @@ class MakeModule extends Command
         $argument = $this->argument('name');
         $router = '$router';
 
+        $route = strtolower($argument);
         $pathServiceProvider = "<?php
 
 namespace Modules\\$argument\Providers;
@@ -46,9 +47,10 @@ class {$argument}ServiceProvider extends ServiceProvider
     public function register()
     {
         \$this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
-        \$this->loadViewsFrom(__DIR__ . '/../Resources/Views/', $argument);
+        \$this->loadViewsFrom(__DIR__ . '/../Resources/Views/', '$argument');
+
         Route::middleware(['web', 'verify'])->namespace(\$this->namespace)
-        ->group(__DIR__ . '/../Routes/' . strtolower($argument) . '_routes.php');
+        ->group(__DIR__ . /../Routes/ . $route . '_routes.php');
     }
 }
 ";
