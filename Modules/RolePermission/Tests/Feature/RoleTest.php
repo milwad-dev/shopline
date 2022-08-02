@@ -82,10 +82,29 @@ class RoleTest extends TestCase
     public function test_admin_user_can_see_edit_page_role()
     {
         $this->createUserWithLogin();
-
         $role = $this->createRole();
+
         $response = $this->get(route('role-permissions.edit', $role->id));
         $response->assertViewIs('RolePermission::edit');
+    }
+
+    /**
+     * Test admin user can update role by id.
+     *
+     * @return void
+     */
+    public function test_admin_user_can_update_role()
+    {
+        $this->createUserWithLogin();
+        $role = $this->createRole();
+
+        $response = $this->patch(route('role-permissions.update', $role->id), [
+            'name' => 'Milwad',
+            'permissions' => [Permission::PERMISSION_USERS, Permission::PERMISSION_PANEL]
+        ]);
+        $response->assertRedirect();
+
+        $this->assertEquals(1, Role::query()->count());
     }
 
     /**

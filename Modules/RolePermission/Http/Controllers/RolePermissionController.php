@@ -45,7 +45,7 @@ class RolePermissionController extends Controller
     {
         $this->service->store($request);
 
-        return $this->successMessageWithRedirect('Create Role');
+        return $this->successMessageWithRedirect('Create role');
     }
 
     /**
@@ -59,6 +59,16 @@ class RolePermissionController extends Controller
 
 
         return view('RolePermission::edit');
+    }
+
+    /**
+     *
+     */
+    public function update(RolePermissionRequest $request, $id)
+    {
+        $this->service->update($request, $id);
+
+        return $this->successMessageWithRedirect('Update role');
     }
 
     /**
