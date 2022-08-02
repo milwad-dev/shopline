@@ -9,6 +9,11 @@ use Modules\RolePermission\Database\Seeds\RolePermissionTableSeeder;
 
 class RolePermissionServiceProvider extends ServiceProvider
 {
+    /**
+     * Set namespace for controllers.
+     *
+     * @var string
+     */
     public string $namespace = 'Modules\RolePermission\Http\Controllers';
 
     /**
