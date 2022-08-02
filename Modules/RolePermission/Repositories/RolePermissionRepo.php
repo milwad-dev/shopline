@@ -3,6 +3,7 @@
 namespace Modules\RolePermission\Repositories;
 
 use Modules\RolePermission\Models\RolePermission;
+use Spatie\Permission\Models\Role;
 
 class RolePermissionRepo
 {
@@ -18,11 +19,11 @@ class RolePermissionRepo
 
     public function delete($id)
     {
-
+        return $this->query()->where('id', $id)->delete();
     }
 
     private function query()
     {
-        return RolePermission::query();
+        return Role::query();
     }
 }

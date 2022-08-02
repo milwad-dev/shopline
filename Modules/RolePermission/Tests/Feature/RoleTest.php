@@ -108,6 +108,20 @@ class RoleTest extends TestCase
     }
 
     /**
+     * Test admin user can delete role by id.
+     *
+     * @return void
+     */
+    public function test_admin_user_can_delete_role()
+    {
+        $this->createUserWithLogin();
+        $role = $this->createRole();
+
+        $this->delete(route('role-permissions.destroy', $role->id))->assertOk();
+        $this->assertEquals(0, Role::query()->count());
+    }
+
+    /**
      * Create roll with permission.
      *
      * @return mixed

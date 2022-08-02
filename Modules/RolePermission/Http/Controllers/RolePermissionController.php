@@ -4,16 +4,20 @@ namespace Modules\RolePermission\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
 use Modules\RolePermission\Http\Requests\RolePermissionRequest;
+use Modules\RolePermission\Repositories\RolePermissionRepo;
 use Modules\RolePermission\Services\RolePermissionService;
 use Modules\Share\Http\Controllers\Controller;
+use Modules\Share\Responses\AjaxResponses;
 use Modules\Share\Services\ShareService;
 
 class RolePermissionController extends Controller
 {
+    public RolePermissionRepo $repo;
     public RolePermissionService $service;
 
-    public function __construct(RolePermissionService $rolePermissionService)
+    public function __construct(RolePermissionService $rolePermissionService, RolePermissionRepo $permissionRepo)
     {
+        $this->repo = $permissionRepo;
         $this->service = $rolePermissionService;
     }
 
@@ -71,13 +75,19 @@ class RolePermissionController extends Controller
         return $this->successMessageWithRedirect('Update role');
     }
 
+    public function destroy($id)
+    {
+        $this->repo->delete($id);
+        return AjaxResponses::SuccessResponse();
+    }
+
     /**
      * Show success message with redirect.
      *
      * @param  string $title
      * @return RedirectResponse
      */
-    public function successMessageWithRedirect(string $title)
+    private function successMessageWithRedirect(string $title)
     {
         ShareService::successToast($title);
         return to_route('role-permissions.index');
