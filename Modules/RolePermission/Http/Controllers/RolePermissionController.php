@@ -28,7 +28,8 @@ class RolePermissionController extends Controller
      */
     public function index()
     {
-        return view('RolePermission::index');
+        $roles = $this->repo->index()->paginate(10);
+        return view('RolePermission::index', compact('roles'));
     }
 
     /**
@@ -36,7 +37,8 @@ class RolePermissionController extends Controller
      */
     public function create()
     {
-        return view('RolePermission::create');
+        $permissions = $this->repo->getAllPermissions();
+        return view('RolePermission::create', compact('permissions'));
     }
 
     /**
@@ -60,9 +62,10 @@ class RolePermissionController extends Controller
      */
     public function edit($id)
     {
+        $role = $this->repo->findById($id);
+        $permissions = $this->repo->getAllPermissions();
 
-
-        return view('RolePermission::edit');
+        return view('RolePermission::edit', compact(['role', 'permissions']));
     }
 
     /**
