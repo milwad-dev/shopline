@@ -69,7 +69,11 @@ class RolePermissionController extends Controller
     }
 
     /**
+     * Update role by id.
      *
+     * @param  RolePermissionRequest $request
+     * @param  $id
+     * @return RedirectResponse
      */
     public function update(RolePermissionRequest $request, $id)
     {
@@ -78,6 +82,12 @@ class RolePermissionController extends Controller
         return $this->successMessageWithRedirect('Update role');
     }
 
+    /**
+     * Delete role by id.
+     *
+     * @param  $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function destroy($id)
     {
         $this->repo->delete($id);
