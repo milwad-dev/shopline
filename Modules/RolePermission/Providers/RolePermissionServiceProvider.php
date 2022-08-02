@@ -3,8 +3,8 @@
 namespace Modules\RolePermission\Providers;
 
 use Database\Seeders\DatabaseSeeder;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 use Modules\RolePermission\Database\Seeds\RolePermissionTableSeeder;
 
 class RolePermissionServiceProvider extends ServiceProvider
@@ -29,5 +29,19 @@ class RolePermissionServiceProvider extends ServiceProvider
         DatabaseSeeder::$seeders[] = RolePermissionTableSeeder::class;
         Route::middleware(['web', 'verify'])->namespace($this->namespace)
         ->group(__DIR__ . '/../Routes/rolepermission_routes.php');
+    }
+
+    /**
+     * Set menu.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        config()->set('panelConfig.menus.role-permissions', [ // Set menu for panel
+            'title' => 'Role & Permissions',
+            'icon'  => 'alert-triangle',
+            'url'   => route('role-permissions.index'),
+        ]);
     }
 }

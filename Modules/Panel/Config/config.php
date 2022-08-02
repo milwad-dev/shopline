@@ -6,5 +6,6 @@ return [
         'home' => [],
         'users' => [],
         'categories' => [],
+        'role-permissions' => [],
     ],
 ];
