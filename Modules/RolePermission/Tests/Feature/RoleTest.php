@@ -57,6 +57,11 @@ class RoleTest extends TestCase
     }
 
     /**
+     *
+     */
+
+    
+    /**
      * Test admin user can see edit page of role.
      *
      * @return void
@@ -72,7 +77,7 @@ class RoleTest extends TestCase
 
     /**
      * Create roll with permission.
-     * o
+     *
      * @return mixed
      */
     public function createRole()
