@@ -57,10 +57,23 @@ class RoleTest extends TestCase
     }
 
     /**
+     * Test admin user can store role.
      *
+     * @return void
      */
+    public function test_admin_user_can_store_role()
+    {
+        $this->createUserWithLogin();
+        $this->fireRolePermissionSeeder();
 
-    
+        $response = $this->post(route('role-permissions.store'), [
+            'name' => $this->faker->title,
+            'permissions' => [Permission::PERMISSION_SUPER_ADMIN, Permission::PERMISSION_CATEGORIES]
+        ]);
+        $this->assertEquals(1, Role::query()->count());
+        $response->assertRedirect();
+    }
+
     /**
      * Test admin user can see edit page of role.
      *
@@ -82,10 +95,20 @@ class RoleTest extends TestCase
      */
     public function createRole()
     {
-        $this->seed(RolePermissionTableSeeder::class);
+        $this->fireRolePermissionSeeder();
         return Role::query()->create([
             'name' => $this->faker->name,
         ])->syncPermissions(Permission::PERMISSION_SUPER_ADMIN);
+    }
+
+    /**
+     * Fire role permission seeder.
+     *
+     * @return void
+     */
+    private function fireRolePermissionSeeder()
+    {
+        $this->seed(RolePermissionTableSeeder::class);
     }
 
     /**

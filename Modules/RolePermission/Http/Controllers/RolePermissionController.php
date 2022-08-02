@@ -2,11 +2,21 @@
 
 namespace Modules\RolePermission\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Modules\RolePermission\Http\Requests\RolePermissionRequest;
+use Modules\RolePermission\Services\RolePermissionService;
 use Modules\Share\Http\Controllers\Controller;
+use Modules\Share\Services\ShareService;
 
 class RolePermissionController extends Controller
 {
+    public RolePermissionService $service;
+
+    public function __construct(RolePermissionService $rolePermissionService)
+    {
+        $this->service = $rolePermissionService;
+    }
+
     /**
      * Get latest roles.
      *
@@ -29,11 +39,13 @@ class RolePermissionController extends Controller
      * Store role with redirect.
      *
      * @param  RolePermissionRequest $request
-     * @return void
+     * @return RedirectResponse
      */
     public function store(RolePermissionRequest $request)
     {
+        $this->service->store($request);
 
+        return $this->successMessageWithRedirect('Create Role');
     }
 
     /**
@@ -47,5 +59,17 @@ class RolePermissionController extends Controller
 
 
         return view('RolePermission::edit');
+    }
+
+    /**
+     * Show success message with redirect.
+     *
+     * @param  string $title
+     * @return RedirectResponse
+     */
+    public function successMessageWithRedirect(string $title)
+    {
+        ShareService::successToast($title);
+        return to_route('role-permissions.index');
     }
 }
