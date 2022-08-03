@@ -2,8 +2,11 @@
 
 namespace Modules\Panel\Providers;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Modules\Panel\Models\Panel;
+use Modules\Panel\Policies\PanelPolicy;
 
 class PanelServiceProvider extends ServiceProvider
 {
@@ -16,6 +19,7 @@ class PanelServiceProvider extends ServiceProvider
 
         Route::middleware(['web', 'verify'])->namespace($this->namespace)
             ->group(__DIR__ . '/../Routes/panel_routes.php');
+        Gate::policy(Panel::class, PanelPolicy::class);
     }
 
     public function boot()
