@@ -11,10 +11,11 @@ use Modules\Auth\Notifications\ResetPasswordRequestNotification;
 use Modules\Auth\Notifications\VerifyMailNotification;
 use Modules\Category\Models\Category;
 use Modules\User\Enums\UserTypeEnum;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
      * Set fillable for columns.
