@@ -33,6 +33,9 @@ class RolePermissionServiceProvider extends ServiceProvider
         Route::middleware(['web', 'verify'])->namespace($this->namespace)
         ->group(__DIR__ . '/../Routes/rolepermission_routes.php');
         Gate::policy(Permission::class, RolePermissionPolicy::class);
+        Gate::before(static function ($user) {
+            return $user->hasPermissionTo(Permission::PERMISSION_SUPER_ADMIN) ? true : null;
+        });
     }
 
     /**
