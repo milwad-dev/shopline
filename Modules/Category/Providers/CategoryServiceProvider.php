@@ -2,8 +2,11 @@
 
 namespace Modules\Category\Providers;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Modules\Category\Models\Category;
+use Modules\Category\Policies\CategoryPolicy;
 
 class CategoryServiceProvider extends ServiceProvider
 {
@@ -16,6 +19,7 @@ class CategoryServiceProvider extends ServiceProvider
 
         Route::middleware(['web', 'verify'])->namespace($this->namespace)
         ->group(__DIR__ . '/../Routes/category_routes.php');
+        Gate::policy(Category::class, CategoryPolicy::class);
     }
 
     public function boot()
