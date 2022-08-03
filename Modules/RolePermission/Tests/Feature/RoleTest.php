@@ -151,7 +151,9 @@ class RoleTest extends TestCase
      */
     private function createUserWithLogin(): void
     {
+        $this->seed(RolePermissionTableSeeder::class);
         $user = User::factory()->create();
+        $user->givePermissionTo(Permission::PERMISSION_ROLE_PERMISSIONS);
         auth()->login($user);
     }
 }

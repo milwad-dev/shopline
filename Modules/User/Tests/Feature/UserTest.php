@@ -4,6 +4,8 @@ namespace Modules\User\Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Modules\RolePermission\Database\Seeds\RolePermissionTableSeeder;
+use Modules\RolePermission\Models\Permission;
 use Modules\User\Enums\UserTypeEnum;
 use Modules\User\Models\User;
 use Tests\TestCase;
@@ -111,7 +113,9 @@ class UserTest extends TestCase
      */
     private function createUserWithLogin(): void
     {
+        $this->seed(RolePermissionTableSeeder::class);
         $user = User::factory()->create();
+        $user->givePermissionTo(Permission::PERMISSION_USERS);
         auth()->login($user);
     }
 }
