@@ -2,16 +2,20 @@
 
 namespace Modules\User\Http\Controllers\Panel;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Facades\Hash;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
 use Modules\Share\Services\ShareService;
 use Modules\User\Http\Requests\UserRequest;
+use Modules\User\Models\User;
 use Modules\User\Repositories\UserRepo;
 use Modules\User\Services\UserService;
 
 class UserController extends Controller
 {
+    private string $class = User::class;
+
     public UserRepo $repo;
     public UserService $service;
 
@@ -25,9 +29,11 @@ class UserController extends Controller
      * Get latest users.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws AuthorizationException
      */
     public function index()
     {
+        $this->authorize('manage', $this->class);
         $users = $this->repo->getLatestWithoutId(auth()->id())->paginate(25);
 
         return view('User::Panel.index', compact('users'));
@@ -37,9 +43,11 @@ class UserController extends Controller
      * Show create view for user.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws AuthorizationException
      */
     public function create()
     {
+        $this->authorize('manage', $this->class);
         return view('User::Panel.create');
     }
 
@@ -48,9 +56,11 @@ class UserController extends Controller
      *
      * @param UserRequest $request
      * @return \Illuminate\Http\RedirectResponse
+     * @throws AuthorizationException
      */
     public function store(UserRequest $request)
     {
+        $this->authorize('manage', $this->class);
         $user = $this->service->store($request);
 
         if ($request->has('email_verified_at')) {
@@ -65,22 +75,27 @@ class UserController extends Controller
      *
      * @param $id
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws AuthorizationException
      */
     public function edit($id)
     {
+        $this->authorize('manage', $this->class);
         $user = $this->repo->findById($id);
+
         return view('User::Panel.edit', compact('user'));
     }
 
     /**
      * Update user.
      *
-     * @param UserRequest $request
-     * @param $id
+     * @param  UserRequest $request
+     * @param  $id
      * @return \Illuminate\Http\RedirectResponse
+     * @throws AuthorizationException
      */
     public function update(UserRequest $request, $id)
     {
+        $this->authorize('manage', $this->class);
         $userId = $this->service->update($request, $id);
 
         if ($request->password) {
@@ -96,9 +111,11 @@ class UserController extends Controller
      *
      * @param $id
      * @return \Illuminate\Http\JsonResponse
+     * @throws AuthorizationException
      */
     public function destroy($id)
     {
+        $this->authorize('manage', $this->class);
         $this->repo->delete($id);
         return AjaxResponses::SuccessResponse();
     }
