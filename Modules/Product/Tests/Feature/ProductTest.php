@@ -50,7 +50,6 @@ class ProductTest extends TestCase
      */
     public function test_admin_user_can_store_products_without_attributes_tags()
     {
-        $this->withoutExceptionHandling();
         $this->createUserWithLogin();
 
         $response = $this->post(route('products.store'), [
@@ -68,6 +67,48 @@ class ProductTest extends TestCase
                 UploadedFile::fake()->image(Str::random(10) . '.jpg'),
                 UploadedFile::fake()->image(Str::random(10) . '.jpg'),
                 UploadedFile::fake()->image(Str::random(10) . '.jpg'),
+            ],
+        ]);
+        $response->assertRedirect(route('products.index'));
+
+        $this->assertEquals(1, Product::query()->count());
+    }
+
+    /**
+     * Test admin user can store products with attributes & tags.
+     *
+     * @return void
+     */
+    public function test_admin_user_can_store_products_with_attributes_tags()
+    {
+        $this->createUserWithLogin();
+
+        $response = $this->post(route('products.store'), [
+            'first_media' => UploadedFile::fake()->image('first_media.jpg'), // Mock
+            'second_media' => UploadedFile::fake()->image('second_media.jpg'), // Mock
+            'title' => $this->faker->title,
+            'price' => $this->faker->numberBetween(5, 15),
+            'count' => 51,
+            'type' => $this->faker->title,
+            'short_description' => $this->faker->text,
+            'body' => $this->faker->text,
+            'status' => ProductStatusEnum::STATUS_ACTIVE->value,
+            'categories' => Category::query()->inRandomOrder()->get()->toArray(),
+            'galleries' => [
+                UploadedFile::fake()->image(Str::random(10) . '.jpg'),
+                UploadedFile::fake()->image(Str::random(10) . '.jpg'),
+                UploadedFile::fake()->image(Str::random(10) . '.jpg'),
+            ],
+            'tags' => [
+                $this->faker->title,
+                $this->faker->title,
+                $this->faker->title,
+            ],
+            'attributes' => [
+                $this->faker->title => $this->faker->text,
+                $this->faker->title => $this->faker->text,
+                $this->faker->title => $this->faker->text,
+                $this->faker->title => $this->faker->text,
             ],
         ]);
         $response->assertRedirect(route('products.index'));
