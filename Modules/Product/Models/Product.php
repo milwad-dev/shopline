@@ -72,6 +72,16 @@ class Product extends Model
      */
     public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class, 'product_category');
+    }
+
+    /**
+     * Relation to Media model, many to many.
+     *
+     * @return BelongsToMany
+     */
+    public function galleries()
+    {
+        return $this->belongsToMany(Media::class, 'product_gallery');
     }
 }
