@@ -8,6 +8,13 @@ use Modules\Share\Services\ShareService;
 
 class ProductService
 {
+    /**
+     * Store product with request.
+     *
+     * @param  $request
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
+     * @throws \Exception
+     */
     public function store($request)
     {
         return $this->query()->create([
@@ -26,6 +33,13 @@ class ProductService
         ]);
     }
 
+    /**
+     * Update product with request by id.
+     *
+     * @param  $request
+     * @param  $id
+     * @return mixed
+     */
     public function update($request, $id)
     {
         return $this->query()->whereId($id)->update([
@@ -33,6 +47,13 @@ class ProductService
         ]);
     }
 
+    /**
+     * Attach categories to product.
+     *
+     * @param  $categories
+     * @param  $product
+     * @return void
+     */
     public function attachCategoreisToProduct($categories, $product)
     {
         foreach ($categories as $category) {
@@ -42,6 +63,13 @@ class ProductService
         }
     }
 
+    /**
+     * Attach categories to product.
+     *
+     * @param  $galleries
+     * @param  $product
+     * @return void
+     */
     public function attachGalleriesToProduct($galleries, $product)
     {
         foreach ($galleries as $gallery) {
@@ -49,6 +77,13 @@ class ProductService
         }
     }
 
+    /**
+     * Attach attributes to product.
+     *
+     * @param  $attributes
+     * @param  $product
+     * @return void
+     */
     public function attachAttributesToProduct($attributes, $product)
     {
         foreach ($attributes as $key => $value) {
@@ -56,11 +91,23 @@ class ProductService
         }
     }
 
-    public function attachTagsToProduct($tags, $product)
+    /**
+     * Attach tags to product.
+     *
+     * @param  array $tags
+     * @param  $product
+     * @return mixed
+     */
+    public function attachTagsToProduct(array $tags, $product)
     {
         return $product->attachTags($tags);
     }
 
+    /**
+     * Get product query (builder).
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     private function query()
     {
         return Product::query();

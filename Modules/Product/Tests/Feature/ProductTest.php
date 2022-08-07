@@ -117,6 +117,26 @@ class ProductTest extends TestCase
     }
 
     /**
+     * Test admin user can see edit product page.
+     *
+     * @return void
+     */
+    public function test_admin_user_can_see_edit_product_page()
+    {
+        $this->withoutExceptionHandling();
+        $this->createUserWithLogin();
+        $product = $this->makeProduct();
+
+        $response = $this->get(route('products.edit', $product->id));
+        $response->assertViewIs('Product::edit');
+    }
+
+    private function makeProduct()
+    {
+        return Product::factory()->create();
+    }
+
+    /**
      * Create user with login
      *
      * @return void

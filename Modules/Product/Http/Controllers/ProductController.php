@@ -6,10 +6,8 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Modules\Media\Models\Media;
-use Modules\Media\Services\MediaFileService;
 use Modules\Product\Http\Requests\ProductRequest;
-use Modules\Product\Models\Product;
+use Modules\Product\Repositories\ProductRepo;
 use Modules\Product\Services\ProductService;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Services\ShareService;
@@ -17,10 +15,12 @@ use Modules\Share\Services\ShareService;
 class ProductController extends Controller
 {
     public ProductService $service;
+    public ProductRepo $repo;
 
-    public function __construct(ProductService $productService)
+    public function __construct(ProductService $productService, ProductRepo $productRepo)
     {
         $this->service = $productService;
+        $this->repo = $productRepo;
     }
 
     /**
@@ -68,5 +68,18 @@ class ProductController extends Controller
         }
 
         return to_route('products.index');
+    }
+
+    /**
+     * Find product by id with show edit product page.
+     *
+     * @param  $id
+     * @return Application|Factory|View
+     */
+    public function edit($id)
+    {
+        $product = $this->repo->findById($id);
+
+        return view('Product::edit', compact(['product']));
     }
 }
