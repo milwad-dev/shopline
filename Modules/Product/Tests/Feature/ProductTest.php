@@ -18,11 +18,23 @@ class ProductTest extends TestCase
      */
     public function test_admin_user_can_see_index_products_page()
     {
-        $this->withoutExceptionHandling();
         $this->createUserWithLogin();
 
         $response = $this->get(route('products.index'));
         $response->assertViewIs('Product::index');
+    }
+
+    /**
+     * Test admin user can see create products page.
+     *
+     * @return void
+     */
+    public function test_admin_user_can_see_create_products_page()
+    {
+        $this->createUserWithLogin();
+
+        $response = $this->get(route('products.create'));
+        $response->assertViewIs('Product::create');
     }
 
     /**
