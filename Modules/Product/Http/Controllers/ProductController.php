@@ -46,8 +46,9 @@ class ProductController extends Controller
     /**
      * Store product.
      *
-     * @param  ProductRequest $request
+     * @param ProductRequest $request
      * @return RedirectResponse
+     * @throws \Exception
      */
     public function store(ProductRequest $request)
     {
@@ -58,7 +59,7 @@ class ProductController extends Controller
 
         $this->service->attachCategoreisToProduct($request->categories, $product);
         $this->service->attachGalleriesToProduct($request->galleries, $product);
-        
+
         if ($request->attributes) {
             $this->service->attachAttributesToProduct($request->attributes, $product);
         }
