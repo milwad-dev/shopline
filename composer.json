@@ -10,6 +10,7 @@
         "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
+        "milwad/laravel-attributes": "dev-main",
         "milwad/laravel-crod": "dev-main",
         "milwad/laravel-validate": "dev-main",
         "realrashid/sweet-alert": "^5.1",

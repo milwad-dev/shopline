@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7f17ea77a7f140a9e05d2c05c1da7085",
+    "content-hash": "dab4407cee09b93ef6ae7c26e473a311",
     "packages": [
         {
             "name": "brick/math",
@@ -1938,6 +1938,64 @@
                 }
             ],
             "time": "2022-04-17T13:12:02+00:00"
+        },
+        {
+            "name": "milwad/laravel-attributes",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/milwad-dev/laravel-attributes.git",
+                "reference": "54ac2e8cc5550fc98612453b617c2efe242ae706"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/milwad-dev/laravel-attributes/zipball/54ac2e8cc5550fc98612453b617c2efe242ae706",
+                "reference": "54ac2e8cc5550fc98612453b617c2efe242ae706",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3|^7.4|^8.0|^8.1"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Milwad\\LaravelAttributes\\LaravelAttributesServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Milwad\\LaravelAttributes\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "milwad khosravi",
+                    "email": "milwad.dev@gmail.com",
+                    "homepage": "https://milwad.ir",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Make attributes easy",
+            "keywords": [
+                "easy attributes",
+                "laravel",
+                "laravel attributes package",
+                "laravel-attributes",
+                "milwad",
+                "milwad-dev"
+            ],
+            "support": {
+                "issues": "https://github.com/milwad-dev/laravel-attributes/issues",
+                "source": "https://github.com/milwad-dev/laravel-attributes/tree/main"
+            },
+            "time": "2022-08-06T08:35:38+00:00"
         },
         {
             "name": "milwad/laravel-crod",
@@ -8423,6 +8481,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "milwad/laravel-attributes": 20,
         "milwad/laravel-crod": 20,
         "milwad/laravel-validate": 20
     },
