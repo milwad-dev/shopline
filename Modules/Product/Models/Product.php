@@ -4,7 +4,9 @@ namespace Modules\Product\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Milwad\LaravelAttributes\Traits\Attributable;
+use Modules\Category\Models\Category;
 use Modules\Media\Models\Media;
 use Modules\User\Models\User;
 
@@ -61,5 +63,15 @@ class Product extends Model
     public function second_media()
     {
         return $this->belongsTo(Media::class, 'second_media_id');
+    }
+
+    /**
+     * Relation to Category model, many to many.
+     *
+     * @return BelongsToMany
+     */
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
     }
 }
