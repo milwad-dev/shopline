@@ -43,7 +43,16 @@ class ProductService
     public function update($request, $id)
     {
         return $this->query()->whereId($id)->update([
-
+            'first_media_id' => $request->first_media_id,
+            'second_media_id' => $request->second_media_id,
+            'title' => $request->title,
+            'slug' => ShareService::makeSlug($request->title),
+            'price' => $request->price,
+            'count' => $request->count,
+            'type' => $request->type,
+            'short_description' => $request->short_description,
+            'body' => $request->body,
+            'status' => $request->status,
         ]);
     }
 
@@ -54,7 +63,7 @@ class ProductService
      * @param  $product
      * @return void
      */
-    public function attachCategoreisToProduct($categories, $product)
+    public function attachCategoriesToProduct($categories, $product)
     {
         foreach ($categories as $category) {
             $product->categories()->attach(

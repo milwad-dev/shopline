@@ -123,14 +123,46 @@ class ProductTest extends TestCase
      */
     public function test_admin_user_can_see_edit_product_page()
     {
-        $this->withoutExceptionHandling();
         $this->createUserWithLogin();
+
         $product = $this->makeProduct();
 
         $response = $this->get(route('products.edit', $product->id));
         $response->assertViewIs('Product::edit');
     }
 
+    /**
+     * Test admin user can update product.
+     *
+     * @return void
+     */
+    public function test_admin_user_can_update_product()
+    {
+        $this->withoutExceptionHandling();
+        $this->createUserWithLogin();
+
+        $product = $this->makeProduct();
+
+        $response = $this->patch(route('products.update', $product->id), [
+            'first_media' => UploadedFile::fake()->image('first_media.jpg'),
+            'second_media' => UploadedFile::fake()->image('second_media.jpg'),
+            'title' => $this->faker->title,
+            'price' => $this->faker->numberBetween(5, 15),
+            'count' => 51,
+            'type' => $this->faker->title,
+            'short_description' => $this->faker->text,
+            'body' => $this->faker->text,
+            'status' => ProductStatusEnum::STATUS_ACTIVE->value,
+        ]);
+        $response->assertRedirect(route('products.index'));
+        $this->assertEquals(1, Product::query()->count());
+    }
+
+    /**
+     * Make product with factory.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|mixed
+     */
     private function makeProduct()
     {
         return Product::factory()->create();

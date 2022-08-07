@@ -57,7 +57,7 @@ class ProductController extends Controller
 
         $product = $this->service->store($request);
 
-        $this->service->attachCategoreisToProduct($request->categories, $product);
+        $this->service->attachCategoriesToProduct($request->categories, $product);
         $this->service->attachGalleriesToProduct($request->galleries, $product);
 
         if ($request->attributes) {
@@ -81,5 +81,34 @@ class ProductController extends Controller
         $product = $this->repo->findById($id);
 
         return view('Product::edit', compact(['product']));
+    }
+
+    /**
+     * Update product with request by id.
+     *
+     */
+    public function update(ProductRequest $request, $id)
+    {
+        if ($request->first_media) {
+            ShareService::uploadMediaWithAddInRequest($request, 'first_media', 'first_media_id');
+        }
+        if ($request->second_media) {
+            ShareService::uploadMediaWithAddInRequest($request, 'second_media', 'second_media_id');
+        }
+
+        $productId = $this->service->update($request, $id);
+        $product = $this->repo->findById($productId);
+
+//        $this->service->attachCategoriesToProduct($request->categories, $product);
+//        $this->service->attachGalleriesToProduct($request->galleries, $product);
+// TODO Better
+        if ($request->attributes) {
+            $this->service->attachAttributesToProduct($request->attributes, $product);
+        }
+        if ($request->tags) {
+            $this->service->attachTagsToProduct($request->tags, $product);
+        }
+
+        return to_route('products.index');
     }
 }
