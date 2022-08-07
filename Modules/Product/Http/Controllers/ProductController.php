@@ -53,22 +53,17 @@ class ProductController extends Controller
     {
         ShareService::uploadMediaWithAddInRequest($request, 'first_media', 'first_media_id');
         ShareService::uploadMediaWithAddInRequest($request, 'second_media', 'second_media_id');
+
         $product = $this->service->store($request);
 
-        $this->service->attachCategoreisToProducts($request->categories, $product);
-
-        foreach ($request->galleries as $gallery) {
-            $media = MediaFileService::publicUpload($gallery);
-            $product->galleries()->attach($media->id);
-        }
-
+        $this->service->attachCategoreisToProduct($request->categories, $product);
+        $this->service->attachGalleriesToProduct($request->galleries, $product);
+        
         if ($request->attributes) {
-            foreach ($request->attributes as $key => $value) {
-                $product->attachAttribute($key, $value);
-            }
+            $this->service->attachAttributesToProduct($request->attributes, $product);
         }
         if ($request->tags) {
-            $product->attachTags($request->tags);
+            $this->service->attachTagsToProduct($request->tags, $product);
         }
 
         return to_route('products.index');

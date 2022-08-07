@@ -2,6 +2,7 @@
 
 namespace Modules\Product\Services;
 
+use Modules\Media\Services\MediaFileService;
 use Modules\Product\Models\Product;
 use Modules\Share\Services\ShareService;
 
@@ -32,13 +33,32 @@ class ProductService
         ]);
     }
 
-    public function attachCategoreisToProducts($categories, $product)
+    public function attachCategoreisToProduct($categories, $product)
     {
         foreach ($categories as $category) {
             $product->categories()->attach(
                 collect($category)->pluck('id')
             );
         }
+    }
+
+    public function attachGalleriesToProduct($galleries, $product)
+    {
+        foreach ($galleries as $gallery) {
+            $product->galleries()->attach(MediaFileService::publicUpload($gallery)->id);
+        }
+    }
+
+    public function attachAttributesToProduct($attributes, $product)
+    {
+        foreach ($attributes as $key => $value) {
+            $product->attachAttribute($key, $value);
+        }
+    }
+
+    public function attachTagsToProduct($tags, $product)
+    {
+        return $product->attachTags($tags);
     }
 
     private function query()
