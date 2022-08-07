@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group([], function ($router) {
-
+Route::group(['prefix' => 'panel', 'middleware' => 'auth'], static function ($router) {
+    $router->resource('products', 'ProductController');
 });
-        
