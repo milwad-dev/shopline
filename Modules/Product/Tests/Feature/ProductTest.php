@@ -138,7 +138,6 @@ class ProductTest extends TestCase
      */
     public function test_admin_user_can_update_product()
     {
-        $this->withoutExceptionHandling();
         $this->createUserWithLogin();
 
         $product = $this->makeProduct();
@@ -156,6 +155,20 @@ class ProductTest extends TestCase
         ]);
         $response->assertRedirect(route('products.index'));
         $this->assertEquals(1, Product::query()->count());
+    }
+
+    /**
+     * Test admin product by id.
+     *
+     * @return void
+     */
+    public function test_admin_user_can_delete_product()
+    {
+        $this->createUserWithLogin();
+        $product = $this->makeProduct();
+
+        $this->delete(route('products.destroy', $product->id))->assertOk();
+        $this->assertEquals(0, Product::query()->count());
     }
 
     /**

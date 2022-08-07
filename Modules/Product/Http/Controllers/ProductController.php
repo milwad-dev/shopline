@@ -5,11 +5,13 @@ namespace Modules\Product\Http\Controllers;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Modules\Product\Http\Requests\ProductRequest;
 use Modules\Product\Repositories\ProductRepo;
 use Modules\Product\Services\ProductService;
 use Modules\Share\Http\Controllers\Controller;
+use Modules\Share\Responses\AjaxResponses;
 use Modules\Share\Services\ShareService;
 
 class ProductController extends Controller
@@ -85,7 +87,10 @@ class ProductController extends Controller
 
     /**
      * Update product with request by id.
+     * @param  ProductRequest $request
      *
+     * @param  $id
+     * @return RedirectResponse
      */
     public function update(ProductRequest $request, $id)
     {
@@ -110,5 +115,19 @@ class ProductController extends Controller
         }
 
         return to_route('products.index');
+    }
+
+    /**
+     * Delete product by id.
+     *
+     * @param  $id
+     * @return JsonResponse
+     */
+    public function destroy($id)
+    {
+        $this->repo->delete($id);
+        // TODO DELETE CATEGORIES & ...
+
+        return AjaxResponses::SuccessResponse();
     }
 }
