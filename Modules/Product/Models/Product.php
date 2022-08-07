@@ -29,6 +29,7 @@ class Product extends Model
         'type',
         'short_description',
         'body',
+        'status',
     ];
 
     // Relations

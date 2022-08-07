@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('count')->default(1);
             $table->string('type');
             $table->text('short_description');
+            $table->enum('status', get_value_enums(Modules\Product\Enums\ProductStatusEnum::cases()));
             $table->longText('body');
             $table->timestamps();
         });
