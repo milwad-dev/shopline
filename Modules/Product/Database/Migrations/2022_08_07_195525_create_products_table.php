@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('products', static function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('vendor_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('first_media_id')->nullable()->constrained('medias')->nullOnDelete();
             $table->foreignId('second_media_id')->nullable()->constrained('medias')->nullOnDelete();
             $table->string('title')->unique();
