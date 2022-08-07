@@ -32,6 +32,15 @@ class ProductService
         ]);
     }
 
+    public function attachCategoreisToProducts($categories, $product)
+    {
+        foreach ($categories as $category) {
+            $product->categories()->attach(
+                collect($category)->pluck('id')
+            );
+        }
+    }
+
     private function query()
     {
         return Product::query();

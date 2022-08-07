@@ -55,11 +55,7 @@ class ProductController extends Controller
         ShareService::uploadMediaWithAddInRequest($request, 'second_media', 'second_media_id');
         $product = $this->service->store($request);
 
-        foreach ($request->categories as $category) {
-            $product->categories()->attach(
-                collect($category)->pluck('id')
-            );
-        }
+        $this->service->attachCategoreisToProducts($request->categories, $product);
 
         foreach ($request->galleries as $gallery) {
             $media = MediaFileService::publicUpload($gallery);
