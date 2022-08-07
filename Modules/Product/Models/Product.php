@@ -9,10 +9,11 @@ use Milwad\LaravelAttributes\Traits\Attributable;
 use Modules\Category\Models\Category;
 use Modules\Media\Models\Media;
 use Modules\User\Models\User;
+use Spatie\Tags\HasTags;
 
 class Product extends Model
 {
-    use HasFactory, Attributable;
+    use HasFactory, Attributable, HasTags;
 
     /**
      * Set column in fillable.

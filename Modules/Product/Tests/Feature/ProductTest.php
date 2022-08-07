@@ -4,6 +4,12 @@ namespace Modules\Product\Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Str;
+use Modules\Category\Models\Category;
+use Modules\Media\Models\Media;
+use Modules\Product\Enums\ProductStatusEnum;
+use Modules\Product\Models\Product;
 use Modules\User\Models\User;
 use Tests\TestCase;
 
@@ -35,6 +41,38 @@ class ProductTest extends TestCase
 
         $response = $this->get(route('products.create'));
         $response->assertViewIs('Product::create');
+    }
+
+    /**
+     * Test admin user can store products without attributes & tags.
+     *
+     * @return void
+     */
+    public function test_admin_user_can_store_products_without_attributes_tags()
+    {
+        $this->withoutExceptionHandling();
+        $this->createUserWithLogin();
+
+        $response = $this->post(route('products.store'), [
+            'first_media' => UploadedFile::fake()->image('first_media.jpg'), // Mock
+            'second_media' => UploadedFile::fake()->image('second_media.jpg'), // Mock
+            'title' => $this->faker->title,
+            'price' => $this->faker->numberBetween(5, 15),
+            'count' => 51,
+            'type' => $this->faker->title,
+            'short_description' => $this->faker->text,
+            'body' => $this->faker->text,
+            'status' => ProductStatusEnum::STATUS_ACTIVE->value,
+            'categories' => Category::query()->inRandomOrder()->get()->toArray(),
+            'galleries' => [
+                UploadedFile::fake()->image(Str::random(10) . '.jpg'),
+                UploadedFile::fake()->image(Str::random(10) . '.jpg'),
+                UploadedFile::fake()->image(Str::random(10) . '.jpg'),
+            ],
+        ]);
+        $response->assertRedirect(route('products.index'));
+
+        $this->assertEquals(1, Product::query()->count());
     }
 
     /**
