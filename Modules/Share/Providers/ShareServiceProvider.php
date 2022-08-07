@@ -11,6 +11,7 @@ class ShareServiceProvider extends ServiceProvider
     public function register()
     {
         $this->loadViewsFrom(__DIR__ . '/../Resources/Views/', 'Share');
+        $this->loadMigrations();
         $this->loadCommands();
         $this->loadShareComponents();
         $this->loadAuthComponents();
@@ -82,5 +83,15 @@ class ShareServiceProvider extends ServiceProvider
         Factory::guessFactoryNamesUsing(static function (string $modelName) {
             return 'Modules\Share\Database\\Factories\\' . class_basename($modelName) . 'Factory';
         });
+    }
+
+    /**
+     * Load migrations.
+     *
+     * @return void
+     */
+    private function loadMigrations()
+    {
+        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations/');
     }
 }
