@@ -8,7 +8,7 @@
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper container-xxl p-0">
             <x-panel-content-header title="Latest products" createRoute="{{ route('products.create') }}"
-            createTitle="Create category" />
+            createTitle="Create product" />
             <div class="content-body">
                 <div class="row" id="table-hover-row">
                     <div class="col-12">

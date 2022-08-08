@@ -17,4 +17,18 @@ class ProductServiceProvider extends ServiceProvider
         Route::middleware(['web', 'verify'])->namespace($this->namespace)
         ->group(__DIR__ . '/../Routes/product_routes.php');
     }
+
+    /**
+     * Set menu.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        config()->set('panelConfig.menus.products', [ // Set menu for panel
+            'title' => 'Products',
+            'icon'  => 'gift',
+            'url'   => route('products.index'),
+        ]);
+    }
 }
