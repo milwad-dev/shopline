@@ -7,6 +7,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
+use Modules\Category\Repositories\CategoryRepo;
 use Modules\Product\Http\Requests\ProductRequest;
 use Modules\Product\Repositories\ProductRepo;
 use Modules\Product\Services\ProductService;
@@ -32,7 +33,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('Product::index');
+        $products = $this->repo->index()
+            ->with(['categories', 'first_media', 'second_media', 'tags'])
+            ->paginate(10);
+
+        return view('Product::index', compact('products'));
     }
 
     /**
@@ -40,9 +45,11 @@ class ProductController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function create()
+    public function create(CategoryRepo $categoryRepo)
     {
-        return view('Product::create');
+        $categories = $categoryRepo->getActiveCategories()->get();
+
+        return view('Product::create', compact('categories'));
     }
 
     /**

@@ -8,7 +8,7 @@ class ProductRepo
 {
     public function index()
     {
-
+        return $this->query()->latest();
     }
 
     public function findById($id)

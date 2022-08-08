@@ -2,6 +2,7 @@
 
 namespace Modules\Category\Repositories;
 
+use Modules\Category\Enums\CategoryStatusEnum;
 use Modules\Category\Models\Category;
 
 class CategoryRepo
@@ -24,6 +25,11 @@ class CategoryRepo
     public function changeStatus($id, string $status)
     {
         return $this->query()->where('id', $id)->update(['status' => $status]);
+    }
+
+    public function getActiveCategories()
+    {
+        return $this->query()->where('status', CategoryStatusEnum::STATUS_ACTIVE->value);
     }
 
     private function query()
