@@ -24,7 +24,8 @@
                 <section class="horizontal-wizard">
                     <div class="bs-stepper horizontal-wizard-example">
                         <div class="bs-stepper-header" role="tablist">
-                            <div class="step" data-target="#main-product-data" role="tab" id="main-product-data">
+{{--                            <x-panel-step number="1" id="main-product-data" title="First" subtitle="Enter the main product data" />--}}
+                            <div class="step" data-target="#account-details" role="tab" id="main-product-data">
                                 <button type="button" class="step-trigger">
                                     <span class="bs-stepper-box">1</span>
                                     <span class="bs-stepper-label">
@@ -73,7 +74,7 @@
                         <div class="bs-stepper-content">
                             <form action="{{ route('products.store') }}" method="POST">
                                 @csrf
-                                <div id="main-product-data" class="content" role="tabpanel" aria-labelledby="main-product-data">
+                                <div id="account-details" class="content" role="tabpanel" aria-labelledby="main-product-data">
                                     <div class="content-header">
                                         <h5 class="mb-0">Account Details</h5>
                                         <small class="text-muted">Enter Your Account Details.</small>

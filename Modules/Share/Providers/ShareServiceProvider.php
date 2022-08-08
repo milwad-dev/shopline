@@ -58,6 +58,7 @@ class ShareServiceProvider extends ServiceProvider
             \Modules\Share\Components\Panel\Button::class,
             \Modules\Share\Components\Panel\Select::class,
             \Modules\Share\Components\Panel\Textarea::class,
+            \Modules\Share\Components\Panel\Step::class,
         ]);
     }
 
