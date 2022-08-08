@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Milwad\LaravelAttributes\Traits\Attributable;
 use Modules\Category\Models\Category;
 use Modules\Media\Models\Media;
+use Modules\Product\Enums\ProductStatusEnum;
 use Modules\User\Models\User;
 use Spatie\Tags\HasTags;
 
@@ -91,5 +92,24 @@ class Product extends Model
     public function galleries()
     {
         return $this->belongsToMany(Media::class, 'product_gallery');
+    }
+
+    // Methods
+    /**
+     * Get css class for status.
+     *
+     * @return string
+     */
+    public function getCssClassStatus()
+    {
+        if ($this->status === ProductStatusEnum::STATUS_ACTIVE->value) {
+            return 'success';
+        }
+
+        if ($this->status === ProductStatusEnum::STATUS_IN_PROGRESS->value) {
+            return 'warning';
+        }
+
+        return 'danger';
     }
 }
