@@ -25,7 +25,7 @@
                                             <th>Price</th>
                                             <th>Count</th>
                                             <th>Status</th>
-                                            <th>User</th>
+                                            <th>Vendor</th>
                                             <th>Tags</th>
                                             <th>Categories</th>
                                             <th>Created At</th>
@@ -64,7 +64,7 @@
                                                     </span>
                                                 </td>
                                                 <td>
-                                                    {{ $product->user->name }}
+                                                    {{ $product->vendor->name }}
                                                 </td>
                                                 <td>
                                                     @foreach ($product->tags as $tag)
