@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Modules\Category\Repositories\CategoryRepo;
+use Modules\Media\Services\MediaFileService;
 use Modules\Product\Http\Requests\ProductRequest;
 use Modules\Product\Repositories\ProductRepo;
 use Modules\Product\Services\ProductService;
@@ -61,7 +62,6 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        dd($request->all());
         ShareService::uploadMediaWithAddInRequest($request, 'first_media', 'first_media_id');
         ShareService::uploadMediaWithAddInRequest($request, 'second_media', 'second_media_id');
 

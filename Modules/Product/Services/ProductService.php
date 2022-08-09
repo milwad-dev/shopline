@@ -66,9 +66,7 @@ class ProductService
     public function attachCategoriesToProduct($categories, $product)
     {
         foreach ($categories as $category) {
-            $product->categories()->attach(
-                collect($category)->pluck('id')
-            );
+            $product->categories()->attach($category);
         }
     }
 
@@ -82,6 +80,7 @@ class ProductService
     public function attachGalleriesToProduct($galleries, $product)
     {
         foreach ($galleries as $gallery) {
+//            dd($galleries, $gallery);
             $product->galleries()->attach(MediaFileService::publicUpload($gallery)->id);
         }
     }

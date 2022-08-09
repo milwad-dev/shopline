@@ -25,6 +25,7 @@ class MediaFileService
         self::$file = $file;
         self::$dir = 'public/';
         self::$isPrivate = false;
+
         return self::upload();
     }
 

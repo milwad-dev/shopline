@@ -80,8 +80,6 @@ class ShareService
      */
     public static function uploadMediaWithAddInRequest($request, string $file = 'image', string $field = 'media_id')
     {
-        return $request->request->add([
-            $field => MediaFileService::publicUpload($request->file($file))->id
-        ]);
+        return $request->request->add([$field => MediaFileService::publicUpload($request->file($file))->id]);
     }
 }

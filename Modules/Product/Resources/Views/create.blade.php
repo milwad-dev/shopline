@@ -116,7 +116,8 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data" class="invoice-repeater">
+                                    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data"
+                                        class="invoice-repeater" id="product-create">
                                         <div class="row">
                                             @csrf
                                             <div class="col-xl-6 col-md-6 col-12">
@@ -242,9 +243,12 @@
                                             </div>
                                             <div class="upload__box">
                                                 <div class="upload__btn-box">
+                                                    <x-panel-label title="Galleries" />
+                                                    <br>
                                                     <label class="upload__btn">
                                                         <p>Upload images</p>
-                                                        <input type="file" multiple="" data-max_length="20" class="upload__inputfile">
+                                                        <input type="file" multiple="" name="galleries[]"
+                                                        data-max_length="20" class="upload__inputfile">
                                                     </label>
                                                 </div>
                                                 <div class="upload__img-wrap"></div>
@@ -360,5 +364,19 @@
                 $(this).parent().parent().remove();
             });
         }
+    </script>
+
+    <script>
+        let editor = document.querySelector('.ql-editor p');
+        let form = document.getElementById('product-create');
+        form.onsubmit = function() {
+            let bodyInput = document.createElement("input");
+
+            bodyInput.setAttribute("type", "hidden");
+            bodyInput.setAttribute("name", "body");
+            bodyInput.setAttribute("value", editor.innerHTML);
+
+            form.append(bodyInput);
+        };
     </script>
 @endsection
