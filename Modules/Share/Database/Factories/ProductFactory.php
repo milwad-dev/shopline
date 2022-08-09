@@ -3,8 +3,6 @@
 namespace Modules\Share\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Modules\Category\Models\Category;
-use Modules\Media\Models\Media;
 use Modules\Product\Enums\ProductStatusEnum;
 use Modules\Product\Models\Product;
 use Modules\Share\Services\ShareService;

@@ -7,7 +7,6 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Str;
 use Modules\Category\Models\Category;
-use Modules\Media\Models\Media;
 use Modules\Product\Enums\ProductStatusEnum;
 use Modules\Product\Models\Product;
 use Modules\User\Models\User;

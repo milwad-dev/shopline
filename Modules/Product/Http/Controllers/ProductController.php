@@ -8,7 +8,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Modules\Category\Repositories\CategoryRepo;
-use Modules\Media\Services\MediaFileService;
 use Modules\Product\Http\Requests\ProductRequest;
 use Modules\Product\Repositories\ProductRepo;
 use Modules\Product\Services\ProductService;

@@ -2,7 +2,6 @@
 
 namespace Modules\Share\Services;
 
-use Illuminate\Database\Eloquent\Model;
 use Modules\Media\Services\MediaFileService;
 
 class ShareService
