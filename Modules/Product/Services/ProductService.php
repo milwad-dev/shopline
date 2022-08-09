@@ -95,8 +95,8 @@ class ProductService
      */
     public function attachAttributesToProduct($attributes, $product)
     {
-        foreach ($attributes as $key => $value) {
-            $product->attachAttribute($key, $value);
+        foreach ($attributes as $attribute) {
+            $product->attachAttribute($attribute->attributekeys, $attribute->attributevalues);
         }
     }
 

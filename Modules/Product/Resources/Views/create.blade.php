@@ -3,15 +3,105 @@
 @section('title', 'New product')
 
 @section('css')
-    <link rel="stylesheet" type="text/css" href="{{ asset('panel/css/core/menu/menu-types/vertical-menu.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('panel/css/plugins/forms/form-validation.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('panel/css/plugins/forms/form-wizard.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('panel/vendors/css/forms/wizard/bs-stepper.min.css') }}">
+    {{-- Select 2 css --}}
     <link rel="stylesheet" type="text/css" href="{{ asset('panel/vendors/css/forms/select/select2.min.css') }}">
+
+    {{-- Quill editor css --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('panel/vendors/css/editors/quill/katex.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('panel/vendors/css/editors/quill/monokai-sublime.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('panel/vendors/css/editors/quill/quill.snow.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('panel/vendors/css/editors/quill/quill.bubble.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('panel/css/plugins/forms/form-quill-editor.min.css') }}">
+
+    {{-- Touch spin css --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('panel/vendors/css/forms/spinner/jquery.bootstrap-touchspin.css') }}">
+
+    {{-- Image css --}}
+    <style>
+        .upload__box {
+            padding: 40px;
+        }
+
+        .upload__inputfile {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .upload__btn {
+            display: inline-block;
+            font-weight: 600;
+            color: #fff;
+            text-align: center;
+            min-width: 116px;
+            padding: 5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid;
+            background-color: #4045ba;
+            border-color: #4045ba;
+            border-radius: 10px;
+            line-height: 26px;
+            font-size: 14px;
+        }
+
+        .upload__btn:hover {
+            background-color: unset;
+            color: #4045ba;
+            transition: all 0.3s ease;
+        }
+
+        .upload__btn-box {
+            margin-bottom: 10px;
+        }
+
+        .upload__img-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+
+        .upload__img-box {
+            width: 200px;
+            padding: 0 10px;
+            margin-bottom: 12px;
+        }
+
+        .upload__img-close {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            text-align: center;
+            line-height: 24px;
+            z-index: 1;
+            cursor: pointer;
+        }
+
+        .upload__img-close:after {
+            font-size: 14px;
+            color: white;
+        }
+
+        .img-bg {
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            padding-bottom: 100%;
+        }
+
+    </style>
 @endsection
 
 @section('content')
-    <div class="app-content content ">
+    <div class="app-content content">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper container-xxl p-0">
@@ -21,271 +111,149 @@
                 </li>
             </x-panel-content-header>
             <div class="content-body">
-                <section class="horizontal-wizard">
-                    <div class="bs-stepper horizontal-wizard-example">
-                        <div class="bs-stepper-header" role="tablist">
-{{--                            <x-panel-step number="1" id="main-product-data" title="First" subtitle="Enter the main product data" />--}}
-                            <div class="step" data-target="#account-details" role="tab" id="main-product-data">
-                                <button type="button" class="step-trigger">
-                                    <span class="bs-stepper-box">1</span>
-                                    <span class="bs-stepper-label">
-                                    <span class="bs-stepper-title">First</span>
-                                        <span class="bs-stepper-subtitle">Enter the main product data</span>
-                                    </span>
-                                </button>
-                            </div>
-                            <div class="line">
-                                <i data-feather="chevron-right" class="font-medium-2"></i>
-                            </div>
-                            <div class="step" data-target="#personal-info" role="tab" id="personal-info-trigger">
-                                <button type="button" class="step-trigger">
-                                    <span class="bs-stepper-box">2</span>
-                                    <span class="bs-stepper-label">
-            <span class="bs-stepper-title">Personal Info</span>
-            <span class="bs-stepper-subtitle">Add Personal Info</span>
-          </span>
-                                </button>
-                            </div>
-                            <div class="line">
-                                <i data-feather="chevron-right" class="font-medium-2"></i>
-                            </div>
-                            <div class="step" data-target="#address-step" role="tab" id="address-step-trigger">
-                                <button type="button" class="step-trigger">
-                                    <span class="bs-stepper-box">3</span>
-                                    <span class="bs-stepper-label">
-            <span class="bs-stepper-title">Address</span>
-            <span class="bs-stepper-subtitle">Add Address</span>
-          </span>
-                                </button>
-                            </div>
-                            <div class="line">
-                                <i data-feather="chevron-right" class="font-medium-2"></i>
-                            </div>
-                            <div class="step" data-target="#social-links" role="tab" id="social-links-trigger">
-                                <button type="button" class="step-trigger">
-                                    <span class="bs-stepper-box">4</span>
-                                    <span class="bs-stepper-label">
-            <span class="bs-stepper-title">Social Links</span>
-            <span class="bs-stepper-subtitle">Add Social Links</span>
-          </span>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="bs-stepper-content">
-                            <form action="{{ route('products.store') }}" method="POST">
-                                @csrf
-                                <div id="account-details" class="content" role="tabpanel" aria-labelledby="main-product-data">
-                                    <div class="content-header">
-                                        <h5 class="mb-0">Account Details</h5>
-                                        <small class="text-muted">Enter Your Account Details.</small>
-                                    </div>
-                                    <form>
+                <section id="basic-input">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data" class="invoice-repeater">
                                         <div class="row">
-                                            <div class="mb-1 col-md-6">
-                                                <label class="form-label" for="username">Username</label>
-                                                <input type="text" name="username" id="username" class="form-control" placeholder="johndoe" />
+                                            @csrf
+                                            <div class="col-xl-6 col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <x-panel-label for="title" title="Title" />
+                                                    <x-panel-input name="title" id="title" value="{{ old('title') }}"
+                                                    placeholder="Enter title" />
+                                                    <x-share-error name="title" />
+                                                </div>
                                             </div>
-                                            <div class="mb-1 col-md-6">
-                                                <label class="form-label" for="email">Email</label>
-                                                <input
-                                                    type="email"
-                                                    name="email"
-                                                    id="email"
-                                                    class="form-control"
-                                                    placeholder="john.doe@email.com"
-                                                    aria-label="john.doe"
-                                                />
+                                            <div class="col-xl-6 col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <x-panel-label for="type" title="Type" />
+                                                    <x-panel-input name="type" id="type" value="{{ old('type') }}"
+                                                    placeholder="Enter type" />
+                                                    <x-share-error name="type" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="mb-1 form-password-toggle col-md-6">
-                                                <label class="form-label" for="password">Password</label>
-                                                <input
-                                                    type="password"
-                                                    name="password"
-                                                    id="password"
-                                                    class="form-control"
-                                                    placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                                />
+                                            <div class="col-xl-6 col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <x-panel-label for="price" title="Price" />
+                                                    <x-panel-input name="price" id="price" value="{{ old('price') }}"
+                                                    placeholder="Enter price" type="number" />
+                                                    <x-share-error name="price" />
+                                                </div>
                                             </div>
-                                            <div class="mb-1 form-password-toggle col-md-6">
-                                                <label class="form-label" for="confirm-password">Confirm Password</label>
-                                                <input
-                                                    type="password"
-                                                    name="confirm-password"
-                                                    id="confirm-password"
-                                                    class="form-control"
-                                                    placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                                />
+                                            <div class="col-xl-6 col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <x-panel-label for="count" title="Count" />
+                                                    <div class="demo-inline-spacing">
+                                                        <div class="input-group">
+                                                            <input type="number" class="touchspin" value="{{ old('count') ?? 0 }}"
+                                                            name="count" id="count" />
+                                                        </div>
+                                                    </div>
+                                                    <x-share-error name="count" />
+                                                </div>
                                             </div>
-                                        </div>
-                                    </form>
-                                    <div class="d-flex justify-content-between">
-                                        <button class="btn btn-outline-secondary btn-prev" disabled>
-                                            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-                                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
-                                        </button>
-                                        <button class="btn btn-primary btn-next">
-                                            <span class="align-middle d-sm-inline-block d-none">Next</span>
-                                            <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div id="personal-info" class="content" role="tabpanel" aria-labelledby="personal-info-trigger">
-                                    <div class="content-header">
-                                        <h5 class="mb-0">Personal Info</h5>
-                                        <small>Enter Your Personal Info.</small>
-                                    </div>
-                                    <form>
-                                        <div class="row">
-                                            <div class="mb-1 col-md-6">
-                                                <label class="form-label" for="first-name">First Name</label>
-                                                <input type="text" name="first-name" id="first-name" class="form-control"
-                                                       placeholder="John" />
+                                            <div class="col-xl-6 col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <x-panel-label for="select2-multiple" title="Category" />
+                                                    <x-panel-select name="categories[]" id="select2-multiple" multiple
+                                                        class="select2 form-select">
+                                                        @foreach ($categories as $category)
+                                                            <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                                        @endforeach
+                                                    </x-panel-select>
+                                                    <x-share-error name="categories" />
+                                                </div>
                                             </div>
-                                            <div class="mb-1 col-md-6">
-                                                <label class="form-label" for="last-name">Last Name</label>
-                                                <input type="text" name="last-name" id="last-name" class="form-control" placeholder="Doe" />
+                                            <div class="col-xl-6 col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <x-panel-label for="status" title="Status" />
+                                                    <x-panel-select name="status" id="status">
+                                                        @foreach (Modules\Product\Enums\ProductStatusEnum::cases() as $status)
+                                                            <option value="{{ $status->value }}">{{ $status->value }}</option>
+                                                        @endforeach
+                                                    </x-panel-select>
+                                                    <x-share-error name="status" />
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="mb-1 col-md-6">
-                                                <label class="form-label" for="country">Country</label>
-                                                <select class="select2 w-100" name="country" id="country">
-                                                    <option label=" "></option>
-                                                    <option>UK</option>
-                                                    <option>USA</option>
-                                                    <option>Spain</option>
-                                                    <option>France</option>
-                                                    <option>Italy</option>
-                                                    <option>Australia</option>
-                                                </select>
+                                            <div class="row">
+                                                <div class="col-xl-12 col-md-6 col-12">
+                                                    <x-panel-label for="short_description" title="Short description" />
+                                                    <x-panel-textarea name="short_description" id="short_description" rows="2"
+                                                    placeholder="Enter the short description" value="{{ old('short_description') }}" />
+                                                    <x-share-error name="short_description" />
+                                                </div>
                                             </div>
-                                            <div class="mb-1 col-md-6">
-                                                <label class="form-label" for="language">Language</label>
-                                                <select class="select2 w-100" name="language" id="language" multiple>
-                                                    <option>English</option>
-                                                    <option>French</option>
-                                                    <option>Spanish</option>
-                                                </select>
+                                            <div class="row">
+                                                <div class="col-xl-6 col-md-6 col-12">
+                                                    <x-panel-label for="first_media" title="First photo" />
+                                                    <x-panel-file name="first_media" id="first_media" />
+                                                    <x-share-error name="first_media" />
+                                                </div>
+                                                <div class="col-xl-6 col-md-6 col-12">
+                                                    <x-panel-label for="second_media" title="Second photo" />
+                                                    <x-panel-file name="second_media" id="second_media" />
+                                                    <x-share-error name="second_media" />
+                                                </div>
                                             </div>
+                                            <div class="col-xl-12 col-md-12 col-12 mb-5">
+                                                <x-panel-label for="body" title="Main description" />
+                                                <div id="body"></div>
+                                            </div>
+                                            <div data-repeater-list="attributes" class="mt-3">
+                                                <div data-repeater-item>
+                                                    <div class="row d-flex align-items-end">
+                                                        <div class="col-md-4 col-12">
+                                                            <div class="mb-1">
+                                                                <x-panel-label for="attributekeys" title="Attribute title" />
+                                                                <x-panel-input id="attributekeys" name="attributekeys[]"
+                                                                placeholder="Enter the attribute title" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4 col-12">
+                                                            <div class="mb-1">
+                                                                <x-panel-label for="attributevalues" title="Attribute value" />
+                                                                <x-panel-input id="attributevalues" name="attributevalues[]"
+                                                                placeholder="Enter the attribute value" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2 col-12 mb-50">
+                                                            <div class="mb-1">
+                                                                <button class="btn btn-outline-danger text-nowrap px-1"
+                                                                    data-repeater-delete type="button">
+                                                                    <i data-feather="x" class="me-25"></i>
+                                                                    <span>Delete</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr />
+                                                </div>
+                                            </div>
+                                            <div class="row mb-5">
+                                                <div class="col-12">
+                                                    <button class="btn btn-icon btn-primary" type="button" data-repeater-create>
+                                                        <i data-feather="plus" class="me-25"></i>
+                                                        <span>Add New</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="upload__box">
+                                                <div class="upload__btn-box">
+                                                    <label class="upload__btn">
+                                                        <p>Upload images</p>
+                                                        <input type="file" multiple="" data-max_length="20" class="upload__inputfile">
+                                                    </label>
+                                                </div>
+                                                <div class="upload__img-wrap"></div>
+                                            </div>
+                                            <x-panel-button />
                                         </div>
                                     </form>
-                                    <div class="d-flex justify-content-between">
-                                        <button class="btn btn-primary btn-prev">
-                                            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-                                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
-                                        </button>
-                                        <button class="btn btn-primary btn-next">
-                                            <span class="align-middle d-sm-inline-block d-none">Next</span>
-                                            <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
-                                        </button>
-                                    </div>
                                 </div>
-                                <div id="address-step" class="content" role="tabpanel" aria-labelledby="address-step-trigger">
-                                    <div class="content-header">
-                                        <h5 class="mb-0">Address</h5>
-                                        <small>Enter Your Address.</small>
-                                    </div>
-                                    <form>
-                                        <div class="row">
-                                            <div class="mb-1 col-md-6">
-                                                <label class="form-label" for="address">Address</label>
-                                                <input
-                                                    type="text"
-                                                    id="address"
-                                                    name="address"
-                                                    class="form-control"
-                                                    placeholder="98  Borough bridge Road, Birmingham"
-                                                />
-                                            </div>
-                                            <div class="mb-1 col-md-6">
-                                                <label class="form-label" for="landmark">Landmark</label>
-                                                <input type="text" name="landmark" id="landmark" class="form-control" placeholder="Borough bridge" />
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="mb-1 col-md-6">
-                                                <label class="form-label" for="pincode1">Pincode</label>
-                                                <input type="text" id="pincode1" class="form-control" placeholder="658921" />
-                                            </div>
-                                            <div class="mb-1 col-md-6">
-                                                <label class="form-label" for="city1">City</label>
-                                                <input type="text" id="city1" class="form-control" placeholder="Birmingham" />
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <div class="d-flex justify-content-between">
-                                        <button class="btn btn-primary btn-prev">
-                                            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-                                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
-                                        </button>
-                                        <button class="btn btn-primary btn-next">
-                                            <span class="align-middle d-sm-inline-block d-none">Next</span>
-                                            <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div id="social-links" class="content" role="tabpanel" aria-labelledby="social-links-trigger">
-                                    <div class="content-header">
-                                        <h5 class="mb-0">Social Links</h5>
-                                        <small>Enter Your Social Links.</small>
-                                    </div>
-                                    <form>
-                                        <div class="row">
-                                            <div class="mb-1 col-md-6">
-                                                <label class="form-label" for="twitter">Twitter</label>
-                                                <input
-                                                    type="text"
-                                                    id="twitter"
-                                                    name="twitter"
-                                                    class="form-control"
-                                                    placeholder="https://twitter.com/abc"
-                                                />
-                                            </div>
-                                            <div class="mb-1 col-md-6">
-                                                <label class="form-label" for="facebook">Facebook</label>
-                                                <input
-                                                    type="text"
-                                                    id="facebook"
-                                                    name="facebook"
-                                                    class="form-control"
-                                                    placeholder="https://facebook.com/abc"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="mb-1 col-md-6">
-                                                <label class="form-label" for="google">Google+</label>
-                                                <input
-                                                    type="text"
-                                                    id="google"
-                                                    name="google"
-                                                    class="form-control"
-                                                    placeholder="https://plus.google.com/abc"
-                                                />
-                                            </div>
-                                            <div class="mb-1 col-md-6">
-                                                <label class="form-label" for="linkedin">Linkedin</label>
-                                                <input
-                                                    type="text"
-                                                    id="linkedin"
-                                                    name="linkedin"
-                                                    class="form-control"
-                                                    placeholder="https://linkedin.com/abc"
-                                                />
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <div class="d-flex justify-content-between">
-                                        <button class="btn btn-primary btn-prev">
-                                            <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
-                                            <span class="align-middle d-sm-inline-block d-none">Previous</span>
-                                        </button>
-                                        <button class="btn btn-success btn-submit">Submit</button>
-                                    </div>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -295,8 +263,102 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('panel/js/scripts/forms/form-wizard.min.js') }}"></script>
-    <script src="{{ asset('panel/vendors/js/forms/wizard/bs-stepper.min.js') }}"></script>
+    {{-- Select 2 JS --}}
     <script src="{{ asset('panel/vendors/js/forms/select/select2.full.min.js') }}"></script>
-    <script src="{{ asset('panel/vendors/js/forms/validation/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('panel/js/scripts/forms/form-select2.min.js') }}"></script>
+
+    {{-- Quill editor JS --}}
+    <script src="{{ asset('panel/vendors/js/editors/quill/katex.min.js') }}"></script>
+    <script src="{{ asset('panel/vendors/js/editors/quill/highlight.min.js') }}"></script>
+    <script src="{{ asset('panel/vendors/js/editors/quill/quill.min.js') }}"></script>
+    <script src="{{ asset('panel/js/scripts/forms/form-quill-editor.min.js') }}"></script>
+    <script>
+        let quill = new Quill('#body', {
+            modules: {
+                toolbar: [
+                    [{ 'font': [] }, { 'size': [] }],
+                    [ 'bold', 'italic', 'underline', 'strike' ],
+                    [{ 'color': [] }, { 'background': [] }],
+                    [{ 'script': 'super' }, { 'script': 'sub' }],
+                    [{ 'header': '1' }, { 'header': '2' }, 'blockquote', 'code-block' ],
+                    [{ 'list': 'ordered' }, { 'list': 'bullet'}, { 'indent': '-1' }, { 'indent': '+1' }],
+                    [ 'direction', { 'align': [] }],
+                    [ 'link', 'image', 'video', 'formula' ],
+                    [ 'clean' ]
+                ]
+            },
+            theme: 'snow',
+        })
+    </script>
+
+    {{-- Touch spin JS --}}
+    <script src="{{ asset('panel/vendors/js/forms/spinner/jquery.bootstrap-touchspin.js') }}"></script>
+    <script src="{{ asset('panel/js/scripts/forms/form-number-input.min.js') }}"></script>
+
+    {{-- Form Repeater JS --}}
+    <script src="{{ asset('panel/js/scripts/forms/form-repeater.min.js') }}"></script>
+    <script src="{{ asset('panel/vendors/js/forms/repeater/jquery.repeater.min.js') }}"></script>
+
+    {{-- Image service --}}
+    <script>
+        jQuery(document).ready(function () {
+            ImgUpload();
+        });
+        function ImgUpload() {
+            var imgWrap = "";
+            var imgArray = [];
+
+            $('.upload__inputfile').each(function () {
+                $(this).on('change', function (e) {
+                    imgWrap = $(this).closest('.upload__box').find('.upload__img-wrap');
+                    var maxLength = $(this).attr('data-max_length');
+
+                    var files = e.target.files;
+                    var filesArr = Array.prototype.slice.call(files);
+                    var iterator = 0;
+                    filesArr.forEach(function (f, index) {
+
+                        if (!f.type.match('image.*')) {
+                            return;
+                        }
+
+                        if (imgArray.length > maxLength) {
+                            return false
+                        } else {
+                            var len = 0;
+                            for (var i = 0; i < imgArray.length; i++) {
+                                if (imgArray[i] !== undefined) {
+                                    len++;
+                                }
+                            }
+                            if (len > maxLength) {
+                                return false;
+                            } else {
+                                imgArray.push(f);
+
+                                var reader = new FileReader();
+                                reader.onload = function (e) {
+                                    var html = "<div class='upload__img-box'><div style='width: 80px; background-image: url(" + e.target.result + ")' data-number='" + $(".upload__img-close").length + "' data-file='" + f.name + "' class='img-bg'><div class='upload__img-close'></div></div></div>";
+                                    imgWrap.append(html);
+                                    iterator++;
+                                }
+                                reader.readAsDataURL(f);
+                            }
+                        }
+                    });
+                });
+            });
+
+            $('body').on('click', ".upload__img-close", function (e) {
+                var file = $(this).parent().data("file");
+                for (var i = 0; i < imgArray.length; i++) {
+                    if (imgArray[i].name === file) {
+                        imgArray.splice(i, 1);
+                        break;
+                    }
+                }
+                $(this).parent().parent().remove();
+            });
+        }
+    </script>
 @endsection

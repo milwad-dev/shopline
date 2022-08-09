@@ -61,6 +61,7 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
+        dd($request->all());
         ShareService::uploadMediaWithAddInRequest($request, 'first_media', 'first_media_id');
         ShareService::uploadMediaWithAddInRequest($request, 'second_media', 'second_media_id');
 

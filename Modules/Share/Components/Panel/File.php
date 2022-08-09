@@ -4,24 +4,20 @@ namespace Modules\Share\Components\Panel;
 
 use Illuminate\View\Component;
 
-class Step extends Component
+class File extends Component
 {
+    public string $name;
     public string $id;
-    public string $number;
-    public string $title;
-    public string $subtitle;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($id, $number, $title, $subtitle)
+    public function __construct($name, $id)
     {
+        $this->name = $name;
         $this->id = $id;
-        $this->number = $number;
-        $this->title = $title;
-        $this->subtitle = $subtitle;
     }
 
     /**
@@ -31,6 +27,6 @@ class Step extends Component
      */
     public function render()
     {
-        return view('Share::components.panel.step');
+        return view('Share::components.panel.file');
     }
 }
