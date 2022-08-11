@@ -140,7 +140,8 @@
                                                 <div class="mb-1">
                                                     <x-panel-label for="price" title="Price" />
                                                     <x-panel-input name="price" id="price" value="{{ old('price') }}"
-                                                    placeholder="Enter price" type="number" />
+                                                    class="form-control numeral-mask @error('price') is-invalid @enderror"
+                                                    placeholder="Enter price" />
                                                     <x-share-error name="price" />
                                                 </div>
                                             </div>
@@ -367,6 +368,7 @@
         }
     </script>
 
+    {{-- Editor --}}
     <script>
         let editor = document.querySelector('.ql-editor p');
         let form = document.getElementById('product-create');
@@ -380,4 +382,9 @@
             form.append(bodyInput);
         };
     </script>
+
+    {{-- Price formatter JS --}}
+    <script src="{{ asset('panel/vendors/js/forms/cleave/cleave.min.js') }}"></script>
+    <script src="{{ asset('panel/vendors/js/forms/cleave/addons/cleave-phone.us.js') }}"></script>
+    <script src="{{ asset('panel/js/scripts/forms/form-input-mask.min.js') }}"></script>
 @endsection

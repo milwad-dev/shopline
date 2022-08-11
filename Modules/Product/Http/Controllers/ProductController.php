@@ -64,13 +64,16 @@ class ProductController extends Controller
         ShareService::uploadMediaWithAddInRequest($request, 'first_media', 'first_media_id');
         ShareService::uploadMediaWithAddInRequest($request, 'second_media', 'second_media_id');
 
+        // Convert
+        $request->price = str_replace(',', '', $request->price);
+
         $product = $this->service->store($request);
 
         $this->service->attachCategoriesToProduct($request->categories, $product);
         $this->service->attachGalleriesToProduct($request->galleries, $product);
 
         $attributes = $request->input('attributes');
-        if (! empty($attributes)) {
+        if (! is_null($attributes[0]['attributekeys'])) {
             $this->service->attachAttributesToProduct($attributes, $product);
         }
 
