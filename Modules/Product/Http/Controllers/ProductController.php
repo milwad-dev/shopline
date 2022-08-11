@@ -55,7 +55,7 @@ class ProductController extends Controller
     /**
      * Store product.
      *
-     * @param ProductRequest $request
+     * @param  ProductRequest $request
      * @return RedirectResponse
      * @throws \Exception
      */
@@ -69,11 +69,14 @@ class ProductController extends Controller
         $this->service->attachCategoriesToProduct($request->categories, $product);
         $this->service->attachGalleriesToProduct($request->galleries, $product);
 
-        if ($request->attributes) {
-            $this->service->attachAttributesToProduct($request->attributes, $product);
+        $attributes = $request->input('attributes');
+        if (! empty($attributes)) {
+            $this->service->attachAttributesToProduct($attributes, $product);
         }
-        if ($request->tags) {
-            $this->service->attachTagsToProduct($request->tags, $product);
+
+        $tags = $request->tags;
+        if (! empty($tags)) {
+            $this->service->attachTagsToProduct($tags, $product);
         }
 
         return to_route('products.index');

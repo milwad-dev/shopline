@@ -209,14 +209,14 @@
                                                         <div class="col-md-4 col-12">
                                                             <div class="mb-1">
                                                                 <x-panel-label for="attributekeys" title="Attribute title" />
-                                                                <x-panel-input id="attributekeys" name="attributekeys[]"
+                                                                <x-panel-input id="attributekeys" name="attributekeys"
                                                                 placeholder="Enter the attribute title" />
                                                             </div>
                                                         </div>
                                                         <div class="col-md-4 col-12">
                                                             <div class="mb-1">
                                                                 <x-panel-label for="attributevalues" title="Attribute value" />
-                                                                <x-panel-input id="attributevalues" name="attributevalues[]"
+                                                                <x-panel-input id="attributevalues" name="attributevalues"
                                                                 placeholder="Enter the attribute value" />
                                                             </div>
                                                         </div>

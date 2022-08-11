@@ -80,7 +80,6 @@ class ProductService
     public function attachGalleriesToProduct($galleries, $product)
     {
         foreach ($galleries as $gallery) {
-//            dd($galleries, $gallery);
             $product->galleries()->attach(MediaFileService::publicUpload($gallery)->id);
         }
     }
@@ -95,7 +94,7 @@ class ProductService
     public function attachAttributesToProduct($attributes, $product)
     {
         foreach ($attributes as $attribute) {
-            $product->attachAttribute($attribute->attributekeys, $attribute->attributevalues);
+            $product->attachAttribute($attribute['attributekeys'], $attribute['attributevalues']);
         }
     }
 
