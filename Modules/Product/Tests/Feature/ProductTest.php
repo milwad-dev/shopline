@@ -67,6 +67,11 @@ class ProductTest extends TestCase
                 UploadedFile::fake()->image(Str::random(10) . '.jpg'),
                 UploadedFile::fake()->image(Str::random(10) . '.jpg'),
             ],
+            'attributes' => [
+                [
+                    'attributekeys' => null,
+                ]
+            ]
         ]);
         $response->assertRedirect(route('products.index'));
 
@@ -104,10 +109,22 @@ class ProductTest extends TestCase
                 $this->faker->title,
             ],
             'attributes' => [
-                $this->faker->title => $this->faker->text,
-                $this->faker->title => $this->faker->text,
-                $this->faker->title => $this->faker->text,
-                $this->faker->title => $this->faker->text,
+                [
+                    'attributekeys' => $this->faker->title,
+                    'attributevalues' => $this->faker->text,
+                ],
+                [
+                    'attributekeys' => $this->faker->title,
+                    'attributevalues' => $this->faker->text,
+                ],
+                [
+                    'attributekeys' => $this->faker->title,
+                    'attributevalues' => $this->faker->text,
+                ],
+                [
+                    'attributekeys' => $this->faker->title,
+                    'attributevalues' => $this->faker->text,
+                ],
             ],
         ]);
         $response->assertRedirect(route('products.index'));
@@ -140,6 +157,7 @@ class ProductTest extends TestCase
         $this->createUserWithLogin();
 
         $product = $this->makeProduct();
+        $category = Category::factory()->create();
 
         $response = $this->patch(route('products.update', $product->id), [
             'first_media' => UploadedFile::fake()->image('first_media.jpg'),
@@ -151,6 +169,9 @@ class ProductTest extends TestCase
             'short_description' => $this->faker->text,
             'body' => $this->faker->text,
             'status' => ProductStatusEnum::STATUS_ACTIVE->value,
+            'categories' => [
+                $category->id,
+            ]
         ]);
         $response->assertRedirect(route('products.index'));
         $this->assertEquals(1, Product::query()->count());
