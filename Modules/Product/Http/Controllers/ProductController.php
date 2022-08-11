@@ -89,13 +89,15 @@ class ProductController extends Controller
      * Find product by id with show edit product page.
      *
      * @param  $id
+     * @param  CategoryRepo $categoryRepo
      * @return Application|Factory|View
      */
-    public function edit($id)
+    public function edit($id, CategoryRepo $categoryRepo)
     {
         $product = $this->repo->findById($id);
+        $categories = $categoryRepo->getActiveCategories()->get();
 
-        return view('Product::edit', compact(['product']));
+        return view('Product::edit', compact(['product', 'categories']));
     }
 
     /**
@@ -107,23 +109,27 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, $id)
     {
-        if ($request->first_media) {
+        $product = $this->repo->findById($id);
+
+        // Convert
+        $request->price = str_replace(',', '', $request->price);
+
+        if (! is_null($request->first_media)) {
             ShareService::uploadMediaWithAddInRequest($request, 'first_media', 'first_media_id');
-        }
-        if ($request->second_media) {
+        } else $request->request->add(['first_media_id' => $product->first_media_id]);
+
+        if (! is_null($request->second_media)) {
             ShareService::uploadMediaWithAddInRequest($request, 'second_media', 'second_media_id');
+        } else $request->request->add(['second_media_id' => $product->second_media_id]);
+
+        $this->service->update($request, $id);
+
+        $this->service->firstOrCreateCategoriesToProduct($request->categories, $product);
+        if (! is_null($request->galleries)) {
+            $this->service->attachGalleriesToProduct($request->galleries, $product);
         }
 
-        $productId = $this->service->update($request, $id);
-        $product = $this->repo->findById($productId);
-
-//        $this->service->attachCategoriesToProduct($request->categories, $product);
-//        $this->service->attachGalleriesToProduct($request->galleries, $product);
-// TODO Better
-        if ($request->attributes) {
-            $this->service->attachAttributesToProduct($request->attributes, $product);
-        }
-        if ($request->tags) {
+        if (! empty($request->tags)) {
             $this->service->attachTagsToProduct($request->tags, $product);
         }
 

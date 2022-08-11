@@ -188,6 +188,7 @@
                                                     <x-share-error name="short_description" />
                                                 </div>
                                             </div>
+                                            <hr>
                                             <div class="row">
                                                 <div class="col-xl-6 col-md-6 col-12">
                                                     <x-panel-label for="first_media" title="First photo" />

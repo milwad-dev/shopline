@@ -119,4 +119,18 @@ class ProductService
     {
         return Product::query();
     }
+
+    /**
+     * First or create categories product.
+     *
+     * @param  array $categories
+     * @param  $product
+     * @return void
+     */
+    public function firstOrCreateCategoriesToProduct(array $categories, $product)
+    {
+        foreach ($categories as $category) {
+            $product->categories()->syncWithoutDetaching($category);
+        }
+    }
 }

@@ -112,4 +112,15 @@ class Product extends Model
 
         return 'danger';
     }
+
+    /**
+     * Check category id is in categories product.
+     *
+     * @param  int $categoryId
+     * @return mixed
+     */
+    public function checkSelectedCategoryies(int $categoryId)
+    {
+        return $this->categories->contains($categoryId);
+    }
 }
