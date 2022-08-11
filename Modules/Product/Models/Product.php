@@ -123,4 +123,19 @@ class Product extends Model
     {
         return $this->categories->contains($categoryId);
     }
+
+    /**
+     * Boot product model.
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(static function($product) {
+            $product->categories()->delete();
+            $product->tags()->delete();
+            $product->galleries()->delet();
+            $product->attributes()->deleteAllAttribute();
+        });
+    }
 }
