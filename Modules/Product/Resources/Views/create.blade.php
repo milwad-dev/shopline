@@ -253,6 +253,7 @@
                                                 </div>
                                                 <div class="upload__img-wrap"></div>
                                             </div>
+                                            {{-- TODO Add tags --}}
                                             <x-panel-button />
                                         </div>
                                     </form>
