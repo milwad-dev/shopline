@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
 use Modules\Article\Enums\ArticleStatusEnum;
+use Modules\Article\Models\Article;
 use Modules\Article\Repositories\ArticleRepo;
 use Modules\Category\Models\Category;
 use Modules\Category\Repositories\CategoryRepo;
@@ -87,6 +88,22 @@ class ArticleTest extends TestCase
         ]);
         $response->assertSessionHas('alert');
         $response->assertRedirect(route('articles.index'));
+    }
+
+    /**
+     * Test admin user can see article edit page by id.
+     *
+     * @test
+     * @return void
+     */
+    public function admin_user_can_see_article_edit_page()
+    {
+        $this->createUserWithLoginWithAssignPermissionWithAssignPermission();
+        $article = Article::factory()->create();
+
+        $response = $this->get(route('articles.edit', $article->id));
+        $response->assertViewIs('Article::edit');
+        $response->assertViewHas(['article', 'categories']);
     }
 
     /**

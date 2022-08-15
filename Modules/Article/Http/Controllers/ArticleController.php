@@ -2,6 +2,9 @@
 
 namespace Modules\Article\Http\Controllers;
 
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -62,14 +65,18 @@ class ArticleController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show edit page by id.
      *
-     * @param  \Modules\Article\Article  $article
-     * @return \Illuminate\Http\Response
+     * @param  $id
+     * @param  CategoryRepo $categoryRepo
+     * @return Application|Factory|View
      */
-    public function edit(Article $article)
+    public function edit($id, CategoryRepo $categoryRepo)
     {
-        //
+        $article = $this->repo->findById($id);
+        $categories = $categoryRepo->getActiveCategories();
+
+        return view('Article::edit', compact(['article', 'categories']));
     }
 
     /**
@@ -79,7 +86,7 @@ class ArticleController extends Controller
      * @param  \Modules\Article\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -90,7 +97,7 @@ class ArticleController extends Controller
      * @param  \Modules\Article\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article)
+    public function destroy($id)
     {
         //
     }
