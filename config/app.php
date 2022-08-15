@@ -194,6 +194,7 @@ return [
         Modules\Category\Providers\CategoryServiceProvider::class,
         Modules\RolePermission\Providers\RolePermissionServiceProvider::class,
         Modules\Product\Providers\ProductServiceProvider::class,
+        Modules\Article\Providers\ArticleServiceProvider::class,
         /**
          * Package Service Providers...
          */

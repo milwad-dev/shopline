@@ -39,7 +39,8 @@
             "Modules\\Media\\": "Modules/Media/",
             "Modules\\Category\\": "Modules/Category/",
             "Modules\\RolePermission\\": "Modules/RolePermission/",
-            "Modules\\Product\\": "Modules/Product/"
+            "Modules\\Product\\": "Modules/Product/",
+            "Modules\\Article\\": "Modules/Article/"
         },
         "files": [
             "Modules/Share/helpers.php"
