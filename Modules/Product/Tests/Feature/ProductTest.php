@@ -23,7 +23,7 @@ class ProductTest extends TestCase
      */
     public function test_admin_user_can_see_index_products_page()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
 
         $response = $this->get(route('products.index'));
         $response->assertViewIs('Product::index');
@@ -36,7 +36,7 @@ class ProductTest extends TestCase
      */
     public function test_admin_user_can_see_create_products_page()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
 
         $response = $this->get(route('products.create'));
         $response->assertViewIs('Product::create');
@@ -49,7 +49,7 @@ class ProductTest extends TestCase
      */
     public function test_admin_user_can_store_products_without_attributes_tags()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
 
         $response = $this->post(route('products.store'), [
             'first_media' => UploadedFile::fake()->image('first_media.jpg'), // Mock
@@ -85,7 +85,7 @@ class ProductTest extends TestCase
      */
     public function test_admin_user_can_store_products_with_attributes_tags()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
 
         $response = $this->post(route('products.store'), [
             'first_media' => UploadedFile::fake()->image('first_media.jpg'), // Mock
@@ -139,7 +139,7 @@ class ProductTest extends TestCase
      */
     public function test_admin_user_can_see_edit_product_page()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
 
         $product = $this->makeProduct();
 
@@ -154,7 +154,7 @@ class ProductTest extends TestCase
      */
     public function test_admin_user_can_update_product()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
 
         $product = $this->makeProduct();
         $category = Category::factory()->create();
@@ -184,7 +184,7 @@ class ProductTest extends TestCase
      */
     public function test_admin_user_can_delete_product()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
         $product = $this->makeProduct();
 
         $this->delete(route('products.destroy', $product->id))->assertOk();
@@ -206,7 +206,7 @@ class ProductTest extends TestCase
      *
      * @return void
      */
-    private function createUserWithLogin()
+    private function createUserWithLoginWithAssignPermission()
     {
         $user = User::factory()->create();
         auth()->login($user);

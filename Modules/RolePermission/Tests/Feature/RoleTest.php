@@ -21,7 +21,7 @@ class RoleTest extends TestCase
      */
     public function test_admin_user_can_see_index_page_role()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
 
         $response = $this->get(route('role-permissions.index'));
         $response->assertViewIs('RolePermission::index');
@@ -34,7 +34,7 @@ class RoleTest extends TestCase
      */
     public function test_admin_user_can_see_create_page_role()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
 
         $response = $this->get(route('role-permissions.create'));
         $response->assertViewIs('RolePermission::create');
@@ -47,7 +47,7 @@ class RoleTest extends TestCase
      */
     public function test_store_role_validate_successful()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
 
         $response = $this->post(route('role-permissions.store'), [])->assertSessionHasErrors([
             'name',
@@ -63,7 +63,7 @@ class RoleTest extends TestCase
      */
     public function test_admin_user_can_store_role()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
 
         $response = $this->post(route('role-permissions.store'), [
             'name' => $this->faker->title,
@@ -80,7 +80,7 @@ class RoleTest extends TestCase
      */
     public function test_admin_user_can_see_edit_page_role()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
         $role = $this->createRole();
 
         $response = $this->get(route('role-permissions.edit', $role->id));
@@ -94,7 +94,7 @@ class RoleTest extends TestCase
      */
     public function test_admin_user_can_update_role()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
         $role = $this->createRole();
 
         $response = $this->patch(route('role-permissions.update', $role->id), [
@@ -113,7 +113,7 @@ class RoleTest extends TestCase
      */
     public function test_admin_user_can_delete_role()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
         $role = $this->createRole();
 
         $this->delete(route('role-permissions.destroy', $role->id))->assertOk();
@@ -147,7 +147,7 @@ class RoleTest extends TestCase
      *
      * @return void
      */
-    private function createUserWithLogin(): void
+    private function createUserWithLoginWithAssignPermission(): void
     {
         $user = User::factory()->create();
         auth()->login($user);

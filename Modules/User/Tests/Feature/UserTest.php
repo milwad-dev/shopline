@@ -22,7 +22,7 @@ class UserTest extends TestCase
     public function test_admin_user_can_see_latest_users_page()
     {
         // TODO Add permission
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
         $response = $this->get(route('users.index'));
 
         $response->assertViewIs('User::Panel.index');
@@ -35,7 +35,7 @@ class UserTest extends TestCase
      */
     public function test_admin_user_can_see_create_user_page()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
         $response = $this->get(route('users.create'));
 
         $response->assertViewIs('User::Panel.create');
@@ -48,7 +48,7 @@ class UserTest extends TestCase
      */
     public function test_validate_store_new_user()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
         $response = $this->post(route('users.store'));
 
         $response->assertRedirect();
@@ -61,7 +61,7 @@ class UserTest extends TestCase
      */
     public function test_admin_user_can_store_new_user()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
         $response = $this->post(route('users.store'), [
             'name' => $this->faker->name,
             'email' => $this->faker->email,
@@ -80,7 +80,7 @@ class UserTest extends TestCase
      */
     public function test_admin_user_can_update_user()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
         $response = $this->patch(route('users.update', auth()->id()), [
             'id' => auth()->id(),
             'name' => $this->faker->name,
@@ -100,7 +100,7 @@ class UserTest extends TestCase
      */
     public function test_admin_user_can_delete_user()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
         $response = $this->delete(route('users.destroy', auth()->id()));
 
         $response->assertOk();
@@ -111,7 +111,7 @@ class UserTest extends TestCase
      *
      * @return void
      */
-    private function createUserWithLogin(): void
+    private function createUserWithLoginWithAssignPermission(): void
     {
         $user = User::factory()->create();
         auth()->login($user);

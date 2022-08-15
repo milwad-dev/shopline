@@ -23,7 +23,7 @@ class CategoryTest extends TestCase
      */
     public function test_admin_user_can_see_list_of_category()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
 
         $response = $this->get(route('categories.index'));
         $response->assertViewIs('Category::Panel.index');
@@ -36,7 +36,7 @@ class CategoryTest extends TestCase
      */
     public function test_admin_user_can_see_create_category_page()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
 
         $response = $this->get(route('categories.create'));
         $response->assertViewIs('Category::Panel.create');
@@ -49,7 +49,7 @@ class CategoryTest extends TestCase
      */
     public function test_store_category_validate_successful()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
 
         $response = $this->post(route('categories.store'), [])->assertSessionHasErrors([
             'title',
@@ -66,7 +66,7 @@ class CategoryTest extends TestCase
      */
     public function test_parent_id_validation_successful()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
 
         $response = $this->post(route('categories.store'), [
             'parent_id' => random_int(1, 10)
@@ -85,7 +85,7 @@ class CategoryTest extends TestCase
      */
     public function test_admin_user_can_store_category()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
 
         $response = $this->post(route('categories.store'), [
             'parent_id' => null,
@@ -104,7 +104,7 @@ class CategoryTest extends TestCase
      */
     public function test_admin_user_can_see_edit_category_page()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
 
         $category = $this->createCategory();
         $response = $this->get(route('categories.edit', $category->id));
@@ -118,7 +118,7 @@ class CategoryTest extends TestCase
      */
     public function test_update_category_validate_successful()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
 
         $category = $this->createCategory();
         $response = $this->patch(route('categories.update', $category->id), [
@@ -138,7 +138,7 @@ class CategoryTest extends TestCase
      */
     public function test_admin_user_can_update_categoroy()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
         $category = $this->createCategory();
 
         $response = $this->patch(route('categories.update', $category->id), [
@@ -156,7 +156,7 @@ class CategoryTest extends TestCase
      */
     public function test_admin_user_can_delete_category()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
         $category = $this->createCategory();
 
         $this->delete(route('categories.destroy', $category->id))->assertOk();
@@ -169,7 +169,7 @@ class CategoryTest extends TestCase
      */
     public function test_admin_user_can_change_status_category_to_active()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
         $category = $this->createCategory();
 
         $this->patch(route('categories.change.status.active', $category->id))->assertOk();
@@ -182,7 +182,7 @@ class CategoryTest extends TestCase
      */
     public function test_admin_user_can_change_status_category_to_inactive()
     {
-        $this->createUserWithLogin();
+        $this->createUserWithLoginWithAssignPermission();
         $category = $this->createCategory();
 
         $this->patch(route('categories.change.status.inactive', $category->id))->assertOk();
@@ -193,7 +193,7 @@ class CategoryTest extends TestCase
      *
      * @return void
      */
-    private function createUserWithLogin(): void
+    private function createUserWithLoginWithAssignPermission(): void
     {
         $user = User::factory()->create();
         auth()->login($user);

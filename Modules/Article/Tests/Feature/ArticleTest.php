@@ -17,7 +17,7 @@ class ArticleTest extends TestCase
      */
     public function admin_user_can_see_article_index_page()
     {
-
+        $this->createUserWithLoginWithAssignPermissionWithAssignPermission();
 
         $response = $this->get(route('articles.index'));
         $response->assertViewIs('Article::index');
@@ -28,13 +28,13 @@ class ArticleTest extends TestCase
      *
      * @return void
      */
-    private function createUserWithLoginWithAssignPermission()
+    private function createUserWithLoginWithAssignPermissionWithAssignPermission()
     {
         $user = User::factory()->create();
         auth()->login($user);
 
         $this->callPermissionSeeder();
-        $user->assignPermissionTo(Permission::PERMISSION_ARTICLES);
+        $user->givePermissionTo(Permission::PERMISSION_ARTICLES);
     }
 
     /**
