@@ -55,7 +55,7 @@ class CategoryTest extends TestCase
             'title',
             'status',
         ]);
-        $response->assertRedirect();
+        $response->assertRedirect(route('categories.index'));
     }
 
     /**

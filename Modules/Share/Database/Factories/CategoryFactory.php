@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Modules\Category\Enums\CategoryStatusEnum;
 use Modules\Category\Models\Category;
+use Modules\Share\Services\ShareService;
 
 class CategoryFactory extends Factory
 {
@@ -18,11 +19,13 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
+        $title = $this->faker->unique()->title;
+
         return [
             'parent_id' => null,
-            'title' => $this->faker->title,
-            'slug' => Str::slug($this->faker->title),
-            'keywords' => $this->faker->text(),
+            'title' => $title,
+            'slug' => ShareService::makeSlug($title),
+            'keywords' => $this->faker->text,
             'status' => CategoryStatusEnum::STATUS_ACTIVE->value,
             'description' => null,
             'user_id' => 1,
