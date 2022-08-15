@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Modules\Category\Enums\CategoryStatusEnum;
 use Modules\Category\Models\Category;
-use Modules\RolePermission\Database\Seeds\RolePermissionTableSeeder;
+use Modules\RolePermission\Database\Seeds\PermissionSeeder;
 use Modules\RolePermission\Models\Permission;
 use Modules\Share\Services\ShareService;
 use Modules\User\Models\User;
@@ -195,10 +195,11 @@ class CategoryTest extends TestCase
      */
     private function createUserWithLogin(): void
     {
-        $this->seed(RolePermissionTableSeeder::class);
         $user = User::factory()->create();
-        $user->givePermissionTo(Permission::PERMISSION_CATEGORIES);
         auth()->login($user);
+
+        $this->callPermissionSeeder();
+        $user->givePermissionTo(Permission::PERMISSION_CATEGORIES);
     }
 
     /**
@@ -217,5 +218,16 @@ class CategoryTest extends TestCase
             'status' => CategoryStatusEnum::STATUS_ACTIVE->value,
             'description' => null,
         ]);
+    }
+
+
+    /**
+     * Call permission seeder.
+     *
+     * @return void
+     */
+    private function callPermissionSeeder()
+    {
+        $this->seed(PermissionSeeder::class);
     }
 }

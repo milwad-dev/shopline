@@ -4,7 +4,7 @@ namespace Modules\RolePermission\Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Modules\RolePermission\Database\Seeds\RolePermissionTableSeeder;
+use Modules\RolePermission\Database\Seeds\PermissionSeeder;
 use Modules\RolePermission\Models\Permission;
 use Modules\User\Models\User;
 use Spatie\Permission\Models\Role;
@@ -64,7 +64,6 @@ class RoleTest extends TestCase
     public function test_admin_user_can_store_role()
     {
         $this->createUserWithLogin();
-        $this->fireRolePermissionSeeder();
 
         $response = $this->post(route('role-permissions.store'), [
             'name' => $this->faker->title,
@@ -128,20 +127,19 @@ class RoleTest extends TestCase
      */
     public function createRole()
     {
-        $this->fireRolePermissionSeeder();
         return Role::query()->create([
             'name' => $this->faker->name,
         ])->syncPermissions(Permission::PERMISSION_SUPER_ADMIN);
     }
 
     /**
-     * Fire role permission seeder.
+     * Call permission seeder.
      *
      * @return void
      */
-    private function fireRolePermissionSeeder()
+    private function callPermissionSeeder()
     {
-        $this->seed(RolePermissionTableSeeder::class);
+        $this->seed(PermissionSeeder::class);
     }
 
     /**
@@ -151,9 +149,10 @@ class RoleTest extends TestCase
      */
     private function createUserWithLogin(): void
     {
-        $this->seed(RolePermissionTableSeeder::class);
         $user = User::factory()->create();
-        $user->givePermissionTo(Permission::PERMISSION_ROLE_PERMISSIONS);
         auth()->login($user);
+
+        $this->callPermissionSeeder();
+        $user->givePermissionTo(Permission::PERMISSION_ROLE_PERMISSIONS);
     }
 }
