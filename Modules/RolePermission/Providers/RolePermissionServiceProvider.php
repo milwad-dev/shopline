@@ -26,6 +26,7 @@ class RolePermissionServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->bind();
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
         $this->loadViewsFrom(__DIR__ . '/../Resources/Views/', 'RolePermission');
 

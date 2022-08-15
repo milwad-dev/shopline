@@ -2,19 +2,45 @@
 
 namespace Modules\Article\Tests\Feature;
 
+use Modules\RolePermission\Database\Seeds\RolePermissionTableSeeder;
+use Modules\RolePermission\Models\Permission;
+use Modules\User\Models\User;
 use Tests\TestCase;
 
 class ArticleTest extends TestCase
 {
     /**
-     * A basic feature test example.
+     * Test admin user can see article index page.
+     *
+     * @test
+     * @return void
+     */
+    public function admin_user_can_see_article_index_page()
+    {
+
+
+        $response = $this->get(route('articles.index'));
+        $response->assertViewIs('Article::index');
+    }
+
+    /**
+     * Create user with login & assign permission.
      *
      * @return void
      */
-    public function test_example()
+    private function createUserWithLoginWithAssignPermission()
     {
-        $response = $this->get('/');
+        $user = User::factory()->create();
+        auth()->login($user);
 
-        $response->assertStatus(200);
+        $user->assignPermissionTo(Permission::PERMISSION_ARTICLES);
+    }
+
+    /**
+     *
+     */
+    private function callPermissionSeeder()
+    {
+        $this->seed(RolePermissionTableSeeder::class);
     }
 }
