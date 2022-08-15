@@ -9,10 +9,10 @@ class ShareService
     /**
      * Show success toast.
      *
-     * @param $title
+     * @param  string $title
      * @return mixed
      */
-    public static function successToast($title)
+    public static function successToast(string $title)
     {
         return toast($title,'success')->autoClose(5000);
     }
@@ -20,10 +20,10 @@ class ShareService
     /**
      * Show error toast.
      *
-     * @param $title
+     * @param  string $title
      * @return mixed
      */
-    public static function errorToast($title)
+    public static function errorToast(string $title)
     {
         return toast($title,'error')->autoClose(5000);
     }
@@ -31,7 +31,7 @@ class ShareService
     /**
      * Convert string to slug.
      *
-     * @param string $title
+     * @param  string $title
      * @return string
      */
     public static function makeSlug(string $title)
@@ -80,5 +80,16 @@ class ShareService
     public static function uploadMediaWithAddInRequest($request, string $file = 'image', string $field = 'media_id')
     {
         return $request->request->add([$field => MediaFileService::publicUpload($request->file($file))->id]);
+    }
+
+    /**
+     * Convert text to read minute.
+     *
+     * @param  string $text
+     * @return float
+     */
+    public static function convertTextToReadMinute(string $text)
+    {
+        return ceil(str_word_count(strip_tags($text)) / 250);
     }
 }
