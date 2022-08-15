@@ -34,7 +34,12 @@ class ArticleRequest extends FormRequest
             'keywords' => ['nullable', 'string', 'min:3', 'max:255'],
             'description' => ['nullable', 'string', 'min:3', 'max:1000'],
         ];
-        
+
+        if (request()->method === 'PATCH') {
+            $rules['image'] = ['nullable', 'file', 'mimes:jpg,jpeg,png', 'max:2048'];
+            $rules['title'] = ['required', 'string', 'min:3', 'max:255', 'unique:articles,title,' . request()->id];
+        }
+
         return $rules;
     }
 }
