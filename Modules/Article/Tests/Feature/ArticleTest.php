@@ -2,7 +2,7 @@
 
 namespace Modules\Article\Tests\Feature;
 
-use Modules\RolePermission\Database\Seeds\RolePermissionTableSeeder;
+use Modules\RolePermission\Database\Seeds\PermissionSeeder;
 use Modules\RolePermission\Models\Permission;
 use Modules\User\Models\User;
 use Tests\TestCase;
@@ -33,14 +33,17 @@ class ArticleTest extends TestCase
         $user = User::factory()->create();
         auth()->login($user);
 
+        $this->callPermissionSeeder();
         $user->assignPermissionTo(Permission::PERMISSION_ARTICLES);
     }
 
     /**
+     * Call permission seeder.
      *
+     * @return void
      */
     private function callPermissionSeeder()
     {
-        $this->seed(RolePermissionTableSeeder::class);
+        $this->seed(PermissionSeeder::class);
     }
 }

@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group([], function ($router) {
-
+Route::group(['prefix' => 'panel'], static function ($router) {
+    $router->resource('articles', 'ArticleController');
 });
-        
