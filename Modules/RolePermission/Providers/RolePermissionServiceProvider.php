@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Modules\RolePermission\Database\Seeds\PermissionSeeder;
-use Modules\RolePermission\Database\Seeds\RolePermissionTableSeeder;
+use Modules\RolePermission\Database\Seeds\PermissionTableSeeder;
 use Modules\RolePermission\Models\Permission;
 use Modules\RolePermission\Policies\RolePermissionPolicy;
 
@@ -27,11 +27,11 @@ class RolePermissionServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(PermissionSeeder::class, RolePermissionTableSeeder::class);
+        $this->app->bind(PermissionSeeder::class, PermissionTableSeeder::class);
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
         $this->loadViewsFrom(__DIR__ . '/../Resources/Views/', 'RolePermission');
 
-        DatabaseSeeder::$seeders[] = RolePermissionTableSeeder::class;
+        DatabaseSeeder::$seeders[] = PermissionSeeder::class;
         Route::middleware(['web', 'verify'])->namespace($this->namespace)
         ->group(__DIR__ . '/../Routes/rolepermission_routes.php');
         Gate::policy(Permission::class, RolePermissionPolicy::class);

@@ -5,7 +5,7 @@ namespace Modules\RolePermission\Database\Seeds;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 
-class RolePermissionTableSeeder extends Seeder
+class PermissionTableSeeder extends Seeder
 {
     public function run()
     {
