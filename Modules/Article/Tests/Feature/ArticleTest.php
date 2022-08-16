@@ -147,6 +147,21 @@ class ArticleTest extends TestCase
     }
 
     /**
+     * Delete article by id.
+     *
+     * @test
+     * @return void
+     */
+    public function admin_user_can_delete_article_by_id()
+    {
+        $this->createUserWithLoginWithAssignPermissionWithAssignPermission();
+        $article = Article::factory()->create();
+
+        $this->delete(route('articles.destroy', $article->id))->assertOk();
+        $this->assertDatabaseCount('articles', 0);
+    }
+
+    /**
      * Create user with login & assign permission.
      *
      * @return void

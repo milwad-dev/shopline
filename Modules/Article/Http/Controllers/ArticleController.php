@@ -5,6 +5,7 @@ namespace Modules\Article\Http\Controllers;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -14,6 +15,7 @@ use Modules\Article\Repositories\ArticleRepo;
 use Modules\Article\Services\ArticleService;
 use Modules\Category\Repositories\CategoryRepo;
 use Modules\Share\Http\Controllers\Controller;
+use Modules\Share\Responses\AjaxResponses;
 use Modules\Share\Services\ShareService;
 
 class ArticleController extends Controller
@@ -104,12 +106,14 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Modules\Article\Article  $article
-     * @return \Illuminate\Http\Response
+     * @param  $id
+     * @return  JsonResponse
      */
     public function destroy($id)
     {
-        //
+        $this->repo->delete($id);
+
+        return AjaxResponses::SuccessResponse();
     }
 
     /**
