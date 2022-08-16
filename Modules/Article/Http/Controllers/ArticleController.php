@@ -59,6 +59,7 @@ class ArticleController extends Controller
      */
     public function store(ArticleRequest $request)
     {
+        ShareService::uploadMediaWithAddInRequest($request);
         $this->service->store($request);
 
         return $this->successMessageWithRedirect('Create article');
@@ -80,15 +81,24 @@ class ArticleController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update article by id.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Modules\Article\Article  $article
-     * @return \Illuminate\Http\Response
+     * @param  ArticleRequest $request
+     * @param  $id
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(ArticleRequest $request, $id)
     {
-        //
+        $product = $this->repo->findById($id);
+
+        if (! is_null($request->image)) {
+            ShareService::uploadMediaWithAddInRequest($request);
+        }
+        else $request->request->add(['media_id' => $product->media_id]);
+
+        $this->service->update($request, $id);
+
+        return $this->successMessageWithRedirect('Update article');
     }
 
     /**

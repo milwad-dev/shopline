@@ -74,9 +74,10 @@ class ArticleTest extends TestCase
     {
         $this->createUserWithLoginWithAssignPermissionWithAssignPermission();
 
+        $title = $this->faker->unique()->title;
         $response = $this->post(route('articles.store'), [
             'image' => UploadedFile::fake()->image('image.jpg'),
-            'title' => $this->faker->unique()->title,
+            'title' => $title,
             'body' => $this->faker->text,
             'keywords' => $this->faker->title,
             'description' => $this->faker->text,
@@ -88,6 +89,11 @@ class ArticleTest extends TestCase
         ]);
         $response->assertSessionHas('alert');
         $response->assertRedirect(route('articles.index'));
+
+        $this->assertDatabaseCount('articles', 1);
+        $this->assertDatabaseHas('articles', [
+            'title' => $title,
+        ]);
     }
 
     /**
@@ -106,7 +112,39 @@ class ArticleTest extends TestCase
         $response->assertViewHas(['article', 'categories']);
     }
 
-    
+    /**
+     * Update article by id.
+     *
+     * @test
+     * @return void
+     */
+    public function admin_user_can_update_article_with_categories()
+    {
+        $this->createUserWithLoginWithAssignPermissionWithAssignPermission();
+        $article = Article::factory()->create();
+
+        $title = $this->faker->unique()->title;
+        $response = $this->patch(route('articles.update', $article->id), [
+            'id' => $article->id,
+            'image' => UploadedFile::fake()->image('image.jpg'),
+            'title' => $title,
+            'body' => $this->faker->text,
+            'keywords' => $this->faker->title,
+            'description' => $this->faker->text,
+            'status' => ArticleStatusEnum::STATUS_ACTIVE->value,
+            'categories' => [
+                Category::factory()->create()->id,
+                Category::factory()->create()->id,
+            ]
+        ]);
+        $response->assertSessionHas('alert');
+        $response->assertRedirect(route('articles.index'));
+
+        $this->assertDatabaseCount('articles', 1);
+        $this->assertDatabaseHas('articles', [
+            'title' => $title,
+        ]);
+    }
 
     /**
      * Create user with login & assign permission.
