@@ -2,6 +2,7 @@
 
 namespace Modules\Article\Http\Controllers;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -9,6 +10,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Modules\Article\Enums\ArticleStatusEnum;
 use Modules\Article\Http\Requests\ArticleRequest;
+use Modules\Article\Models\Article;
 use Modules\Article\Repositories\ArticleRepo;
 use Modules\Article\Services\ArticleService;
 use Modules\Category\Repositories\CategoryRepo;
@@ -18,6 +20,8 @@ use Modules\Share\Services\ShareService;
 
 class ArticleController extends Controller
 {
+    private string $class = Article::class;
+
     public ArticleRepo $repo;
     public ArticleService $service;
 
@@ -31,9 +35,11 @@ class ArticleController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws AuthorizationException
      */
     public function index()
     {
+        $this->authorize('manage', $this->class);
         $articles = $this->repo->getLatestArticles()->paginate();
 
         return view('Article::index', compact('articles'));
@@ -43,9 +49,11 @@ class ArticleController extends Controller
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws AuthorizationException
      */
     public function create(CategoryRepo $categoryRepo)
     {
+        $this->authorize('manage', $this->class);
         $categories = $categoryRepo->getActiveCategories()->get();
 
         return view('Article::create', compact('categories'));
@@ -56,9 +64,11 @@ class ArticleController extends Controller
      *
      * @param  ArticleRequest $request
      * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function store(ArticleRequest $request)
     {
+        $this->authorize('manage', $this->class);
         ShareService::uploadMediaWithAddInRequest($request);
         $this->service->store($request);
 
@@ -71,9 +81,11 @@ class ArticleController extends Controller
      * @param  $id
      * @param  CategoryRepo $categoryRepo
      * @return Application|Factory|View
+     * @throws AuthorizationException
      */
     public function edit($id, CategoryRepo $categoryRepo)
     {
+        $this->authorize('manage', $this->class);
         $article = $this->repo->findById($id);
         $categories = $categoryRepo->getActiveCategories();
 
@@ -86,9 +98,11 @@ class ArticleController extends Controller
      * @param  ArticleRequest $request
      * @param  $id
      * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function update(ArticleRequest $request, $id)
     {
+        $this->authorize('manage', $this->class);
         $product = $this->repo->findById($id);
 
         if (! is_null($request->image)) {
@@ -105,10 +119,12 @@ class ArticleController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  $id
-     * @return  JsonResponse
+     * @return JsonResponse
+     * @throws AuthorizationException
      */
     public function destroy($id)
     {
+        $this->authorize('manage', $this->class);
         $this->repo->delete($id);
 
         return AjaxResponses::SuccessResponse();
@@ -120,9 +136,11 @@ class ArticleController extends Controller
      * @param  $id
      * @param  string $status
      * @return JsonResponse
+     * @throws AuthorizationException
      */
     public function changeStatus($id, string $status)
     {
+        $this->authorize('manage', $this->class);
         $active = ArticleStatusEnum::STATUS_ACTIVE->value;
         $in_progress = ArticleStatusEnum::STATUS_IN_PROGRESS->value;
         $inactive = ArticleStatusEnum::STATUS_INACTIVE->value;
