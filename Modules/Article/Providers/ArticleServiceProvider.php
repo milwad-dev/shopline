@@ -21,4 +21,13 @@ class ArticleServiceProvider extends ServiceProvider
         ->group(__DIR__ . '/../Routes/article_routes.php');
         Gate::policy(Article::class, ArticlePolicy::class);
     }
+
+    public function boot()
+    {
+        config()->set('panelConfig.menus.articles', [ // Set menu for panel
+            'title' => 'Article',
+            'icon' => 'book',
+            'url' => route('articles.index'),
+        ]);
+    }
 }

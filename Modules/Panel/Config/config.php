@@ -8,5 +8,6 @@ return [
         'categories' => [],
         'role-permissions' => [],
         'products' => [],
+        'articles' => [],
     ],
 ];
