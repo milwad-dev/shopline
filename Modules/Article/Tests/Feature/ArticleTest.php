@@ -162,6 +162,86 @@ class ArticleTest extends TestCase
     }
 
     /**
+     * Change article status by id to active.
+     *
+     * @test
+     * @return void
+     */
+    public function admin_user_can_change_article_status_to_active()
+    {
+        $this->createUserWithLoginWithAssignPermissionWithAssignPermission();
+        $article = Article::factory()->create();
+        $status = ArticleStatusEnum::STATUS_ACTIVE->value;
+
+        $this->patch(route('articles.change.status',
+        ['id' => $article->id, 'status' => $status]
+        ))->assertOk();
+        $this->assertDatabaseHas('articles', [
+            'status' => $status
+        ]);
+    }
+
+    /**
+     * Change article status by id to in progress.
+     *
+     * @test
+     * @return void
+     */
+    public function admin_user_can_change_article_status_to_in_progress()
+    {
+        $this->createUserWithLoginWithAssignPermissionWithAssignPermission();
+        $article = Article::factory()->create();
+        $status = ArticleStatusEnum::STATUS_IN_PROGRESS->value;
+
+        $this->patch(route('articles.change.status',
+            ['id' => $article->id, 'status' => $status]
+        ))->assertOk();
+        $this->assertDatabaseHas('articles', [
+            'status' => $status
+        ]);
+    }
+
+    /**
+     * Change article status by id to inactive.
+     *
+     * @test
+     * @return void
+     */
+    public function admin_user_can_change_article_status_to_inactive()
+    {
+        $this->createUserWithLoginWithAssignPermissionWithAssignPermission();
+        $article = Article::factory()->create();
+        $status = ArticleStatusEnum::STATUS_INACTIVE->value;
+
+        $this->patch(route('articles.change.status',
+            ['id' => $article->id, 'status' => $status]
+        ))->assertOk();
+        $this->assertDatabaseHas('articles', [
+            'status' => $status
+        ]);
+    }
+
+    /**
+     * Change article status by id to active.
+     *
+     * @test
+     * @return void
+     */
+    public function admin_user_cant_change_article_status_to_except_main_statuses()
+    {
+        $this->createUserWithLoginWithAssignPermissionWithAssignPermission();
+        $article = Article::factory()->create();
+        $status = 'test';
+
+        $this->patch(route('articles.change.status',
+            ['id' => $article->id, 'status' => $status]
+        ))->assertStatus(500);
+        $this->assertDatabaseMissing('articles', [
+            'status' => $status
+        ]);
+    }
+
+    /**
      * Create user with login & assign permission.
      *
      * @return void

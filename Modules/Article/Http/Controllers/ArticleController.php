@@ -9,6 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Article\Enums\ArticleStatusEnum;
 use Modules\Article\Http\Requests\ArticleRequest;
 use Modules\Article\Models\Article;
 use Modules\Article\Repositories\ArticleRepo;
@@ -112,6 +113,36 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         $this->repo->delete($id);
+
+        return AjaxResponses::SuccessResponse();
+    }
+
+    /**
+     * Change article status by id.
+     *
+     * @param  $id
+     * @param  string $status
+     * @return JsonResponse
+     */
+    public function changeStatus($id, string $status)
+    {
+        $active = ArticleStatusEnum::STATUS_ACTIVE->value;
+        $in_progress = ArticleStatusEnum::STATUS_IN_PROGRESS->value;
+        $inactive = ArticleStatusEnum::STATUS_INACTIVE->value;
+
+        switch ($status) {
+            case $active:
+                $this->service->changeStatus($id, $active);
+                break;
+            case $in_progress:
+                $this->service->changeStatus($id, $in_progress);
+                break;
+            case $inactive:
+                $this->service->changeStatus($id, $inactive);
+                break;
+            default:
+                return AjaxResponses::FailedResponse();
+        }
 
         return AjaxResponses::SuccessResponse();
     }
