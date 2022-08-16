@@ -106,6 +106,8 @@ class ArticleTest extends TestCase
         $response->assertViewHas(['article', 'categories']);
     }
 
+    
+
     /**
      * Create user with login & assign permission.
      *
