@@ -7,6 +7,12 @@ use Modules\Share\Services\ShareService;
 
 class ArticleService
 {
+    /**
+     * Store article by request.
+     *
+     * @param  $request
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
+     */
     public function store($request)
     {
         $title = $request->title;
@@ -25,6 +31,13 @@ class ArticleService
         ]);
     }
 
+    /**
+     * Update article by id & request.
+     *
+     * @param  $request
+     * @param  $id
+     * @return mixed
+     */
     public function update($request, $id)
     {
         $title = $request->title;
@@ -54,6 +67,11 @@ class ArticleService
         return $this->query()->where('id', $id)->update(['status' => $status]);
     }
 
+    /**
+     * Get query for article model.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     private function query()
     {
         return Article::query();
