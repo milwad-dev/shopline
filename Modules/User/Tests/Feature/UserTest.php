@@ -95,10 +95,10 @@ class UserTest extends TestCase
 
         $email = $this->faker->unique()->email;
         $phone = 12345678900;
+        $user = User::factory()->create();
 
-        // TODO CORRECT BUG
-        $response = $this->patch(route('users.update', auth()->id()), [
-            'id'        => auth()->id(),
+        $response = $this->patch(route('users.update', $user->id), [
+            'id'        => $user->id,
             'name'      => $this->faker->name,
             'email'     => $email,
             'phone'     => $phone,
@@ -108,7 +108,7 @@ class UserTest extends TestCase
         $response->assertRedirect(route('users.index'));
         $response->assertSessionHas('alert');
 
-        $this->assertDatabaseCount('users', 1);
+        $this->assertDatabaseCount('users', 2);
         $this->assertDatabaseHas('users', [
             'email' => $email,
             'phone' => $phone,
