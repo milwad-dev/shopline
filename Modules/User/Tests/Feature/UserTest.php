@@ -122,15 +122,15 @@ class UserTest extends TestCase
      */
     public function test_admin_user_can_delete_user()
     {
+        $user = User::factory()->create();
         $this->createUserWithLoginWithAssignPermission();
 
-        // TODO FIX BUG
-        $response = $this->delete(route('users.destroy', auth()->id()))->assertOk();
-
-        $this->assertDatabaseCount('users', 0);
-//        $this->assertDatabaseMissing('users', [
-//            'email' => 'sally@example.com',
-//        ]);
+        $this->delete(route('users.destroy', $user->id))->assertOk();
+        $this->assertDatabaseCount('users', 1);
+        $this->assertDatabaseMissing('users', [
+            'email' => $user->email,
+            'phone' => $user->phone,
+        ]);
     }
 
     /**
