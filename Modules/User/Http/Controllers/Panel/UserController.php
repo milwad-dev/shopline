@@ -109,7 +109,7 @@ class UserController extends Controller
     /**
      * Delete user by id.
      *
-     * @param $id
+     * @param  $id
      * @return \Illuminate\Http\JsonResponse
      * @throws AuthorizationException
      */
@@ -117,6 +117,7 @@ class UserController extends Controller
     {
         $this->authorize('manage', $this->class);
         $this->repo->delete($id);
+
         return AjaxResponses::SuccessResponse();
     }
 

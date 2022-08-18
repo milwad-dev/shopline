@@ -21,11 +21,11 @@ class UserTest extends TestCase
      */
     public function test_admin_user_can_see_latest_users_page()
     {
-        // TODO Add permission
         $this->createUserWithLoginWithAssignPermission();
-        $response = $this->get(route('users.index'));
 
+        $response = $this->get(route('users.index'));
         $response->assertViewIs('User::Panel.index');
+        $response->assertViewHas('users');
     }
 
     /**
@@ -36,8 +36,8 @@ class UserTest extends TestCase
     public function test_admin_user_can_see_create_user_page()
     {
         $this->createUserWithLoginWithAssignPermission();
-        $response = $this->get(route('users.create'));
 
+        $response = $this->get(route('users.create'));
         $response->assertViewIs('User::Panel.create');
     }
 
@@ -49,8 +49,9 @@ class UserTest extends TestCase
     public function test_validate_store_new_user()
     {
         $this->createUserWithLoginWithAssignPermission();
-        $response = $this->post(route('users.store'));
 
+        $response = $this->post(route('users.store'), []);
+        $response->assertSessionHasErrors(['name', 'email', 'phone', 'type', 'password']);
         $response->assertRedirect();
     }
 
@@ -62,15 +63,25 @@ class UserTest extends TestCase
     public function test_admin_user_can_store_new_user()
     {
         $this->createUserWithLoginWithAssignPermission();
+
+        $email = $this->faker->unique()->email;
+        $phone = 12345678900;
+
         $response = $this->post(route('users.store'), [
             'name' => $this->faker->name,
-            'email' => $this->faker->email,
-            'phone' => $this->faker->unique()->phoneNumber,
+            'email' => $email,
+            'phone' => $phone,
             'type' => UserTypeEnum::TYPE_CUSTOMER->value,
             'password' => 'Milwad123!',
         ]);
+        $response->assertRedirect(route('users.index'));
+        $response->assertSessionHas('alert');
 
-        $response->assertRedirect();
+        $this->assertDatabaseCount('users', 2);
+        $this->assertDatabaseHas('users', [
+             'email' => $email,
+             'phone' => $phone,
+        ]);
     }
 
     /**
@@ -81,16 +92,27 @@ class UserTest extends TestCase
     public function test_admin_user_can_update_user()
     {
         $this->createUserWithLoginWithAssignPermission();
-        $response = $this->patch(route('users.update', auth()->id()), [
-            'id' => auth()->id(),
-            'name' => $this->faker->name,
-            'email' => $this->faker->email,
-            'phone' => $this->faker->unique()->phoneNumber,
-            'type' => UserTypeEnum::TYPE_VENDOR->value,
-            'password' => 'Milwad123!',
-        ]);
 
-        $response->assertRedirect();
+        $email = $this->faker->unique()->email;
+        $phone = 12345678900;
+
+        // TODO CORRECT BUG
+        $response = $this->patch(route('users.update', auth()->id()), [
+            'id'        => auth()->id(),
+            'name'      => $this->faker->name,
+            'email'     => $email,
+            'phone'     => $phone,
+            'type'      => UserTypeEnum::TYPE_VENDOR->value,
+            'password'  => 'Milwad123!',
+        ]);
+        $response->assertRedirect(route('users.index'));
+        $response->assertSessionHas('alert');
+
+        $this->assertDatabaseCount('users', 1);
+        $this->assertDatabaseHas('users', [
+            'email' => $email,
+            'phone' => $phone,
+        ]);
     }
 
     /**
@@ -101,9 +123,14 @@ class UserTest extends TestCase
     public function test_admin_user_can_delete_user()
     {
         $this->createUserWithLoginWithAssignPermission();
-        $response = $this->delete(route('users.destroy', auth()->id()));
 
-        $response->assertOk();
+        // TODO FIX BUG
+        $response = $this->delete(route('users.destroy', auth()->id()))->assertOk();
+
+        $this->assertDatabaseCount('users', 0);
+//        $this->assertDatabaseMissing('users', [
+//            'email' => 'sally@example.com',
+//        ]);
     }
 
     /**
