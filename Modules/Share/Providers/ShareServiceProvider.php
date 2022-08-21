@@ -8,11 +8,35 @@ use Modules\Share\Console\Commands\MakeModule;
 
 class ShareServiceProvider extends ServiceProvider
 {
+    /**
+     * Get migration path.
+     *
+     * @var string
+     */
+    private string $migrationPath = '/../Database/Migrations/';
+
+    /**
+     * Get view path.
+     *
+     * @var string
+     */
+    private string $viewPath = '/../Resources/Views/';
+
+    /**
+     * Get name.
+     *
+     * @var string
+     */
+    private string $name = 'Share';
+
+    /**
+     * @return void
+     */
     public function register()
     {
-        $this->loadViewsFrom(__DIR__ . '/../Resources/Views/', 'Share');
-        $this->loadMigrations();
-        $this->loadCommands();
+        $this->loadViewFiles();
+        $this->loadMigrationFiles();
+        $this->loadCommandFiles();
         $this->loadShareComponents();
         $this->loadAuthComponents();
         $this->loadPanelComponents();
@@ -67,7 +91,7 @@ class ShareServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    private function loadCommands()
+    private function loadCommandFiles()
     {
         $this->commands([
             MakeModule::class
@@ -91,8 +115,18 @@ class ShareServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    private function loadMigrations()
+    private function loadMigrationFiles()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations/');
+        $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
+    }
+
+    /**
+     * Load share view files.
+     *
+     * @return void
+     */
+    private function loadViewFiles(): void
+    {
+        $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
     }
 }
