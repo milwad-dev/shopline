@@ -27,6 +27,7 @@ class CategoryTest extends TestCase
 
         $response = $this->get(route('categories.index'));
         $response->assertViewIs('Category::index');
+        $response->assertViewHas('categories');
     }
 
     /**
@@ -40,6 +41,7 @@ class CategoryTest extends TestCase
 
         $response = $this->get(route('categories.create'));
         $response->assertViewIs('Category::create');
+        $response->assertViewHas('parents');
     }
 
     /**
@@ -87,14 +89,22 @@ class CategoryTest extends TestCase
     {
         $this->createUserWithLoginWithAssignPermission();
 
+        $title = $this->faker->unique()->title;
         $response = $this->post(route('categories.store'), [
             'parent_id' => null,
-            'title' => $this->faker->title,
+            'title' => $title,
             'keywords' => $this->faker->text(),
             'status' => CategoryStatusEnum::STATUS_ACTIVE->value,
             'description' => null,
         ]);
-        $response->assertRedirect();
+        $response->assertRedirect(route('categories.index'));
+        $response->assertSessionHas('alert');
+
+        $this->assertDatabaseHas('categories', [
+            'title' => $title,
+        ]);
+        $this->assertDatabaseCount('categories', 1);
+        $this->assertEquals(1, Category::query()->count());
     }
 
     /**
@@ -109,6 +119,7 @@ class CategoryTest extends TestCase
         $category = $this->createCategory();
         $response = $this->get(route('categories.edit', $category->id));
         $response->assertViewIs('Category::edit');
+        $response->assertViewHas(['category', 'parents']);
     }
 
     /**
@@ -123,11 +134,11 @@ class CategoryTest extends TestCase
         $category = $this->createCategory();
         $response = $this->patch(route('categories.update', $category->id), [
             'id' => $category->id,
-        ])->assertSessionHasErrors([
+        ]);
+        $response->assertSessionHasErrors([
             'title',
             'status',
         ]);
-
         $response->assertRedirect();
     }
 
@@ -138,15 +149,28 @@ class CategoryTest extends TestCase
      */
     public function test_admin_user_can_update_categoroy()
     {
+        $this->withoutExceptionHandling();
         $this->createUserWithLoginWithAssignPermission();
-        $category = $this->createCategory();
 
+        $title = 'milwad dev';
+        $category = $this->createCategory();
         $response = $this->patch(route('categories.update', $category->id), [
             'id' => $category->id,
-            'title' => 'milwad dev',
+            'title' => $title,
+            'description' => 'shopline category',
+            'status' => CategoryStatusEnum::STATUS_INACTIVE->value,
+        ]);
+        $response->assertRedirect(route('categories.index'));
+        $response->assertSessionHas('alert');
+
+        $this->assertDatabaseHas('categories', [
+            'id' => $category->id,
+            'title' => $title,
+            'status' => CategoryStatusEnum::STATUS_INACTIVE->value,
             'description' => 'shopline category',
         ]);
-        $response->assertRedirect();
+        $this->assertDatabaseCount('categories', 1);
+        $this->assertEquals(1, Category::query()->count());
     }
 
     /**
@@ -160,6 +184,8 @@ class CategoryTest extends TestCase
         $category = $this->createCategory();
 
         $this->delete(route('categories.destroy', $category->id))->assertOk();
+        $this->assertDatabaseCount('categories', 0);
+        $this->assertEquals(0, Category::query()->count());
     }
 
     /**
@@ -173,6 +199,10 @@ class CategoryTest extends TestCase
         $category = $this->createCategory();
 
         $this->patch(route('categories.change.status.active', $category->id))->assertOk();
+        $this->assertDatabaseHas('categories', [
+            'status' => CategoryStatusEnum::STATUS_ACTIVE->value,
+        ]);
+        $this->assertDatabaseCount('categories', 1);
     }
 
     /**
@@ -186,6 +216,10 @@ class CategoryTest extends TestCase
         $category = $this->createCategory();
 
         $this->patch(route('categories.change.status.inactive', $category->id))->assertOk();
+        $this->assertDatabaseHas('categories', [
+            'status' => CategoryStatusEnum::STATUS_INACTIVE->value,
+        ]);
+        $this->assertDatabaseCount('categories', 1);
     }
 
     /**
