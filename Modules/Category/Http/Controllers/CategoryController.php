@@ -37,7 +37,7 @@ class CategoryController extends Controller
         $this->authorize('manage', $this->class);
         $categories = $this->repo->getLatestCategories()->paginate();
 
-        return view('Category::Panel.index', compact('categories'));
+        return view('Category::index', compact('categories'));
     }
 
     /**
@@ -51,7 +51,7 @@ class CategoryController extends Controller
         $this->authorize('manage', $this->class);
         $parents = $this->repo->getLatestCategories()->get();
 
-        return view('Category::Panel.create', compact('parents'));
+        return view('Category::create', compact('parents'));
     }
 
     /**
@@ -82,7 +82,7 @@ class CategoryController extends Controller
         $category = $this->repo->findById($id);
         $parents = $this->repo->getLatestCategories()->where('id', '!=', $category->id)->get();
 
-        return view('Category::Panel.edit', compact(['category', 'parents']));
+        return view('Category::edit', compact(['category', 'parents']));
     }
 
     /**
