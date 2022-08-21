@@ -7,6 +7,12 @@ use Modules\User\Models\User;
 
 class UserService
 {
+    /**
+     * Store user by request.
+     *
+     * @param  $request
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
+     */
     public function store($request)
     {
         return $this->query()->create([
@@ -18,6 +24,13 @@ class UserService
         ]);
     }
 
+    /**
+     * Update user with id by request.
+     *
+     * @param  $request
+     * @param  $id
+     * @return int
+     */
     public function update($request, $id)
     {
         return $this->query()->where('id', $id)->update([
@@ -28,6 +41,11 @@ class UserService
         ]);
     }
 
+    /**
+     * Get model(User) query, builder.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     private function query()
     {
         return User::query();
