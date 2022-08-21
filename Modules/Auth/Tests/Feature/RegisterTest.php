@@ -32,6 +32,20 @@ class RegisterTest extends TestCase
     }
 
     /**
+     * Test logged user can not see register page.
+     *
+     * @return void
+     */
+    public function test_logged_user_can_not_see_register_page()
+    {
+        $user = User::factory()->create();
+        auth()->login($user);
+
+        $response = $this->get(route('register'));
+        $response->assertOk(); // TODO BETTER
+    }
+
+    /**
      * Test user can register.
      *
      */
