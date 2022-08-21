@@ -2,7 +2,7 @@
 
 namespace Modules\RolePermission\Services;
 
-use Modules\RolePermission\Repositories\RolePermissionRepo;
+use Modules\RolePermission\Repositories\RolePermissionRepoEloquent;
 use Spatie\Permission\Models\Role;
 
 class RolePermissionService
@@ -29,7 +29,7 @@ class RolePermissionService
      */
     public function update($request, $id)
     {
-        $roleRepo = new RolePermissionRepo;
+        $roleRepo = new RolePermissionRepoEloquent;
         $role = $roleRepo->findById($id);
 
         return $role

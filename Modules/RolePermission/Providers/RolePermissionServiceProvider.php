@@ -10,6 +10,8 @@ use Modules\RolePermission\Database\Seeds\PermissionSeeder;
 use Modules\RolePermission\Database\Seeds\PermissionTableSeeder;
 use Modules\RolePermission\Models\Permission;
 use Modules\RolePermission\Policies\RolePermissionPolicy;
+use Modules\RolePermission\Repositories\RolePermissionRepoEloquent;
+use Modules\RolePermission\Repositories\RolePermissionRepoEloquentInterface;
 
 class RolePermissionServiceProvider extends ServiceProvider
 {
@@ -61,6 +63,8 @@ class RolePermissionServiceProvider extends ServiceProvider
         $this->loadPolicyFiles();
 
         $this->bindSeeder();
+        $this->bindRepository();
+
         $this->setDatabaseSeederWithPermissionSeeder();
         $this->setGateBefore();
     }
@@ -161,5 +165,15 @@ class RolePermissionServiceProvider extends ServiceProvider
         Gate::before(static function ($user) {
             return $user->hasPermissionTo(Permission::PERMISSION_SUPER_ADMIN) ? true : null;
         });
+    }
+
+    /**
+     * Bind permission repository.
+     *
+     * @return void
+     */
+    private function bindRepository()
+    {
+        $this->app->bind(RolePermissionRepoEloquentInterface::class, RolePermissionRepoEloquent::class);
     }
 }

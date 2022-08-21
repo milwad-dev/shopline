@@ -9,7 +9,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Modules\RolePermission\Http\Requests\RolePermissionRequest;
 use Modules\RolePermission\Models\Permission;
-use Modules\RolePermission\Repositories\RolePermissionRepo;
+use Modules\RolePermission\Repositories\RolePermissionRepoEloquent;
+use Modules\RolePermission\Repositories\RolePermissionRepoEloquentInterface;
 use Modules\RolePermission\Services\RolePermissionService;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
@@ -19,10 +20,10 @@ class RolePermissionController extends Controller
 {
     private string $class = Permission::class;
 
-    public RolePermissionRepo $repo;
+    public RolePermissionRepoEloquentInterface $repo;
     public RolePermissionService $service;
 
-    public function __construct(RolePermissionService $rolePermissionService, RolePermissionRepo $permissionRepo)
+    public function __construct(RolePermissionService $rolePermissionService, RolePermissionRepoEloquentInterface $permissionRepo)
     {
         $this->repo = $permissionRepo;
         $this->service = $rolePermissionService;

@@ -5,7 +5,7 @@ namespace Modules\RolePermission\Repositories;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
-class RolePermissionRepo
+class RolePermissionRepoEloquent implements RolePermissionRepoEloquentInterface
 {
     /**
      * Get the latest roles with permissions.
