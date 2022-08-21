@@ -52,6 +52,11 @@ class PanelServiceProvider extends ServiceProvider
      */
     public string $routePath = '/../Routes/panel_routes.php';
 
+    /**
+     * Register panel files.
+     *
+     * @return void
+     */
     public function register()
     {
         $this->loadViewFiles();
@@ -60,6 +65,11 @@ class PanelServiceProvider extends ServiceProvider
         $this->loadPolicyFiles();
     }
 
+    /**
+     * Boot panel service provider.
+     *
+     * @return void
+     */
     public function boot()
     {
         $this->app->booted(function () {
@@ -67,16 +77,31 @@ class PanelServiceProvider extends ServiceProvider
         });
     }
 
+    /**
+     * Load panel view files.
+     *
+     * @return void
+     */
     private function loadViewFiles(): void
     {
         $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
     }
 
+    /**
+     * Load panel config files.
+     *
+     * @return void
+     */
     private function loadConfigFiles(): void
     {
         $this->mergeConfigFrom(__DIR__ . $this->configPath, 'panelConfig');
     }
 
+    /**
+     * Load panel route files.
+     *
+     * @return void
+     */
     private function loadRouteFiles(): void
     {
         Route::middleware($this->middlewareRoute)
@@ -84,14 +109,24 @@ class PanelServiceProvider extends ServiceProvider
             ->group(__DIR__ . $this->routePath);
     }
 
+    /**
+     * Load panel policy files.
+     *
+     * @return void
+     */
     private function loadPolicyFiles(): void
     {
         Gate::policy(Panel::class, PanelPolicy::class);
     }
 
-    function setMenuForPanel(): void
+    /**
+     * Set menu for panel.
+     *
+     * @return void
+     */
+    private function setMenuForPanel(): void
     {
-        config()->set('panelConfig.menus.panel', [ // Set menu for panel
+        config()->set('panelConfig.menus.panel', [
             'title' => 'Panel',
             'icon' => 'home',
             'url' => route('panel.index'),
