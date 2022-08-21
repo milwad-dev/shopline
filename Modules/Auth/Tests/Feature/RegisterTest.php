@@ -28,7 +28,6 @@ class RegisterTest extends TestCase
     public function test_validate_register()
     {
         $response = $this->post(route('register'), []);
-
         $response->assertRedirect();
     }
 
@@ -48,6 +47,6 @@ class RegisterTest extends TestCase
         ]);
 
         $response->assertRedirect(route('home.index'));
-        $this->assertCount(1, User::all());
+        $this->assertEquals(1, User::query()->count());
     }
 }

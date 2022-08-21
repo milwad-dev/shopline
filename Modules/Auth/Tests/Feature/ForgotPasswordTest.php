@@ -29,9 +29,8 @@ class ForgotPasswordTest extends TestCase
     public function test_email_forgot_password_send_to_user_email()
     {
         $user = User::factory()->create();
-        $this->call(
-        'get', route('password.sendVerifyCodeEmail'), ['email' => $user->email]
-        )->assertOk();
+        $this->call('get', route('password.sendVerifyCodeEmail'), ['email' => $user->email])
+            ->assertOk();
     }
 
     /**

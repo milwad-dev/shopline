@@ -17,12 +17,9 @@ class VerifyTest extends TestCase
      */
     public function test_validate_verify_page()
     {
-        $user = User::factory()->create(['email_verified_at' => null]);
-        auth()->login($user);
-        $response = $this->post(route('verification.notice'), [
-            'verify_code' => '131413'
-        ]);
+        $this->createUserWithLogin(['email_verified_at' => null]);
 
+        $response = $this->post(route('verification.notice'), ['verify_code' => '131413']);
         $response->assertRedirect();
     }
 
@@ -33,10 +30,9 @@ class VerifyTest extends TestCase
      */
     public function test_logged_user_can_see_verify_page()
     {
-        $user = User::factory()->create(['email_verified_at' => null]);
-        auth()->login($user);
-        $response = $this->get(route('verification.notice'));
+        $this->createUserWithLogin(['email_verified_at' => null]);
 
+        $response = $this->get(route('verification.notice'));
         $response->assertViewIs('Auth::verify');
     }
 
@@ -47,10 +43,21 @@ class VerifyTest extends TestCase
      */
     public function test_verified_user_cant_acceess_to_verify_page()
     {
-        $user = User::factory()->create();
-        auth()->login($user);
-        $response = $this->get(route('verification.notice'));
+        $this->createUserWithLogin();
 
+        $response = $this->get(route('verification.notice'));
         $response->assertRedirect();
+    }
+
+    /**
+     * Create user with login.
+     *
+     * @param  array|null $attributes
+     * @return void
+     */
+    private function createUserWithLogin(array $attributes = null): void
+    {
+        $user = User::factory()->create($attributes);
+        auth()->login($user);
     }
 }

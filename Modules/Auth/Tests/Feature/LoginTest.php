@@ -65,6 +65,11 @@ class LoginTest extends TestCase
         $response->assertRedirect(route('home.index'));
     }
 
+    /**
+     * Create user with specific password.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|mixed
+     */
     private function createUser()
     {
         return User::factory()->create(['password' => 'Milwad123!']);
