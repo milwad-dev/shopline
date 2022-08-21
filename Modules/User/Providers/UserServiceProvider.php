@@ -12,6 +12,11 @@ class UserServiceProvider extends ServiceProvider
 {
     public string $namespace = 'Modules\User\Http\Controllers';
 
+    /**
+     * Register user files.
+     *
+     * @return void
+     */
     public function register()
     {
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations'); // Register Migration
@@ -22,6 +27,11 @@ class UserServiceProvider extends ServiceProvider
         Gate::policy(User::class, UserPolicy::class); // Register Policy
     }
 
+    /**
+     * Boot user service provider.
+     *
+     * @return void
+     */
     public function boot()
     {
         config()->set('panelConfig.menus.users', [ // Set menu for panel
