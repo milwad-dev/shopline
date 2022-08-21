@@ -7,24 +7,125 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Modules\Category\Models\Category;
 use Modules\Category\Policies\CategoryPolicy;
+use Modules\User\Models\User;
 
 class CategoryServiceProvider extends ServiceProvider
 {
-    public string $namespace = 'Modules\Category\Http\Controllers';
+    /**
+     * Get namespace for category controllers.
+     *
+     * @var string
+     */
+    private string $namespace = 'Modules\Category\Http\Controllers';
 
+    /**
+     * Get migration path.
+     *
+     * @var string
+     */
+    private string $migrationPath = '/../Database/Migrations';
+
+    /**
+     * Get view path.
+     *
+     * @var string
+     */
+    private string $viewPath = '/../Resources/Views/';
+
+    /**
+     * Get name.
+     *
+     * @var string
+     */
+    private string $name = 'Category';
+
+    /**
+     * Get route path.
+     *
+     * @var string
+     */
+    private string $routePath = '/../Routes/category_routes.php';
+
+    /**
+     * Get midddleware route.
+     *
+     * @var array|string[]
+     */
+    private array $middlewareRoute = ['web', 'verify'];
+
+    /**
+     * Register files.
+     *
+     * @return void
+     */
     public function register()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
-        $this->loadViewsFrom(__DIR__ . '/../Resources/Views/', 'Category');
+        $this->loadMigrationFiles();
+        $this->loadViewFiles();
+        $this->loadRouteFiles();
+        $this->loadPolicyFiles();
+    }
 
-        Route::middleware(['web', 'verify'])->namespace($this->namespace)
-        ->group(__DIR__ . '/../Routes/category_routes.php');
+    /**
+     * Boot service provider.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->setMenuForPanel();
+    }
+
+    /**
+     * Load migration files.
+     *
+     * @return void
+     */
+    private function loadMigrationFiles(): void
+    {
+        $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
+    }
+
+    /**
+     * Load view files.
+     *
+     * @return void
+     */
+    private function loadViewFiles(): void
+    {
+        $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
+    }
+
+    /**
+     * Load route files.
+     *
+     * @return void
+     */
+    private function loadRouteFiles(): void
+    {
+        Route::middleware($this->middlewareRoute)
+            ->namespace($this->namespace)
+            ->group(__DIR__ . $this->routePath);
+    }
+
+    /**
+     * Load policy files.
+     *
+     * @return void
+     */
+    private function loadPolicyFiles(): void
+    {
         Gate::policy(Category::class, CategoryPolicy::class);
     }
 
-    public function boot()
+    /**
+     * Set menu for panel
+     *
+     * @return void
+     */
+    private function setMenuForPanel(): void
     {
-        config()->set('panelConfig.menus.categories', [ // Set menu for panel
+        config()->set('panelConfig.menus.categories', [
             'title' => 'Category',
             'icon' => 'git-commit',
             'url' => route('categories.index'),
