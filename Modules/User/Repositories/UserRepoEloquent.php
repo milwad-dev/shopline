@@ -4,7 +4,7 @@ namespace Modules\User\Repositories;
 
 use Modules\User\Models\User;
 
-class UserRepo
+class UserRepoEloquent implements UserRepoEloquentInterface
 {
     /**
      * Get the latest users without id.

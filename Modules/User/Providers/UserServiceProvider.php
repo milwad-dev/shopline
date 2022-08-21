@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Modules\User\Models\User;
 use Modules\User\Policies\UserPolicy;
+use Modules\User\Repositories\UserRepoEloquent;
+use Modules\User\Repositories\UserRepoEloquentInterface;
 
 class UserServiceProvider extends ServiceProvider
 {
@@ -80,6 +82,7 @@ class UserServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->setMenuPnael();
+        $this->bindRepositories();
     }
 
     /**
@@ -135,5 +138,10 @@ class UserServiceProvider extends ServiceProvider
             'icon' => 'user',
             'url' => route('users.index'),
         ]);
+    }
+
+    private function bindRepositories()
+    {
+        $this->app->bind(UserRepoEloquentInterface::class, UserRepoEloquent::class);
     }
 }

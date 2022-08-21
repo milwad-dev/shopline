@@ -8,7 +8,7 @@ use Modules\Auth\Jobs\SendResetPasswordMailJob;
 use Modules\Auth\Services\VerifyService;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Services\ShareService;
-use Modules\User\Repositories\UserRepo;
+use Modules\User\Repositories\UserRepoEloquent;
 
 class ForgotPasswordController extends Controller
 {
@@ -17,7 +17,7 @@ class ForgotPasswordController extends Controller
         return view('Auth::passwords.email');
     }
 
-    public function sendVerifyCodeEmail(SendResetPasswordVerifyCodeRequest $request, UserRepo $userRepo)
+    public function sendVerifyCodeEmail(SendResetPasswordVerifyCodeRequest $request, UserRepoEloquent $userRepo)
     {
         $user = $userRepo->findByEmail($request->email);
 
@@ -28,7 +28,7 @@ class ForgotPasswordController extends Controller
 
     public function checkVerifyCode(ResetPasswordVerifyCodeRequest $request)
     {
-        $user = resolve(UserRepo::class)->findByEmail($request->email);
+        $user = resolve(UserRepoEloquent::class)->findByEmail($request->email);
         if ($user == null || ! VerifyService::check($user->id, $request->verify_code)) {
             return back()->withErrors(['verify_code' => 'code is invalid!']);
         }

@@ -10,17 +10,18 @@ use Modules\Share\Responses\AjaxResponses;
 use Modules\Share\Services\ShareService;
 use Modules\User\Http\Requests\UserRequest;
 use Modules\User\Models\User;
-use Modules\User\Repositories\UserRepo;
+use Modules\User\Repositories\UserRepoEloquent;
+use Modules\User\Repositories\UserRepoEloquentInterface;
 use Modules\User\Services\UserService;
 
 class UserController extends Controller
 {
     private string $class = User::class;
 
-    public UserRepo $repo;
+    public UserRepoEloquentInterface $repo;
     public UserService $service;
 
-    public function __construct(UserRepo $userRepo, UserService $userService)
+    public function __construct(UserRepoEloquentInterface $userRepo, UserService $userService)
     {
         $this->repo = $userRepo;
         $this->service = $userService;
