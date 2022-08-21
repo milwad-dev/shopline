@@ -25,10 +25,14 @@ class ArticleController extends Controller
     public ArticleRepo $repo;
     public ArticleService $service;
 
-    public function __construct(ArticleRepo $articleRepo, ArticleService $articleService)
+    public CategoryRepoEloquentInterface $categoryRepo;
+
+    public function __construct(ArticleRepo $articleRepo, ArticleService $articleService, CategoryRepoEloquentInterface $categoryRepo)
     {
         $this->repo = $articleRepo;
         $this->service = $articleService;
+
+        $this->categoryRepo = $categoryRepo;
     }
 
     /**
@@ -51,10 +55,10 @@ class ArticleController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws AuthorizationException
      */
-    public function create(CategoryRepoEloquentInterface $categoryRepo)
+    public function create()
     {
         $this->authorize('manage', $this->class);
-        $categories = $categoryRepo->getActiveCategories()->get();
+        $categories = $this->categoryRepo->getActiveCategories()->get();
 
         return view('Article::create', compact('categories'));
     }
@@ -87,7 +91,7 @@ class ArticleController extends Controller
     {
         $this->authorize('manage', $this->class);
         $article = $this->repo->findById($id);
-        $categories = $categoryRepo->getActiveCategories();
+        $categories = $this->categoryRepo->getActiveCategories();
 
         return view('Article::edit', compact(['article', 'categories']));
     }

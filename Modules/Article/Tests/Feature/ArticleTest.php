@@ -5,10 +5,12 @@ namespace Modules\Article\Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
+use Mockery\MockInterface;
 use Modules\Article\Enums\ArticleStatusEnum;
 use Modules\Article\Models\Article;
 use Modules\Article\Repositories\ArticleRepo;
 use Modules\Category\Models\Category;
+use Modules\Category\Repositories\CategoryRepoEloquent;
 use Modules\Category\Repositories\CategoryRepoEloquentInterface;
 use Modules\RolePermission\Database\Seeds\PermissionSeeder;
 use Modules\RolePermission\Models\Permission;
@@ -42,11 +44,12 @@ class ArticleTest extends TestCase
      */
     public function admin_user_can_see_article_create_page()
     {
+        $this->withoutExceptionHandling();
         $this->createUserWithLoginWithAssignPermissionWithAssignPermission();
 
         $response = $this->get(route('articles.create'));
         $response->assertViewIs('Article::create');
-        $response->assertViewHas('categories', (new CategoryRepoEloquentInterface)->getActiveCategories()->get());
+        $response->assertViewHas('categories', (new CategoryRepoEloquent)->getActiveCategories()->get());
     }
 
     /**

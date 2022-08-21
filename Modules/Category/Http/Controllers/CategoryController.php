@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Category\Http\Controllers\Panel;
+namespace Modules\Category\Http\Controllers;
 
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
