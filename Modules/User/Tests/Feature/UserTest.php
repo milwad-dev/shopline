@@ -206,6 +206,20 @@ class UserTest extends TestCase
     }
 
     /**
+     * Test usual user can not delete user.
+     *
+     * @return void
+     */
+    public function test_usual_user_can_not_delete_user()
+    {
+        $this->createUserWithLoginWithAssignPermission(false);
+
+        $user = User::factory()->create();
+        $response = $this->delete(route('users.destroy', $user->id));
+        $response->assertStatus(403);
+    }
+
+    /**
      * Create user with login.
      *
      * @param  bool $permission
