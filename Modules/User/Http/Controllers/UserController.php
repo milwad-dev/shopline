@@ -36,7 +36,7 @@ class UserController extends Controller
         $this->authorize('manage', $this->class);
         $users = $this->repo->getLatestWithoutId(auth()->id())->paginate(25);
 
-        return view('User::Panel.index', compact('users'));
+        return view('User::index', compact('users'));
     }
 
     /**
@@ -48,7 +48,7 @@ class UserController extends Controller
     public function create()
     {
         $this->authorize('manage', $this->class);
-        return view('User::Panel.create');
+        return view('User::create');
     }
 
     /**
@@ -82,7 +82,7 @@ class UserController extends Controller
         $this->authorize('manage', $this->class);
         $user = $this->repo->findById($id);
 
-        return view('User::Panel.edit', compact('user'));
+        return view('User::edit', compact('user'));
     }
 
     /**

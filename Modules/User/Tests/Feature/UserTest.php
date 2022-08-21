@@ -24,7 +24,7 @@ class UserTest extends TestCase
         $this->createUserWithLoginWithAssignPermission();
 
         $response = $this->get(route('users.index'));
-        $response->assertViewIs('User::Panel.index');
+        $response->assertViewIs('User::index');
         $response->assertViewHas('users');
     }
 
@@ -51,7 +51,7 @@ class UserTest extends TestCase
         $this->createUserWithLoginWithAssignPermission();
 
         $response = $this->get(route('users.create'));
-        $response->assertViewIs('User::Panel.create');
+        $response->assertViewIs('User::create');
     }
 
     /**
@@ -129,6 +129,34 @@ class UserTest extends TestCase
             'type' => UserTypeEnum::TYPE_CUSTOMER->value,
             'password' => 'Milwad123!',
         ]);
+        $response->assertStatus(403);
+    }
+
+    /**
+     * Test admin user can see edit user page.
+     *
+     * @return void
+     */
+    public function test_admin_user_can_see_edit_user_page()
+    {
+        $this->createUserWithLoginWithAssignPermission();
+
+        $user = User::factory()->create();
+        $response = $this->get(route('users.edit', $user->id));
+        $response->assertViewIs('User::edit');
+    }
+
+    /**
+     * Test usual user can not see edit user page.
+     *
+     * @return void
+     */
+    public function test_usual_user_can_not_see_edit_user_page()
+    {
+        $this->createUserWithLoginWithAssignPermission(false);
+
+        $user = User::factory()->create();
+        $response = $this->get(route('users.edit', $user->id));
         $response->assertStatus(403);
     }
 
