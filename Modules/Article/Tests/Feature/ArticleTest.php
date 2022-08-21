@@ -9,7 +9,7 @@ use Modules\Article\Enums\ArticleStatusEnum;
 use Modules\Article\Models\Article;
 use Modules\Article\Repositories\ArticleRepo;
 use Modules\Category\Models\Category;
-use Modules\Category\Repositories\CategoryRepoEloquent;
+use Modules\Category\Repositories\CategoryRepoEloquentInterface;
 use Modules\RolePermission\Database\Seeds\PermissionSeeder;
 use Modules\RolePermission\Models\Permission;
 use Modules\User\Models\User;
@@ -46,7 +46,7 @@ class ArticleTest extends TestCase
 
         $response = $this->get(route('articles.create'));
         $response->assertViewIs('Article::create');
-        $response->assertViewHas('categories', (new CategoryRepoEloquent)->getActiveCategories()->get());
+        $response->assertViewHas('categories', (new CategoryRepoEloquentInterface)->getActiveCategories()->get());
     }
 
     /**

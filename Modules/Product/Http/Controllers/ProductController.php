@@ -7,7 +7,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
-use Modules\Category\Repositories\CategoryRepoEloquent;
+use Modules\Category\Repositories\CategoryRepoEloquentInterface;
 use Modules\Product\Http\Requests\ProductRequest;
 use Modules\Product\Repositories\ProductRepo;
 use Modules\Product\Services\ProductService;
@@ -45,7 +45,7 @@ class ProductController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function create(CategoryRepoEloquent $categoryRepo)
+    public function create(CategoryRepoEloquentInterface $categoryRepo)
     {
         $categories = $categoryRepo->getActiveCategories()->get();
 
@@ -89,10 +89,10 @@ class ProductController extends Controller
      * Find product by id with show edit product page.
      *
      * @param  $id
-     * @param  CategoryRepoEloquent $categoryRepo
+     * @param  CategoryRepoEloquentInterface $categoryRepo
      * @return Application|Factory|View
      */
-    public function edit($id, CategoryRepoEloquent $categoryRepo)
+    public function edit($id, CategoryRepoEloquentInterface $categoryRepo)
     {
         $product = $this->repo->findById($id);
         $categories = $categoryRepo->getActiveCategories()->get();

@@ -7,9 +7,8 @@ use Illuminate\Http\RedirectResponse;
 use Modules\Category\Enums\CategoryStatusEnum;
 use Modules\Category\Http\Requests\CategoryRequest;
 use Modules\Category\Models\Category;
-use Modules\Category\Repositories\CategoryRepoEloquent;
 use Modules\Category\Repositories\CategoryRepoEloquentInterface;
-use Modules\Category\Services\CategoryService;
+use Modules\Category\Services\CategoryServiceInterface;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
 use Modules\Share\Services\ShareService;
@@ -18,10 +17,10 @@ class CategoryController extends Controller
 {
     private string $class = Category::class;
 
-    public CategoryService $service;
+    public CategoryServiceInterface $service;
     public CategoryRepoEloquentInterface $repo;
 
-    public function __construct(CategoryService $categoryService, CategoryRepoEloquentInterface $categoryRepo)
+    public function __construct(CategoryServiceInterface $categoryService, CategoryRepoEloquentInterface $categoryRepo)
     {
         $this->repo = $categoryRepo;
         $this->service = $categoryService;

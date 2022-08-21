@@ -9,7 +9,8 @@ use Modules\Category\Models\Category;
 use Modules\Category\Policies\CategoryPolicy;
 use Modules\Category\Repositories\CategoryRepoEloquent;
 use Modules\Category\Repositories\CategoryRepoEloquentInterface;
-use Modules\User\Models\User;
+use Modules\Category\Services\CategoryService;
+use Modules\Category\Services\CategoryServiceInterface;
 
 class CategoryServiceProvider extends ServiceProvider
 {
@@ -68,6 +69,7 @@ class CategoryServiceProvider extends ServiceProvider
         $this->loadPolicyFiles();
 
         $this->bindRepository();
+        $this->bindService();
     }
 
     /**
@@ -137,12 +139,22 @@ class CategoryServiceProvider extends ServiceProvider
     }
 
     /**
-     * Bind repository file into interface.
+     * Bind repository files into interface.
      *
      * @return void
      */
     private function bindRepository()
     {
         $this->app->bind(CategoryRepoEloquentInterface::class, CategoryRepoEloquent::class);
+    }
+
+    /**
+     * Bind service files into interface.
+     *
+     * @return void
+     */
+    private function bindService()
+    {
+        $this->app->bind(CategoryServiceInterface::class, CategoryService::class);
     }
 }

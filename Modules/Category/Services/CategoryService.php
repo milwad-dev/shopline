@@ -5,12 +5,12 @@ namespace Modules\Category\Services;
 use Modules\Category\Models\Category;
 use Modules\Share\Services\ShareService;
 
-class CategoryService
+class CategoryService implements CategoryServiceInterface
 {
     /**
      * Store category.
      *
-     * @param $request
+     * @param  $request
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
      */
     public function store($request)
@@ -29,8 +29,8 @@ class CategoryService
     /**
      * Update category by id.
      *
-     * @param $request
-     * @param $id
+     * @param  $request
+     * @param  $id
      * @return int
      */
     public function update($request, $id)
