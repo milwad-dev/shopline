@@ -16,6 +16,12 @@ class VerifyMailNotification extends Notification
         //
     }
 
+    /**
+     * Send via (email).
+     *
+     * @param  $notifiable
+     * @return string[]
+     */
     public function via($notifiable)
     {
         return ['mail'];
@@ -34,6 +40,12 @@ class VerifyMailNotification extends Notification
         return (new VerifyCodeMail($code))->to($notifiable->email);
     }
 
+    /**
+     * Save into database.
+     *
+     * @param  $notifiable
+     * @return array
+     */
     public function toArray($notifiable)
     {
         return [
