@@ -1,6 +1,9 @@
 <?php
 
 return [
+    /**
+     * Set menu for panel.
+     */
     'menus' => [
         'panel' => [],
         'home' => [],
