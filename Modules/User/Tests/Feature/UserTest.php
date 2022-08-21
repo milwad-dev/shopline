@@ -111,6 +111,28 @@ class UserTest extends TestCase
     }
 
     /**
+     * Test usual user can not store new user.
+     *
+     * @return void
+     */
+    public function test_usual_user_can_not_store_new_user()
+    {
+        $this->createUserWithLoginWithAssignPermission(false);
+
+        $email = $this->faker->unique()->email;
+        $phone = 12345678900;
+
+        $response = $this->post(route('users.store'), [
+            'name' => $this->faker->name,
+            'email' => $email,
+            'phone' => $phone,
+            'type' => UserTypeEnum::TYPE_CUSTOMER->value,
+            'password' => 'Milwad123!',
+        ]);
+        $response->assertStatus(403);
+    }
+
+    /**
      * Test admin user can store new user.
      *
      * @return void
@@ -139,6 +161,30 @@ class UserTest extends TestCase
             'email' => $email,
             'phone' => $phone,
         ]);
+    }
+
+    /**
+     * Test usual user can not update user.
+     *
+     * @return void
+     */
+    public function test_usual_user_can_not_update_user()
+    {
+        $this->createUserWithLoginWithAssignPermission(false);
+
+        $email = $this->faker->unique()->email;
+        $phone = 12345678900;
+        $user = User::factory()->create();
+
+        $response = $this->patch(route('users.update', $user->id), [
+            'id'        => $user->id,
+            'name'      => $this->faker->name,
+            'email'     => $email,
+            'phone'     => $phone,
+            'type'      => UserTypeEnum::TYPE_VENDOR->value,
+            'password'  => 'Milwad123!',
+        ]);
+        $response->assertStatus(403);
     }
 
     /**
