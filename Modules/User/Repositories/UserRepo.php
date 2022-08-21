@@ -51,6 +51,11 @@ class UserRepo
         return $this->query()->where('id', $id)->delete();
     }
 
+    /**
+     * Get model(User) query, builder.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     private function query()
     {
         return User::query();
