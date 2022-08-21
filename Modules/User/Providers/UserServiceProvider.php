@@ -19,12 +19,10 @@ class UserServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations'); // Register Migration
-        $this->loadViewsFrom(__DIR__ . '/../Resources/Views/', 'User'); // Register View
-
-        Route::middleware(['web', 'verify'])->namespace($this->namespace)
-            ->group(__DIR__ . '/../Routes/user_routes.php'); // Register Route
-        Gate::policy(User::class, UserPolicy::class); // Register Policy
+        $this->loadMigrationFiles();
+        $this->loadViewFiles();
+        $this->loadRouteFiles();
+        $this->loadPolicyFiles();
     }
 
     /**
@@ -34,7 +32,58 @@ class UserServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        config()->set('panelConfig.menus.users', [ // Set menu for panel
+        $this->setMenuPnael();
+    }
+
+    /**
+     * Load user migration files.
+     *
+     * @return void
+     */
+    private function loadMigrationFiles(): void
+    {
+        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+    }
+
+    /**
+     * Load user view files.
+     *
+     * @return void
+     */
+    private function loadViewFiles(): void
+    {
+        $this->loadViewsFrom(__DIR__ . '/../Resources/Views/', 'User');
+    }
+
+    /**
+     * Load user route files.
+     *
+     * @return void
+     */
+    private function loadRouteFiles(): void
+    {
+        Route::middleware(['web', 'verify'])->namespace($this->namespace)
+            ->group(__DIR__ . '/../Routes/user_routes.php');
+    }
+
+    /**
+     * Load user policy files.
+     *
+     * @return void
+     */
+    private function loadPolicyFiles(): void
+    {
+        Gate::policy(User::class, UserPolicy::class);
+    }
+
+    /**
+     * Set user menu in panel from config file.
+     *
+     * @return void
+     */
+    private function setMenuPnael(): void
+    {
+        config()->set('panelConfig.menus.users', [ 
             'title' => 'Users',
             'icon' => 'user',
             'url' => route('users.index'),
