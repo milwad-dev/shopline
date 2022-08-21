@@ -26,7 +26,7 @@ class CategoryTest extends TestCase
         $this->createUserWithLoginWithAssignPermission();
 
         $response = $this->get(route('categories.index'));
-        $response->assertViewIs('Category::Panel.index');
+        $response->assertViewIs('Category::index');
     }
 
     /**
@@ -39,7 +39,7 @@ class CategoryTest extends TestCase
         $this->createUserWithLoginWithAssignPermission();
 
         $response = $this->get(route('categories.create'));
-        $response->assertViewIs('Category::Panel.create');
+        $response->assertViewIs('Category::create');
     }
 
     /**
@@ -108,7 +108,7 @@ class CategoryTest extends TestCase
 
         $category = $this->createCategory();
         $response = $this->get(route('categories.edit', $category->id));
-        $response->assertViewIs('Category::Panel.edit');
+        $response->assertViewIs('Category::edit');
     }
 
     /**
