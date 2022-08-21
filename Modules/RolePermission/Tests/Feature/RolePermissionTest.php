@@ -10,7 +10,7 @@ use Modules\User\Models\User;
 use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
-class RoleTest extends TestCase
+class RolePermissionTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
@@ -24,6 +24,7 @@ class RoleTest extends TestCase
         $this->createUserWithLoginWithAssignPermission();
 
         $response = $this->get(route('role-permissions.index'));
+        $response->assertViewHas('roles');
         $response->assertViewIs('RolePermission::index');
     }
 
@@ -37,6 +38,7 @@ class RoleTest extends TestCase
         $this->createUserWithLoginWithAssignPermission();
 
         $response = $this->get(route('role-permissions.create'));
+        $response->assertViewHas('permissions');
         $response->assertViewIs('RolePermission::create');
     }
 
@@ -49,10 +51,8 @@ class RoleTest extends TestCase
     {
         $this->createUserWithLoginWithAssignPermission();
 
-        $response = $this->post(route('role-permissions.store'), [])->assertSessionHasErrors([
-            'name',
-            'permissions',
-        ]);
+        $response = $this->post(route('role-permissions.store'), []);
+        $response->assertSessionHasErrors(['name', 'permissions']);
         $response->assertRedirect();
     }
 
@@ -69,8 +69,10 @@ class RoleTest extends TestCase
             'name' => $this->faker->title,
             'permissions' => [Permission::PERMISSION_SUPER_ADMIN, Permission::PERMISSION_CATEGORIES]
         ]);
+        $response->assertSessionHas('alert');
+        $response->assertRedirect(route('role-permissions.index'));
+
         $this->assertEquals(1, Role::query()->count());
-        $response->assertRedirect();
     }
 
     /**
@@ -84,6 +86,7 @@ class RoleTest extends TestCase
         $role = $this->createRole();
 
         $response = $this->get(route('role-permissions.edit', $role->id));
+        $response->assertViewHas(['role', 'permissions']);
         $response->assertViewIs('RolePermission::edit');
     }
 
@@ -95,13 +98,15 @@ class RoleTest extends TestCase
     public function test_admin_user_can_update_role()
     {
         $this->createUserWithLoginWithAssignPermission();
-        $role = $this->createRole();
 
+        $role = $this->createRole();
         $response = $this->patch(route('role-permissions.update', $role->id), [
+            'id' => $role->id,
             'name' => 'Milwad',
             'permissions' => [Permission::PERMISSION_USERS, Permission::PERMISSION_PANEL]
         ]);
-        $response->assertRedirect();
+        $response->assertSessionHas('alert');
+        $response->assertRedirect(route('role-permissions.index'));
 
         $this->assertEquals(1, Role::query()->count());
     }
