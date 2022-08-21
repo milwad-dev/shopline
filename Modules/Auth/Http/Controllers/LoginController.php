@@ -9,14 +9,25 @@ use Modules\Share\Services\ShareService;
 
 class LoginController extends Controller
 {
+    /**
+     * Show login page.
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function view()
     {
         return view('Auth::login');
     }
 
+    /**
+     * Login user by request.
+     *
+     * @param  LoginRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function login(LoginRequest $request)
     {
-        $field = $this->filterEmail($request);
+        $field = $this->filterEmail($request->email);
         if (Auth::attempt([$field => $request->email, 'password' => $request->password])) {
             ShareService::successToast('Login successfully');
             return to_route('home.index');
@@ -26,9 +37,14 @@ class LoginController extends Controller
         return back();
     }
 
-    private function filterEmail(LoginRequest $request): string
+    /**
+     * Filter string to give email or phone for login.
+     *
+     * @param  string $field
+     * @return string
+     */
+    private function filterEmail(string $field): string
     {
-        $username = $request->email;
-        return filter_var($username, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
+        return filter_var($field, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
     }
 }

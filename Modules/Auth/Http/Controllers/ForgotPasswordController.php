@@ -12,11 +12,24 @@ use Modules\User\Repositories\UserRepoEloquent;
 
 class ForgotPasswordController extends Controller
 {
+    /**
+     * Show forgot password view.
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function showVerifyCodeRequestForm()
     {
         return view('Auth::passwords.email');
     }
 
+    /**
+     * Send email to user.
+     *
+     * @param  SendResetPasswordVerifyCodeRequest $request
+     * @param  UserRepoEloquent $userRepo
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws \Psr\SimpleCache\InvalidArgumentException
+     */
     public function sendVerifyCodeEmail(SendResetPasswordVerifyCodeRequest $request, UserRepoEloquent $userRepo)
     {
         $user = $userRepo->findByEmail($request->email);
@@ -26,6 +39,15 @@ class ForgotPasswordController extends Controller
         return view('Auth::passwords.enter-verify-code');
     }
 
+    /**
+     * Check verify code.
+     *
+     * @param  ResetPasswordVerifyCodeRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     * @throws \Psr\SimpleCache\InvalidArgumentException
+     */
     public function checkVerifyCode(ResetPasswordVerifyCodeRequest $request)
     {
         $user = resolve(UserRepoEloquent::class)->findByEmail($request->email);

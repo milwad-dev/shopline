@@ -10,17 +10,17 @@ class RegisterService
     /**
      * Store user by request.
      *
-     * @param  $request
+     * @param  array $data
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
      */
-    public function storeUser($request)
+    public function storeUser(array $data)
     {
         return User::query()->create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'type' => $request->type,
-            'password' => Hash::make($request->password),
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'type' => $data['type'],
+            'password' => Hash::make($data['password']),
         ]);
     }
 }
