@@ -3,14 +3,12 @@
 namespace Modules\User\Http\Controllers;
 
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
 use Modules\Share\Services\ShareService;
 use Modules\User\Http\Requests\UserRequest;
 use Modules\User\Models\User;
-use Modules\User\Repositories\UserRepoEloquent;
 use Modules\User\Repositories\UserRepoEloquentInterface;
 use Modules\User\Services\UserService;
 
