@@ -1,8 +1,9 @@
 <?php
 
-namespace Modules\User\Http\Controllers\Panel;
+namespace Modules\User\Http\Controllers;
 
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
@@ -26,7 +27,7 @@ class UserController extends Controller
     }
 
     /**
-     * Get latest users.
+     * Get the latest users without user logged.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws AuthorizationException
@@ -52,7 +53,7 @@ class UserController extends Controller
     }
 
     /**
-     * Store user.
+     * Store user by request.
      *
      * @param UserRequest $request
      * @return \Illuminate\Http\RedirectResponse
@@ -86,7 +87,7 @@ class UserController extends Controller
     }
 
     /**
-     * Update user.
+     * Update user by request with id.
      *
      * @param  UserRequest $request
      * @param  $id
