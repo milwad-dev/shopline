@@ -5,9 +5,9 @@ namespace Modules\Category\Repositories;
 use Modules\Category\Enums\CategoryStatusEnum;
 use Modules\Category\Models\Category;
 
-class CategoryRepo
+class CategoryRepoEloquent implements CategoryRepoEloquentInterface
 {
-    public function index()
+    public function getLatestCategories()
     {
         return $this->query()->latest();
     }

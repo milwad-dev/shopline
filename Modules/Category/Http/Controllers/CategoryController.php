@@ -7,7 +7,8 @@ use Illuminate\Http\RedirectResponse;
 use Modules\Category\Enums\CategoryStatusEnum;
 use Modules\Category\Http\Requests\CategoryRequest;
 use Modules\Category\Models\Category;
-use Modules\Category\Repositories\CategoryRepo;
+use Modules\Category\Repositories\CategoryRepoEloquent;
+use Modules\Category\Repositories\CategoryRepoEloquentInterface;
 use Modules\Category\Services\CategoryService;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
@@ -18,9 +19,9 @@ class CategoryController extends Controller
     private string $class = Category::class;
 
     public CategoryService $service;
-    public CategoryRepo $repo;
+    public CategoryRepoEloquentInterface $repo;
 
-    public function __construct(CategoryService $categoryService, CategoryRepo $categoryRepo)
+    public function __construct(CategoryService $categoryService, CategoryRepoEloquentInterface $categoryRepo)
     {
         $this->repo = $categoryRepo;
         $this->service = $categoryService;
@@ -35,7 +36,7 @@ class CategoryController extends Controller
     public function index()
     {
         $this->authorize('manage', $this->class);
-        $categories = $this->repo->index()->paginate();
+        $categories = $this->repo->getLatestCategories()->paginate();
 
         return view('Category::Panel.index', compact('categories'));
     }
@@ -49,7 +50,7 @@ class CategoryController extends Controller
     public function create()
     {
         $this->authorize('manage', $this->class);
-        $parents = $this->repo->index()->get();
+        $parents = $this->repo->getLatestCategories()->get();
 
         return view('Category::Panel.create', compact('parents'));
     }
@@ -80,7 +81,7 @@ class CategoryController extends Controller
     {
         $this->authorize('manage', $this->class);
         $category = $this->repo->findById($id);
-        $parents = $this->repo->index()->where('id', '!=', $category->id)->get();
+        $parents = $this->repo->getLatestCategories()->where('id', '!=', $category->id)->get();
 
         return view('Category::Panel.edit', compact(['category', 'parents']));
     }

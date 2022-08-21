@@ -13,7 +13,7 @@ use Modules\Article\Http\Requests\ArticleRequest;
 use Modules\Article\Models\Article;
 use Modules\Article\Repositories\ArticleRepo;
 use Modules\Article\Services\ArticleService;
-use Modules\Category\Repositories\CategoryRepo;
+use Modules\Category\Repositories\CategoryRepoEloquent;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
 use Modules\Share\Services\ShareService;
@@ -51,7 +51,7 @@ class ArticleController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws AuthorizationException
      */
-    public function create(CategoryRepo $categoryRepo)
+    public function create(CategoryRepoEloquent $categoryRepo)
     {
         $this->authorize('manage', $this->class);
         $categories = $categoryRepo->getActiveCategories()->get();
@@ -79,11 +79,11 @@ class ArticleController extends Controller
      * Show edit page by id.
      *
      * @param  $id
-     * @param  CategoryRepo $categoryRepo
+     * @param  CategoryRepoEloquent $categoryRepo
      * @return Application|Factory|View
      * @throws AuthorizationException
      */
-    public function edit($id, CategoryRepo $categoryRepo)
+    public function edit($id, CategoryRepoEloquent $categoryRepo)
     {
         $this->authorize('manage', $this->class);
         $article = $this->repo->findById($id);

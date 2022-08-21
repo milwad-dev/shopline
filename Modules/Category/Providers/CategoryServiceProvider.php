@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Modules\Category\Models\Category;
 use Modules\Category\Policies\CategoryPolicy;
+use Modules\Category\Repositories\CategoryRepoEloquent;
+use Modules\Category\Repositories\CategoryRepoEloquentInterface;
 use Modules\User\Models\User;
 
 class CategoryServiceProvider extends ServiceProvider
@@ -64,6 +66,8 @@ class CategoryServiceProvider extends ServiceProvider
         $this->loadViewFiles();
         $this->loadRouteFiles();
         $this->loadPolicyFiles();
+
+        $this->bindRepository();
     }
 
     /**
@@ -130,5 +134,15 @@ class CategoryServiceProvider extends ServiceProvider
             'icon' => 'git-commit',
             'url' => route('categories.index'),
         ]);
+    }
+
+    /**
+     * Bind repository file into interface.
+     *
+     * @return void
+     */
+    private function bindRepository()
+    {
+        $this->app->bind(CategoryRepoEloquentInterface::class, CategoryRepoEloquent::class);
     }
 }
