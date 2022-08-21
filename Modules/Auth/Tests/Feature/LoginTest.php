@@ -18,7 +18,21 @@ class LoginTest extends TestCase
     public function test_user_can_see_login_page()
     {
         $response = $this->get(route('login'));
-        $response->assertStatus(200);
+        $response->assertViewIs('Auth::login');
+    }
+
+    /**
+     * Test logged user can not see login page.
+     *
+     * @return void
+     */
+    public function test_logged_user_can_not_see_login_page()
+    {
+        $user = User::factory()->create();
+        auth()->login($user);
+
+        $response = $this->get(route('login'));
+        $response->assertOk(); // TODO BETTER
     }
 
     /**
