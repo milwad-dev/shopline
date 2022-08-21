@@ -23,14 +23,16 @@ class RolePermissionRequest extends FormRequest
      */
     public function rules()
     {
+        $ruleName = 'required|min:3|max:255|unique:roles,name';
+
         $rules = [
-            'name' => 'required|min:3|max:255|unique:roles,name',
+            'name' => $ruleName,
             'permissions' => 'required|array|min:1'
         ];
 
         if (request()->method === 'PATCH') {
             $rules['id'] = 'required|exists:roles,id';
-            $rules['name'] = 'required|min:3|max:255|unique:roles,name,' . request()->id;
+            $rules['name'] = "$ruleName," . request()->id;
             $rules['permissions'] = 'nullable|array|min:1';
         }
 

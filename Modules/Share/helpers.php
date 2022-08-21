@@ -4,7 +4,7 @@ if (!function_exists('get_value_enums')) {
     /**
      * Get value from enums file.
      *
-     * @param array $data
+     * @param  array $data
      * @return array
      */
     function get_value_enums(array $data) {
