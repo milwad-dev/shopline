@@ -6,7 +6,6 @@ use Tests\TestCase;
 
 class HomeTest extends TestCase
 {
-
     /**
      * Test can see home page.
      *
@@ -14,7 +13,7 @@ class HomeTest extends TestCase
      */
     public function test_can_see_home_page()
     {
-        $response = $this->get('/');
-        $response->assertStatus(200);
+        $response = $this->get(route('home.index'));
+        $response->assertViewIs('Home::index');
     }
 }
