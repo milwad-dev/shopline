@@ -29,6 +29,19 @@ class UserTest extends TestCase
     }
 
     /**
+     * Test usual user can not see list of the latest users.
+     *
+     * @return void
+     */
+    public function test_usual_user_can_not_see_latest_users_page()
+    {
+        $this->createUserWithLoginWithAssignPermission(false);
+
+        $response = $this->get(route('users.index'));
+        $response->assertStatus(403);
+    }
+
+    /**
      * Test admin user can see create user page.
      *
      * @return void
@@ -39,6 +52,19 @@ class UserTest extends TestCase
 
         $response = $this->get(route('users.create'));
         $response->assertViewIs('User::Panel.create');
+    }
+
+    /**
+     * Test usual user can not see create user page.
+     *
+     * @return void
+     */
+    public function test_usual_user_can_not_see_create_user_page()
+    {
+        $this->createUserWithLoginWithAssignPermission(false);
+
+        $response = $this->get(route('users.create'));
+        $response->assertStatus(403);
     }
 
     /**
@@ -136,15 +162,18 @@ class UserTest extends TestCase
     /**
      * Create user with login.
      *
+     * @param  bool $permission
      * @return void
      */
-    private function createUserWithLoginWithAssignPermission(): void
+    private function createUserWithLoginWithAssignPermission(bool $permission = true): void
     {
         $user = User::factory()->create();
         auth()->login($user);
 
         $this->callPermissionSeeder();
-        $user->givePermissionTo(Permission::PERMISSION_USERS);
+        if ($permission) {
+            $user->givePermissionTo(Permission::PERMISSION_USERS);
+        }
     }
 
     /**
