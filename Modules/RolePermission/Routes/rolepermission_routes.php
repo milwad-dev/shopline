@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 | Role permission routes
 |--------------------------------------------------------------------------
 |
-| Here you can see user role permission routes.
+| Here you can see role permission routes.
 |
 */
 
