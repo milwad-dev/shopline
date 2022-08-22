@@ -50,7 +50,7 @@ class {$argument}ServiceProvider extends ServiceProvider
         \$this->loadViewsFrom(__DIR__ . '/../Resources/Views/', '$argument');
 
         Route::middleware(['web', 'verify'])->namespace(\$this->namespace)
-        ->group(__DIR__ . /../Routes/ . $route . '_routes.php');
+        ->group(__DIR__ . '/../Routes/$route\_routes.php');
     }
 }
 ";
