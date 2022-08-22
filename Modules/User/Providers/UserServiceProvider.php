@@ -72,6 +72,8 @@ class UserServiceProvider extends ServiceProvider
         $this->loadViewFiles();
         $this->loadRouteFiles();
         $this->loadPolicyFiles();
+
+        $this->bindRepositories();
     }
 
     /**
@@ -82,7 +84,6 @@ class UserServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->setMenuForPanel();
-        $this->bindRepositories();
     }
 
     /**
@@ -140,6 +141,11 @@ class UserServiceProvider extends ServiceProvider
         ]);
     }
 
+    /**
+     * Bind repository.
+     *
+     * @return void
+     */
     private function bindRepositories()
     {
         $this->app->bind(UserRepoEloquentInterface::class, UserRepoEloquent::class);
