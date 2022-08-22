@@ -40,7 +40,8 @@
             "Modules\\Category\\": "Modules/Category/",
             "Modules\\RolePermission\\": "Modules/RolePermission/",
             "Modules\\Product\\": "Modules/Product/",
-            "Modules\\Article\\": "Modules/Article/"
+            "Modules\\Article\\": "Modules/Article/",
+            "Modules\\Slider\\": "Modules/Slider/"
         },
         "files": [
             "Modules/Share/helpers.php"
