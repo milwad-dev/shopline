@@ -7,7 +7,6 @@ use Modules\Auth\Http\Requests\RegisterRequest;
 use Modules\Auth\Services\RegisterService;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Services\ShareService;
-use Modules\User\Models\User;
 
 class RegisterController extends Controller
 {
