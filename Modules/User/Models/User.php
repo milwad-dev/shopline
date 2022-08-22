@@ -11,6 +11,7 @@ use Modules\Article\Models\Article;
 use Modules\Auth\Notifications\ResetPasswordRequestNotification;
 use Modules\Auth\Notifications\VerifyMailNotification;
 use Modules\Category\Models\Category;
+use Modules\Slider\Models\Slider;
 use Modules\User\Enums\UserTypeEnum;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -116,5 +117,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function articles()
     {
         return $this->hasMany(Article::class);
+    }
+
+    /**
+     * Relations to Slider model, relation is one to many.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function sliders()
+    {
+        return $this->hasMany(Slider::class);
     }
 }
