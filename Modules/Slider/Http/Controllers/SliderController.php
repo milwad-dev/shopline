@@ -1,20 +1,23 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Modules\Slider\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Modules\Slider\Slider;
+use Modules\Share\Http\Controllers\Controller;
+use Modules\Slider\Models\Slider;
 
 class SliderController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        //
+        $sliders = null;
+
+        return view('Slider::index', compact('sliders'));
     }
 
     /**
