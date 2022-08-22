@@ -11,7 +11,8 @@ use Illuminate\Http\RedirectResponse;
 use Modules\Article\Enums\ArticleStatusEnum;
 use Modules\Article\Http\Requests\ArticleRequest;
 use Modules\Article\Models\Article;
-use Modules\Article\Repositories\ArticleRepo;
+use Modules\Article\Repositories\ArticleRepoEloquent;
+use Modules\Article\Repositories\ArticleRepoEloquentInterface;
 use Modules\Article\Services\ArticleService;
 use Modules\Category\Repositories\CategoryRepoEloquentInterface;
 use Modules\Share\Http\Controllers\Controller;
@@ -22,13 +23,16 @@ class ArticleController extends Controller
 {
     private string $class = Article::class;
 
-    public ArticleRepo $repo;
+    public ArticleRepoEloquentInterface $repo;
     public ArticleService $service;
 
     public CategoryRepoEloquentInterface $categoryRepo;
 
-    public function __construct(ArticleRepo $articleRepo, ArticleService $articleService, CategoryRepoEloquentInterface $categoryRepo)
-    {
+    public function __construct(
+        ArticleRepoEloquentInterface $articleRepo,
+        ArticleService $articleService,
+        CategoryRepoEloquentInterface $categoryRepo
+    ) {
         $this->repo = $articleRepo;
         $this->service = $articleService;
 

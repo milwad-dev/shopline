@@ -8,7 +8,7 @@ use Illuminate\Http\UploadedFile;
 use Mockery\MockInterface;
 use Modules\Article\Enums\ArticleStatusEnum;
 use Modules\Article\Models\Article;
-use Modules\Article\Repositories\ArticleRepo;
+use Modules\Article\Repositories\ArticleRepoEloquent;
 use Modules\Category\Models\Category;
 use Modules\Category\Repositories\CategoryRepoEloquent;
 use Modules\Category\Repositories\CategoryRepoEloquentInterface;
@@ -33,7 +33,7 @@ class ArticleTest extends TestCase
 
         $response = $this->get(route('articles.index'));
         $response->assertViewIs('Article::index');
-        $response->assertViewHas('articles', (new ArticleRepo)->getLatestArticles()->paginate());
+        $response->assertViewHas('articles', (new ArticleRepoEloquent)->getLatestArticles()->paginate());
     }
 
     /**

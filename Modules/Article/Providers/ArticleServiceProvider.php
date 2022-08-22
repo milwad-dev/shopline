@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Modules\Article\Models\Article;
 use Modules\Article\Policies\ArticlePolicy;
+use Modules\Article\Repositories\ArticleRepoEloquent;
+use Modules\Article\Repositories\ArticleRepoEloquentInterface;
 
 class ArticleServiceProvider extends ServiceProvider
 {
@@ -63,6 +65,9 @@ class ArticleServiceProvider extends ServiceProvider
         $this->loadViewFiles();
         $this->loadRouteFiles();
         $this->loadPolicyFiles();
+
+        $this->bindRepository();
+//        $this->bindService();
     }
 
     /**
@@ -119,7 +124,7 @@ class ArticleServiceProvider extends ServiceProvider
 
     /**
      * Set menu for panel
-     * 
+     *
      * @return void
      */
     private function setMenuForPanel(): void
@@ -129,5 +134,15 @@ class ArticleServiceProvider extends ServiceProvider
             'icon' => 'book',
             'url' => route('articles.index'),
         ]);
+    }
+
+    /**
+     * Bind repository.
+     *
+     * @return void
+     */
+    private function bindRepository()
+    {
+        $this->app->bind(ArticleRepoEloquentInterface::class, ArticleRepoEloquent::class);
     }
 }

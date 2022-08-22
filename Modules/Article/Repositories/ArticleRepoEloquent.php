@@ -4,7 +4,7 @@ namespace Modules\Article\Repositories;
 
 use Modules\Article\Models\Article;
 
-class ArticleRepo
+class ArticleRepoEloquent implements ArticleRepoEloquentInterface
 {
     /**
      * Get latest articles.
