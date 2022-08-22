@@ -9,6 +9,8 @@ use Modules\Article\Models\Article;
 use Modules\Article\Policies\ArticlePolicy;
 use Modules\Article\Repositories\ArticleRepoEloquent;
 use Modules\Article\Repositories\ArticleRepoEloquentInterface;
+use Modules\Article\Services\ArticleService;
+use Modules\Article\Services\ArticleServiceInterface;
 
 class ArticleServiceProvider extends ServiceProvider
 {
@@ -67,7 +69,7 @@ class ArticleServiceProvider extends ServiceProvider
         $this->loadPolicyFiles();
 
         $this->bindRepository();
-//        $this->bindService();
+        $this->bindService();
     }
 
     /**
@@ -81,7 +83,7 @@ class ArticleServiceProvider extends ServiceProvider
     }
 
     /**
-     * Load panel policy files.
+     * Load article policy files.
      *
      * @return void
      */
@@ -91,7 +93,7 @@ class ArticleServiceProvider extends ServiceProvider
     }
 
     /**
-     * Load panel route files.
+     * Load article route files.
      *
      * @return void
      */
@@ -103,7 +105,7 @@ class ArticleServiceProvider extends ServiceProvider
     }
 
     /**
-     * Load panel view files.
+     * Load article view files.
      *
      * @return void
      */
@@ -113,7 +115,7 @@ class ArticleServiceProvider extends ServiceProvider
     }
 
     /**
-     * Load panel migration files.
+     * Load article migration files.
      *
      * @return void
      */
@@ -123,7 +125,7 @@ class ArticleServiceProvider extends ServiceProvider
     }
 
     /**
-     * Set menu for panel
+     * Set menu for panel.
      *
      * @return void
      */
@@ -137,12 +139,22 @@ class ArticleServiceProvider extends ServiceProvider
     }
 
     /**
-     * Bind repository.
+     * Bind article repository.
      *
      * @return void
      */
     private function bindRepository()
     {
         $this->app->bind(ArticleRepoEloquentInterface::class, ArticleRepoEloquent::class);
+    }
+
+    /**
+     * Bind article service.
+     *
+     * @return void
+     */
+    private function bindService()
+    {
+        $this->app->bind(ArticleServiceInterface::class, ArticleService::class);
     }
 }

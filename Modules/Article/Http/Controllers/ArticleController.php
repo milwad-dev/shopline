@@ -14,6 +14,7 @@ use Modules\Article\Models\Article;
 use Modules\Article\Repositories\ArticleRepoEloquent;
 use Modules\Article\Repositories\ArticleRepoEloquentInterface;
 use Modules\Article\Services\ArticleService;
+use Modules\Article\Services\ArticleServiceInterface;
 use Modules\Category\Repositories\CategoryRepoEloquentInterface;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
@@ -24,13 +25,13 @@ class ArticleController extends Controller
     private string $class = Article::class;
 
     public ArticleRepoEloquentInterface $repo;
-    public ArticleService $service;
+    public ArticleServiceInterface $service;
 
     public CategoryRepoEloquentInterface $categoryRepo;
 
     public function __construct(
         ArticleRepoEloquentInterface $articleRepo,
-        ArticleService $articleService,
+        ArticleServiceInterface $articleService,
         CategoryRepoEloquentInterface $categoryRepo
     ) {
         $this->repo = $articleRepo;

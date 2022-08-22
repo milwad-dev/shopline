@@ -5,7 +5,7 @@ namespace Modules\Article\Services;
 use Modules\Article\Models\Article;
 use Modules\Share\Services\ShareService;
 
-class ArticleService
+class ArticleService implements ArticleServiceInterface
 {
     /**
      * Store article by request.
