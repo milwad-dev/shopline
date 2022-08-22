@@ -62,6 +62,16 @@ class SliderServiceProvider extends ServiceProvider
     }
 
     /**
+     * Boot service provider files.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->setMenuForPanel();
+    }
+
+    /**
      * Load migration files.
      *
      * @return void
@@ -91,5 +101,19 @@ class SliderServiceProvider extends ServiceProvider
         Route::middleware($this->middlewareRoute)
             ->namespace($this->namespace)
             ->group(__DIR__ . $this->routePath);
+    }
+
+    /**
+     * Set user menu in panel from config file.
+     *
+     * @return void
+     */
+    private function setMenuForPanel(): void
+    {
+        config()->set('panelConfig.menus.sliders', [
+            'title' => 'Sliders',
+            'icon' => 'file',
+            'url' => route('sliders.index'),
+        ]);
     }
 }

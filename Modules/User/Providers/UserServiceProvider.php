@@ -81,7 +81,7 @@ class UserServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->setMenuPnael();
+        $this->setMenuForPanel();
         $this->bindRepositories();
     }
 
@@ -131,7 +131,7 @@ class UserServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    private function setMenuPnael(): void
+    private function setMenuForPanel(): void
     {
         config()->set('panelConfig.menus.users', [
             'title' => 'Users',

@@ -12,5 +12,6 @@ return [
         'role-permissions' => [],
         'products' => [],
         'articles' => [],
+        'sliders' => [],
     ],
 ];
