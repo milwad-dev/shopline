@@ -115,6 +115,23 @@ class SliderTest extends TestCase
     }
 
     /**
+     * Test store slider validated successful.
+     *
+     * @test
+     * @return void
+     */
+    public function store_slider_validated_successful()
+    {
+        $this->createUserWithLoginWithAssignPermission();
+
+        $response = $this->post(route('sliders.store'), []);
+        $response->assertSessionHasErrors(['image', 'link', 'status']);
+        $response->assertRedirect();
+
+        $this->assertDatabaseCount('sliders', 0);
+    }
+
+    /**
      * Create user with login.
      *
      * @param  bool $permission
