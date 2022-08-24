@@ -39,6 +39,35 @@ class SliderTest extends TestCase
     }
 
     /**
+     * Test admin user can see slider create page.
+     *
+     * @test
+     * @return void
+     */
+    public function admin_user_can_see_slider_create_page()
+    {
+        $this->createUserWithLoginWithAssignPermission();
+
+        $response = $this->get(route('sliders.create'));
+        $response->assertViewIs('Slider::create');
+    }
+
+    /**
+     * Test usual user can not see slider create page.
+     *
+     * @test
+     * @return void
+     */
+    public function usual_user_can_not_see_slider_create_page()
+    {
+        $this->createUserWithLoginWithAssignPermission(false);
+
+        $response = $this->get(route('sliders.create'));
+        $response->assertStatus(403);
+    }
+
+
+    /**
      * Create user with login.
      *
      * @param  bool $permission
