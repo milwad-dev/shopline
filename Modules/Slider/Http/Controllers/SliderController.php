@@ -66,6 +66,7 @@ class SliderController extends Controller
      */
     public function store(SliderRequest $request)
     {
+        ShareService::uploadMediaWithAddInRequest($request);
         $this->service->store($request->all());
 
         return $this->successMessageWithRedirect('Create slider');
@@ -125,6 +126,6 @@ class SliderController extends Controller
     private function successMessageWithRedirect(string $title)
     {
         ShareService::successToast($title);
-        return to_route('categories.index');
+        return to_route('sliders.index');
     }
 }

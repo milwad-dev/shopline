@@ -16,7 +16,7 @@ class SliderService
     {
         return $this->query()->create([
             'user_id'   => auth()->id(),
-            'media_id'  => $data['image'],
+            'media_id'  => $data['media_id'],
             'link'      => $data['link'],
             'status'    => $data['status'],
         ]);

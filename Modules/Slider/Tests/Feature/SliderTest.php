@@ -2,6 +2,7 @@
 
 namespace Modules\Slider\Tests\Feature;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Modules\RolePermission\Database\Seeds\PermissionSeeder;
 use Modules\RolePermission\Models\Permission;
@@ -11,6 +12,8 @@ use Tests\TestCase;
 
 class SliderTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * Test admin user can see slider index page.
      *
@@ -76,6 +79,7 @@ class SliderTest extends TestCase
      */
     public function admin_user_can_store_slider()
     {
+        $this->withoutExceptionHandling();
         $this->createUserWithLoginWithAssignPermission();
 
         $link = 'google.com';
@@ -84,8 +88,8 @@ class SliderTest extends TestCase
             'link' => $link,
             'status' => SliderStatusEnum::STATUS_ACTIVE->value,
         ]);
-        $response->assertRedirect(route('sliders.index'));
         $response->assertSessionHas('alert');
+        $response->assertRedirect(route('sliders.index'));
 
         $this->assertDatabaseHas('sliders', [
             'link' => $link,
