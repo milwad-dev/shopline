@@ -7,6 +7,7 @@ use Illuminate\Http\UploadedFile;
 use Modules\RolePermission\Database\Seeds\PermissionSeeder;
 use Modules\RolePermission\Models\Permission;
 use Modules\Slider\Enums\SliderStatusEnum;
+use Modules\Slider\Models\Slider;
 use Modules\User\Models\User;
 use Tests\TestCase;
 
@@ -129,6 +130,37 @@ class SliderTest extends TestCase
         $response->assertRedirect();
 
         $this->assertDatabaseCount('sliders', 0);
+    }
+
+    /**
+     * Test admin user can edit slider by id.
+     *
+     * @test
+     * @return void
+     */
+    public function admin_user_can_edit_slider()
+    {
+        $this->createUserWithLoginWithAssignPermission();
+
+        $slider = Slider::factory()->create();
+        $response = $this->get(route('sliders.edit', $slider->id));
+        $response->assertViewIs('Slider::edit');
+        $response->assertViewHas('slider');
+    }
+
+    /**
+     * Test usual user can not edit slider by id.
+     *
+     * @test
+     * @return void
+     */
+    public function usual_user_can_not_edit_slider()
+    {
+        $this->createUserWithLoginWithAssignPermission(false);
+
+        $slider = Slider::factory()->create();
+        $response = $this->get(route('sliders.edit', $slider->id));
+        $response->assertStatus(403);
     }
 
     /**

@@ -76,25 +76,16 @@ class SliderController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Edit slider with route model binding.
      *
-     * @param  \Modules\Slider\Slider  $slider
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Slider $slider)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \Modules\Slider\Slider  $slider
-     * @return \Illuminate\Http\Response
+     * @param  Slider $slider
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws AuthorizationException
      */
     public function edit(Slider $slider)
     {
-        //
+        $this->authorize('manage', $this->class);
+        return view('Slider::edit', compact('slider'));
     }
 
     /**
