@@ -3,6 +3,7 @@
 namespace Modules\Slider\Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
 use Modules\RolePermission\Database\Seeds\PermissionSeeder;
 use Modules\RolePermission\Models\Permission;
@@ -13,7 +14,7 @@ use Tests\TestCase;
 
 class SliderTest extends TestCase
 {
-    use RefreshDatabase;
+    use RefreshDatabase, WithFaker;
 
     /**
      * Test admin user can see slider index page.
@@ -160,6 +161,52 @@ class SliderTest extends TestCase
 
         $slider = Slider::factory()->create();
         $response = $this->get(route('sliders.edit', $slider->id));
+        $response->assertStatus(403);
+    }
+
+    /**
+     * Test admin user can update slider by id.
+     *
+     * @test
+     * @return void
+     */
+    public function admin_user_can_update_slider()
+    {
+        $this->createUserWithLoginWithAssignPermission();
+
+        $slider = Slider::factory()->create();
+        $link = 'milwad.ir';
+
+        $response = $this->patch(route('sliders.update', $slider->id), [
+            'image' => UploadedFile::fake()->image('slider.jpg'),
+            'link' => $link,
+            'status' => SliderStatusEnum::STATUS_INACTIVE->value,
+        ]);
+        $response->assertRedirect(route('sliders.index'));
+
+        $this->assertDatabaseCount('sliders', 1);
+        $this->assertDatabaseHas('sliders', [
+            'link' => $link,
+            'status' => SliderStatusEnum::STATUS_INACTIVE->value,
+        ]);
+    }
+
+    /**
+     * Test usual user can not update slider by id.
+     *
+     * @test
+     * @return void
+     */
+    public function usual_user_can_not_update_slider()
+    {
+        $this->createUserWithLoginWithAssignPermission(false);
+
+        $slider = Slider::factory()->create();
+        $response = $this->patch(route('sliders.update', $slider->id), [
+            'image' => UploadedFile::fake()->image('slider.jpg'),
+            'link' => 'milwad.ir',
+            'status' => SliderStatusEnum::STATUS_INACTIVE->value,
+        ]);
         $response->assertStatus(403);
     }
 
