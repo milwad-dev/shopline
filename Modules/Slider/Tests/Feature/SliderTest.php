@@ -2,8 +2,10 @@
 
 namespace Modules\Slider\Tests\Feature;
 
+use Illuminate\Http\UploadedFile;
 use Modules\RolePermission\Database\Seeds\PermissionSeeder;
 use Modules\RolePermission\Models\Permission;
+use Modules\Slider\Enums\SliderStatusEnum;
 use Modules\User\Models\User;
 use Tests\TestCase;
 
@@ -66,6 +68,30 @@ class SliderTest extends TestCase
         $response->assertStatus(403);
     }
 
+    /**
+     * Test admin user can store slider.
+     *
+     * @test
+     * @return void
+     */
+    public function admin_user_can_store_slider()
+    {
+        $this->createUserWithLoginWithAssignPermission();
+
+        $link = 'google.com';
+        $response = $this->post(route('sliders.store'), [
+            'image' => UploadedFile::fake()->image('google.jpg'),
+            'link' => $link,
+            'status' => SliderStatusEnum::STATUS_ACTIVE->value,
+        ]);
+        $response->assertRedirect(route('sliders.index'));
+        $response->assertSessionHas('alert');
+
+        $this->assertDatabaseHas('sliders', [
+            'link' => $link,
+        ]);
+        $this->assertDatabaseCount('sliders', 1);
+    }
 
     /**
      * Create user with login.

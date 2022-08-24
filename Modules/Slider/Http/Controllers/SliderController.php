@@ -4,8 +4,12 @@ namespace Modules\Slider\Http\Controllers;
 
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Modules\Share\Http\Controllers\Controller;
+use Modules\Share\Services\ShareService;
+use Modules\Slider\Http\Requests\SliderRequest;
 use Modules\Slider\Models\Slider;
+use Modules\Slider\Services\SliderService;
 
 class SliderController extends Controller
 {
@@ -15,6 +19,18 @@ class SliderController extends Controller
      * @var string
      */
     private string $class = Slider::class;
+
+    /**
+     * Get service.
+     *
+     * @var SliderService
+     */
+    public SliderService $service;
+
+    public function __construct(SliderService $sliderService)
+    {
+        $this->service = $sliderService;
+    }
 
     /**
      * Display a listing of the resource.
@@ -45,12 +61,14 @@ class SliderController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  SliderRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(SliderRequest $request)
     {
-        //
+        $this->service->store($request->all());
+
+        return $this->successMessageWithRedirect('Create slider');
     }
 
     /**
@@ -96,5 +114,17 @@ class SliderController extends Controller
     public function destroy(Slider $slider)
     {
         //
+    }
+
+    /**
+     * Show success message with redirect;
+     *
+     * @param  string $title
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    private function successMessageWithRedirect(string $title)
+    {
+        ShareService::successToast($title);
+        return to_route('categories.index');
     }
 }
