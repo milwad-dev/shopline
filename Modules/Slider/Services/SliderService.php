@@ -22,10 +22,19 @@ class SliderService
         ]);
     }
 
-    public function update($request, $id)
+    /**
+     * Update slider by id & data.
+     *
+     * @param  array $data
+     * @param  $id
+     * @return int
+     */
+    public function update(array $data, $id)
     {
-        return $this->query()->whereId($id)->update([
-
+        return $this->query()->where('id', $id)->update([
+            'media_id'  => $data['image'],
+            'link'      => $data['link'],
+            'status'    => $data['status'],
         ]);
     }
 
