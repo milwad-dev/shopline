@@ -89,15 +89,21 @@ class SliderController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update slider with route model binding & request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Modules\Slider\Slider  $slider
-     * @return \Illuminate\Http\Response
+     * @param  SliderRequest $request
+     * @param  Slider $slider
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws AuthorizationException
      */
-    public function update(Request $request, Slider $slider)
+    public function update(SliderRequest $request, Slider $slider)
     {
-        //
+        $this->authorize('manage', $this->class);
+
+        $this->uploadMediaForUpdateSlider($request, $slider);
+        $this->service->update($request->all(), $slider);
+
+        return $this->successMessageWithRedirect('Update slider');
     }
 
     /**
@@ -121,5 +127,22 @@ class SliderController extends Controller
     {
         ShareService::successToast($title);
         return to_route('sliders.index');
+    }
+
+    /**
+     * Upload image by request.
+     *
+     * @param  SliderRequest $request
+     * @param  Slider $slider
+     * @return void
+     */
+    private function uploadMediaForUpdateSlider(SliderRequest $request, Slider $slider): void
+    {
+        if ($request->image) {
+            $slider->media()->delete();
+            ShareService::uploadMediaWithAddInRequest($request);
+        } else {
+            $request->request->add(['media_id' => $slider->media_id]);
+        }
     }
 }
