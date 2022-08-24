@@ -42,7 +42,7 @@ class SliderTest extends TestCase
         $this->createUserWithLoginWithAssignPermission(false);
 
         $response = $this->get(route('sliders.index'));
-        $response->assertStatus(403);
+        $response->assertForbidden();
     }
 
     /**
@@ -70,7 +70,7 @@ class SliderTest extends TestCase
         $this->createUserWithLoginWithAssignPermission(false);
 
         $response = $this->get(route('sliders.create'));
-        $response->assertStatus(403);
+        $response->assertForbidden();
     }
 
     /**
@@ -113,7 +113,7 @@ class SliderTest extends TestCase
             'link' => 'google.com',
             'status' => SliderStatusEnum::STATUS_ACTIVE->value,
         ]);
-        $response->assertStatus(403);
+        $response->assertForbidden();
     }
 
     /**
@@ -161,7 +161,7 @@ class SliderTest extends TestCase
 
         $slider = Slider::factory()->create();
         $response = $this->get(route('sliders.edit', $slider->id));
-        $response->assertStatus(403);
+        $response->assertForbidden();
     }
 
     /**
@@ -207,7 +207,41 @@ class SliderTest extends TestCase
             'link' => 'milwad.ir',
             'status' => SliderStatusEnum::STATUS_INACTIVE->value,
         ]);
-        $response->assertStatus(403);
+        $response->assertForbidden();
+    }
+
+    /**
+     * Test admin user can delete slider.
+     *
+     * @test
+     * @return void
+     */
+    public function admin_user_can_delete_slider()
+    {
+        $this->createUserWithLoginWithAssignPermission();
+
+        $slider = Slider::factory()->create();
+        $response = $this->delete(route('sliders.destroy', $slider->id));
+        $response->assertOk();
+
+        $this->assertDatabaseCount('sliders', 0);
+    }
+
+    /**
+     * Test usual user can not delete slider.
+     *
+     * @test
+     * @return void
+     */
+    public function usual_user_can_not_delete_slider()
+    {
+        $this->createUserWithLoginWithAssignPermission(false);
+
+        $slider = Slider::factory()->create();
+        $response = $this->delete(route('sliders.destroy', $slider->id));
+        $response->assertForbidden();
+
+        $this->assertDatabaseCount('sliders', 1);
     }
 
     /**

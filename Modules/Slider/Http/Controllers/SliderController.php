@@ -3,9 +3,11 @@
 namespace Modules\Slider\Http\Controllers;
 
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Share\Http\Controllers\Controller;
+use Modules\Share\Responses\AjaxResponses;
 use Modules\Share\Services\ShareService;
 use Modules\Slider\Http\Requests\SliderRequest;
 use Modules\Slider\Models\Slider;
@@ -107,14 +109,18 @@ class SliderController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete slider route model binding.
      *
-     * @param  \Modules\Slider\Slider  $slider
-     * @return \Illuminate\Http\Response
+     * @param  Slider $slider
+     * @return JsonResponse
+     * @throws AuthorizationException
      */
     public function destroy(Slider $slider)
     {
-        //
+        $this->authorize('manage', $this->class);
+        $slider->delete();
+
+        return AjaxResponses::SuccessResponse();
     }
 
     /**
