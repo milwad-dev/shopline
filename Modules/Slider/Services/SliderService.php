@@ -38,6 +38,11 @@ class SliderService
         ]);
     }
 
+    /**
+     * Get query model (builder).
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     private function query()
     {
         return Slider::query();
