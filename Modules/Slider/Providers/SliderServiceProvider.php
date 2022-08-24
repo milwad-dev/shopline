@@ -2,8 +2,11 @@
 
 namespace Modules\Slider\Providers;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Modules\Slider\Models\Slider;
+use Modules\Slider\Policies\SliderPolicy;
 
 class SliderServiceProvider extends ServiceProvider
 {
@@ -59,6 +62,7 @@ class SliderServiceProvider extends ServiceProvider
         $this->loadMigrationFiles();
         $this->loadViewFiles();
         $this->loadRouteFiles();
+        $this->loadPolicyFiles();
     }
 
     /**
@@ -115,5 +119,15 @@ class SliderServiceProvider extends ServiceProvider
             'icon' => 'file',
             'url' => route('sliders.index'),
         ]);
+    }
+
+    /**
+     * Load slider policy files.
+     *
+     * @return void
+     */
+    private function loadPolicyFiles()
+    {
+        Gate::policy(Slider::class, SliderPolicy::class);
     }
 }

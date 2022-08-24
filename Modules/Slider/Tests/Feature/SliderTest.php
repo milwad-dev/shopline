@@ -25,6 +25,20 @@ class SliderTest extends TestCase
     }
 
     /**
+     * Test usual user can not see slider index page.
+     *
+     * @test
+     * @return void
+     */
+    public function usual_user_can_not_see_slider_index_page()
+    {
+        $this->createUserWithLoginWithAssignPermission(false);
+
+        $response = $this->get(route('sliders.index'));
+        $response->assertStatus(403);
+    }
+
+    /**
      * Create user with login.
      *
      * @param  bool $permission
@@ -37,7 +51,7 @@ class SliderTest extends TestCase
 
         $this->callPermissionSeeder();
         if ($permission) {
-            $user->givePermissionTo(Permission::PERMISSION_USERS);
+            $user->givePermissionTo(Permission::PERMISSION_SLIDERS);
         }
     }
 

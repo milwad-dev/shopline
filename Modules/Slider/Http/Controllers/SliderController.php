@@ -2,6 +2,7 @@
 
 namespace Modules\Slider\Http\Controllers;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Slider\Models\Slider;
@@ -9,12 +10,21 @@ use Modules\Slider\Models\Slider;
 class SliderController extends Controller
 {
     /**
+     * Get model.
+     *
+     * @var string
+     */
+    private string $class = Slider::class;
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws AuthorizationException
      */
     public function index()
     {
+        $this->authorize('manage', $this->class);
         $sliders = null;
 
         return view('Slider::index', compact('sliders'));
