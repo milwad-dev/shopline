@@ -79,7 +79,6 @@ class SliderTest extends TestCase
      */
     public function admin_user_can_store_slider()
     {
-        $this->withoutExceptionHandling();
         $this->createUserWithLoginWithAssignPermission();
 
         $link = 'google.com';
@@ -95,6 +94,24 @@ class SliderTest extends TestCase
             'link' => $link,
         ]);
         $this->assertDatabaseCount('sliders', 1);
+    }
+
+    /**
+     * Test usual user can not store slider.
+     *
+     * @test
+     * @return void
+     */
+    public function usual_user_can_not_store_slider()
+    {
+        $this->createUserWithLoginWithAssignPermission(false);
+
+        $response = $this->post(route('sliders.store'), [
+            'image' => UploadedFile::fake()->image('google.jpg'),
+            'link' => 'google.com',
+            'status' => SliderStatusEnum::STATUS_ACTIVE->value,
+        ]);
+        $response->assertStatus(403);
     }
 
     /**

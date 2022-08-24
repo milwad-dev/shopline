@@ -63,9 +63,12 @@ class SliderController extends Controller
      *
      * @param  SliderRequest $request
      * @return \Illuminate\Http\RedirectResponse
+     * @throws AuthorizationException
      */
     public function store(SliderRequest $request)
     {
+        $this->authorize('manage', $this->class);
+
         ShareService::uploadMediaWithAddInRequest($request);
         $this->service->store($request->all());
 
