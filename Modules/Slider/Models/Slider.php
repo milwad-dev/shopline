@@ -19,6 +19,20 @@ class Slider extends Model
      */
     protected $fillable = ['user_id', 'media_id', 'link', 'status'];
 
+    /**
+     * Booted model.
+     *
+     * @return void
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(static function($slider) {
+            $slider->media()->delete();
+        });
+    }
+
     // Relations
     /**
      * Relations to User model, relation is one to many.

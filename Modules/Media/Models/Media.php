@@ -13,7 +13,7 @@ class Media extends Model
 
     protected static function booted()
     {
-        static::deleting(function ($media) {
+        static::deleting(static function ($media) {
             MediaFileService::delete($media);
         });
     }
