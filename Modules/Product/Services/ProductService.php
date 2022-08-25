@@ -30,6 +30,7 @@ class ProductService
             'short_description' => $request->short_description,
             'body' => $request->body,
             'status' => $request->status,
+            'is_popular' => $request->is_popular,
         ]);
     }
 
@@ -53,6 +54,7 @@ class ProductService
             'short_description' => $request->short_description,
             'body' => $request->body,
             'status' => $request->status,
+            'is_popular' => $request->is_popular,
         ]);
     }
 

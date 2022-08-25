@@ -256,6 +256,14 @@
                                                 <div class="upload__img-wrap"></div>
                                             </div>
                                             {{-- TODO Add tags --}}
+                                            <div class="row mb-5">
+                                                <div class="mb-1">
+                                                    <x-panel-label for="is_popular" title="Is popular" />
+                                                    <x-panel-input name="is_popular" id="is_popular"
+                                                    type="checkbox" class="form-check-input" value="1"
+                                                    />
+                                                </div>
+                                            </div>
                                             <x-panel-button />
                                         </div>
                                     </form>

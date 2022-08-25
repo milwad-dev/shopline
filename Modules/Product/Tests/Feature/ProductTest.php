@@ -72,7 +72,8 @@ class ProductTest extends TestCase
                 [
                     'attributekeys' => null,
                 ]
-            ]
+            ],
+            'is_popular' => 1,
         ]);
         $response->assertRedirect(route('products.index'));
 
@@ -134,6 +135,7 @@ class ProductTest extends TestCase
                     'attributevalues' => $this->faker->text,
                 ],
             ],
+            'is_popular' => 1,
         ]);
         $response->assertRedirect(route('products.index'));
 
@@ -180,7 +182,8 @@ class ProductTest extends TestCase
             'status' => ProductStatusEnum::STATUS_ACTIVE->value,
             'categories' => [
                 $category->id,
-            ]
+            ],
+            'is_popular' => 1,
         ]);
         $response->assertRedirect(route('products.index'));
         $this->assertEquals(1, Product::query()->count());

@@ -34,6 +34,7 @@ class Product extends Model
         'short_description',
         'body',
         'status',
+        'is_popular',
     ];
 
     /**

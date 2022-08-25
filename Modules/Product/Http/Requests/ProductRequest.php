@@ -29,7 +29,7 @@ class ProductRequest extends FormRequest
             'first_media'  => 'required|file|mimes:jpeg,png,jpg|max:2048',
             'second_media' => 'required|file|mimes:jpeg,png,jpg|max:2048',
             'title' => 'required|string|min:3|max:255|unique:products,title',
-            'price' => 'required|numeric',
+            'price' => 'required|string',
             'count' => 'required|numeric',
             'type' => 'required|string|max:255',
             'short_description' => 'required|string|min:3',
@@ -45,5 +45,16 @@ class ProductRequest extends FormRequest
         }
 
         return $rules;
+    }
+
+    /**
+     * Prepand validation.
+     *
+     * @return void
+     */
+    public function prepareForValidation()
+    {
+        $price = str_replace(',', '', $this->price);
+        $this->merge(['price' => $price]);
     }
 }
