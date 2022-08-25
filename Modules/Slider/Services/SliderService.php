@@ -39,6 +39,18 @@ class SliderService
     }
 
     /**
+     * Update status.
+     *
+     * @param  Slider $slider
+     * @param  string $status
+     * @return bool
+     */
+    public function updateStatus(Slider $slider, string $status)
+    {
+        return $slider->update(['status' => $status]);
+    }
+
+    /**
      * Get query model (builder).
      *
      * @return \Illuminate\Database\Eloquent\Builder

@@ -9,6 +9,7 @@ use Illuminate\Http\Response;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
 use Modules\Share\Services\ShareService;
+use Modules\Slider\Enums\SliderStatusEnum;
 use Modules\Slider\Http\Requests\SliderRequest;
 use Modules\Slider\Models\Slider;
 use Modules\Slider\Services\SliderService;
@@ -119,6 +120,21 @@ class SliderController extends Controller
     {
         $this->authorize('manage', $this->class);
         $slider->delete();
+
+        return AjaxResponses::SuccessResponse();
+    }
+
+    /**
+     * Update status to active.
+     *
+     * @param  Slider $slider
+     * @return JsonResponse
+     * @throws AuthorizationException
+     */
+    public function active(Slider $slider)
+    {
+        $this->authorize('manage', $this->class);
+        $this->service->updateStatus($slider, SliderStatusEnum::STATUS_ACTIVE->value);
 
         return AjaxResponses::SuccessResponse();
     }
