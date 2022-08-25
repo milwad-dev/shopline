@@ -121,6 +121,7 @@
                                         <div class="row">
                                             @csrf
                                             @method('PATCH')
+                                            <input type="hidden" name="id" value="{{ $product->id }}">
                                             <div class="col-xl-6 col-md-6 col-12">
                                                 <div class="mb-1">
                                                     <x-panel-label for="title" title="Title" />

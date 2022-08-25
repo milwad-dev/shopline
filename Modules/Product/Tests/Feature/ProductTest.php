@@ -160,6 +160,7 @@ class ProductTest extends TestCase
         $category = Category::factory()->create();
 
         $response = $this->patch(route('products.update', $product->id), [
+            'id' => $product->id,
             'first_media' => UploadedFile::fake()->image('first_media.jpg'),
             'second_media' => UploadedFile::fake()->image('second_media.jpg'),
             'title' => $this->faker->title,
