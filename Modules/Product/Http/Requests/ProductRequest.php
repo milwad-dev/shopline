@@ -26,8 +26,8 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'first_media_id'  => 'required|file|mimes:jpeg,png,jpg|max:2048',
-            'second_media_id' => 'required|file|mimes:jpeg,png,jpg|max:2048',
+            'first_media'  => 'required|file|mimes:jpeg,png,jpg|max:2048',
+            'second_media' => 'required|file|mimes:jpeg,png,jpg|max:2048',
             'title' => 'required|string|min:3|max:255|unique:products,title',
             'price' => 'required|numeric',
             'count' => 'required|numeric',

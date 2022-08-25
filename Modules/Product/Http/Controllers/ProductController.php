@@ -82,7 +82,7 @@ class ProductController extends Controller
             $this->service->attachTagsToProduct($tags, $product);
         }
 
-        return to_route('products.index');
+        return $this->successMessageWithRedirect('Create product');
     }
 
     /**
@@ -133,7 +133,7 @@ class ProductController extends Controller
             $this->service->attachTagsToProduct($request->tags, $product);
         }
 
-        return to_route('products.index');
+        return $this->successMessageWithRedirect('Update product');
     }
 
     /**
@@ -148,5 +148,17 @@ class ProductController extends Controller
         // TODO DELETE CATEGORIES & ...
 
         return AjaxResponses::SuccessResponse();
+    }
+
+    /**
+     * Show success message with redirect;
+     *
+     * @param  string $title
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    private function successMessageWithRedirect(string $title)
+    {
+        ShareService::successToast($title);
+        return to_route('products.index');
     }
 }

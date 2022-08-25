@@ -51,6 +51,7 @@ class ProductTest extends TestCase
     {
         $this->createUserWithLoginWithAssignPermission();
 
+        Category::factory(5)->create();
         $response = $this->post(route('products.store'), [
             'first_media' => UploadedFile::fake()->image('first_media.jpg'), // Mock
             'second_media' => UploadedFile::fake()->image('second_media.jpg'), // Mock
@@ -61,7 +62,7 @@ class ProductTest extends TestCase
             'short_description' => $this->faker->text,
             'body' => $this->faker->text,
             'status' => ProductStatusEnum::STATUS_ACTIVE->value,
-            'categories' => Category::query()->inRandomOrder()->get()->toArray(),
+            'categories' => Category::query()->inRandomOrder()->get()->pluck('id')->toArray(),
             'galleries' => [
                 UploadedFile::fake()->image(Str::random(10) . '.jpg'),
                 UploadedFile::fake()->image(Str::random(10) . '.jpg'),
@@ -85,8 +86,10 @@ class ProductTest extends TestCase
      */
     public function test_admin_user_can_store_products_with_attributes_tags()
     {
+        $this->withoutExceptionHandling();
         $this->createUserWithLoginWithAssignPermission();
 
+//        Category::factory(5)->create();
         $response = $this->post(route('products.store'), [
             'first_media' => UploadedFile::fake()->image('first_media.jpg'), // Mock
             'second_media' => UploadedFile::fake()->image('second_media.jpg'), // Mock
@@ -97,7 +100,12 @@ class ProductTest extends TestCase
             'short_description' => $this->faker->text,
             'body' => $this->faker->text,
             'status' => ProductStatusEnum::STATUS_ACTIVE->value,
-            'categories' => Category::query()->inRandomOrder()->get()->toArray(),
+//            'categories' => Category::query()->inRandomOrder()->get()->pluck('id')->toArray(),
+            'categories' => [
+                Category::factory()->create()->id,
+                Category::factory()->create()->id,
+                Category::factory()->create()->id,
+            ],
             'galleries' => [
                 UploadedFile::fake()->image(Str::random(10) . '.jpg'),
                 UploadedFile::fake()->image(Str::random(10) . '.jpg'),
