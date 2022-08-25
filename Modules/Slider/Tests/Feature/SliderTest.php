@@ -78,22 +78,30 @@ class SliderTest extends TestCase
      *
      * @test
      * @return void
+     * @throws \Exception
      */
     public function admin_user_can_store_slider()
     {
         $this->createUserWithLoginWithAssignPermission();
 
         $link = 'google.com';
+        $title = $this->faker->title;
+        $title_color = random_int(111111, 9999999);
+
         $response = $this->post(route('sliders.store'), [
             'image' => UploadedFile::fake()->image('google.jpg'),
             'link' => $link,
             'status' => SliderStatusEnum::STATUS_ACTIVE->value,
+            'title' => $title,
+            'title_color' => $title_color,
         ]);
         $response->assertSessionHas('alert');
         $response->assertRedirect(route('sliders.index'));
 
         $this->assertDatabaseHas('sliders', [
             'link' => $link,
+            'title' => $title,
+            'title_color' => $title_color,
         ]);
         $this->assertDatabaseCount('sliders', 1);
     }
@@ -103,6 +111,7 @@ class SliderTest extends TestCase
      *
      * @test
      * @return void
+     * @throws \Exception
      */
     public function usual_user_can_not_store_slider()
     {
@@ -112,6 +121,8 @@ class SliderTest extends TestCase
             'image' => UploadedFile::fake()->image('google.jpg'),
             'link' => 'google.com',
             'status' => SliderStatusEnum::STATUS_ACTIVE->value,
+            'title' => $this->faker->title,
+            'title_color' => random_int(111111, 9999999),
         ]);
         $response->assertForbidden();
     }
@@ -127,7 +138,7 @@ class SliderTest extends TestCase
         $this->createUserWithLoginWithAssignPermission();
 
         $response = $this->post(route('sliders.store'), []);
-        $response->assertSessionHasErrors(['image', 'link', 'status']);
+        $response->assertSessionHasErrors(['image', 'link', 'status', 'title', 'title_color']);
         $response->assertRedirect();
 
         $this->assertDatabaseCount('sliders', 0);
@@ -169,6 +180,7 @@ class SliderTest extends TestCase
      *
      * @test
      * @return void
+     * @throws \Exception
      */
     public function admin_user_can_update_slider()
     {
@@ -178,9 +190,11 @@ class SliderTest extends TestCase
         $link = 'milwad.ir';
 
         $response = $this->patch(route('sliders.update', $slider->id), [
-            'image' => UploadedFile::fake()->image('slider.jpg'),
-            'link' => $link,
-            'status' => SliderStatusEnum::STATUS_INACTIVE->value,
+            'image'         => UploadedFile::fake()->image('slider.jpg'),
+            'status'        => SliderStatusEnum::STATUS_INACTIVE->value,
+            'link'          => $link,
+            'title'         => $this->faker->title,
+            'title_color'   => random_int(111111, 9999999),
         ]);
         $response->assertRedirect(route('sliders.index'));
 
@@ -196,6 +210,7 @@ class SliderTest extends TestCase
      *
      * @test
      * @return void
+     * @throws \Exception
      */
     public function usual_user_can_not_update_slider()
     {
@@ -203,9 +218,11 @@ class SliderTest extends TestCase
 
         $slider = Slider::factory()->create();
         $response = $this->patch(route('sliders.update', $slider->id), [
-            'image' => UploadedFile::fake()->image('slider.jpg'),
-            'link' => 'milwad.ir',
+            'image'  => UploadedFile::fake()->image('slider.jpg'),
+            'link'   => 'milwad.ir',
             'status' => SliderStatusEnum::STATUS_INACTIVE->value,
+            'title'         => $this->faker->title,
+            'title_color'   => random_int(111111, 9999999),
         ]);
         $response->assertForbidden();
     }
@@ -222,7 +239,7 @@ class SliderTest extends TestCase
 
         $slider = Slider::factory()->create();
         $response = $this->patch(route('sliders.update', $slider->id), []);
-        $response->assertSessionHasErrors(['link', 'status']);
+        $response->assertSessionHasErrors(['link', 'status', 'title', 'title_color']);
         $response->assertRedirect();
 
         $this->assertDatabaseCount('sliders', 1);

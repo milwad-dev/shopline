@@ -1,4 +1,4 @@
-@extends('Home::layouts.master')
+@extends('Home::Home.layouts.master')
 
 @section('title', 'Not found 404')
 
