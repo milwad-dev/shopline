@@ -27,9 +27,11 @@ class SliderRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'image' => 'required|file|mimes:jpg,png,jpeg|max:1048',
-            'link' => 'required|string|min:3|max:255',
-            'status' => ['required', 'string', 'max:255', new Enum(SliderStatusEnum::class)],
+            'image'         => 'required|file|mimes:jpg,png,jpeg|max:1048',
+            'link'          => 'required|string|min:3|max:255',
+            'title'         => 'required|string|min:3|max:255',
+            'title_color'   => 'required|string',
+            'status'        => ['required', 'string', 'max:255', new Enum(SliderStatusEnum::class)],
         ];
 
         if (request()->method === 'PATCH') {
