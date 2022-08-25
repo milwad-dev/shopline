@@ -18,8 +18,8 @@
                                     <thead>
                                         <tr class="text-center">
                                             <th>#</th>
-                                            <th>Title</th>
-                                            <th>Parent</th>
+                                            <th>Image</th>
+                                            <th>Link</th>
                                             <th>Status</th>
                                             <th>User</th>
                                             <th>Created At</th>
@@ -31,18 +31,20 @@
                                             <tr class="text-center">
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>
-                                                    {{ $slider->title }}
+                                                    <img src="{{ $slider->media->thumb }}" width="80" class="img-thumbnail">
                                                 </td>
                                                 <td>
-                                                    {{ $slider->parent }}
-                                                </td>
-                                                <td>
-                                                    {{ $slider->user->name }}
+                                                    <a href="{{ $slider->link }}" target="_blank">
+                                                        {{ $slider->link }}
+                                                    </a>
                                                 </td>
                                                 <td>
                                                     <span class="badge rounded-pill badge-light-{{ $slider->getCssClassStatus() }} me-1">
                                                         {{ $slider->status }}
                                                     </span>
+                                                </td>
+                                                <td>
+                                                    {{ $slider->user->name }}
                                                 </td>
                                                 <td>{{ Carbon\Carbon::make($slider->created_at)->format('Y-m-d') }}</td>
                                                 <td>
