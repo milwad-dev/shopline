@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="rtl" class="rtl">
+<html lang="en">
     <head>
         @include('Home::Home.section.meta') {{-- Include meta tag --}}
 
