@@ -15,5 +15,6 @@ class HomeTest extends TestCase
     {
         $response = $this->get(route('home.index'));
         $response->assertViewIs('Home::index');
+        $response->assertViewHas('homeRepo');
     }
 }
