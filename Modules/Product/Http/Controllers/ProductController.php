@@ -33,9 +33,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = $this->repo->index()
+        $products = $this->repo->getLatest()
             ->with(['categories', 'first_media', 'second_media', 'tags'])
-            ->paginate(10);
+            ->paginate();
 
         return view('Product::index', compact('products'));
     }

@@ -11,7 +11,7 @@ class ProductRepoEloquent implements ProductRepoEloquentInterface
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function index()
+    public function getLatest()
     {
         return $this->query()->latest();
     }
