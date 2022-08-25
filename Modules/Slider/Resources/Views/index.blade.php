@@ -34,7 +34,7 @@
                                                     <img src="{{ $slider->media->thumb }}" width="80" class="img-thumbnail">
                                                 </td>
                                                 <td>
-                                                    <a href="{{ $slider->link }}" target="_blank">
+                                                    <a href="{{ $slider->getLink() }}" target="_blank">
                                                         {{ $slider->link }}
                                                     </a>
                                                 </td>

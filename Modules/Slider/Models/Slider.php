@@ -68,4 +68,20 @@ class Slider extends Model
 
         return 'warning';
     }
+
+    /**
+     * Get currect link.
+     *
+     * @return mixed|string
+     */
+    public function getLink()
+    {
+        $link = $this->link;
+
+        if (!startWith($link, 'https')) {
+            return "https://$link";
+        }
+
+        return $link;
+    }
 }
