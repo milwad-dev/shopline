@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Modules\Category\Enums\CategoryStatusEnum;
 use Modules\Category\Models\Category;
+use Modules\Product\Models\Product;
 use Modules\Slider\Enums\SliderStatusEnum;
 use Modules\Slider\Models\Slider;
 
@@ -34,6 +35,20 @@ class HomeRepoEloquent implements HomeRepoEloquentInterface
         return Category::query()
             ->where('status', CategoryStatusEnum::STATUS_ACTIVE->value)
             ->latest()
+            ->get();
+    }
+
+    /**
+     * Get latest popular products.
+     *
+     * @return Collection
+     */
+    public function getLatestPopularProducts()
+    {
+        return Product::query()
+            ->where('is_popular', 1)
+            ->latest()
+            ->limit(10)
             ->get();
     }
 }

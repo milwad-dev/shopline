@@ -139,4 +139,24 @@ class Product extends Model
             $product->attributes()->deleteAllAttribute();
         });
     }
+
+    /**
+     * Get product path.
+     *
+     * @return string
+     */
+    public function path()
+    {
+        return ''; // TODO
+    }
+
+    /**
+     * Get rate score.
+     *
+     * @return string
+     */
+    public function getRate()
+    {
+        return ''; // TODO
+    }
 }

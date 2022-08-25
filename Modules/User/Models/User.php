@@ -88,6 +88,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return 'warning';
     }
 
+    /**
+     * Get path.
+     *
+     * @return string
+     */
+    public function path()
+    {
+        return '';
+    }
+
     // Relations
     /**
      * Relations to Category model, relation is one to many.
