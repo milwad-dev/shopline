@@ -15,10 +15,12 @@ class SliderService implements SliderServiceInterface
     public function store(array $data)
     {
         return $this->query()->create([
-            'user_id'   => auth()->id(),
-            'media_id'  => $data['media_id'],
-            'link'      => $data['link'],
-            'status'    => $data['status'],
+            'user_id'       => auth()->id(),
+            'media_id'      => $data['media_id'],
+            'link'          => $data['link'],
+            'status'        => $data['status'],
+            'title'         => $data['title'],
+            'title_color'   => $data['title_color'],
         ]);
     }
 
@@ -32,9 +34,11 @@ class SliderService implements SliderServiceInterface
     public function update(array $data, Slider $slider)
     {
         return $slider->update([
-            'media_id'  => $data['media_id'],
-            'link'      => $data['link'],
-            'status'    => $data['status'],
+            'media_id'      => $data['media_id'],
+            'link'          => $data['link'],
+            'status'        => $data['status'],
+            'title'         => $data['title'],
+            'title_color'   => $data['title_color'],
         ]);
     }
 
