@@ -17,7 +17,7 @@ class Slider extends Model
      *
      * @var string[]
      */
-    protected $fillable = ['user_id', 'media_id', 'link', 'status'];
+    protected $fillable = ['user_id', 'media_id', 'link', 'status', 'title', 'title_color'];
 
     /**
      * Booted model.
