@@ -2,7 +2,7 @@
 
 namespace Modules\Home\Http\Controllers;
 
-use Modules\Home\Repositories\HomeRepoEloquentInterface;
+use Modules\Home\Repositories\Home\HomeRepoEloquentInterface;
 use Modules\Share\Http\Controllers\Controller;
 
 class HomeController extends Controller

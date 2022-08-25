@@ -2,10 +2,12 @@
 
 namespace Modules\Home\Providers;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Modules\Home\Repositories\HomeRepoEloquent;
-use Modules\Home\Repositories\HomeRepoEloquentInterface;
+use Modules\Category\Repositories\CategoryRepoEloquentInterface;
+use Modules\Home\Repositories\Home\HomeRepoEloquent;
+use Modules\Home\Repositories\Home\HomeRepoEloquentInterface;
 
 class HomeServiceProvider extends ServiceProvider
 {
@@ -65,6 +67,7 @@ class HomeServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->setMenuForPanel();
+        $this->loadViewComposerForHome();
     }
 
     /**
@@ -111,5 +114,19 @@ class HomeServiceProvider extends ServiceProvider
     private function bindRepository()
     {
         $this->app->bind(HomeRepoEloquentInterface::class, HomeRepoEloquent::class);
+    }
+
+    /**
+     * Load query for view composer for home.
+     *
+     * @return void
+     */
+    private function loadViewComposerForHome()
+    {
+        view()->composer(['Home::Home.section.header'], static function ($view) {
+            $homeRepoEloquent = App::make(HomeRepoEloquentInterface::class);
+            $categories = $homeRepoEloquent->getLatestCategories();
+            $view->with(['categories' => $categories]);
+        });
     }
 }
