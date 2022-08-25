@@ -3,8 +3,8 @@
 namespace Modules\Slider\Providers;
 
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 use Modules\Slider\Models\Slider;
 use Modules\Slider\Policies\SliderPolicy;
 use Modules\Slider\Repositories\SliderRepoEloquent;

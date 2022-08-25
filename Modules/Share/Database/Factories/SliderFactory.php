@@ -3,8 +3,6 @@
 namespace Modules\Share\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Http\UploadedFile;
-use Modules\Media\Models\Media;
 use Modules\Slider\Enums\SliderStatusEnum;
 use Modules\Slider\Models\Slider;
 use Modules\User\Models\User;

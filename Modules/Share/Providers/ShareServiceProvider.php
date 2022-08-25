@@ -4,7 +4,6 @@ namespace Modules\Share\Providers;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\ServiceProvider;
-use Modules\Media\Models\Media;
 use Modules\Share\Console\Commands\MakeModule;
 
 class ShareServiceProvider extends ServiceProvider

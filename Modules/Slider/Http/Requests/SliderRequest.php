@@ -3,7 +3,6 @@
 namespace Modules\Slider\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Enum;
 use Modules\Slider\Enums\SliderStatusEnum;
 
