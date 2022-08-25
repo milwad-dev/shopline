@@ -8,9 +8,8 @@
                             <div class="single-hero-slider single-animation-wrap"
                             style="background-image: url({{ $slider->media->thumb }})">
                                 <div class="slider-content">
-                                    <h1 class="display-2 mb-40">
-                                        Pure Coffe<br />
-                                        Big discount
+                                    <h1 class="display-2 mb-40" style="color: {{ $slider->color }}">
+                                        {{ $slider->title }}
                                     </h1>
                                     <a class="btn" href="{{ $slider->getLink() }}">Show more</a>
                                 </div>

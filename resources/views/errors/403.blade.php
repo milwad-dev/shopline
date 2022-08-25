@@ -18,7 +18,7 @@
                             <a href="{{ route('home.index') }}"> <span> Homepage</span></a> or
                             <a href="page-contact.html"><span>Contact us</span></a>
                             about the problem
-                        </p> {{-- Correct href contact --}}
+                        </p> {{-- TODO Correct href contact --}}
                         <a class="btn btn-default submit-auto-width font-xs hover-up mt-30" href="{{ route('home.index') }}">
                             <i class="fi-rs-home mr-5"></i> Back To Home Page
                         </a>
