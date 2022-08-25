@@ -4,14 +4,13 @@ namespace Modules\Slider\Http\Controllers;
 
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
 use Modules\Share\Services\ShareService;
 use Modules\Slider\Enums\SliderStatusEnum;
 use Modules\Slider\Http\Requests\SliderRequest;
 use Modules\Slider\Models\Slider;
+use Modules\Slider\Repositories\SliderRepo;
 use Modules\Slider\Services\SliderService;
 
 class SliderController extends Controller
@@ -30,9 +29,17 @@ class SliderController extends Controller
      */
     public SliderService $service;
 
-    public function __construct(SliderService $sliderService)
+    /**
+     * Get respository.
+     *
+     * @var SliderRepo
+     */
+    public SliderRepo $repo;
+
+    public function __construct(SliderService $sliderService, SliderRepo $sliderRepo)
     {
-        $this->service = $sliderService;
+        $this->service  = $sliderService;
+        $this->repo     = $sliderRepo;
     }
 
     /**
@@ -44,7 +51,7 @@ class SliderController extends Controller
     public function index()
     {
         $this->authorize('manage', $this->class);
-        $sliders = null;
+        $sliders = $this->repo->getLatest()->paginate();
 
         return view('Slider::index', compact('sliders'));
     }

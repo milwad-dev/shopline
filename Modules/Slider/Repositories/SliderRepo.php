@@ -6,9 +6,9 @@ use Modules\Slider\Models\Slider;
 
 class SliderRepo
 {
-    public function index()
+    public function getLatest()
     {
-
+        return $this->query()->latest();
     }
 
     public function findById($id)
