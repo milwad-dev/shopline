@@ -4,7 +4,7 @@ namespace Modules\Slider\Repositories;
 
 use Modules\Slider\Models\Slider;
 
-class SliderRepo
+class SliderRepoEloquent implements SliderRepoEloquentInterface
 {
     public function getLatest()
     {

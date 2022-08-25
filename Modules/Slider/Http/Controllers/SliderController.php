@@ -10,8 +10,8 @@ use Modules\Share\Services\ShareService;
 use Modules\Slider\Enums\SliderStatusEnum;
 use Modules\Slider\Http\Requests\SliderRequest;
 use Modules\Slider\Models\Slider;
-use Modules\Slider\Repositories\SliderRepo;
-use Modules\Slider\Services\SliderService;
+use Modules\Slider\Repositories\SliderRepoEloquentInterface;
+use Modules\Slider\Services\SliderServiceInterface;
 
 class SliderController extends Controller
 {
@@ -25,18 +25,18 @@ class SliderController extends Controller
     /**
      * Get service.
      *
-     * @var SliderService
+     * @var SliderServiceInterface
      */
-    public SliderService $service;
+    public SliderServiceInterface $service;
 
     /**
      * Get respository.
      *
-     * @var SliderRepo
+     * @var SliderRepoEloquentInterface
      */
-    public SliderRepo $repo;
+    public SliderRepoEloquentInterface $repo;
 
-    public function __construct(SliderService $sliderService, SliderRepo $sliderRepo)
+    public function __construct(SliderServiceInterface $sliderService, SliderRepoEloquentInterface $sliderRepo)
     {
         $this->service  = $sliderService;
         $this->repo     = $sliderRepo;

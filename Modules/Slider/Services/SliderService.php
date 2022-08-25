@@ -4,7 +4,7 @@ namespace Modules\Slider\Services;
 
 use Modules\Slider\Models\Slider;
 
-class SliderService
+class SliderService implements SliderServiceInterface
 {
     /**
      * Store slider by data.

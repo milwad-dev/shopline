@@ -7,6 +7,10 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Modules\Slider\Models\Slider;
 use Modules\Slider\Policies\SliderPolicy;
+use Modules\Slider\Repositories\SliderRepoEloquent;
+use Modules\Slider\Repositories\SliderRepoEloquentInterface;
+use Modules\Slider\Services\SliderService;
+use Modules\Slider\Services\SliderServiceInterface;
 
 class SliderServiceProvider extends ServiceProvider
 {
@@ -63,6 +67,9 @@ class SliderServiceProvider extends ServiceProvider
         $this->loadViewFiles();
         $this->loadRouteFiles();
         $this->loadPolicyFiles();
+
+        $this->bindRepository();
+        $this->bindService();
     }
 
     /**
@@ -129,5 +136,25 @@ class SliderServiceProvider extends ServiceProvider
     private function loadPolicyFiles()
     {
         Gate::policy(Slider::class, SliderPolicy::class);
+    }
+
+    /**
+     * Bind repository.
+     *
+     * @return void
+     */
+    private function bindRepository()
+    {
+        $this->app->bind(SliderRepoEloquentInterface::class, SliderRepoEloquent::class);
+    }
+
+    /**
+     * Bind repository.
+     *
+     * @return void
+     */
+    private function bindService()
+    {
+        $this->app->bind(SliderServiceInterface::class, SliderService::class);
     }
 }
