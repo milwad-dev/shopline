@@ -19,8 +19,10 @@
                                         <tr class="text-center">
                                             <th>#</th>
                                             <th>Image</th>
+                                            <th>Title</th>
                                             <th>Link</th>
                                             <th>Status</th>
+                                            <th>Title color</th>
                                             <th>User</th>
                                             <th>Created At</th>
                                             <th>Actions</th>
@@ -34,6 +36,9 @@
                                                     <img src="{{ $slider->media->thumb }}" width="80" class="img-thumbnail">
                                                 </td>
                                                 <td>
+                                                    {{ $slider->title }}
+                                                </td>
+                                                <td>
                                                     <a href="{{ $slider->getLink() }}" target="_blank">
                                                         {{ $slider->link }}
                                                     </a>
@@ -41,6 +46,11 @@
                                                 <td>
                                                     <span class="badge rounded-pill badge-light-{{ $slider->getCssClassStatus() }} me-1">
                                                         {{ $slider->status }}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span class="badge rounded-pill badge-light-info me-1">
+                                                        {{ $slider->title_color }}
                                                     </span>
                                                 </td>
                                                 <td>
