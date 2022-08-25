@@ -281,6 +281,42 @@ class SliderTest extends TestCase
     }
 
     /**
+     * Test admin user can update status to inactive slider.
+     *
+     * @test
+     * @return void
+     */
+    public function admin_user_can_update_status_to_inactive_slider()
+    {
+        $this->createUserWithLoginWithAssignPermission();
+
+        $slider = Slider::factory()->create(['status' => SliderStatusEnum::STATUS_ACTIVE->value]);
+        $response = $this->patch(route('sliders.inactive', $slider->id));
+        $response->assertOk();
+
+        $this->assertDatabaseCount('sliders', 1);
+        $this->assertDatabaseHas('sliders', ['status' => SliderStatusEnum::STATUS_INACTIVE->value]);
+    }
+
+    /**
+     * Test usual user can update status to inactive slider.
+     *
+     * @test
+     * @return void
+     */
+    public function usual_user_can_update_status_to_inactive_slider()
+    {
+        $this->createUserWithLoginWithAssignPermission(false);
+
+        $slider = Slider::factory()->create(['status' => SliderStatusEnum::STATUS_ACTIVE->value]);
+        $response = $this->patch(route('sliders.inactive', $slider->id));
+        $response->assertForbidden();
+
+        $this->assertDatabaseCount('sliders', 1);
+        $this->assertDatabaseHas('sliders', ['status' => SliderStatusEnum::STATUS_ACTIVE->value]);
+    }
+
+    /**
      * Create user with login.
      *
      * @param  bool $permission

@@ -140,6 +140,21 @@ class SliderController extends Controller
     }
 
     /**
+     * Update status to inactive.
+     *
+     * @param  Slider $slider
+     * @return JsonResponse
+     * @throws AuthorizationException
+     */
+    public function inactive(Slider $slider)
+    {
+        $this->authorize('manage', $this->class);
+        $this->service->updateStatus($slider, SliderStatusEnum::STATUS_INACTIVE->value);
+
+        return AjaxResponses::SuccessResponse();
+    }
+
+    /**
      * Show success message with redirect;
      *
      * @param  string $title
