@@ -2,7 +2,7 @@
 
 namespace Modules\Home\Repositories;
 
-class HomeRepo
+interface HomeRepoEloquentInterface
 {
 
 }

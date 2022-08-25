@@ -2,6 +2,7 @@
 
 namespace Modules\Home\Http\Controllers;
 
+use Modules\Home\Repositories\HomeRepoEloquentInterface;
 use Modules\Share\Http\Controllers\Controller;
 
 class HomeController extends Controller
@@ -9,10 +10,11 @@ class HomeController extends Controller
     /**
      * Show home page.
      *
+     * @param  HomeRepoEloquentInterface $homeRepo
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index()
+    public function index(HomeRepoEloquentInterface $homeRepo)
     {
-        return view('Home::index');
+        return view('Home::index', compact('homeRepo'));
     }
 }
