@@ -4,6 +4,8 @@ namespace Modules\Product\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Modules\Product\Repositories\ProductRepoEloquent;
+use Modules\Product\Repositories\ProductRepoEloquentInterface;
 
 class ProductServiceProvider extends ServiceProvider
 {
@@ -16,6 +18,7 @@ class ProductServiceProvider extends ServiceProvider
 
         Route::middleware(['web', 'verify'])->namespace($this->namespace)
         ->group(__DIR__ . '/../Routes/product_routes.php');
+        $this->bindRepository();
     }
 
     /**
@@ -30,5 +33,15 @@ class ProductServiceProvider extends ServiceProvider
             'icon'  => 'gift',
             'url'   => route('products.index'),
         ]);
+    }
+
+    /**
+     * Bind product repository.
+     *
+     * @return void
+     */
+    private function bindRepository()
+    {
+        $this->app->bind(ProductRepoEloquentInterface::class, ProductRepoEloquent::class);
     }
 }

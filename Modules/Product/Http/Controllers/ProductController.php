@@ -9,7 +9,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Modules\Category\Repositories\CategoryRepoEloquentInterface;
 use Modules\Product\Http\Requests\ProductRequest;
-use Modules\Product\Repositories\ProductRepo;
+use Modules\Product\Repositories\ProductRepoEloquentInterface;
 use Modules\Product\Services\ProductService;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
@@ -18,9 +18,9 @@ use Modules\Share\Services\ShareService;
 class ProductController extends Controller
 {
     public ProductService $service;
-    public ProductRepo $repo;
+    public ProductRepoEloquentInterface $repo;
 
-    public function __construct(ProductService $productService, ProductRepo $productRepo)
+    public function __construct(ProductService $productService, ProductRepoEloquentInterface $productRepo)
     {
         $this->service = $productService;
         $this->repo = $productRepo;

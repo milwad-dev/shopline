@@ -4,7 +4,7 @@ namespace Modules\Product\Repositories;
 
 use Modules\Product\Models\Product;
 
-class ProductRepo
+class ProductRepoEloquent implements ProductRepoEloquentInterface
 {
     public function index()
     {
