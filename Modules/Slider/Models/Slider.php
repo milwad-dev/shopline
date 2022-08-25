@@ -60,7 +60,7 @@ class Slider extends Model
      *
      * @return string
      */
-    public function cssStatus()
+    public function getCssClassStatus()
     {
         if ($this->status === SliderStatusEnum::STATUS_ACTIVE->value) {
             return 'success';

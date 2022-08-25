@@ -1,15 +1,15 @@
 @extends('Panel::layouts.master')
 
-@section('title', 'New category')
+@section('title', 'New slider')
 
 @section('content')
     <div class="app-content content">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper container-xxl p-0">
-            <x-panel-content-header title="Create new category">
+            <x-panel-content-header title="Create new slider">
                 <li class="breadcrumb-item active">
-                    Create category
+                    Create slider
                 </li>
             </x-panel-content-header>
             <div class="content-body">
@@ -18,41 +18,21 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <form action="{{ route('categories.store') }}" method="POST">
+                                    <form action="{{ route('sliders.store') }}" method="POST" enctype="multipart/form-data">
                                         <div class="row">
                                             @csrf
                                             <div class="col-xl-6 col-md-6 col-12">
                                                 <div class="mb-1">
-                                                    <x-panel-label for="title" title="Title" />
-                                                    <x-panel-input name="title" id="title" value="{{ old('title') }}"
-                                                    placeholder="Enter title" />
-                                                    <x-share-error name="title" />
+                                                    <x-panel-label for="link" title="link" />
+                                                    <x-panel-input name="link" id="link" value="{{ old('link') }}"
+                                                    placeholder="Enter link" />
+                                                    <x-share-error name="link" />
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-md-6 col-12">
                                                 <div class="mb-1">
-                                                    <x-panel-label for="keywords" title="Keywords" nullable />
-                                                    <x-panel-input name="keywords" id="keywords" value="{{ old('keywords') }}"
-                                                    placeholder="Enter keywords" />
-                                                    <x-share-error name="keywords" />
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-6 col-md-6 col-12">
-                                                <div class="mb-1">
-                                                    <x-panel-label for="parent_id" title="Parent" nullable />
-                                                    <x-panel-select name="parent_id" id="parent_id"
-                                                        selectedText="Select parent category">
-                                                        @foreach ($parents as $parent)
-                                                            <option value="{{ $parent->id }}">{{ $parent->title }}</option>
-                                                        @endforeach
-                                                    </x-panel-select>
-                                                    <x-share-error name="type" />
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-6 col-md-6 col-12">
-                                                <div class="mb-1">
-                                                    <x-panel-label for="status" title="Status" />
-                                                    <x-panel-select name="status" id="status" selectedText="Select status category">
+                                                    <x-panel-label for="status" title="Statys" />
+                                                    <x-panel-select name="status" id="status" selectedText="Select status slider">
                                                         @foreach (Modules\Category\Enums\CategoryStatusEnum::cases() as $status)
                                                             <option value="{{ $status->value }}">{{ $status->value }}</option>
                                                         @endforeach
@@ -62,10 +42,13 @@
                                             </div>
                                             <div class="row mb-5">
                                                 <div class="col-xl-12 col-md-6 col-12">
-                                                    <x-panel-label for="description" title="Description" nullable />
-                                                    <x-panel-textarea name="description" id="description"
-                                                    placeholder="Enter the description" value="{{ old('description') }}" />
-                                                    <x-share-error name="description" />
+                                                    <x-panel-label for="image" title="Image" />
+                                                    <x-panel-input name="image" id="image" type="file" />
+                                                    @if ($errors->has('image'))
+                                                        <span class="text-danger" role="alert">
+                                                            <strong>{{ $errors->first('image') }}</strong>
+                                                        </span>
+                                                    @endif
                                                 </div>
                                             </div>
                                             <x-panel-button />
