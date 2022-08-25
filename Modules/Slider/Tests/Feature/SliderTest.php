@@ -211,6 +211,24 @@ class SliderTest extends TestCase
     }
 
     /**
+     * Test update slider validated successful.
+     *
+     * @test
+     * @return void
+     */
+    public function update_slider_validated_successful()
+    {
+        $this->createUserWithLoginWithAssignPermission();
+
+        $slider = Slider::factory()->create();
+        $response = $this->patch(route('sliders.update', $slider->id), []);
+        $response->assertSessionHasErrors(['link', 'status']);
+        $response->assertRedirect();
+
+        $this->assertDatabaseCount('sliders', 1);
+    }
+
+    /**
      * Test admin user can delete slider.
      *
      * @test
