@@ -123,9 +123,10 @@ class HomeServiceProvider extends ServiceProvider
      */
     private function loadViewComposerForHome()
     {
-        view()->composer(['Home::Home.section.header'], static function ($view) {
+        view()->composer(['Home::Home.section.header', 'Home::Home.section.menu'], static function ($view) {
             $homeRepoEloquent = App::make(HomeRepoEloquentInterface::class);
             $categories = $homeRepoEloquent->getLatestCategories();
+
             $view->with(['categories' => $categories]);
         });
     }

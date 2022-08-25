@@ -75,4 +75,14 @@ class Category extends Model
 
         return 'warning';
     }
+
+    /**
+     * Get path for detail category.
+     *
+     * @return string
+     */
+    public function path()
+    {
+        return '';
+    }
 }

@@ -41,6 +41,7 @@ class ShareServiceProvider extends ServiceProvider
         $this->loadAuthComponents();
         $this->loadPanelComponents();
         $this->loadFactories();
+        $this->loadConfigFiles();
     }
 
     /**
@@ -128,5 +129,15 @@ class ShareServiceProvider extends ServiceProvider
     private function loadViewFiles(): void
     {
         $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
+    }
+
+    /**
+     * Load share config files.
+     *
+     * @return void
+     */
+    private function loadConfigFiles()
+    {
+        $this->mergeConfigFrom(__DIR__ . '/../Config/config.php', 'shareConfig');
     }
 }

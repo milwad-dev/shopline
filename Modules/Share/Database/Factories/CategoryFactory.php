@@ -18,7 +18,7 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
-        $title = $this->faker->unique()->title;
+        $title = $this->faker->title;
 
         return [
             'parent_id' => null,
