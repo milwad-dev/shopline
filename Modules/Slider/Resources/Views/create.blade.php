@@ -31,13 +31,29 @@
                                             </div>
                                             <div class="col-xl-6 col-md-6 col-12">
                                                 <div class="mb-1">
-                                                    <x-panel-label for="status" title="Statys" />
+                                                    <x-panel-label for="status" title="Status" />
                                                     <x-panel-select name="status" id="status" selectedText="Select status slider">
                                                         @foreach (Modules\Category\Enums\CategoryStatusEnum::cases() as $status)
                                                             <option value="{{ $status->value }}">{{ $status->value }}</option>
                                                         @endforeach
                                                     </x-panel-select>
                                                     <x-share-error name="status" />
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <x-panel-label for="title" title="title" />
+                                                    <x-panel-input name="title" id="title" value="{{ old('title') }}"
+                                                    placeholder="Enter title" />
+                                                    <x-share-error name="title" />
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <x-panel-label for="title_color" title="Title color" />
+                                                    <x-panel-input name="title_color" id="title_color" type="color"
+                                                    value="{{ old('title_color') }}" placeholder="Enter title color" />
+                                                    <x-share-error name="title_color" />
                                                 </div>
                                             </div>
                                             <div class="row mb-5">

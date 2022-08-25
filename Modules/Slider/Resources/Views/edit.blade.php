@@ -45,6 +45,22 @@
                                                     <x-share-error name="status" />
                                                 </div>
                                             </div>
+                                            <div class="col-xl-6 col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <x-panel-label for="title" title="title" />
+                                                    <x-panel-input name="title" id="title" value="{{ $slider->title }}"
+                                                    placeholder="Enter title" />
+                                                    <x-share-error name="title" />
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <x-panel-label for="title_color" title="Title color" />
+                                                    <x-panel-input name="title_color" id="title_color" type="color"
+                                                    value="{{ $slider->title_color }}" placeholder="Enter title color" />
+                                                    <x-share-error name="title_color" />
+                                                </div>
+                                            </div>
                                             <div class="row mb-5">
                                                 <div class="col-xl-12 col-md-6 col-12">
                                                     <x-panel-label for="image" title="Image" />
