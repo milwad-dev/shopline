@@ -80,7 +80,7 @@ class AdvertisingTest extends TestCase
         $this->createUserWithLoginWithAssignPermissionWithAssignPermission();
 
         $response = $this->post(route('advertisings.store'), []);
-        $response->assertSessionHasErrors([]);
+        $response->assertSessionHasErrors(['image', 'link', 'title', 'location', 'status']);
         $response->assertRedirect();
     }
 
