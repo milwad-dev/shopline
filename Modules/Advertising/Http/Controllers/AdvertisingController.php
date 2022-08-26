@@ -52,7 +52,7 @@ class AdvertisingController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store adveritisng by request.
      *
      * @param  AdvertisingRequest $request
      * @return \Illuminate\Http\RedirectResponse
@@ -69,24 +69,28 @@ class AdvertisingController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show edit advertising page by id.
      *
-     * @param  \Modules\Advertising\Models\Advertising  $advertising
-     * @return \Illuminate\Http\Response
+     * @param  $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws AuthorizationException
      */
-    public function edit(Advertising $advertising)
+    public function edit($id)
     {
-        //
+        $this->authorize('manage', $this->class);
+        $advertising = $this->repo->findById($id);
+
+        return view('Advertising::edit', compact('advertising'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  \Modules\Advertising\Models\Advertising  $advertising
+     * @param Advertising $advertising
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Advertising $advertising)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -94,10 +98,10 @@ class AdvertisingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Modules\Advertising\Models\Advertising  $advertising
+     * @param Advertising $advertising
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Advertising $advertising)
+    public function destroy($id)
     {
         //
     }

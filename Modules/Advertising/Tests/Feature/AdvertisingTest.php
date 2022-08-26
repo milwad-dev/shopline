@@ -140,6 +140,36 @@ class AdvertisingTest extends TestCase
     }
 
     /**
+     * Test admin user can see adveritisng edit page.
+     *
+     * @return void
+     */
+    public function test_admin_user_can_see_advertising_edit_page()
+    {
+        $this->createUserWithLoginWithAssignPermissionWithAssignPermission();
+
+        $advertising = Advertising::factory()->create();
+
+        $response = $this->get(route('advertisings.edit', $advertising->id));
+        $response->assertViewHas('advertising');
+        $response->assertViewIs('Advertising::edit');
+    }
+
+    /**
+     * Test usual user can not see adveritisng edit page.
+     *
+     * @return void
+     */
+    public function test_usual_user_can_not_see_advertising_edit_page()
+    {
+        $this->createUserWithLoginWithAssignPermissionWithAssignPermission(false);
+
+        $advertising = Advertising::factory()->create();
+        $response = $this->get(route('advertisings.edit', $advertising->id));
+        $response->assertForbidden();
+    }
+
+    /**
      * Create user with login.
      *
      * @param  bool $permission

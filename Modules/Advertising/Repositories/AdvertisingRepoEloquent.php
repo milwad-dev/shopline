@@ -13,7 +13,7 @@ class AdvertisingRepoEloquent implements AdvertisingRepoEloquentInterface
 
     public function findById($id)
     {
-
+        return $this->query()->findOrFail($id);
     }
 
     public function delete($id)
