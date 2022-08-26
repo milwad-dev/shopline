@@ -4,18 +4,28 @@ namespace Modules\Advertising\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Modules\Advertising\Models\Advertising;
+use Modules\Advertising\Repositories\AdvertisingRepoEloquentInterface;
 use Modules\Share\Http\Controllers\Controller;
 
 class AdvertisingController extends Controller
 {
+    public AdvertisingRepoEloquentInterface $repo;
+
+    public function __construct(AdvertisingRepoEloquentInterface $advertisingRepoEloquent)
+    {
+        $this->repo = $advertisingRepoEloquent;
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        //
+        $advertisings = $this->repo->getLatest()->paginate();
+
+        return view('Advertising::index', compact('advertisings'));
     }
 
     /**

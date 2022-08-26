@@ -4,6 +4,8 @@ namespace Modules\Advertising\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Modules\Advertising\Repositories\AdvertisingRepoEloquent;
+use Modules\Advertising\Repositories\AdvertisingRepoEloquentInterface;
 
 class AdvertisingServiceProvider extends ServiceProvider
 {
@@ -17,5 +19,11 @@ class AdvertisingServiceProvider extends ServiceProvider
         Route::middleware(['web', 'verify'])
             ->namespace($this->namespace)
             ->group(__DIR__ . '/../Routes/advertising_routes.php');
+        $this->bindRepository();
+    }
+
+    private function bindRepository(): void
+    {
+        $this->app->bind(AdvertisingRepoEloquentInterface::class, AdvertisingRepoEloquent::class);
     }
 }

@@ -4,11 +4,11 @@ namespace Modules\Advertising\Repositories;
 
 use Modules\Advertising\Models\Advertising;
 
-class AdvertisingRepo
+class AdvertisingRepoEloquent implements AdvertisingRepoEloquentInterface
 {
-    public function index()
+    public function getLatest()
     {
-
+        return $this->query()->latest();
     }
 
     public function findById($id)
