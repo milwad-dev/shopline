@@ -2,6 +2,7 @@
 
 namespace Modules\Advertising\Http\Controllers;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Modules\Advertising\Models\Advertising;
 use Modules\Advertising\Repositories\AdvertisingRepoEloquentInterface;
@@ -9,6 +10,8 @@ use Modules\Share\Http\Controllers\Controller;
 
 class AdvertisingController extends Controller
 {
+    private string $class = Advertising::class;
+
     public AdvertisingRepoEloquentInterface $repo;
 
     public function __construct(AdvertisingRepoEloquentInterface $advertisingRepoEloquent)
@@ -20,9 +23,11 @@ class AdvertisingController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws AuthorizationException
      */
     public function index()
     {
+        $this->authorize('manage', $this->class);
         $advertisings = $this->repo->getLatest()->paginate();
 
         return view('Advertising::index', compact('advertisings'));

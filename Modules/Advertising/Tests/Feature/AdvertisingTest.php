@@ -35,7 +35,7 @@ class AdvertisingTest extends TestCase
     public function test_usual_user_can_not_see_advertising_index_page()
     {
         $this->createUserWithLoginWithAssignPermissionWithAssignPermission(false);
- // TODO have bug for add policy
+
         $response = $this->get(route('advertisings.index'));
         $response->assertForbidden();
     }
@@ -53,7 +53,7 @@ class AdvertisingTest extends TestCase
 
         $this->callPermissionSeeder();
         if ($permission) {
-            $user->givePermissionTo(Permission::PERMISSION_SLIDERS);
+            $user->givePermissionTo(Permission::PERMISSION_ADVERTISINGS);
         }
     }
 
