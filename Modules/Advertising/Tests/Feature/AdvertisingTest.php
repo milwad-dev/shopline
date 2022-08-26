@@ -287,6 +287,52 @@ class AdvertisingTest extends TestCase
     }
 
     /**
+     * Test admin user can update status advertising to active.
+     *
+     * @return void
+     */
+    public function test_admin_user_can_update_status_advertising_to_active()
+    {
+        $this->createUserWithLoginWithAssignPermissionWithAssignPermission();
+
+        $advertising = Advertising::factory()->create(['status' => AdvertisingStatusEnum::STATUS_INACTIVE->value]);
+        $response = $this->patch(route('advertising.update.status', [
+            'id' => $advertising->id,
+            'status' => AdvertisingStatusEnum::STATUS_ACTIVE->value,
+        ]));
+        $response->assertOk();
+
+        $this->assertDatabaseCount('advertisings', 1);
+        $this->assertDatabaseHas('advertisings', [
+            'title'  => $advertising->title,
+            'status' => AdvertisingStatusEnum::STATUS_ACTIVE->value,
+        ]);
+    }
+    
+    /**
+     * Test usual user can not update status advertising to active.
+     *
+     * @return void
+     */
+    public function test_usual_user_can_not_update_status_advertising_to_active()
+    {
+        $this->createUserWithLoginWithAssignPermissionWithAssignPermission(false);
+
+        $advertising = Advertising::factory()->create(['status' => AdvertisingStatusEnum::STATUS_INACTIVE->value]);
+        $response = $this->patch(route('advertising.update.status', [
+            'id' => $advertising->id,
+            'status' => AdvertisingStatusEnum::STATUS_ACTIVE->value,
+        ]));
+        $response->assertForbidden();
+
+        $this->assertDatabaseCount('advertisings', 1);
+        $this->assertDatabaseHas('advertisings', [
+            'title'  => $advertising->title,
+            'status' => AdvertisingStatusEnum::STATUS_INACTIVE->value,
+        ]);
+    }
+
+    /**
      * Create user with login.
      *
      * @param  bool $permission

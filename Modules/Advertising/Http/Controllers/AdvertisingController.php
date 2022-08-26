@@ -3,8 +3,10 @@
 namespace Modules\Advertising\Http\Controllers;
 
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Modules\Advertising\Enums\AdvertisingStatusEnum;
 use Modules\Advertising\Http\Requests\AdvertisingRequest;
 use Modules\Advertising\Models\Advertising;
 use Modules\Advertising\Repositories\AdvertisingRepoEloquentInterface;
@@ -115,6 +117,35 @@ class AdvertisingController extends Controller
     {
         $this->authorize('manage', $this->class);
         $this->repo->delete($id);
+
+        return AjaxResponses::SuccessResponse();
+    }
+
+    /**
+     * Update advertising status by id.
+     *
+     * @param  $id
+     * @param  string $status
+     * @return JsonResponse
+     * @throws AuthorizationException
+     */
+    public function updateStatus($id, string $status)
+    {
+        $this->authorize('manage', $this->class);
+
+        $active = AdvertisingStatusEnum::STATUS_ACTIVE->value;
+        $inactive = AdvertisingStatusEnum::STATUS_INACTIVE->value;
+
+        switch ($status) {
+            case $active:
+                $this->service->updateStatus($id, $active);
+                break;
+            case $inactive:
+                $this->service->updateStatus($id, $inactive);
+                break;
+            default:
+                abort(404);
+        }
 
         return AjaxResponses::SuccessResponse();
     }

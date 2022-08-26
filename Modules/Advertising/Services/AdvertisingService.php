@@ -29,6 +29,11 @@ class AdvertisingService implements AdvertisingServiceInterface
         ]);
     }
 
+    public function updateStatus($id, string $status)
+    {
+        return $this->query()->where('id', $id)->update(['status' => $status]);
+    }
+
     private function query()
     {
         return Advertising::query();
