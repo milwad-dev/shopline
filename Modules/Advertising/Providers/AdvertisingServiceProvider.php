@@ -9,6 +9,8 @@ use Modules\Advertising\Models\Advertising;
 use Modules\Advertising\Policies\AdvertisingPolicy;
 use Modules\Advertising\Repositories\AdvertisingRepoEloquent;
 use Modules\Advertising\Repositories\AdvertisingRepoEloquentInterface;
+use Modules\Advertising\Services\AdvertisingService;
+use Modules\Advertising\Services\AdvertisingServiceInterface;
 
 class AdvertisingServiceProvider extends ServiceProvider
 {
@@ -16,6 +18,7 @@ class AdvertisingServiceProvider extends ServiceProvider
 
     public function register()
     {
+        $this->loadPolicyFiles();
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
         $this->loadViewsFrom(__DIR__ . '/../Resources/Views/', 'Advertising');
 
@@ -23,7 +26,12 @@ class AdvertisingServiceProvider extends ServiceProvider
             ->namespace($this->namespace)
             ->group(__DIR__ . '/../Routes/advertising_routes.php');
         $this->bindRepository();
-        $this->loadPolicyFiles();
+        $this->bindService();
+    }
+
+    private function loadPolicyFiles(): void
+    {
+        Gate::policy(Advertising::class, AdvertisingPolicy::class);
     }
 
     private function bindRepository(): void
@@ -31,8 +39,8 @@ class AdvertisingServiceProvider extends ServiceProvider
         $this->app->bind(AdvertisingRepoEloquentInterface::class, AdvertisingRepoEloquent::class);
     }
 
-    private function loadPolicyFiles(): void
+    private function bindService()
     {
-        Gate::policy(Advertising::class, AdvertisingPolicy::class);
+        $this->app->bind(AdvertisingServiceInterface::class, AdvertisingService::class);
     }
 }

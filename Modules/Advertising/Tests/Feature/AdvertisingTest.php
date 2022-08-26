@@ -4,6 +4,10 @@ namespace Modules\Advertising\Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\UploadedFile;
+use Modules\Advertising\Enums\AdvertisingLocationEnum;
+use Modules\Advertising\Enums\AdvertisingStatusEnum;
+use Modules\Advertising\Models\Advertising;
 use Modules\RolePermission\Database\Seeds\PermissionSeeder;
 use Modules\RolePermission\Models\Permission;
 use Modules\User\Models\User;
@@ -38,6 +42,87 @@ class AdvertisingTest extends TestCase
 
         $response = $this->get(route('advertisings.index'));
         $response->assertForbidden();
+    }
+
+    /**
+     * Test admin user can see advertising create page.
+     *
+     * @return void
+     */
+    public function test_admin_user_can_see_advertising_create_page()
+    {
+        $this->createUserWithLoginWithAssignPermissionWithAssignPermission();
+
+        $response = $this->get(route('advertisings.create'));
+        $response->assertViewIs('Advertising::create');
+    }
+
+    /**
+     * Test usual user can not see advertising create page.
+     *
+     * @return void
+     */
+    public function test_usual_user_can_not_see_advertising_create_page()
+    {
+        $this->createUserWithLoginWithAssignPermissionWithAssignPermission(false);
+
+        $response = $this->get(route('advertisings.create'));
+        $response->assertForbidden();
+    }
+
+    /**
+     * Test admin user can store advertising.
+     *
+     * @return void
+     */
+    public function test_admin_user_can_store_advertising()
+    {
+        $this->createUserWithLoginWithAssignPermissionWithAssignPermission();
+
+        $link = $this->faker->url;
+        $title = $this->faker->title;
+
+        $response = $this->post(route('advertisings.store'), [
+            'image' => UploadedFile::fake()->image('advertisings.jpg'),
+            'link' => $link,
+            'title' => $title,
+            'location' => AdvertisingLocationEnum::LOCATION_BANNER->value,
+            'status' => AdvertisingStatusEnum::STATUS_ACTIVE->value,
+        ]);
+        $response->assertSessionHas('alert');
+        $response->assertRedirect(route('advertisings.index'));
+
+        $this->assertDatabaseCount('advertisings', 1);
+        $this->assertDatabaseHas('advertisings', [
+            'link' => $link,
+            'title' => $title,
+            'location' => AdvertisingLocationEnum::LOCATION_BANNER->value,
+            'status' => AdvertisingStatusEnum::STATUS_ACTIVE->value,
+        ]);
+    }
+
+    /**
+     * Test usual user can not store advertising.
+     *
+     * @return void
+     */
+    public function test_usual_user_can_not_store_advertising()
+    {
+        $this->createUserWithLoginWithAssignPermissionWithAssignPermission(false);
+
+        $this->post(route('advertisings.store'), [
+            'image' => UploadedFile::fake()->image('advertisings.jpg'),
+            'link' => $this->faker->url,
+            'title' => $this->faker->title,
+            'location' => AdvertisingLocationEnum::LOCATION_BANNER->value,
+            'status' => AdvertisingStatusEnum::STATUS_ACTIVE->value,
+        ])->assertForbidden();
+
+        $this->assertDatabaseCount('advertisings', 0);
+        $this->assertDatabaseMissing('advertisings', [
+            'location' => AdvertisingLocationEnum::LOCATION_BANNER->value,
+            'status' => AdvertisingStatusEnum::STATUS_ACTIVE->value,
+        ]);
     }
 
     /**
