@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Modules\Advertising\Http\Controllers;
 
-use App\Models\Advertising;
 use Illuminate\Http\Request;
+use Modules\Advertising\Models\Advertising;
+use Modules\Share\Http\Controllers\Controller;
 
 class AdvertisingController extends Controller
 {
@@ -41,7 +42,7 @@ class AdvertisingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Advertising  $advertising
+     * @param  \Modules\Advertising\Models\Advertising  $advertising
      * @return \Illuminate\Http\Response
      */
     public function show(Advertising $advertising)
@@ -52,7 +53,7 @@ class AdvertisingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Advertising  $advertising
+     * @param  \Modules\Advertising\Models\Advertising  $advertising
      * @return \Illuminate\Http\Response
      */
     public function edit(Advertising $advertising)
@@ -64,7 +65,7 @@ class AdvertisingController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Advertising  $advertising
+     * @param  \Modules\Advertising\Models\Advertising  $advertising
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Advertising $advertising)
@@ -75,7 +76,7 @@ class AdvertisingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Advertising  $advertising
+     * @param  \Modules\Advertising\Models\Advertising  $advertising
      * @return \Illuminate\Http\Response
      */
     public function destroy(Advertising $advertising)
