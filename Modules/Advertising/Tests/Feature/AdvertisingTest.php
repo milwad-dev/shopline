@@ -308,7 +308,7 @@ class AdvertisingTest extends TestCase
             'status' => AdvertisingStatusEnum::STATUS_ACTIVE->value,
         ]);
     }
-    
+
     /**
      * Test usual user can not update status advertising to active.
      *
@@ -329,6 +329,52 @@ class AdvertisingTest extends TestCase
         $this->assertDatabaseHas('advertisings', [
             'title'  => $advertising->title,
             'status' => AdvertisingStatusEnum::STATUS_INACTIVE->value,
+        ]);
+    }
+
+    /**
+     * Test admin user can update status advertising to inactive.
+     *
+     * @return void
+     */
+    public function test_admin_user_can_update_status_advertising_to_inactive()
+    {
+        $this->createUserWithLoginWithAssignPermissionWithAssignPermission();
+
+        $advertising = Advertising::factory()->create();
+        $response = $this->patch(route('advertising.update.status', [
+            'id' => $advertising->id,
+            'status' => AdvertisingStatusEnum::STATUS_INACTIVE->value,
+        ]));
+        $response->assertOk();
+
+        $this->assertDatabaseCount('advertisings', 1);
+        $this->assertDatabaseHas('advertisings', [
+            'title'  => $advertising->title,
+            'status' => AdvertisingStatusEnum::STATUS_INACTIVE->value,
+        ]);
+    }
+
+    /**
+     * Test usual user can not update status advertising to inactive.
+     *
+     * @return void
+     */
+    public function test_usual_user_can_not_update_status_advertising_to_inactive()
+    {
+        $this->createUserWithLoginWithAssignPermissionWithAssignPermission(false);
+
+        $advertising = Advertising::factory()->create();
+        $response = $this->patch(route('advertising.update.status', [
+            'id' => $advertising->id,
+            'status' => AdvertisingStatusEnum::STATUS_INACTIVE->value,
+        ]));
+        $response->assertForbidden();
+
+        $this->assertDatabaseCount('advertisings', 1);
+        $this->assertDatabaseHas('advertisings', [
+            'title'  => $advertising->title,
+            'status' => AdvertisingStatusEnum::STATUS_ACTIVE->value,
         ]);
     }
 
