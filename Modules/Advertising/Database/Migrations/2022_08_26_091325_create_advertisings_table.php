@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('advertisings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('media_id')->nullable()->constrained('medias')->nullOnDelete();
+            $table->string('link')->nullable();
+            $table->string('title')->nullable();
+            $table->enum('location', get_value_enums(Modules\Advertising\Enums\AdvertisingLocationEnum::cases()));
+            $table->enum('status', get_value_enums(Modules\Advertising\Enums\AdvertisingStatusEnum::cases()));
             $table->timestamps();
         });
     }

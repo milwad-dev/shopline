@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Modules\Advertising\Models\Advertising;
 use Modules\Article\Models\Article;
 use Modules\Auth\Notifications\ResetPasswordRequestNotification;
 use Modules\Auth\Notifications\VerifyMailNotification;
@@ -137,5 +138,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sliders()
     {
         return $this->hasMany(Slider::class);
+    }
+
+    /**
+     * Relations to Advertising model, relation is one to many.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function advertisings()
+    {
+        return $this->hasMany(Advertising::class);
     }
 }
