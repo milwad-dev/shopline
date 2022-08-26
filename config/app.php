@@ -196,6 +196,7 @@ return [
         Modules\Product\Providers\ProductServiceProvider::class,
         Modules\Article\Providers\ArticleServiceProvider::class,
         Modules\Slider\Providers\SliderServiceProvider::class,
+        Modules\Advertising\Providers\AdvertisingServiceProvider::class,
         /**
          * Package Service Providers...
          */
