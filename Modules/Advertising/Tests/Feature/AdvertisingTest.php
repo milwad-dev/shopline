@@ -249,6 +249,44 @@ class AdvertisingTest extends TestCase
     }
 
     /**
+     * Test usual user can not delete advertsing.
+     *
+     * @return void
+     */
+    public function test_usual_user_not_can_delete_advertising()
+    {
+        $this->createUserWithLoginWithAssignPermissionWithAssignPermission(false);
+
+        $advertising = Advertising::factory()->create();
+        $response = $this->delete(route('advertisings.destroy', $advertising->id));
+        $response->assertForbidden();
+
+        $this->assertDatabaseCount('advertisings', 1);
+        $this->assertDatabaseHas('advertisings', [
+            'title' => $advertising->title,
+        ]);
+    }
+
+    /**
+     * Test admin user can delete advertsing.
+     *
+     * @return void
+     */
+    public function test_admin_user_can_delete_advertising()
+    {
+        $this->createUserWithLoginWithAssignPermissionWithAssignPermission();
+
+        $advertising = Advertising::factory()->create();
+        $response = $this->delete(route('advertisings.destroy', $advertising->id));
+        $response->assertOk();
+
+        $this->assertDatabaseCount('advertisings', 0);
+        $this->assertDatabaseMissing('advertisings', [
+            'title' => $advertising->title,
+        ]);
+    }
+
+    /**
      * Create user with login.
      *
      * @param  bool $permission

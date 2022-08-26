@@ -10,6 +10,7 @@ use Modules\Advertising\Models\Advertising;
 use Modules\Advertising\Repositories\AdvertisingRepoEloquentInterface;
 use Modules\Advertising\Services\AdvertisingServiceInterface;
 use Modules\Share\Http\Controllers\Controller;
+use Modules\Share\Responses\AjaxResponses;
 use Modules\Share\Services\ShareService;
 
 class AdvertisingController extends Controller
@@ -104,14 +105,18 @@ class AdvertisingController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete advertising by id.
      *
-     * @param Advertising $advertising
-     * @return \Illuminate\Http\Response
+     * @param  $id
+     * @return \Illuminate\Http\JsonResponse
+     * @throws AuthorizationException
      */
     public function destroy($id)
     {
-        //
+        $this->authorize('manage', $this->class);
+        $this->repo->delete($id);
+
+        return AjaxResponses::SuccessResponse();
     }
 
     /**

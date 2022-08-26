@@ -18,7 +18,7 @@ class AdvertisingRepoEloquent implements AdvertisingRepoEloquentInterface
 
     public function delete($id)
     {
-
+        return $this->query()->where('id', $id)->delete();
     }
 
     private function query()
