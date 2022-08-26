@@ -71,11 +71,11 @@ class AdvertisingTest extends TestCase
     }
 
     /**
-     * Test validate advertising be successful.
+     * Test validate store advertising be successful.
      *
      * @return void
      */
-    public function test_validate_advertising_be_successful()
+    public function test_validate_store_advertising_be_successful()
     {
         $this->createUserWithLoginWithAssignPermissionWithAssignPermission();
 
@@ -167,6 +167,85 @@ class AdvertisingTest extends TestCase
         $advertising = Advertising::factory()->create();
         $response = $this->get(route('advertisings.edit', $advertising->id));
         $response->assertForbidden();
+    }
+
+    /**
+     * Test validate update advertising be successful.
+     *
+     * @return void
+     */
+    public function test_validate_upate_advertising_be_successful()
+    {
+        $this->createUserWithLoginWithAssignPermissionWithAssignPermission();
+
+        $advertising = Advertising::factory()->create();
+
+        $response = $this->patch(route('advertisings.update', $advertising->id), []);
+        $response->assertSessionHasErrors(['link', 'title', 'location', 'status']);
+        $response->assertRedirect();
+
+        $this->assertDatabaseCount('advertisings', 1);
+    }
+
+    /**
+     * Test admin user can update advertising.
+     *
+     * @return void
+     */
+    public function test_admin_user_can_update_advertising()
+    {
+        $this->createUserWithLoginWithAssignPermissionWithAssignPermission();
+
+        $advertising = Advertising::factory()->create();
+        $link = $this->faker->url;
+        $title = $this->faker->title;
+
+        $response = $this->patch(route('advertisings.update', $advertising->id), [
+            'image' => UploadedFile::fake()->image('advertisings-update.jpg'),
+            'link' => $link,
+            'title' => $title,
+            'location' => AdvertisingLocationEnum::LOCATION_BLOG_PAGE->value,
+            'status' => AdvertisingStatusEnum::STATUS_INACTIVE->value,
+        ]);
+        $response->assertSessionHas('alert');
+        $response->assertRedirect(route('advertisings.index'));
+
+        $this->assertDatabaseCount('advertisings', 1);
+        $this->assertDatabaseHas('advertisings', [
+            'link' => $link,
+            'title' => $title,
+            'location' => AdvertisingLocationEnum::LOCATION_BLOG_PAGE->value,
+            'status' => AdvertisingStatusEnum::STATUS_INACTIVE->value,
+        ]);
+    }
+
+    /**
+     * Test usual user can not update advertising.
+     *
+     * @return void
+     */
+    public function test_usual_user_can_not_update_advertising()
+    {
+        $this->createUserWithLoginWithAssignPermissionWithAssignPermission(false);
+
+        $advertising = Advertising::factory()->create();
+        $link = $this->faker->url;
+        $title = $this->faker->title;
+
+        $response = $this->patch(route('advertisings.update', $advertising->id), [
+            'image' => UploadedFile::fake()->image('advertisings-update.jpg'),
+            'link' => $link,
+            'title' => $title,
+            'location' => AdvertisingLocationEnum::LOCATION_BLOG_PAGE->value,
+            'status' => AdvertisingStatusEnum::STATUS_INACTIVE->value,
+        ]);
+        $response->assertForbidden();
+
+        $this->assertDatabaseCount('advertisings', 1);
+        $this->assertDatabaseMissing('advertisings', [
+            'link' => $link,
+            'title' => $title,
+        ]);
     }
 
     /**

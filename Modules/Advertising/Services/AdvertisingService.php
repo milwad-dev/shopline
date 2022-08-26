@@ -20,7 +20,7 @@ class AdvertisingService implements AdvertisingServiceInterface
 
     public function update(array $data, $id)
     {
-        return $this->query()->whereId($id)->update([
+        return $this->query()->where('id', $id)->update([
             'media_id'  => $data['media_id'],
             'link'      => $data['link'],
             'title'     => $data['title'],

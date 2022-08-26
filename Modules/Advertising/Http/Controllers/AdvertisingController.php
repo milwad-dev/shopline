@@ -86,13 +86,21 @@ class AdvertisingController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param Advertising $advertising
-     * @return \Illuminate\Http\Response
+     * @param  AdvertisingRequest $request
+     * @param  $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws AuthorizationException
      */
-    public function update(Request $request, $id)
+    public function update(AdvertisingRequest $request, $id)
     {
-        //
+        $this->authorize('manage', $this->class);
+
+        $advertising = $this->repo->findById($id);
+
+        $this->uploadMediaForUpdateAdvertising($request, $advertising);
+        $this->service->update($request->all(), $id);
+
+        return $this->successMessageWithRedirect('Update advertising');
     }
 
     /**
@@ -116,5 +124,15 @@ class AdvertisingController extends Controller
     {
         ShareService::successToast($title);
         return to_route('advertisings.index');
+    }
+
+    private function uploadMediaForUpdateAdvertising(AdvertisingRequest $request, \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Builder|array|null $advertising): void
+    {
+        if ($request->image) {
+            $advertising->media()->delete();
+            ShareService::uploadMediaWithAddInRequest($request);
+        } else {
+            $request->request->add(['media_id' => $advertising->media_id]);
+        }
     }
 }
