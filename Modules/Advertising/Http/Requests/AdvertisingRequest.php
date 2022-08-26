@@ -3,6 +3,9 @@
 namespace Modules\Advertising\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
+use Modules\Advertising\Enums\AdvertisingLocationEnum;
+use Modules\Advertising\Enums\AdvertisingStatusEnum;
 
 class AdvertisingRequest extends FormRequest
 {
@@ -23,8 +26,18 @@ class AdvertisingRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
+        $rules = [
+            'image'     => ['required', 'file', 'mimes:jpeg,png,jpeg', 'max:2048'],
+            'link'      => ['required', 'string', 'min:3', 'max:255'],
+            'title'     => ['required', 'string', 'min:3', 'max:255'],
+            'location'  => ['required', 'string', 'max:255', new Enum(AdvertisingLocationEnum::class)],
+            'status'    => ['required', 'string', 'max:255', new Enum(AdvertisingStatusEnum::class)],
         ];
+
+        if (request()->method === 'PATCH') {
+            $rules['image'] = ['nullable', 'file', 'mimes:jpeg,png,jpeg', 'max:2048'];
+        }
+
+        return $rules;
     }
 }

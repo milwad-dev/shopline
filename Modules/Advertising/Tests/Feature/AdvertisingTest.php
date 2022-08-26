@@ -71,6 +71,20 @@ class AdvertisingTest extends TestCase
     }
 
     /**
+     * Test validate advertising be successful.
+     *
+     * @return void
+     */
+    public function test_validate_advertising_be_successful()
+    {
+        $this->createUserWithLoginWithAssignPermissionWithAssignPermission();
+
+        $response = $this->post(route('advertisings.store'), []);
+        $response->assertSessionHasErrors([]);
+        $response->assertRedirect();
+    }
+
+    /**
      * Test admin user can store advertising.
      *
      * @return void
