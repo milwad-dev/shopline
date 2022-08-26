@@ -2,7 +2,6 @@
 
 namespace Modules\Home\Repositories\Home;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Modules\Category\Enums\CategoryStatusEnum;
 use Modules\Category\Models\Category;
