@@ -160,7 +160,12 @@ class AdvertisingController extends Controller
         return to_route('advertisings.index');
     }
 
-    private function uploadMediaForUpdateAdvertising(AdvertisingRequest $request, \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Builder|array|null $advertising): void
+    /**
+     * @param  AdvertisingRequest $request
+     * @param  Advertising $advertising
+     * @return void
+     */
+    private function uploadMediaForUpdateAdvertising(AdvertisingRequest $request, Advertising $advertising): void
     {
         if ($request->image) {
             $advertising->media()->delete();
