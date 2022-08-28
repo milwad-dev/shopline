@@ -296,7 +296,7 @@ class AdvertisingTest extends TestCase
         $this->createUserWithLoginWithAssignPermissionWithAssignPermission();
 
         $advertising = Advertising::factory()->create(['status' => AdvertisingStatusEnum::STATUS_INACTIVE->value]);
-        $response = $this->patch(route('advertising.update.status', [
+        $response = $this->patch(route('advertisings.update.status', [
             'id' => $advertising->id,
             'status' => AdvertisingStatusEnum::STATUS_ACTIVE->value,
         ]));
@@ -319,7 +319,7 @@ class AdvertisingTest extends TestCase
         $this->createUserWithLoginWithAssignPermissionWithAssignPermission(false);
 
         $advertising = Advertising::factory()->create(['status' => AdvertisingStatusEnum::STATUS_INACTIVE->value]);
-        $response = $this->patch(route('advertising.update.status', [
+        $response = $this->patch(route('advertisings.update.status', [
             'id' => $advertising->id,
             'status' => AdvertisingStatusEnum::STATUS_ACTIVE->value,
         ]));
@@ -342,7 +342,7 @@ class AdvertisingTest extends TestCase
         $this->createUserWithLoginWithAssignPermissionWithAssignPermission();
 
         $advertising = Advertising::factory()->create();
-        $response = $this->patch(route('advertising.update.status', [
+        $response = $this->patch(route('advertisings.update.status', [
             'id' => $advertising->id,
             'status' => AdvertisingStatusEnum::STATUS_INACTIVE->value,
         ]));
@@ -365,7 +365,7 @@ class AdvertisingTest extends TestCase
         $this->createUserWithLoginWithAssignPermissionWithAssignPermission(false);
 
         $advertising = Advertising::factory()->create();
-        $response = $this->patch(route('advertising.update.status', [
+        $response = $this->patch(route('advertisings.update.status', [
             'id' => $advertising->id,
             'status' => AdvertisingStatusEnum::STATUS_INACTIVE->value,
         ]));
