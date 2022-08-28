@@ -2,6 +2,10 @@
 
 @section('title', 'Advertisings')
 
+@section('css')
+    <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
+@endsection
+
 @section('content')
     <div class="app-content content">
         <div class="content-overlay"></div>
@@ -50,8 +54,9 @@
                                                 <td>
                                                     {{ $advertising->location }}
                                                 </td>
-                                                <td>
-                                                    <span class="badge rounded-pill badge-light-{{ $advertising->getCssClassStatus() }} me-1">
+                                                <td class="status">
+                                                    <span class="badge rounded-pill me-1
+                                                     badge-light-{{ $advertising->getCssClassStatus() }}">
                                                         {{ $advertising->status }}
                                                     </span>
                                                 </td>
@@ -65,6 +70,18 @@
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
                                                         </button>
                                                         <div class="dropdown-menu dropdown-menu-end">
+                                                            <a class="dropdown-item" href="#" onclick="updateStatus(event,
+                                                             '{{ route('advertisings.update.status', ['id' => $advertising->id, 'status' => 'active']) }}',
+                                                             '{{ Modules\Advertising\Enums\AdvertisingStatusEnum::STATUS_ACTIVE->value }}')">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rotate-cw me-50"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                                                                <span>Change status to active</span>
+                                                            </a>
+                                                            <a class="dropdown-item" href="#" onclick="updateStatus(event,
+                                                             '{{ route('advertisings.update.status', ['id' => $advertising->id, 'status' => 'inactive']) }}',
+                                                             '{{ Modules\Advertising\Enums\AdvertisingStatusEnum::STATUS_INACTIVE->value }}')">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rotate-cw me-50"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                                                                <span>Change status to inactive</span>
+                                                            </a>
                                                             <a class="dropdown-item" href="{{ route('advertisings.edit', $advertising->id) }}">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 me-50"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
                                                                 <span>Edit</span>
