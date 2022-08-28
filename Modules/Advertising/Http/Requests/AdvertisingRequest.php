@@ -28,8 +28,8 @@ class AdvertisingRequest extends FormRequest
     {
         $rules = [
             'image'     => ['required', 'file', 'mimes:jpeg,png,jpeg', 'max:2048'],
-            'link'      => ['required', 'string', 'min:3', 'max:255'],
-            'title'     => ['required', 'string', 'min:3', 'max:255'],
+            'link'      => ['nullable', 'string', 'min:3', 'max:255'],
+            'title'     => ['nullable', 'string', 'min:3', 'max:255'],
             'location'  => ['required', 'string', 'max:255', new Enum(AdvertisingLocationEnum::class)],
             'status'    => ['required', 'string', 'max:255', new Enum(AdvertisingStatusEnum::class)],
         ];
