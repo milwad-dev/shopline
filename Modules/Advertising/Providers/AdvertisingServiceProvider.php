@@ -3,8 +3,8 @@
 namespace Modules\Advertising\Providers;
 
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 use Modules\Advertising\Models\Advertising;
 use Modules\Advertising\Policies\AdvertisingPolicy;
 use Modules\Advertising\Repositories\AdvertisingRepoEloquent;

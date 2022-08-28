@@ -6,6 +6,12 @@ use Modules\Advertising\Models\Advertising;
 
 class AdvertisingService implements AdvertisingServiceInterface
 {
+    /**
+     * Store advertising by data.
+     *
+     * @param  array $data
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
+     */
     public function store(array $data)
     {
         return $this->query()->create([
@@ -18,7 +24,14 @@ class AdvertisingService implements AdvertisingServiceInterface
         ]);
     }
 
-    public function update(array $data, $id)
+    /**
+     * Update advertising by id & data.
+     *
+     * @param  array $data
+     * @param  int $id
+     * @return int
+     */
+    public function update(array $data, int $id)
     {
         return $this->query()->where('id', $id)->update([
             'media_id'  => $data['media_id'],
@@ -29,11 +42,23 @@ class AdvertisingService implements AdvertisingServiceInterface
         ]);
     }
 
-    public function updateStatus($id, string $status)
+    /**
+     * Update status advertising by id.
+     *
+     * @param  int $id
+     * @param  string $status
+     * @return int
+     */
+    public function updateStatus(int $id, string $status)
     {
         return $this->query()->where('id', $id)->update(['status' => $status]);
     }
 
+    /**
+     * Get query model (builder).
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     private function query()
     {
         return Advertising::query();

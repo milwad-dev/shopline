@@ -4,8 +4,6 @@ namespace Modules\Advertising\Http\Controllers;
 
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Modules\Advertising\Enums\AdvertisingStatusEnum;
 use Modules\Advertising\Http\Requests\AdvertisingRequest;
 use Modules\Advertising\Models\Advertising;
