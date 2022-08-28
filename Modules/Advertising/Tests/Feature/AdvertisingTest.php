@@ -80,7 +80,7 @@ class AdvertisingTest extends TestCase
         $this->createUserWithLoginWithAssignPermissionWithAssignPermission();
 
         $response = $this->post(route('advertisings.store'), []);
-        $response->assertSessionHasErrors(['image', 'link', 'title', 'location', 'status']);
+        $response->assertSessionHasErrors(['image', 'location', 'status']);
         $response->assertRedirect();
     }
 
@@ -181,7 +181,7 @@ class AdvertisingTest extends TestCase
         $advertising = Advertising::factory()->create();
 
         $response = $this->patch(route('advertisings.update', $advertising->id), []);
-        $response->assertSessionHasErrors(['link', 'title', 'location', 'status']);
+        $response->assertSessionHasErrors(['location', 'status']);
         $response->assertRedirect();
 
         $this->assertDatabaseCount('advertisings', 1);
