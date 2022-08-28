@@ -73,6 +73,16 @@ class AdvertisingServiceProvider extends ServiceProvider
     }
 
     /**
+     * Boot service provider.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->setMenuForPanel();
+    }
+
+    /**
      * bind repository into interface.
      *
      * @return void
@@ -132,5 +142,19 @@ class AdvertisingServiceProvider extends ServiceProvider
         Route::middleware($this->routeMiddleware)
             ->namespace($this->namespace)
             ->group(__DIR__ . $this->routePath);
+    }
+
+    /**
+     * Set menu for panel
+     *
+     * @return void
+     */
+    private function setMenuForPanel(): void
+    {
+        config()->set('panelConfig.menus.advertisings', [
+            'title' => 'Advertising',
+            'icon' => 'youtube',
+            'url' => route('advertisings.index'),
+        ]);
     }
 }

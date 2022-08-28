@@ -13,5 +13,6 @@ return [
         'products' => [],
         'articles' => [],
         'sliders' => [],
+        'advertisings' => [],
     ],
 ];
