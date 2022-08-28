@@ -19,12 +19,10 @@ class AdvertisingServiceProvider extends ServiceProvider
     public function register()
     {
         $this->loadPolicyFiles();
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
-        $this->loadViewsFrom(__DIR__ . '/../Resources/Views/', 'Advertising');
+        $this->loadMigrationFiles();
+        $this->loadViewFiles();
+        $this->loadRouteFiles();
 
-        Route::middleware(['web', 'verify'])
-            ->namespace($this->namespace)
-            ->group(__DIR__ . '/../Routes/advertising_routes.php');
         $this->bindRepository();
         $this->bindService();
     }
@@ -42,5 +40,22 @@ class AdvertisingServiceProvider extends ServiceProvider
     private function bindService()
     {
         $this->app->bind(AdvertisingServiceInterface::class, AdvertisingService::class);
+    }
+
+    private function loadMigrationFiles(): void
+    {
+        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+    }
+
+    private function loadViewFiles(): void
+    {
+        $this->loadViewsFrom(__DIR__ . '/../Resources/Views/', 'Advertising');
+    }
+
+    private function loadRouteFiles(): void
+    {
+        Route::middleware(['web', 'verify'])
+            ->namespace($this->namespace)
+            ->group(__DIR__ . '/../Routes/advertising_routes.php');
     }
 }
