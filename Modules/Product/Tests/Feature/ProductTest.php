@@ -178,7 +178,7 @@ class ProductTest extends TestCase
         $response->assertViewIs('Product::edit');
         $response->assertViewHas(['categories', 'product']);
     }
-    
+
     /**
      * Test usual user can see not edit product page.
      *
@@ -205,23 +205,34 @@ class ProductTest extends TestCase
         $product = $this->makeProduct();
         $category = Category::factory()->create();
 
-        $response = $this->patch(route('products.update', $product->id), [
-            'id' => $product->id,
-            'first_media' => UploadedFile::fake()->image('first_media.jpg'),
-            'second_media' => UploadedFile::fake()->image('second_media.jpg'),
-            'title' => $this->faker->title,
-            'price' => $this->faker->numberBetween(5, 15),
-            'count' => 51,
-            'type' => $this->faker->title,
-            'short_description' => $this->faker->text,
-            'body' => $this->faker->text,
-            'status' => ProductStatusEnum::STATUS_ACTIVE->value,
-            'categories' => [
-                $category->id,
-            ],
-            'is_popular' => 1,
-        ]);
+        $response = $this->patch(
+            route('products.update', $product->id),
+            $this->getUpdateData($product, $category)
+        );
         $response->assertRedirect(route('products.index'));
+
+        $this->assertEquals(1, Product::query()->count());
+    }
+
+
+    /**
+     * Test usual user can not update product.
+     *
+     * @return void
+     */
+    public function test_usual_user_can_not_update_product()
+    {
+        $this->createUserWithLoginWithAssignPermission(false);
+
+        $product = $this->makeProduct();
+        $category = Category::factory()->create();
+
+        $response = $this->patch(
+            route('products.update', $product->id),
+            $this->getUpdateData($product, $category)
+        );
+        $response->assertForbidden();
+
         $this->assertEquals(1, Product::query()->count());
     }
 
@@ -298,6 +309,26 @@ class ProductTest extends TestCase
                 [
                     'attributekeys' => null,
                 ]
+            ],
+            'is_popular' => 1,
+        ];
+    }
+
+    private function getUpdateData(mixed $product, mixed $category): array
+    {
+        return [
+            'id' => $product->id,
+            'first_media' => UploadedFile::fake()->image('first_media.jpg'),
+            'second_media' => UploadedFile::fake()->image('second_media.jpg'),
+            'title' => $this->faker->title,
+            'price' => $this->faker->numberBetween(5, 15),
+            'count' => 51,
+            'type' => $this->faker->title,
+            'short_description' => $this->faker->text,
+            'body' => $this->faker->text,
+            'status' => ProductStatusEnum::STATUS_ACTIVE->value,
+            'categories' => [
+                $category->id,
             ],
             'is_popular' => 1,
         ];
