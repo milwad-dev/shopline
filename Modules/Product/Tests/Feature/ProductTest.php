@@ -58,7 +58,7 @@ class ProductTest extends TestCase
         $response->assertViewIs('Product::create');
         $response->assertViewHas('categories');
     }
-    
+
     /**
      * Test usual user can not see create products page.
      *
@@ -82,32 +82,26 @@ class ProductTest extends TestCase
         $this->createUserWithLoginWithAssignPermission();
 
         Category::factory(5)->create();
-        $response = $this->post(route('products.store'), [
-            'first_media' => UploadedFile::fake()->image('first_media.jpg'), // Mock
-            'second_media' => UploadedFile::fake()->image('second_media.jpg'), // Mock
-            'title' => $this->faker->title,
-            'price' => $this->faker->numberBetween(5, 15),
-            'count' => 51,
-            'type' => $this->faker->title,
-            'short_description' => $this->faker->text,
-            'body' => $this->faker->text,
-            'status' => ProductStatusEnum::STATUS_ACTIVE->value,
-            'categories' => Category::query()->inRandomOrder()->get()->pluck('id')->toArray(),
-            'galleries' => [
-                UploadedFile::fake()->image(Str::random(10) . '.jpg'),
-                UploadedFile::fake()->image(Str::random(10) . '.jpg'),
-                UploadedFile::fake()->image(Str::random(10) . '.jpg'),
-            ],
-            'attributes' => [
-                [
-                    'attributekeys' => null,
-                ]
-            ],
-            'is_popular' => 1,
-        ]);
+        $response = $this->post(route('products.store'), $this->storeProductData());
         $response->assertRedirect(route('products.index'));
 
         $this->assertEquals(1, Product::query()->count());
+    }
+
+    /**
+     * Test usual user can not store products
+     *
+     * @return void
+     */
+    public function test_usual_user_can_not_store_products()
+    {
+        $this->createUserWithLoginWithAssignPermission(false);
+
+        Category::factory(5)->create();
+        $response = $this->post(route('products.store'), $this->storeProductData());
+        $response->assertForbidden();
+
+        $this->assertEquals(0, Product::query()->count());
     }
 
     /**
@@ -117,10 +111,8 @@ class ProductTest extends TestCase
      */
     public function test_admin_user_can_store_products_with_attributes_tags()
     {
-        $this->withoutExceptionHandling();
         $this->createUserWithLoginWithAssignPermission();
 
-//        Category::factory(5)->create();
         $response = $this->post(route('products.store'), [
             'first_media' => UploadedFile::fake()->image('first_media.jpg'), // Mock
             'second_media' => UploadedFile::fake()->image('second_media.jpg'), // Mock
@@ -131,7 +123,6 @@ class ProductTest extends TestCase
             'short_description' => $this->faker->text,
             'body' => $this->faker->text,
             'status' => ProductStatusEnum::STATUS_ACTIVE->value,
-//            'categories' => Category::query()->inRandomOrder()->get()->pluck('id')->toArray(),
             'categories' => [
                 Category::factory()->create()->id,
                 Category::factory()->create()->id,
@@ -268,5 +259,32 @@ class ProductTest extends TestCase
     private function callPermissionSeeder()
     {
         $this->seed(PermissionSeeder::class);
+    }
+
+    private function storeProductData(): array
+    {
+        return [
+            'first_media' => UploadedFile::fake()->image('first_media.jpg'), // Mock
+            'second_media' => UploadedFile::fake()->image('second_media.jpg'), // Mock
+            'title' => $this->faker->title,
+            'price' => $this->faker->numberBetween(5, 15),
+            'count' => 51,
+            'type' => $this->faker->title,
+            'short_description' => $this->faker->text,
+            'body' => $this->faker->text,
+            'status' => ProductStatusEnum::STATUS_ACTIVE->value,
+            'categories' => Category::query()->inRandomOrder()->get()->pluck('id')->toArray(),
+            'galleries' => [
+                UploadedFile::fake()->image(Str::random(10) . '.jpg'),
+                UploadedFile::fake()->image(Str::random(10) . '.jpg'),
+                UploadedFile::fake()->image(Str::random(10) . '.jpg'),
+            ],
+            'attributes' => [
+                [
+                    'attributekeys' => null,
+                ]
+            ],
+            'is_popular' => 1,
+        ];
     }
 }
