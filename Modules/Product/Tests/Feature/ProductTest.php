@@ -9,6 +9,8 @@ use Illuminate\Support\Str;
 use Modules\Category\Models\Category;
 use Modules\Product\Enums\ProductStatusEnum;
 use Modules\Product\Models\Product;
+use Modules\RolePermission\Database\Seeds\PermissionSeeder;
+use Modules\RolePermission\Models\Permission;
 use Modules\User\Models\User;
 use Tests\TestCase;
 
@@ -214,13 +216,29 @@ class ProductTest extends TestCase
     }
 
     /**
-     * Create user with login
+     * Create user with login & assign permission.
      *
+     * @param  bool $permission
      * @return void
      */
-    private function createUserWithLoginWithAssignPermission()
+    private function createUserWithLoginWithAssignPermission(bool $permission = true)
     {
         $user = User::factory()->create();
         auth()->login($user);
+
+        $this->callPermissionSeeder();
+        if ($permission) {
+            $user->givePermissionTo(Permission::PERMISSION_PRODUCTS);
+        }
+    }
+
+    /**
+     * Call permission seeder.
+     *
+     * @return void
+     */
+    private function callPermissionSeeder()
+    {
+        $this->seed(PermissionSeeder::class);
     }
 }
