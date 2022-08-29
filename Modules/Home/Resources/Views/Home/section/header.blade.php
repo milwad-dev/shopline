@@ -6,66 +6,41 @@
         <div class="container">
             <div class="header-wrap">
                 <div class="logo logo-width-1">
-                    <a href="index.html"><img src="assets/imgs/theme/logo.svg" alt="logo" /></a>
+                    <a href="{{ route('home.index') }}">
+                        <img src="{{ asset(config('app.logo')) }}" alt="logo" />
+                    </a>
                 </div>
                 <div class="header-right">
                     <div class="search-style-2">
-                        <form action="index-2.html#">
+                        <form action="">
                             <select class="select-active">
-                                <option>All Categories</option>
-                                <option>Milks and Dairies</option>
-                                <option>Wines & Alcohol</option>
-                                <option>Clothing & Beauty</option>
-                                <option>Pet Foods & Toy</option>
-                                <option>Fast food</option>
-                                <option>Baking material</option>
-                                <option>Vegetables</option>
-                                <option>Fresh Seafood</option>
-                                <option>Noodles & Rice</option>
-                                <option>Ice cream</option>
+                                <option value="" selected>All Categories</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->title }}">{{ $category->title }}</option>
+                                @endforeach
                             </select>
                             <input type="text" placeholder="Search for items..." />
                         </form>
                     </div>
                     <div class="header-action-right">
                         <div class="header-action-2">
-                            <div class="search-location">
-                                <form action="index-2.html#">
-                                    <select class="select-active">
-                                        <option>Your Location</option>
-                                        <option>Alabama</option>
-                                        <option>Alaska</option>
-                                        <option>Arizona</option>
-                                        <option>Delaware</option>
-                                        <option>Florida</option>
-                                        <option>Georgia</option>
-                                        <option>Hawaii</option>
-                                        <option>Indiana</option>
-                                        <option>Maryland</option>
-                                        <option>Nevada</option>
-                                        <option>New Jersey</option>
-                                        <option>New Mexico</option>
-                                        <option>New York</option>
-                                    </select>
-                                </form>
-                            </div>
                             <div class="header-action-icon-2">
                                 <a href="shop-compare.html">
-                                    <img class="svgInject" alt="Nest" src="assets/imgs/theme/icons/icon-compare.svg" />
+                                    <img class="svgInject" alt="Nest" src="{{ asset('home/imgs/theme/icons/icon-compare.svg') }}" />
                                     <span class="pro-count blue">3</span>
                                 </a>
                                 <a href="shop-compare.html"><span class="lable ml-0">Compare</span></a>
                             </div>
                             <div class="header-action-icon-2">
                                 <a href="shop-wishlist.html">
-                                    <img class="svgInject" alt="Nest" src="assets/imgs/theme/icons/icon-heart.svg" />
+                                    <img class="svgInject" alt="Nest" src="{{ asset('home/imgs/theme/icons/icon-heart.svg') }}" />
                                     <span class="pro-count blue">6</span>
                                 </a>
                                 <a href="shop-wishlist.html"><span class="lable">Wishlist</span></a>
                             </div>
                             <div class="header-action-icon-2">
                                 <a class="mini-cart-icon" href="shop-cart.html">
-                                    <img alt="Nest" src="assets/imgs/theme/icons/icon-cart.svg" />
+                                    <img alt="Nest" src="{{ asset('home/imgs/theme/icons/icon-cart.svg') }}" />
                                     <span class="pro-count blue">2</span>
                                 </a>
                                 <a href="shop-cart.html"><span class="lable">Cart</span></a>
@@ -73,7 +48,7 @@
                                     <ul>
                                         <li>
                                             <div class="shopping-cart-img">
-                                                <a href="shop-product-right.html"><img alt="Nest" src="assets/imgs/shop/thumbnail-3.jpg" /></a>
+                                                <a href="shop-product-right.html"><img alt="Nest" src="{{ asset('home/imgs/shop/thumbnail-3.jpg') }}" /></a>
                                             </div>
                                             <div class="shopping-cart-title">
                                                 <h4><a href="shop-product-right.html">Daisy Casual Bag</a></h4>
@@ -85,7 +60,7 @@
                                         </li>
                                         <li>
                                             <div class="shopping-cart-img">
-                                                <a href="shop-product-right.html"><img alt="Nest" src="assets/imgs/shop/thumbnail-2.jpg" /></a>
+                                                <a href="shop-product-right.html"><img alt="Nest" src="{{ asset('home/imgs/shop/thumbnail-2.jpg') }}" /></a>
                                             </div>
                                             <div class="shopping-cart-title">
                                                 <h4><a href="shop-product-right.html">Corduroy Shirts</a></h4>
@@ -109,7 +84,7 @@
                             </div>
                             <div class="header-action-icon-2">
                                 <a href="page-account.html">
-                                    <img class="svgInject" alt="Nest" src="assets/imgs/theme/icons/icon-user.svg" />
+                                    <img class="svgInject" alt="Nest" src="{{ asset('home/imgs/theme/icons/icon-user.svg') }}" />
                                 </a>
                                 <a href="page-account.html"><span class="lable ml-0">Account</span></a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
