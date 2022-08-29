@@ -56,6 +56,20 @@ class ProductTest extends TestCase
 
         $response = $this->get(route('products.create'));
         $response->assertViewIs('Product::create');
+        $response->assertViewHas('categories');
+    }
+    
+    /**
+     * Test usual user can not see create products page.
+     *
+     * @return void
+     */
+    public function test_usual_user_can_not_see_create_products_page()
+    {
+        $this->createUserWithLoginWithAssignPermission(false);
+
+        $response = $this->get(route('products.create'));
+        $response->assertForbidden();
     }
 
     /**
