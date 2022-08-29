@@ -35,7 +35,7 @@ class ProductRequest extends FormRequest
             'short_description' => 'required|string|min:3',
             'body' => 'required|string|min:3',
             'status' => ['required', 'string', 'max:255', new Enum(ProductStatusEnum::class)],
-            'categories' => 'required|array',
+            'categories' => 'required|array:categories,id',
         ];
 
         if (request()->method === 'PATCH') {

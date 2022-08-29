@@ -113,16 +113,6 @@ class ProductService
     }
 
     /**
-     * Get product query (builder).
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    private function query()
-    {
-        return Product::query();
-    }
-
-    /**
      * First or create categories product.
      *
      * @param  array $categories
@@ -134,5 +124,15 @@ class ProductService
         foreach ($categories as $category) {
             $product->categories()->syncWithoutDetaching($category);
         }
+    }
+
+    /**
+     * Get product query (builder).
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    private function query()
+    {
+        return Product::query();
     }
 }
