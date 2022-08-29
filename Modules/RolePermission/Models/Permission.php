@@ -12,6 +12,7 @@ class Permission extends \Spatie\Permission\Models\Permission
     public const PERMISSION_USERS = 'permission users';
     public const PERMISSION_CATEGORIES = 'permission categories';
     public const PERMISSION_ROLE_PERMISSIONS = 'permission role permissions';
+    public const PERMISSION_PRODUCTS = 'permission products';
     public const PERMISSION_ARTICLES = 'permission articles';
     public const PERMISSION_SLIDERS = 'permission sliders';
     public const PERMISSION_ADVERTISINGS = 'permission advertisings';
@@ -27,6 +28,7 @@ class Permission extends \Spatie\Permission\Models\Permission
         self::PERMISSION_USERS,
         self::PERMISSION_CATEGORIES,
         self::PERMISSION_ROLE_PERMISSIONS,
+        self::PERMISSION_PRODUCTS,
         self::PERMISSION_ARTICLES,
         self::PERMISSION_SLIDERS,
         self::PERMISSION_ADVERTISINGS,
