@@ -6,7 +6,7 @@ use Modules\Media\Services\MediaFileService;
 use Modules\Product\Models\Product;
 use Modules\Share\Services\ShareService;
 
-class ProductService
+class ProductService implements ProductServiceInterface
 {
     /**
      * Store product with request.

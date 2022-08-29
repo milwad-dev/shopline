@@ -12,16 +12,62 @@ use Modules\Product\Repositories\ProductRepoEloquentInterface;
 
 class ProductServiceProvider extends ServiceProvider
 {
-    public string $namespace = 'Modules\Product\Http\Controllers';
+    /**
+     * Get namespace for controllers.
+     *
+     * @var string
+     */
+    private string $namespace = 'Modules\Product\Http\Controllers';
 
+    /**
+     * Get migration path.
+     *
+     * @var string
+     */
+    private string $migrationPath = '/../Database/Migrations';
+
+    /**
+     * Get view path.
+     *
+     * @var string
+     */
+    private string $viewPath = '/../Resources/Views/';
+
+    /**
+     * Get name.
+     *
+     * @var string
+     */
+    private string $name = 'Product';
+
+    /**
+     * Get routes path.
+     *
+     * @var string
+     */
+    private string $routePath = '/../Routes/product_routes.php';
+
+    /**
+     * Get route middleware.
+     *
+     * @var array|string[]
+     */
+    private array $routeMiddleware = ['web', 'verify'];
+
+    /**
+     * Register files.
+     *
+     * @return void
+     */
     public function register()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
-        $this->loadViewsFrom(__DIR__ . '/../Resources/Views/', 'Product');
+        $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
+        $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
 
         Gate::policy(Product::class, ProductPolicy::class);
-        Route::middleware(['web', 'verify'])->namespace($this->namespace)
-        ->group(__DIR__ . '/../Routes/product_routes.php');
+        Route::middleware($this->routeMiddleware)
+            ->namespace($this->namespace)
+            ->group(__DIR__ . $this->routePath);
         $this->bindRepository();
     }
 
