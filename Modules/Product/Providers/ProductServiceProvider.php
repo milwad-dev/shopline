@@ -79,11 +79,7 @@ class ProductServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        config()->set('panelConfig.menus.products', [ // Set menu for panel
-            'title' => 'Products',
-            'icon'  => 'gift',
-            'url'   => route('products.index'),
-        ]);
+        $this->setUpMenuForPanel();
     }
 
     /**
@@ -121,5 +117,14 @@ class ProductServiceProvider extends ServiceProvider
         Route::middleware($this->routeMiddleware)
             ->namespace($this->namespace)
             ->group(__DIR__ . $this->routePath);
+    }
+
+    private function setUpMenuForPanel(): void
+    {
+        config()->set('panelConfig.menus.products', [ // Set menu for panel
+            'title' => 'Products',
+            'icon' => 'gift',
+            'url' => route('products.index'),
+        ]);
     }
 }
