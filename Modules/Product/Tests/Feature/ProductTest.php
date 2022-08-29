@@ -176,6 +176,21 @@ class ProductTest extends TestCase
 
         $response = $this->get(route('products.edit', $product->id));
         $response->assertViewIs('Product::edit');
+        $response->assertViewHas(['categories', 'product']);
+    }
+    
+    /**
+     * Test usual user can see not edit product page.
+     *
+     * @return void
+     */
+    public function test_usual_user_can_not_see_edit_product_page()
+    {
+        $this->createUserWithLoginWithAssignPermission(false);
+
+        $product = $this->makeProduct();
+        $response = $this->get(route('products.edit', $product->id));
+        $response->assertForbidden();
     }
 
     /**
