@@ -169,6 +169,13 @@ class ProductController extends Controller
         return to_route('products.index');
     }
 
+    /**
+     * Check & attach attributes.
+     *
+     * @param  $attributes
+     * @param  $product
+     * @return void
+     */
     private function checkAndAttachAttributes($attributes, $product): void
     {
         if (!is_null($attributes[0]['attributekeys'])) {
@@ -176,6 +183,13 @@ class ProductController extends Controller
         }
     }
 
+    /**
+     * Check & attach tags.
+     *
+     * @param  $tags
+     * @param  $product
+     * @return void
+     */
     private function checkAndAttachTags($tags, $product): void
     {
         if (!empty($tags)) {
@@ -183,6 +197,12 @@ class ProductController extends Controller
         }
     }
 
+    /**
+     * Upload product medias.
+     *
+     * @param  ProductRequest $request
+     * @return void
+     */
     private function uploadMedias(ProductRequest $request): void
     {
         ShareService::uploadMediaWithAddInRequest($request, 'first_media', 'first_media_id');
