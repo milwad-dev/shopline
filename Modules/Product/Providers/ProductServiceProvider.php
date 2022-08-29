@@ -92,26 +92,51 @@ class ProductServiceProvider extends ServiceProvider
         $this->app->bind(ProductRepoEloquentInterface::class, ProductRepoEloquent::class);
     }
 
+    /**
+     * Bind product service.
+     *
+     * @return void
+     */
     private function bindService()
     {
         $this->app->bind(ProductServiceInterface::class, ProductService::class);
     }
 
+    /**
+     * Load product migration files.
+     *
+     * @return void
+     */
     private function loadMigrationFiles(): void
     {
         $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
     }
 
+    /**
+     * Load product view files.
+     *
+     * @return void
+     */
     private function loadViewFiles(): void
     {
         $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
     }
 
+    /**
+     * Load product policy files.
+     *
+     * @return void
+     */
     private function loadPolicyFiles(): void
     {
         Gate::policy(Product::class, ProductPolicy::class);
     }
 
+    /**
+     * Load product route files.
+     *
+     * @return void
+     */
     private function loadRouteFiles(): void
     {
         Route::middleware($this->routeMiddleware)
@@ -119,9 +144,14 @@ class ProductServiceProvider extends ServiceProvider
             ->group(__DIR__ . $this->routePath);
     }
 
+    /**
+     * Set menu for panel
+     *
+     * @return void
+     */
     private function setUpMenuForPanel(): void
     {
-        config()->set('panelConfig.menus.products', [ // Set menu for panel
+        config()->set('panelConfig.menus.products', [
             'title' => 'Products',
             'icon' => 'gift',
             'url' => route('products.index'),
