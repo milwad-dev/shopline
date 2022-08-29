@@ -121,17 +121,12 @@ class ProductController extends Controller
         $this->authorize('manage', $this->class);
         $product = $this->repo->findById($id);
 
-        if (! is_null($request->first_media)) {
-            ShareService::uploadMediaWithAddInRequest($request, 'first_media', 'first_media_id');
-        } else $request->request->add(['first_media_id' => $product->first_media_id]);
-
-        if (! is_null($request->second_media)) {
-            ShareService::uploadMediaWithAddInRequest($request, 'second_media', 'second_media_id');
-        } else $request->request->add(['second_media_id' => $product->second_media_id]);
+        $this->checkAndUploadMediaForUpdate($request, $product, 'first_media', 'first_media_id');
+        $this->checkAndUploadMediaForUpdate($request, $product, 'second_media', 'second_media_id');
 
         $this->service->update($request, $id);
-
         $this->service->firstOrCreateCategoriesToProduct($request->categories, $product);
+
         if (! is_null($request->galleries)) {
             $this->service->attachGalleriesToProduct($request->galleries, $product);
         }
@@ -208,5 +203,24 @@ class ProductController extends Controller
     {
         ShareService::uploadMediaWithAddInRequest($request, 'first_media', 'first_media_id');
         ShareService::uploadMediaWithAddInRequest($request, 'second_media', 'second_media_id');
+    }
+
+    /**
+     * Check & upload for media.
+     *
+     * @param  ProductRequest $request
+     * @param  $product
+     * @param  string $file
+     * @param  string $field
+     * @return void
+     */
+    private function checkAndUploadMediaForUpdate(ProductRequest $request, $product, string $file, string $field): void
+    {
+        if (! is_null($request->first_media)) {
+            ShareService::uploadMediaWithAddInRequest($request, $file, $field);
+        }
+        else {
+            $request->request->add([$field => $product->first_media_id]);
+        }
     }
 }
