@@ -249,6 +249,20 @@ class ProductTest extends TestCase
         $this->delete(route('products.destroy', $product->id))->assertOk();
         $this->assertEquals(0, Product::query()->count());
     }
+    
+    /**
+     * Test usual product by id.
+     *
+     * @return void
+     */
+    public function test_usual_user_can_not_delete_product()
+    {
+        $this->createUserWithLoginWithAssignPermission(false);
+        $product = $this->makeProduct();
+
+        $this->delete(route('products.destroy', $product->id))->assertForbidden();
+        $this->assertEquals(1, Product::query()->count());
+    }
 
     /**
      * Make product with factory.
