@@ -9,6 +9,8 @@ use Modules\Product\Models\Product;
 use Modules\Product\Policies\ProductPolicy;
 use Modules\Product\Repositories\ProductRepoEloquent;
 use Modules\Product\Repositories\ProductRepoEloquentInterface;
+use Modules\Product\Services\ProductService;
+use Modules\Product\Services\ProductServiceInterface;
 
 class ProductServiceProvider extends ServiceProvider
 {
@@ -41,7 +43,7 @@ class ProductServiceProvider extends ServiceProvider
     private string $name = 'Product';
 
     /**
-     * Get routes path.
+     * Get route path.
      *
      * @var string
      */
@@ -61,14 +63,13 @@ class ProductServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
-        $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
+        $this->loadMigrationFiles();
+        $this->loadViewFiles();
+        $this->loadPolicyFiles();
+        $this->loadRouteFiles();
 
-        Gate::policy(Product::class, ProductPolicy::class);
-        Route::middleware($this->routeMiddleware)
-            ->namespace($this->namespace)
-            ->group(__DIR__ . $this->routePath);
         $this->bindRepository();
+        $this->bindService();
     }
 
     /**
@@ -93,5 +94,32 @@ class ProductServiceProvider extends ServiceProvider
     private function bindRepository()
     {
         $this->app->bind(ProductRepoEloquentInterface::class, ProductRepoEloquent::class);
+    }
+
+    private function bindService()
+    {
+        $this->app->bind(ProductServiceInterface::class, ProductService::class);
+    }
+
+    private function loadMigrationFiles(): void
+    {
+        $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
+    }
+
+    private function loadViewFiles(): void
+    {
+        $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
+    }
+
+    private function loadPolicyFiles(): void
+    {
+        Gate::policy(Product::class, ProductPolicy::class);
+    }
+
+    private function loadRouteFiles(): void
+    {
+        Route::middleware($this->routeMiddleware)
+            ->namespace($this->namespace)
+            ->group(__DIR__ . $this->routePath);
     }
 }

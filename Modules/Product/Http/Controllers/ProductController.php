@@ -13,6 +13,7 @@ use Modules\Product\Http\Requests\ProductRequest;
 use Modules\Product\Models\Product;
 use Modules\Product\Repositories\ProductRepoEloquentInterface;
 use Modules\Product\Services\ProductService;
+use Modules\Product\Services\ProductServiceInterface;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
 use Modules\Share\Services\ShareService;
@@ -26,10 +27,10 @@ class ProductController extends Controller
      */
     private string $class = Product::class;
 
-    public ProductService $service;
+    public ProductServiceInterface $service;
     public ProductRepoEloquentInterface $repo;
 
-    public function __construct(ProductService $productService, ProductRepoEloquentInterface $productRepo)
+    public function __construct(ProductServiceInterface $productService, ProductRepoEloquentInterface $productRepo)
     {
         $this->service = $productService;
         $this->repo = $productRepo;
