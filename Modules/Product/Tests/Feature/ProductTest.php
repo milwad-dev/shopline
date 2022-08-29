@@ -82,7 +82,7 @@ class ProductTest extends TestCase
         $this->createUserWithLoginWithAssignPermission();
 
         Category::factory(5)->create();
-        $response = $this->post(route('products.store'), $this->storeProductData());
+        $response = $this->post(route('products.store'), $this->getStoreProductData());
         $response->assertRedirect(route('products.index'));
 
         $this->assertEquals(1, Product::query()->count());
@@ -98,7 +98,7 @@ class ProductTest extends TestCase
         $this->createUserWithLoginWithAssignPermission(false);
 
         Category::factory(5)->create();
-        $response = $this->post(route('products.store'), $this->storeProductData());
+        $response = $this->post(route('products.store'), $this->getStoreProductData());
         $response->assertForbidden();
 
         $this->assertEquals(0, Product::query()->count());
@@ -207,7 +207,7 @@ class ProductTest extends TestCase
 
         $response = $this->patch(
             route('products.update', $product->id),
-            $this->getUpdateData($product, $category)
+            $this->getProductUpdateData($product, $category)
         );
         $response->assertRedirect(route('products.index'));
 
@@ -229,7 +229,7 @@ class ProductTest extends TestCase
 
         $response = $this->patch(
             route('products.update', $product->id),
-            $this->getUpdateData($product, $category)
+            $this->getProductUpdateData($product, $category)
         );
         $response->assertForbidden();
 
@@ -237,7 +237,7 @@ class ProductTest extends TestCase
     }
 
     /**
-     * Test admin product by id.
+     * Test admin user can delete product by id.
      *
      * @return void
      */
@@ -249,9 +249,9 @@ class ProductTest extends TestCase
         $this->delete(route('products.destroy', $product->id))->assertOk();
         $this->assertEquals(0, Product::query()->count());
     }
-    
+
     /**
-     * Test usual product by id.
+     * Test usual user can not delete product by id.
      *
      * @return void
      */
@@ -301,7 +301,12 @@ class ProductTest extends TestCase
         $this->seed(PermissionSeeder::class);
     }
 
-    private function storeProductData(): array
+    /**
+     * Return store product data.
+     *
+     * @return array
+     */
+    private function getStoreProductData(): array
     {
         return [
             'first_media' => UploadedFile::fake()->image('first_media.jpg'), // Mock
@@ -328,7 +333,14 @@ class ProductTest extends TestCase
         ];
     }
 
-    private function getUpdateData(mixed $product, mixed $category): array
+    /**
+     * Return update product data.
+     *
+     * @param  mixed $product
+     * @param  mixed $category
+     * @return array
+     */
+    private function getProductUpdateData(mixed $product, mixed $category): array
     {
         return [
             'id' => $product->id,
