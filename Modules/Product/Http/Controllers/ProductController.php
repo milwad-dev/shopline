@@ -12,7 +12,6 @@ use Modules\Category\Repositories\CategoryRepoEloquentInterface;
 use Modules\Product\Http\Requests\ProductRequest;
 use Modules\Product\Models\Product;
 use Modules\Product\Repositories\ProductRepoEloquentInterface;
-use Modules\Product\Services\ProductService;
 use Modules\Product\Services\ProductServiceInterface;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;

@@ -29,6 +29,20 @@ class ProductTest extends TestCase
 
         $response = $this->get(route('products.index'));
         $response->assertViewIs('Product::index');
+        $response->assertViewHas('products');
+    }
+
+    /**
+     * Test usual user can not see index products page.
+     *
+     * @return void
+     */
+    public function test_usual_user_can_not_see_index_products_page()
+    {
+        $this->createUserWithLoginWithAssignPermission(false);
+
+        $response = $this->get(route('products.index'));
+        $response->assertForbidden();
     }
 
     /**
