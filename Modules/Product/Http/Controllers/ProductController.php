@@ -102,8 +102,8 @@ class ProductController extends Controller
 
     /**
      * Update product with request by id.
-     * @param  ProductRequest $request
      *
+     * @param  ProductRequest $request
      * @param  $id
      * @return RedirectResponse
      */
@@ -145,7 +145,6 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $this->repo->delete($id);
-        // TODO DELETE CATEGORIES & ...
 
         return AjaxResponses::SuccessResponse();
     }
