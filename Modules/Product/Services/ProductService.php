@@ -11,26 +11,26 @@ class ProductService
     /**
      * Store product with request.
      *
-     * @param  $request
+     * @param  array $data
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
      * @throws \Exception
      */
-    public function store($request)
+    public function store(array $data)
     {
         return $this->query()->create([
             'vendor_id' => auth()->id(),
-            'first_media_id' => $request->first_media_id,
-            'second_media_id' => $request->second_media_id,
-            'title' => $request->title,
-            'slug' => ShareService::makeSlug($request->title),
+            'slug' => ShareService::makeSlug($data['title']),
             'sku' => ShareService::makeUniqueSku(Product::class),
-            'price' => $request->price,
-            'count' => $request->count,
-            'type' => $request->type,
-            'short_description' => $request->short_description,
-            'body' => $request->body,
-            'status' => $request->status,
-            'is_popular' => $request->is_popular,
+            'first_media_id'    => $data['first_media_id'],
+            'second_media_id'   => $data['second_media_id'],
+            'title'             => $data['title'],
+            'price'             => $data['price'],
+            'count'             => $data['count'],
+            'type'              => $data['type'],
+            'short_description' => $data['short_description'],
+            'body'              => $data['body'],
+            'status'            => $data['status'],
+            'is_popular'        => $data['is_popular'],
         ]);
     }
 
