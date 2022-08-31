@@ -129,7 +129,7 @@ class HomeServiceProvider extends ServiceProvider
             $view->with(['categories' => $categories]);
         });
         view()->composer(['Home::Home.parts.adv-slider'], static function ($view) use ($homeRepoEloquent) {
-            $adv = $homeRepoEloquent->getOneLatestAdvByLocation(AdvertisingLocationEnum::LOCATION_SLIDER->value);
+            $adv = $homeRepoEloquent->getOneLatestAdvByLocation(AdvertisingLocationEnum::LOCATION_SLIDER->value)->first();
             $view->with(['adv' => $adv]);
         });
     }

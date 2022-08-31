@@ -60,6 +60,6 @@ class HomeRepoEloquent implements HomeRepoEloquentInterface
      */
     public function getOneLatestAdvByLocation(string $location)
     {
-        return Advertising::query()->active()->where('location', $location);
+        return Advertising::query()->with('media')->active()->where('location', $location);
     }
 }

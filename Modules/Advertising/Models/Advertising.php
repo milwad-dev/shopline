@@ -66,10 +66,23 @@ class Advertising extends Model
     {
         $link = $this->link;
 
-        if (!startWith($link, 'https')) {
+        if (!is_null($link) && !startWith($link, 'https')) {
             return "https://$link";
         }
 
         return $link;
+    }
+
+    // Scopes
+
+    /**
+     * Get active scope.
+     *
+     * @param  $query
+     * @return mixed
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('status', AdvertisingStatusEnum::STATUS_ACTIVE->value);
     }
 }
