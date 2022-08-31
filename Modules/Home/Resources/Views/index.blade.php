@@ -4,7 +4,7 @@
 
 @section('content')
     <main class="main">
-        @include('Home::Home.parts.slider')
+        @include('Home::Home.parts.slider', ['sliders' => $homeRepo->getLatestSliders()])
         @include('Home::Home.parts.banner')
         @include('Home::Home.parts.popular-products')
         @include('Home::Home.parts.deals-day')

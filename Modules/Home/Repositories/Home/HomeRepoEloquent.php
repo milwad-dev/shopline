@@ -3,6 +3,7 @@
 namespace Modules\Home\Repositories\Home;
 
 use Illuminate\Database\Eloquent\Collection;
+use Modules\Advertising\Models\Advertising;
 use Modules\Category\Enums\CategoryStatusEnum;
 use Modules\Category\Models\Category;
 use Modules\Product\Models\Product;
@@ -49,5 +50,16 @@ class HomeRepoEloquent implements HomeRepoEloquentInterface
             ->latest()
             ->limit(10)
             ->get();
+    }
+
+    /**
+     * Get latest advs by location.
+     *
+     * @param  string $location
+     * @return mixed
+     */
+    public function getOneLatestAdvByLocation(string $location)
+    {
+        return Advertising::query()->active()->where('location', $location);
     }
 }
