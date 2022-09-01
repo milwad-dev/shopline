@@ -1,21 +1,44 @@
-<script src="{{ asset('home/js/vendor/jquery-3.6.0.min.js') }}"></script>
-<script src="{{ asset('home/js/vendor/jquery-migrate-3.3.0.min.js') }}"></script>
-<script src="{{ asset('home/js/vendor/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('home/js/plugins/slick.js') }}"></script>
-<script src="{{ asset('home/js/plugins/jquery.syotimer.min.js') }}"></script>
-<script src="{{ asset('home/js/plugins/wow.js') }}"></script>
-<script src="{{ asset('home/js/plugins/perfect-scrollbar.js') }}"></script>
-<script src="{{ asset('home/js/plugins/magnific-popup.js') }}"></script>
-<script src="{{ asset('home/js/plugins/select2.min.js') }}"></script>
-<script src="{{ asset('home/js/plugins/waypoints.js') }}"></script>
-<script src="{{ asset('home/js/plugins/counterup.js') }}"></script>
-<script src="{{ asset('home/js/plugins/jquery.countdown.min.js') }}"></script>
-<script src="{{ asset('home/js/plugins/images-loaded.js') }}"></script>
-<script src="{{ asset('home/js/plugins/isotope.js') }}"></script>
-<script src="{{ asset('home/js/plugins/scrollup.js') }}"></script>
-<script src="{{ asset('home/js/plugins/jquery.vticker-min.js') }}"></script>
-<script src="{{ asset('home/js/plugins/jquery.theia.sticky.js') }}"></script>
-<script src="{{ asset('home/js/plugins/jquery.elevatezoom.js') }}"></script>
-<script src="{{ asset('home/js/main.js') }}"></script>
-<script src="{{ asset('home/js/shop.js') }}"></script>
+{{-- latest jquery --}}
+<script src="{{ asset('home/js/jquery-3.6.0.min.js') }}"></script>
+
+{{-- jquery ui --}}
+<script src="{{ asset('home/js/jquery-ui.min.js') }}"></script>
+
+{{-- Bootstrap js --}}
+<script src="{{ asset('home/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('home/js/bootstrap/bootstrap-notify.min.js') }}"></script>
+<script src="{{ asset('home/js/bootstrap/popper.min.js') }}"></script>
+
+{{-- feather icon js --}}
+<script src="{{ asset('home/js/feather/feather.min.js') }}"></script>
+<script src="{{ asset('home/js/feather/feather-icon.js') }}"></script>
+
+{{-- Lazyload Js --}}
+<script src="{{ asset('home/js/lazysizes.min.js') }}"></script>
+
+{{-- Slick js --}}
+<script src="{{ asset('home/js/slick/slick.js') }}"></script>
+<script src="{{ asset('home/js/slick/custom_slick.js') }}"></script>
+
+{{-- Auto Height Js --}}
+<script src="{{ asset('home/js/auto-height.js') }}"></script>
+
+{{-- Timer Js --}}
+<script src="{{ asset('home/js/timer.js') }}"></script>
+
+{{-- Fly Cart Js --}}
+<script src="{{ asset('home/js/fly-cart.js') }}"></script>
+
+{{-- Quantity js --}}
+<script src="{{ asset('home/js/quantity-2.js') }}"></script>
+
+{{-- WOW js --}}
+<script src="{{ asset('home/js/wow.min.js') }}"></script>
+<script src="{{ asset('home/js/custom-wow.js') }}"></script>
+
+{{-- script js --}}
+<script src="{{ asset('home/js/script.js') }}"></script>
+
+{{-- thme setting js --}}
+<script src="{{ asset('home/js/theme-setting.js') }}"></script>
 @yield('js')
