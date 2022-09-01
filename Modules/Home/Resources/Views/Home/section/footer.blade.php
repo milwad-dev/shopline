@@ -57,7 +57,7 @@
                         </div>
                         <div class="footer-logo-contain">
                             <p>
-                                {{ config('app.description') }}
+                                {{ config('shareConfig.description') }}
                             </p>
                             <ul class="address">
                                 <li>
