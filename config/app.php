@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'logo' => env('APP_LOGO', 'home/imgs/theme/logo.svg'),
+    'logo' => env('APP_LOGO', 'home/images/logo/1.png'),
 
     /*
     |--------------------------------------------------------------------------

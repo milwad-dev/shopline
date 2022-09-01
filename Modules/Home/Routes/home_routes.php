@@ -13,4 +13,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([], static function ($router) {
     $router->get('/', ['uses' => 'HomeController@index', 'as' => 'home.index']);
+    $router->get('comming-soon', ['uses' => 'HomeController@commingSoon', 'as' => 'comming-soon']);
 });
