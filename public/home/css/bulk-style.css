@@ -1,0 +1,494 @@
+/**
+*
+*	Name:			iconly font icon
+*	Version:	    1.0
+*	Created on:		Dec 29, 2020
+*	License:		GNU General Public License
+--------------------------------------------------------------------------------------
+*	
+**/
+
+@import url("bulk-style.css");
+
+@font-face {
+    font-family: iconly;
+    font-style: normal;
+    font-weight: 200;
+    src: url("https://themes.pixelstrap.com/fastkart/assets/fonts/Iconly-light.eot");
+    src: url("https://themes.pixelstrap.com/fastkart/assets/fonts/Iconly-light.eot?#iefix") format("embedded-opentype"),
+        /* IE6-8 */
+        url("https://themes.pixelstrap.com/fastkart/assets/fonts/Iconly-light.woff") format("woff"),
+        /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+        url("https://themes.pixelstrap.com/fastkart/assets/fonts/Iconly-light.ttf") format("truetype"),
+        url("https://themes.pixelstrap.com/fastkart/assets/fonts/Iconly-light.svg#Iconly-light") format("svg");
+}
+
+@font-face {
+    font-family: iconly;
+    font-style: normal;
+    font-weight: normal;
+    src: url("https://themes.pixelstrap.com/fastkart/assets/fonts/Iconly-Broken.eot");
+    src: url("https://themes.pixelstrap.com/fastkart/assets/fonts/Iconly-Broken.eot?#iefix") format("embedded-opentype"),
+        /* IE6-8 */
+        url("https://themes.pixelstrap.com/fastkart/assets/fonts/Iconly-Broken.woff") format("woff"),
+        /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+        url("https://themes.pixelstrap.com/fastkart/assets/fonts/Iconly-Broken.ttf") format("truetype"),
+        url("https://themes.pixelstrap.com/fastkart/assets/fonts/Iconly-Broken.svg#Iconly-Broken") format("svg");
+}
+
+@font-face {
+    font-family: iconly;
+    font-style: normal;
+    font-weight: 700;
+    src: url("https://themes.pixelstrap.com/fastkart/assets/fonts/Iconly-Bold.eot");
+    src: url("https://themes.pixelstrap.com/fastkart/assets/fonts/Iconly-Bold.eot?#iefix") format("embedded-opentype"),
+        /* IE6-8 */
+        url("https://themes.pixelstrap.com/fastkart/assets/fonts/Iconly-Bold.woff") format("woff"),
+        /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+        url("https://themes.pixelstrap.com/fastkart/assets/fonts/Iconly-Bold.ttf") format("truetype"),
+        url("https://themes.pixelstrap.com/fastkart/assets/fonts/Iconly-Bold.svg#Iconly-Bold") format("svg");
+}
+
+@font-face {
+    font-family: iconly;
+    font-style: normal;
+    font-weight: 900;
+    src: url("https://themes.pixelstrap.com/fastkart/assets/fonts/Iconly-bulk.eot");
+    src: url("https://themes.pixelstrap.com/fastkart/assets/fonts/Iconly-bulk.eot?#iefix") format("embedded-opentype"),
+        /* IE6-8 */
+        url("https://themes.pixelstrap.com/fastkart/assets/fonts/Iconly-bulk.woff") format("woff"),
+        /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+        url("https://themes.pixelstrap.com/fastkart/assets/fonts/Iconly-bulk.ttf") format("truetype"),
+        url("https://themes.pixelstrap.com/fastkart/assets/fonts/Iconly-bulk.svg#Iconly-bulk") format("svg");
+}
+
+[class^="iconly-"],
+[class*="iconly-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: "iconly" !important;
+    speak: never;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+    font-weight: normal;
+    line-height: 1;
+    /*   Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icli {
+    font-weight: 200;
+}
+
+.icbr {
+    font-weight: normal;
+}
+
+.icbo {
+    font-weight: 700;
+}
+
+.icbu {
+    font-weight: 900;
+}
+
+.iconly-Activity:before {
+    content: "\e900";
+}
+
+.iconly-Add-User:before {
+    content: "\e901";
+}
+
+.iconly-Arrow-Down:before {
+    content: "\e902";
+}
+
+.iconly-Arrow-Down-2:before {
+    content: "\e903";
+}
+
+.iconly-Arrow-Down-3:before {
+    content: "\e904";
+}
+
+.iconly-Arrow-Down-Circle:before {
+    content: "\e905";
+}
+
+.iconly-Arrow-Down-Square:before {
+    content: "\e906";
+}
+
+.iconly-Arrow-Left:before {
+    content: "\e907";
+}
+
+.iconly-Arrow-Left-2:before {
+    content: "\e908";
+}
+
+.iconly-Arrow-Left-3:before {
+    content: "\e909";
+}
+
+.iconly-Arrow-Left-Circle:before {
+    content: "\e90a";
+}
+
+.iconly-Arrow-Left-Square:before {
+    content: "\e90b";
+}
+
+.iconly-Arrow-Right:before {
+    content: "\e90c";
+}
+
+.iconly-Arrow-Right-2:before {
+    content: "\e90d";
+}
+
+.iconly-Arrow-Right-3:before {
+    content: "\e90e";
+}
+
+.iconly-Arrow-Right-Circle:before {
+    content: "\e90f";
+}
+
+.iconly-Arrow-Right-Square:before {
+    content: "\e910";
+}
+
+.iconly-Arrow-Up:before {
+    content: "\e911";
+}
+
+.iconly-Arrow-Up-2:before {
+    content: "\e912";
+}
+
+.iconly-Arrow-Up-3:before {
+    content: "\e913";
+}
+
+.iconly-Arrow-Up-Circle:before {
+    content: "\e914";
+}
+
+.iconly-Arrow-Up-Square:before {
+    content: "\e915";
+}
+
+.iconly-Bag:before {
+    content: "\e916";
+}
+
+.iconly-Bag-2:before {
+    content: "\e917";
+}
+
+.iconly-Bookmark:before {
+    content: "\e918";
+}
+
+.iconly-Buy:before {
+    content: "\e919";
+}
+
+.iconly-Calendar:before {
+    content: "\e91a";
+}
+
+.iconly-Call:before {
+    content: "\e91b";
+}
+
+.iconly-Call-Missed:before {
+    content: "\e91c";
+}
+
+.iconly-Call-Silent:before {
+    content: "\e91d";
+}
+
+.iconly-Calling:before {
+    content: "\e91e";
+}
+
+.iconly-Camera:before {
+    content: "\e91f";
+}
+
+.iconly-Category:before {
+    content: "\e920";
+}
+
+.iconly-Chart:before {
+    content: "\e921";
+}
+
+.iconly-Chat:before {
+    content: "\e922";
+}
+
+.iconly-Close-Square:before {
+    content: "\e923";
+}
+
+.iconly-Danger:before {
+    content: "\e924";
+}
+
+.iconly-Delete:before {
+    content: "\e925";
+}
+
+.iconly-Discount:before {
+    content: "\e926";
+}
+
+.iconly-Discovery:before {
+    content: "\e927";
+}
+
+.iconly-Document:before {
+    content: "\e928";
+}
+
+.iconly-Download:before {
+    content: "\e929";
+}
+
+.iconly-Edit:before {
+    content: "\e92a";
+}
+
+.iconly-Edit-Square:before {
+    content: "\e92b";
+}
+
+.iconly-Filter:before {
+    content: "\e92c";
+}
+
+.iconly-Filter-2:before {
+    content: "\e92d";
+}
+
+.iconly-Folder:before {
+    content: "\e92e";
+}
+
+.iconly-Game:before {
+    content: "\e92f";
+}
+
+.iconly-Graph:before {
+    content: "\e930";
+}
+
+.iconly-Heart:before {
+    content: "\e931";
+}
+
+.iconly-Hide:before {
+    content: "\e932";
+}
+
+.iconly-Home:before {
+    content: "\e933";
+}
+
+.iconly-Image:before {
+    content: "\e934";
+}
+
+.iconly-Image-2:before {
+    content: "\e935";
+}
+
+.iconly-Info-Circle:before {
+    content: "\e936";
+}
+
+.iconly-Info-Square:before {
+    content: "\e937";
+}
+
+.iconly-Location:before {
+    content: "\e938";
+}
+
+.iconly-Lock:before {
+    content: "\e939";
+}
+
+.iconly-Login:before {
+    content: "\e93a";
+}
+
+.iconly-Logout:before {
+    content: "\e93b";
+}
+
+.iconly-Message:before {
+    content: "\e93c";
+}
+
+.iconly-More-Circle:before {
+    content: "\e93d";
+}
+
+.iconly-More-Square:before {
+    content: "\e93e";
+}
+
+.iconly-Notification:before {
+    content: "\e93f";
+}
+
+.iconly-Paper:before {
+    content: "\e940";
+}
+
+.iconly-Paper-Download:before {
+    content: "\e941";
+}
+
+.iconly-Paper-Fail:before {
+    content: "\e942";
+}
+
+.iconly-Paper-Negative:before {
+    content: "\e943";
+}
+
+.iconly-Paper-Plus:before {
+    content: "\e944";
+}
+
+.iconly-Paper-Upload:before {
+    content: "\e945";
+}
+
+.iconly-Password:before {
+    content: "\e946";
+}
+
+.iconly-Play:before {
+    content: "\e947";
+}
+
+.iconly-Plus:before {
+    content: "\e948";
+}
+
+.iconly-Profile:before {
+    content: "\e949";
+}
+
+.iconly-Scan:before {
+    content: "\e94a";
+}
+
+.iconly-Search:before {
+    content: "\e94b";
+}
+
+.iconly-Send:before {
+    content: "\e94c";
+}
+
+.iconly-Setting:before {
+    content: "\e94d";
+}
+
+.iconly-Shield-Done:before {
+    content: "\e94e";
+}
+
+.iconly-Shield-Fail:before {
+    content: "\e94f";
+}
+
+.iconly-Show:before {
+    content: "\e950";
+}
+
+.iconly-Star:before {
+    content: "\e951";
+}
+
+.iconly-Swap:before {
+    content: "\e952";
+}
+
+.iconly-Tick-Square:before {
+    content: "\e953";
+}
+
+.iconly-Ticket:before {
+    content: "\e954";
+}
+
+.iconly-Ticket-Star:before {
+    content: "\e955";
+}
+
+.iconly-Time-Circle:before {
+    content: "\e956";
+}
+
+.iconly-Time-Square:before {
+    content: "\e957";
+}
+
+.iconly-Unlock:before {
+    content: "\e958";
+}
+
+.iconly-Upload:before {
+    content: "\e959";
+}
+
+.iconly-User2:before {
+    content: "\e95a";
+}
+
+.iconly-User3:before {
+    content: "\e95b";
+}
+
+.iconly-Video:before {
+    content: "\e95c";
+}
+
+.iconly-Voice:before {
+    content: "\e95d";
+}
+
+.iconly-Voice-2:before {
+    content: "\e95e";
+}
+
+.iconly-Volume-Down:before {
+    content: "\e95f";
+}
+
+.iconly-Volume-Off:before {
+    content: "\e960";
+}
+
+.iconly-Volume-Up:before {
+    content: "\e961";
+}
+
+.iconly-Wallet:before {
+    content: "\e962";
+}
+
+.iconly-Work:before {
+    content: "\e963";
+}
