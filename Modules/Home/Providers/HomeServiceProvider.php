@@ -124,12 +124,15 @@ class HomeServiceProvider extends ServiceProvider
     private function loadViewComposerForHome()
     {
         $homeRepoEloquent = App::make(HomeRepoEloquentInterface::class);
+
         view()->composer(['Home::Home.section.header', 'Home::Home.section.menu'], static function ($view) use ($homeRepoEloquent) {
             $categories = $homeRepoEloquent->getLatestCategories();
             $view->with(['categories' => $categories]);
         });
-        view()->composer(['Home::Home.parts.adv-slider'], static function ($view) use ($homeRepoEloquent) {
+
+        view()->composer(['Home::Home.parts.sliders'], static function ($view) use ($homeRepoEloquent) {
             $adv = $homeRepoEloquent->getOneLatestAdvByLocation(AdvertisingLocationEnum::LOCATION_SLIDER->value)->first();
+
             $view->with(['adv' => $adv]);
         });
     }
