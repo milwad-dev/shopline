@@ -15,13 +15,15 @@ class HomeRepoEloquent implements HomeRepoEloquentInterface
     /**
      * Get latest active sliders.
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Collection|\Illuminate\Database\Eloquent\Builder[]
      */
     public function getLatestSliders()
     {
         return Slider::query()
             ->where('status', SliderStatusEnum::STATUS_ACTIVE->value)
-            ->latest();
+            ->latest()
+            ->limit(1)
+            ->get();
     }
 
     /**
