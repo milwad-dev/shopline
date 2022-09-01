@@ -11,10 +11,10 @@
         @include('Home::Home.section.preloader') {{-- Include loader --}}
         @include('Home::Home.section.header') {{-- Include header --}}
         @include('Home::Home.section.mobile-menu') {{-- Include mobile menu --}}
-            @yield('content')
-        @include('Home::Home.section.footer')
-        @include('Home::Home.section.modals')
-        @include('Home::Home.section.theme-options')
-        @include('Home::Home.section.js')
+            @yield('content') {{-- Yield content data --}}
+        @include('Home::Home.section.footer') {{-- Include footer --}}
+        @include('Home::Home.section.modals') {{-- Include modal files --}}
+        @include('Home::Home.section.theme-options') {{-- Include theme options --}}
+        @include('Home::Home.section.js') {{-- Include js files --}}
     </body>
 </html>
