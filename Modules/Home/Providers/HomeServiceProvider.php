@@ -131,9 +131,10 @@ class HomeServiceProvider extends ServiceProvider
         });
 
         view()->composer(['Home::Home.parts.sliders'], static function ($view) use ($homeRepoEloquent) {
+            $sliders = $homeRepoEloquent->getLatestSliders()->limit(1)->get();
             $adv = $homeRepoEloquent->getOneLatestAdvByLocation(AdvertisingLocationEnum::LOCATION_SLIDER->value)->first();
 
-            $view->with(['adv' => $adv]);
+            $view->with(['sliders' => $sliders, 'adv' => $adv]);
         });
     }
 }
