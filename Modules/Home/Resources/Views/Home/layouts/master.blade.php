@@ -8,7 +8,7 @@
         @include('Home::Home.section.css') {{-- Include css files --}}
     </head>
     <body class="bg-effect">
-        @include('Home::Home.section.preloader') {{-- Include loader --}}
+{{--        @include('Home::Home.section.preloader') --}}{{-- Include loader --}}
         @include('Home::Home.section.header') {{-- Include header --}}
         @include('Home::Home.section.mobile-menu') {{-- Include mobile menu --}}
             @yield('content') {{-- Yield content data --}}
