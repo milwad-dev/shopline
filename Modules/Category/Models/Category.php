@@ -85,4 +85,15 @@ class Category extends Model
     {
         return '';
     }
+
+    /**
+     * Actvie scope.
+     *
+     * @param  $query
+     * @return mixed
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('status', CategoryStatusEnum::STATUS_ACTIVE->value);
+    }
 }

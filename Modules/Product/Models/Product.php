@@ -159,4 +159,53 @@ class Product extends Model
     {
         return ''; // TODO
     }
+
+    /**
+     * Scope active status.
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('status', ProductStatusEnum::STATUS_ACTIVE->value);
+    }
+
+    /**
+     * Add product to wishlist.
+     *
+     * @return string
+     */
+    public function addWishlist()
+    {
+        return '';
+    }
+
+    /**
+     * Get product price.
+     *
+     * @return string
+     */
+    public function getPrice()
+    {
+        return number_format($this->price);
+    }
+
+    /**
+     * Get product sku.
+     *
+     * @return string
+     */
+    public function getSku()
+    {
+        return "#$this->sku";
+    }
+
+    /**
+     * Scope product popular.
+     *
+     * @param  $query
+     * @return mixed
+     */
+    public function scopePopular($query)
+    {
+        return $query->where('is_popular', 1);
+    }
 }

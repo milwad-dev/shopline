@@ -34,8 +34,23 @@ class HomeRepoEloquent implements HomeRepoEloquentInterface
     public function getLatestCategories()
     {
         return Category::query()
-            ->where('status', CategoryStatusEnum::STATUS_ACTIVE->value)
+            ->active()
             ->latest()
+            ->get();
+    }
+
+    /**
+     * Get latest active products.
+     *
+     * @return mixed
+     */
+    public function getLatestActiveProducts()
+    {
+        return Product::query()
+            ->with('first_media')
+            ->active()
+            ->latest()
+            ->limit(10)
             ->get();
     }
 
@@ -47,9 +62,10 @@ class HomeRepoEloquent implements HomeRepoEloquentInterface
     public function getLatestPopularProducts()
     {
         return Product::query()
-            ->where('is_popular', 1)
+            ->with('first_media')
+            ->popular()
             ->latest()
-            ->limit(10)
+            ->limit(4)
             ->get();
     }
 
