@@ -1,3 +1,3 @@
-<button type="{{ $type }}" class="btn btn-fill-out btn-block hover-up font-weight-bold">
+<button class="btn btn-animation w-100 justify-content-center" type="{{ $type }}">
     {{ $title }}
 </button>

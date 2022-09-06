@@ -27,8 +27,10 @@ class LoginController extends Controller
      */
     public function login(LoginRequest $request)
     {
-        $field = $this->filterEmail($request->email);
-        if (Auth::attempt([$field => $request->email, 'password' => $request->password])) {
+        $email = $request->email;
+        $field = $this->filterEmail($email);
+
+        if (Auth::attempt([$field => $email, 'password' => $request->password])) {
             ShareService::successToast('Login successfully');
             return to_route('home.index');
         }
