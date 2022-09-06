@@ -79,10 +79,10 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-xl-12 col-md-6 col-12">
-                                                    <x-panel-label for="short_description" title="Short description" />
-                                                    <x-panel-textarea name="short_description" id="short_description" rows="2"
-                                                    placeholder="Enter the short description" value="{{ old('short_description') }}" />
-                                                    <x-share-error name="short_description" />
+                                                    <x-panel-label for="description" title="Short description" />
+                                                    <x-panel-textarea name="description" id="description" rows="2"
+                                                    placeholder="Enter the short description" value="{{ old('description') }}" />
+                                                    <x-share-error name="description" />
                                                 </div>
                                             </div>
                                             <hr>

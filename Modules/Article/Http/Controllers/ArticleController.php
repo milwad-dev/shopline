@@ -97,7 +97,7 @@ class ArticleController extends Controller
     {
         $this->authorize('manage', $this->class);
         $article = $this->repo->findById($id);
-        $categories = $this->categoryRepo->getActiveCategories();
+        $categories = $this->categoryRepo->getActiveCategories()->get();
 
         return view('Article::edit', compact(['article', 'categories']));
     }

@@ -61,6 +61,18 @@ class Article extends Model
         return $this->belongsToMany(Category::class, 'article_category');
     }
 
+    // Scope
+    /**
+     * Scope active status.
+     *
+     * @param  $query
+     * @return mixed
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('status', ArticleStatusEnum::STATUS_ACTIVE->value);
+    }
+
     // Booted
     /**
      * Boot article model.
@@ -104,15 +116,20 @@ class Article extends Model
         return "$this->min_read Minute";
     }
 
-
     /**
-     * Scope active status.
+     * Check category in select.
      *
-     * @param  $query
-     * @return mixed
+     * @param  int $id
+     * @return bool
      */
-    public function scopeActive($query)
+    public function checkSelectCategory(int $id)
     {
-        return $query->where('status', ArticleStatusEnum::STATUS_ACTIVE->value);
+        $selectCategoryIds = $this->categories()->get()->pluck('id')->toArray();
+
+        if (in_array($id, $selectCategoryIds, true)) {
+            return true;
+        }
+
+        return false;
     }
 }
