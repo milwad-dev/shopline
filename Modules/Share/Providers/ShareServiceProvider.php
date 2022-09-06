@@ -37,11 +37,67 @@ class ShareServiceProvider extends ServiceProvider
         $this->loadViewFiles();
         $this->loadMigrationFiles();
         $this->loadCommandFiles();
+        $this->loadFactoriesFiles();
+        $this->loadConfigFiles();
+
         $this->loadShareComponents();
         $this->loadAuthComponents();
         $this->loadPanelComponents();
-        $this->loadFactories();
-        $this->loadConfigFiles();
+        $this->loadHomeComponents();
+    }
+
+    /**
+     * Load commands.
+     *
+     * @return void
+     */
+    private function loadCommandFiles()
+    {
+        $this->commands([
+            MakeModule::class
+        ]);
+    }
+
+    /**
+     * Load factories.
+     *
+     * @return void
+     */
+    private function loadFactoriesFiles()
+    {
+        Factory::guessFactoryNamesUsing(static function (string $modelName) {
+            return 'Modules\Share\Database\\Factories\\' . class_basename($modelName) . 'Factory';
+        });
+    }
+
+    /**
+     * Load migrations.
+     *
+     * @return void
+     */
+    private function loadMigrationFiles()
+    {
+        $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
+    }
+
+    /**
+     * Load share view files.
+     *
+     * @return void
+     */
+    private function loadViewFiles(): void
+    {
+        $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
+    }
+
+    /**
+     * Load share config files.
+     *
+     * @return void
+     */
+    private function loadConfigFiles()
+    {
+        $this->mergeConfigFrom(__DIR__ . '/../Config/config.php', 'shareConfig');
     }
 
     /**
@@ -88,56 +144,14 @@ class ShareServiceProvider extends ServiceProvider
     }
 
     /**
-     * Load commands.
+     * Load components about home.
      *
      * @return void
      */
-    private function loadCommandFiles()
+    private function loadHomeComponents()
     {
-        $this->commands([
-            MakeModule::class
+        $this->loadViewComponentsAs('home', [
+            \Modules\Share\Components\Home\TopSellProduct::class,
         ]);
-    }
-
-    /**
-     * Load factories.
-     *
-     * @return void
-     */
-    private function loadFactories()
-    {
-        Factory::guessFactoryNamesUsing(static function (string $modelName) {
-            return 'Modules\Share\Database\\Factories\\' . class_basename($modelName) . 'Factory';
-        });
-    }
-
-    /**
-     * Load migrations.
-     *
-     * @return void
-     */
-    private function loadMigrationFiles()
-    {
-        $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
-    }
-
-    /**
-     * Load share view files.
-     *
-     * @return void
-     */
-    private function loadViewFiles(): void
-    {
-        $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
-    }
-
-    /**
-     * Load share config files.
-     *
-     * @return void
-     */
-    private function loadConfigFiles()
-    {
-        $this->mergeConfigFrom(__DIR__ . '/../Config/config.php', 'shareConfig');
     }
 }
