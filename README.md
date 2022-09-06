@@ -27,3 +27,14 @@ Shopline made with Laravel - JS - Bootstrap.
 * Invertation image
 * Test coverage
 * Laravel component
+
+## Demos
+Comming soon
+
+## Contributors
+<a href="https://github.com/milwad-dev/shopline/graphs/contributors">
+    <img src="https://opencollective.com/shopline/contributors.svg?width=890&button=false" alt="contributes">
+</a>
+
+## License
+Shopline is an open-source E-Commerce that will always be free under the [MIT License](https://github.com/bagisto/bagisto/blob/master/LICENSE).
