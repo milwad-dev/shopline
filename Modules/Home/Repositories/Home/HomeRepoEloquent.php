@@ -5,7 +5,6 @@ namespace Modules\Home\Repositories\Home;
 use Illuminate\Database\Eloquent\Collection;
 use Modules\Advertising\Models\Advertising;
 use Modules\Article\Models\Article;
-use Modules\Category\Enums\CategoryStatusEnum;
 use Modules\Category\Models\Category;
 use Modules\Product\Models\Product;
 use Modules\Slider\Enums\SliderStatusEnum;

@@ -5,7 +5,6 @@ namespace Modules\Home\Providers;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Modules\Advertising\Enums\AdvertisingLocationEnum;
 use Modules\Home\Repositories\Home\HomeRepoEloquent;
 use Modules\Home\Repositories\Home\HomeRepoEloquentInterface;
 
