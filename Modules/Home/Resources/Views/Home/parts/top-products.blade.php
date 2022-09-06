@@ -237,142 +237,36 @@
                             <div class="top-selling-title">
                                 <h3>Top Rated</h3>
                             </div>
-
-                            <div class="top-selling-contain wow fadeInUp">
-                                <a href="product-left.html" class="top-selling-image">
-                                    <img src="../assets/images/veg-2/top-selling/13.jpg"
-                                         class="img-fluid blur-up lazyload" alt="">
-                                </a>
-
-                                <div class="top-selling-detail">
-                                    <a href="product-left.html">
-                                        <h5>Good Life Walnut Kernels</h5>
+                            @foreach ($homeRepo->getTopRatedProducts() as $product)
+                                <div class="top-selling-contain wow fadeInUp">
+                                    <a href="{{ $product->path() }}" class="top-selling-image">
+                                        <img src="{{ $product->first_media->thumb }}"
+                                        class="img-fluid blur-up lazyload" alt="product image">
                                     </a>
-                                    <div class="product-rating">
-                                        <ul class="rating">
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star"></i>
-                                            </li>
-                                        </ul>
-                                        <span>(34)</span>
+                                    <div class="top-selling-detail">
+                                        <a href="{{ $product->path() }}">
+                                            <h5>{{ $product->title }}</h5>
+                                        </a>
+                                        <div class="product-rating">
+                                            <ul class="rating">
+                                                @if ($product->rates_count === 0)
+                                                    <li>
+                                                        <i data-feather="star" class="fill"></i>
+                                                    </li>
+                                                @else
+                                                    @for ($i = 0; $i < $product->rates_count; $i++)
+                                                        <li>
+                                                            <i data-feather="star" class="fill"></i>
+                                                        </li>
+                                                    @endfor
+                                                @endif
+                                            </ul>
+                                            <span>({{ $product->rates_count }})</span>
+                                        </div>
+                                        <h6>$ {{ $product->getPrice() }}</h6>
                                     </div>
-                                    <h6>$ 10.00</h6>
                                 </div>
-                            </div>
-
-                            <div class="top-selling-contain wow fadeIn" data-wow-delay="0.05s">
-                                <a href="product-left.html" class="top-selling-image">
-                                    <img src="../assets/images/veg-2/top-selling/14.jpg"
-                                         class="img-fluid blur-up lazyload" alt="">
-                                </a>
-
-                                <div class="top-selling-detail">
-                                    <a href="product-left.html">
-                                        <h5>Cherry Red Premium Imported</h5>
-                                    </a>
-                                    <div class="product-rating">
-                                        <ul class="rating">
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star"></i>
-                                            </li>
-                                        </ul>
-                                        <span>(34)</span>
-                                    </div>
-                                    <h6>$ 40.00</h6>
-                                </div>
-                            </div>
-
-                            <div class="top-selling-contain wow fadeIn" data-wow-delay="0.1s">
-                                <a href="product-left.html" class="top-selling-image">
-                                    <img src="../assets/images/veg-2/top-selling/15.jpg"
-                                         class="img-fluid blur-up lazyload" alt="">
-                                </a>
-
-                                <div class="top-selling-detail">
-                                    <a href="product-left.html">
-                                        <h5>Meatigo Premium Goat Curry</h5>
-                                    </a>
-                                    <div class="product-rating">
-                                        <ul class="rating">
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star"></i>
-                                            </li>
-                                        </ul>
-                                        <span>(34)</span>
-                                    </div>
-                                    <h6>$ 45.00</h6>
-                                </div>
-                            </div>
-
-                            <div class="top-selling-contain wow fadeIn" data-wow-delay="0.15s">
-                                <a href="product-left.html" class="top-selling-image">
-                                    <img src="../assets/images/veg-2/top-selling/16.jpg"
-                                         class="img-fluid blur-up lazyload" alt="">
-                                </a>
-
-                                <div class="top-selling-detail">
-                                    <a href="product-left.html">
-                                        <h5>Dates Medjoul Premium Imported</h5>
-                                    </a>
-                                    <div class="product-rating">
-                                        <ul class="rating">
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star"></i>
-                                            </li>
-                                        </ul>
-                                        <span>(34)</span>
-                                    </div>
-                                    <h6>$ 70.00</h6>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

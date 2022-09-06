@@ -117,6 +117,22 @@ class HomeRepoEloquent implements HomeRepoEloquentInterface
     }
 
     /**
+     * Get top-rated products.
+     *
+     * @return mixed
+     */
+    public function getTopRatedProducts()
+    {
+        return Product::query()
+            ->with('first_media')
+            ->active()
+            ->withCount('rates')
+            ->orderByDesc('rates_count')
+            ->limit(4)
+            ->get();
+    }
+
+    /**
      * Get latest articles.
      *
      * @return mixed
