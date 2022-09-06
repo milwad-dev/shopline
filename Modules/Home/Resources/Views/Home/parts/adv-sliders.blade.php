@@ -6,10 +6,11 @@
             <div class="section-t-space">
                 <h3 class="theme-color">{{ $adv ? $adv->title : config('app.name') }}</h3>
 {{--                    <h5 class="text-content">Only this week, Don't miss..</h5> TODO ADD DESC--}}
-                <a href="{{ $adv->getLink() ?? 'https://github.com/milwad-dev' }}" class="shop-button">
+                <a href="{{ $adv ? $adv->getLink() : 'https://github.com/milwad-dev' }}" class="shop-button">
                     Show more ...
                 </a>
             </div>
         </div>
     </div>
 </div>
+
