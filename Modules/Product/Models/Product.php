@@ -97,6 +97,32 @@ class Product extends Model implements Viewable
         return $this->belongsToMany(Media::class, 'product_gallery');
     }
 
+    /**
+     * Relation to product_rates table, one to many.
+     *
+     * @return BelongsToMany
+     */
+    public function rates()
+    {
+        return $this->belongsToMany(User::class, 'product_rates');
+    }
+
+    // Booted
+    /**
+     * Boot product model.
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(static function($product) {
+            $product->categories()->delete();
+            $product->tags()->delete();
+            $product->galleries()->delet();
+            $product->attributes()->deleteAllAttribute();
+        });
+    }
+
     // Methods
     /**
      * Get css class for status.
@@ -125,21 +151,6 @@ class Product extends Model implements Viewable
     public function checkSelectedCategoryies(int $categoryId)
     {
         return $this->categories->contains($categoryId);
-    }
-
-    /**
-     * Boot product model.
-     */
-    public static function boot()
-    {
-        parent::boot();
-
-        static::deleting(static function($product) {
-            $product->categories()->delete();
-            $product->tags()->delete();
-            $product->galleries()->delet();
-            $product->attributes()->deleteAllAttribute();
-        });
     }
 
     /**
