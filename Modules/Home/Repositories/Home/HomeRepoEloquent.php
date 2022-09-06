@@ -77,6 +77,39 @@ class HomeRepoEloquent implements HomeRepoEloquentInterface
      */
     public function getOneLatestAdvByLocation(string $location)
     {
-        return Advertising::query()->with('media')->active()->where('location', $location);
+        return Advertising::query()
+            ->with('media')
+            ->active()
+            ->where('location', $location);
+    }
+
+    /**
+     * Get product by views.
+     *
+     * @return mixed
+     */
+    public function getProductsByViews()
+    {
+        return Product::query()
+            ->with('first_media')
+            ->active()
+            ->orderByUniqueViews()
+            ->limit(4)
+            ->get();
+    }
+
+    /**
+     * Get random products.
+     *
+     * @return mixed
+     */
+    public function getRandomProducts()
+    {
+        return Product::query()
+            ->with('first_media')
+            ->active()
+            ->inRandomOrder()
+            ->limit(4)
+            ->get();
     }
 }

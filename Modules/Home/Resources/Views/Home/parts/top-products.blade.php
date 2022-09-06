@@ -148,7 +148,6 @@
                     </div>
                 </div>
             </div>
-
             <div>
                 <div class="row">
                     <div class="col-12">
@@ -156,295 +155,89 @@
                             <div class="top-selling-title">
                                 <h3>Trending Products</h3>
                             </div>
-
-                            <div class="top-selling-contain wow fadeInUp">
-                                <a href="product-left.html" class="top-selling-image">
-                                    <img src="../assets/images/veg-2/top-selling/5.jpg"
-                                         class="img-fluid blur-up lazyload" alt="">
-                                </a>
-
-                                <div class="top-selling-detail">
-                                    <a href="product-left.html">
-                                        <h5>Good Life Refined Sunflower Oil</h5>
+                            @foreach ($homeRepo->getProductsByViews() as $product)
+                                <div class="top-selling-contain wow fadeInUp">
+                                    <a href="{{ $product->path() }}" class="top-selling-image">
+                                        <img src="{{ $product->first_media->thumb }}"
+                                        class="img-fluid blur-up lazyload" alt="product photo">
                                     </a>
-                                    <div class="product-rating">
-                                        <ul class="rating">
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star"></i>
-                                            </li>
-                                        </ul>
-                                        <span>(34)</span>
+                                    <div class="top-selling-detail">
+                                        <a href="{{ $product->path() }}">
+                                            <h5>{{ $product->title }}</h5>
+                                        </a>
+                                        <div class="product-rating">
+                                            <ul class="rating">
+                                                <li>
+                                                    <i data-feather="star" class="fill"></i>
+                                                </li>
+                                                <li>
+                                                    <i data-feather="star" class="fill"></i>
+                                                </li>
+                                                <li>
+                                                    <i data-feather="star" class="fill"></i>
+                                                </li>
+                                                <li>
+                                                    <i data-feather="star" class="fill"></i>
+                                                </li>
+                                                <li>
+                                                    <i data-feather="star"></i>
+                                                </li>
+                                            </ul>
+                                            <span>(34)</span>
+                                        </div>
+                                        <h6>$ {{ $product->getPrice() }}</h6>
                                     </div>
-                                    <h6>$ 10.00</h6>
                                 </div>
-                            </div>
-
-                            <div class="top-selling-contain wow fadeIn" data-wow-delay="0.05s">
-                                <a href="product-left.html" class="top-selling-image">
-                                    <img src="../assets/images/veg-2/top-selling/6.jpg"
-                                         class="img-fluid blur-up lazyload" alt="">
-                                </a>
-
-                                <div class="top-selling-detail">
-                                    <a href="product-left.html">
-                                        <h5>Good Life Raw Peanuts</h5>
-                                    </a>
-                                    <div class="product-rating">
-                                        <ul class="rating">
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star"></i>
-                                            </li>
-                                        </ul>
-                                        <span>(34)</span>
-                                    </div>
-                                    <h6>$ 40.00</h6>
-                                </div>
-                            </div>
-
-                            <div class="top-selling-contain wow fadeIn" data-wow-delay="0.1s">
-                                <a href="product-left.html" class="top-selling-image">
-                                    <img src="../assets/images/veg-2/top-selling/7.jpg"
-                                         class="img-fluid blur-up lazyload" alt="">
-                                </a>
-
-                                <div class="top-selling-detail">
-                                    <a href="product-left.html">
-                                        <h5>Good Life Raw Peanuts</h5>
-                                    </a>
-                                    <div class="product-rating">
-                                        <ul class="rating">
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star"></i>
-                                            </li>
-                                        </ul>
-                                        <span>(34)</span>
-                                    </div>
-                                    <h6>$ 85.00</h6>
-                                </div>
-                            </div>
-
-                            <div class="top-selling-contain wow fadeIn" data-wow-delay="0.15s">
-                                <a href="product-left.html" class="top-selling-image">
-                                    <img src="../assets/images/veg-2/top-selling/8.jpg"
-                                         class="img-fluid blur-up lazyload" alt="">
-                                </a>
-
-                                <div class="top-selling-detail">
-                                    <a href="product-left.html">
-                                        <h5>Frooti Mango Drink</h5>
-                                    </a>
-                                    <div class="product-rating">
-                                        <ul class="rating">
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star"></i>
-                                            </li>
-                                        </ul>
-                                        <span>(34)</span>
-                                    </div>
-                                    <h6>$ 10.00</h6>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
-
             <div>
                 <div class="row">
                     <div class="col-12">
                         <div class="top-selling-box">
                             <div class="top-selling-title">
-                                <h3>Recently added</h3>
+                                <h3>Random products</h3>
                             </div>
-
-                            <div class="top-selling-contain wow fadeInUp">
-                                <a href="product-left.html" class="top-selling-image">
-                                    <img src="../assets/images/veg-2/top-selling/9.jpg"
-                                         class="img-fluid blur-up lazyload" alt="">
-                                </a>
-
-                                <div class="top-selling-detail">
-                                    <a href="product-left.html">
-                                        <h5>Tuffets Britannia Cheezza</h5>
+                            @foreach ($homeRepo->getRandomProducts() as $product)
+                                <div class="top-selling-contain wow fadeInUp">
+                                    <a href="{{ $product->path() }}" class="top-selling-image">
+                                        <img src="{{ $product->first_media->thumb }}"
+                                        class="img-fluid blur-up lazyload" alt="product image">
                                     </a>
-                                    <div class="product-rating">
-                                        <ul class="rating">
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star"></i>
-                                            </li>
-                                        </ul>
-                                        <span>(34)</span>
+                                    <div class="top-selling-detail">
+                                        <a href="{{ $product->path() }}">
+                                            <h5>{{ $product->title }}</h5>
+                                        </a>
+                                        <div class="product-rating">
+                                            <ul class="rating">
+                                                <li>
+                                                    <i data-feather="star" class="fill"></i>
+                                                </li>
+                                                <li>
+                                                    <i data-feather="star" class="fill"></i>
+                                                </li>
+                                                <li>
+                                                    <i data-feather="star" class="fill"></i>
+                                                </li>
+                                                <li>
+                                                    <i data-feather="star" class="fill"></i>
+                                                </li>
+                                                <li>
+                                                    <i data-feather="star"></i>
+                                                </li>
+                                            </ul>
+                                            <span>(34)</span>
+                                        </div>
+                                        <h6>$ {{ $product->getPrice() }}</h6>
                                     </div>
-                                    <h6>$ 10.00</h6>
                                 </div>
-                            </div>
-
-                            <div class="top-selling-contain wow fadeIn" data-wow-delay="0.05s">
-                                <a href="product-left.html" class="top-selling-image">
-                                    <img src="../assets/images/veg-2/top-selling/10.jpg"
-                                         class="img-fluid blur-up lazyload" alt="">
-                                </a>
-
-                                <div class="top-selling-detail">
-                                    <a href="product-left.html">
-                                        <h5>Long Life Toned Milk</h5>
-                                    </a>
-                                    <div class="product-rating">
-                                        <ul class="rating">
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star"></i>
-                                            </li>
-                                        </ul>
-                                        <span>(34)</span>
-                                    </div>
-                                    <h6>$ 40.00</h6>
-                                </div>
-                            </div>
-
-                            <div class="top-selling-contain wow fadeIn" data-wow-delay="0.1s">
-                                <a href="product-left.html" class="top-selling-image">
-                                    <img src="../assets/images/veg-2/top-selling/11.jpg"
-                                         class="img-fluid blur-up lazyload" alt="">
-                                </a>
-
-                                <div class="top-selling-detail">
-                                    <a href="product-left.html">
-                                        <h5>Organic Tomato</h5>
-                                    </a>
-                                    <div class="product-rating">
-                                        <ul class="rating">
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star"></i>
-                                            </li>
-                                        </ul>
-                                        <span>(34)</span>
-                                    </div>
-                                    <h6>$ 45.00</h6>
-                                </div>
-                            </div>
-
-                            <div class="top-selling-contain wow fadeIn" data-wow-delay="0.15s">
-                                <a href="product-left.html" class="top-selling-image">
-                                    <img src="../assets/images/veg-2/top-selling/12.jpg"
-                                         class="img-fluid blur-up lazyload" alt="">
-                                </a>
-
-                                <div class="top-selling-detail">
-                                    <a href="product-left.html">
-                                        <h5>Organic Pure Honey</h5>
-                                    </a>
-                                    <div class="product-rating">
-                                        <ul class="rating">
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star"></i>
-                                            </li>
-                                        </ul>
-                                        <span>(34)</span>
-                                    </div>
-                                    <h6>$ 90.00</h6>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
             </div>
-
             <div>
                 <div class="row">
                     <div class="col-12">

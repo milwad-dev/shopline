@@ -2,6 +2,8 @@
 
 namespace Modules\Product\Models;
 
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
+use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -12,9 +14,9 @@ use Modules\Product\Enums\ProductStatusEnum;
 use Modules\User\Models\User;
 use Spatie\Tags\HasTags;
 
-class Product extends Model
+class Product extends Model implements Viewable
 {
-    use HasFactory, Attributable, HasTags;
+    use HasFactory, Attributable, HasTags, InteractsWithViews;
 
     /**
      * Set column in fillable.
