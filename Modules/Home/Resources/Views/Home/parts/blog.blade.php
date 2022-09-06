@@ -24,9 +24,8 @@
 
                                 <div class="blog-detail">
                                     <a href="{{ $article->path() }}">
-                                        <h6>{{ $article->title }}</h6>
+                                        <h4 class="text-black">{{ $article->title }}</h4>
                                     </a>
-                                    <h5>{{ $article->getMinRead() }}</h5>
                                 </div>
                             </div>
                         </div>

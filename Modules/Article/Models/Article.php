@@ -132,4 +132,14 @@ class Article extends Model
 
         return false;
     }
+
+    /**
+     * Get article path.
+     *
+     * @return string
+     */
+    public function path()
+    {
+        return '';
+    }
 }

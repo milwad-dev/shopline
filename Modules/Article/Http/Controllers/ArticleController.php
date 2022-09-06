@@ -89,11 +89,10 @@ class ArticleController extends Controller
      * Show edit page by id.
      *
      * @param  $id
-     * @param  CategoryRepoEloquentInterface $categoryRepo
      * @return Application|Factory|View
      * @throws AuthorizationException
      */
-    public function edit($id, CategoryRepoEloquentInterface $categoryRepo)
+    public function edit($id)
     {
         $this->authorize('manage', $this->class);
         $article = $this->repo->findById($id);
