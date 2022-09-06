@@ -4,6 +4,7 @@ namespace Modules\Home\Repositories\Home;
 
 use Illuminate\Database\Eloquent\Collection;
 use Modules\Advertising\Models\Advertising;
+use Modules\Article\Models\Article;
 use Modules\Category\Enums\CategoryStatusEnum;
 use Modules\Category\Models\Category;
 use Modules\Product\Models\Product;
@@ -110,6 +111,21 @@ class HomeRepoEloquent implements HomeRepoEloquentInterface
             ->active()
             ->inRandomOrder()
             ->limit(4)
+            ->get();
+    }
+
+    /**
+     * Get latest articles.
+     *
+     * @return mixed
+     */
+    public function getLatestArticles()
+    {
+        return Article::query()
+            ->with('media')
+            ->active()
+            ->latest()
+            ->limit(5)
             ->get();
     }
 }

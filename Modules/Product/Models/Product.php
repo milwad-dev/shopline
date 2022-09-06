@@ -164,6 +164,9 @@ class Product extends Model implements Viewable
 
     /**
      * Scope active status.
+     *
+     * @param  $query
+     * @return mixed
      */
     public function scopeActive($query)
     {

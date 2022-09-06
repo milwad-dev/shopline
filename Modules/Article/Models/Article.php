@@ -92,4 +92,26 @@ class Article extends Model
             $article->tags()->delete();
         });
     }
+
+    /**
+     * Get article min read.
+     *
+     * @return string
+     */
+    public function getMinRead()
+    {
+        return "$this->min_read Minute";
+    }
+
+
+    /**
+     * Scope active status.
+     *
+     * @param  $query
+     * @return mixed
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('status', ArticleStatusEnum::STATUS_ACTIVE->value);
+    }
 }
