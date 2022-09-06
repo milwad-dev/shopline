@@ -13,7 +13,6 @@
         @include('Home::Home.section.mobile-menu') {{-- Include mobile menu --}}
             @yield('content') {{-- Yield content data --}}
         @include('Home::Home.section.footer') {{-- Include footer --}}
-        @include('Home::Home.section.modals') {{-- Include modal files --}}
         @include('Home::Home.section.theme-options') {{-- Include theme options --}}
         @include('Home::Home.section.js') {{-- Include js files --}}
     </body>
