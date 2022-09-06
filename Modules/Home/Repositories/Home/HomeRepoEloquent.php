@@ -93,6 +93,7 @@ class HomeRepoEloquent implements HomeRepoEloquentInterface
     {
         return Product::query()
             ->with('first_media')
+            ->withCount('rates')
             ->active()
             ->orderByUniqueViews()
             ->limit(4)
@@ -108,6 +109,7 @@ class HomeRepoEloquent implements HomeRepoEloquentInterface
     {
         return Product::query()
             ->with('first_media')
+            ->withCount('rates')
             ->active()
             ->inRandomOrder()
             ->limit(4)

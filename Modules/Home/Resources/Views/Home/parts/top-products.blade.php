@@ -167,23 +167,19 @@
                                         </a>
                                         <div class="product-rating">
                                             <ul class="rating">
-                                                <li>
-                                                    <i data-feather="star" class="fill"></i>
-                                                </li>
-                                                <li>
-                                                    <i data-feather="star" class="fill"></i>
-                                                </li>
-                                                <li>
-                                                    <i data-feather="star" class="fill"></i>
-                                                </li>
-                                                <li>
-                                                    <i data-feather="star" class="fill"></i>
-                                                </li>
-                                                <li>
-                                                    <i data-feather="star"></i>
-                                                </li>
+                                                @if ($product->rates_count === 0)
+                                                    <li>
+                                                        <i data-feather="star" class="fill"></i>
+                                                    </li>
+                                                @else
+                                                    @for ($i = 0; $i < $product->rates_count; $i++)
+                                                        <li>
+                                                            <i data-feather="star" class="fill"></i>
+                                                        </li>
+                                                    @endfor
+                                                @endif
                                             </ul>
-                                            <span>(34)</span>
+                                            <span>({{ $product->rates_count }})</span>
                                         </div>
                                         <h6>$ {{ $product->getPrice() }}</h6>
                                     </div>
@@ -212,23 +208,19 @@
                                         </a>
                                         <div class="product-rating">
                                             <ul class="rating">
-                                                <li>
-                                                    <i data-feather="star" class="fill"></i>
-                                                </li>
-                                                <li>
-                                                    <i data-feather="star" class="fill"></i>
-                                                </li>
-                                                <li>
-                                                    <i data-feather="star" class="fill"></i>
-                                                </li>
-                                                <li>
-                                                    <i data-feather="star" class="fill"></i>
-                                                </li>
-                                                <li>
-                                                    <i data-feather="star"></i>
-                                                </li>
+                                                @if ($product->rates_count === 0)
+                                                    <li>
+                                                        <i data-feather="star" class="fill"></i>
+                                                    </li>
+                                                @else
+                                                    @for ($i = 0; $i < $product->rates_count; $i++)
+                                                        <li>
+                                                            <i data-feather="star" class="fill"></i>
+                                                        </li>
+                                                    @endfor
+                                                @endif
                                             </ul>
-                                            <span>(34)</span>
+                                            <span>({{ $product->rates_count }})</span>
                                         </div>
                                         <h6>$ {{ $product->getPrice() }}</h6>
                                     </div>
