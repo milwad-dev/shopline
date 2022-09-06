@@ -26,7 +26,6 @@ class Product extends Model implements Viewable
     protected $fillable = [
         'vendor_id',
         'first_media_id',
-        'second_media_id',
         'title',
         'slug',
         'sku',
@@ -65,16 +64,6 @@ class Product extends Model implements Viewable
     public function first_media()
     {
         return $this->belongsTo(Media::class, 'first_media_id');
-    }
-
-    /**
-     * Relation to medias table, one to many.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function second_media()
-    {
-        return $this->belongsTo(Media::class, 'second_media_id');
     }
 
     /**

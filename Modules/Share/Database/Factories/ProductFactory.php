@@ -23,7 +23,6 @@ class ProductFactory extends Factory
 
         return [
             'first_media_id' => null,
-            'second_media_id' => null,
             'vendor_id' => auth()->id(),
             'title' => $title,
             'slug' => ShareService::makeSlug($title),

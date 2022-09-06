@@ -45,7 +45,7 @@ class ProductController extends Controller
     {
         $this->authorize('manage', $this->class);
         $products = $this->repo->getLatest()
-            ->with(['categories', 'first_media', 'second_media', 'tags'])
+            ->with(['categories', 'first_media', 'tags'])
             ->paginate();
 
         return view('Product::index', compact('products'));
@@ -76,7 +76,7 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $this->authorize('manage', $this->class);
-        $this->uploadMedias($request);
+        $this->uploadMedia($request);
 
         $product = $this->service->store($request->all());
 
@@ -121,7 +121,6 @@ class ProductController extends Controller
         $product = $this->repo->findById($id);
 
         $this->checkAndUploadMediaForUpdate($request, $product, 'first_media', 'first_media_id');
-        $this->checkAndUploadMediaForUpdate($request, $product, 'second_media', 'second_media_id');
 
         $this->service->update($request, $id);
         $this->service->firstOrCreateCategoriesToProduct($request->categories, $product);
@@ -198,10 +197,9 @@ class ProductController extends Controller
      * @param  ProductRequest $request
      * @return void
      */
-    private function uploadMedias(ProductRequest $request): void
+    private function uploadMedia(ProductRequest $request): void
     {
         ShareService::uploadMediaWithAddInRequest($request, 'first_media', 'first_media_id');
-        ShareService::uploadMediaWithAddInRequest($request, 'second_media', 'second_media_id');
     }
 
     /**

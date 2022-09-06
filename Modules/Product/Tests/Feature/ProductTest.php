@@ -115,7 +115,6 @@ class ProductTest extends TestCase
 
         $response = $this->post(route('products.store'), [
             'first_media' => UploadedFile::fake()->image('first_media.jpg'), // Mock
-            'second_media' => UploadedFile::fake()->image('second_media.jpg'), // Mock
             'title' => $this->faker->title,
             'price' => $this->faker->numberBetween(5, 15),
             'count' => 51,
@@ -310,7 +309,6 @@ class ProductTest extends TestCase
     {
         return [
             'first_media' => UploadedFile::fake()->image('first_media.jpg'), // Mock
-            'second_media' => UploadedFile::fake()->image('second_media.jpg'), // Mock
             'title' => $this->faker->title,
             'price' => $this->faker->numberBetween(5, 15),
             'count' => 51,
@@ -345,7 +343,6 @@ class ProductTest extends TestCase
         return [
             'id' => $product->id,
             'first_media' => UploadedFile::fake()->image('first_media.jpg'),
-            'second_media' => UploadedFile::fake()->image('second_media.jpg'),
             'title' => $this->faker->title,
             'price' => $this->faker->numberBetween(5, 15),
             'count' => 51,

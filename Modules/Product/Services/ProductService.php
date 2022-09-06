@@ -22,7 +22,6 @@ class ProductService implements ProductServiceInterface
             'slug' => ShareService::makeSlug($data['title']),
             'sku' => ShareService::makeUniqueSku(Product::class),
             'first_media_id'    => $data['first_media_id'],
-            'second_media_id'   => $data['second_media_id'],
             'title'             => $data['title'],
             'price'             => $data['price'],
             'count'             => $data['count'],
@@ -45,7 +44,6 @@ class ProductService implements ProductServiceInterface
     {
         return $this->query()->whereId($id)->update([
             'first_media_id' => $request->first_media_id,
-            'second_media_id' => $request->second_media_id,
             'title' => $request->title,
             'slug' => ShareService::makeSlug($request->title),
             'price' => $request->price,

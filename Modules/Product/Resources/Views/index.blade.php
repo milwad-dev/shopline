@@ -19,7 +19,6 @@
                                         <tr class="text-center">
                                             <th>#</th>
                                             <th>First image</th>
-                                            <th>Second image</th>
                                             <th>Title</th>
                                             <th>Sku</th>
                                             <th>Price</th>
@@ -38,10 +37,6 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>
                                                     <img src="{{ $product->first_media->thumb }}" class="me-75"
-                                                    height="20" width="20">
-                                                </td>
-                                                <td>
-                                                    <img src="{{ $product->second_media->thumb }}" class="me-75"
                                                     height="20" width="20">
                                                 </td>
                                                 <td>

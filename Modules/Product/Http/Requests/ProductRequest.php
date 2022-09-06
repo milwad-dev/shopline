@@ -27,7 +27,6 @@ class ProductRequest extends FormRequest
     {
         $rules = [
             'first_media'  => 'required|file|mimes:jpeg,png,jpg|max:2048',
-            'second_media' => 'required|file|mimes:jpeg,png,jpg|max:2048',
             'title' => 'required|string|min:3|max:255|unique:products,title',
             'price' => 'required|string',
             'count' => 'required|numeric',
@@ -40,7 +39,6 @@ class ProductRequest extends FormRequest
 
         if (request()->method === 'PATCH') {
             $rules['first_media_id'] = 'nullable|file|mimes:jpeg,png,jpg|max:2048';
-            $rules['second_media_id'] = 'nullable|file|mimes:jpeg,png,jpg|max:2048';
             $rules['title'] = 'required|string|min:3|max:255|unique:products,title,' . request()->id;
         }
 

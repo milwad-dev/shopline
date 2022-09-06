@@ -197,15 +197,10 @@
                                             </div>
                                             <hr>
                                             <div class="row">
-                                                <div class="col-xl-6 col-md-6 col-12">
+                                                <div class="col-xl-12 col-md-12 col-12">
                                                     <x-panel-label for="first_media" title="First photo" />
                                                     <x-panel-file name="first_media" id="first_media" />
                                                     <x-share-error name="first_media" />
-                                                </div>
-                                                <div class="col-xl-6 col-md-6 col-12">
-                                                    <x-panel-label for="second_media" title="Second photo" />
-                                                    <x-panel-file name="second_media" id="second_media" />
-                                                    <x-share-error name="second_media" />
                                                 </div>
                                             </div>
                                             <div class="col-xl-12 col-md-12 col-12 mb-5">
