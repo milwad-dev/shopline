@@ -61,6 +61,20 @@ class Article extends Model
         return $this->belongsToMany(Category::class, 'article_category');
     }
 
+    // Booted
+    /**
+     * Boot article model.
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(static function($article) {
+            $article->categories()->delete();
+            $article->tags()->delete();
+        });
+    }
+
     // Methods
     /**
      * Return css class for category status.
@@ -78,19 +92,6 @@ class Article extends Model
         }
 
         return 'warning';
-    }
-
-    /**
-     * Boot article model.
-     */
-    public static function boot()
-    {
-        parent::boot();
-
-        static::deleting(static function($article) {
-            $article->categories()->delete();
-            $article->tags()->delete();
-        });
     }
 
     /**

@@ -47,7 +47,7 @@ class ArticleController extends Controller
     public function index()
     {
         $this->authorize('manage', $this->class);
-        $articles = $this->repo->getLatestArticles()->paginate();
+        $articles = $this->repo->getLatestArticles()->with('media')->paginate();
 
         return view('Article::index', compact('articles'));
     }
