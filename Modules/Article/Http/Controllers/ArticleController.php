@@ -76,8 +76,11 @@ class ArticleController extends Controller
     public function store(ArticleRequest $request)
     {
         $this->authorize('manage', $this->class);
+
         ShareService::uploadMediaWithAddInRequest($request);
-        $this->service->store($request);
+
+        $article = $this->service->store($request);
+        $article->categories()->attach($request->categories);
 
         return $this->successMessageWithRedirect('Create article');
     }

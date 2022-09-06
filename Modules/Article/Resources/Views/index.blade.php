@@ -35,15 +35,13 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>
                                                     <img src="{{ $article->media->thumb }}" class="me-75"
-                                                    height="20" width="20">
+                                                    height="50" width="50">
                                                 </td>
                                                 <td>
                                                     {{ $article->title }}
                                                 </td>
                                                 <td>
-                                                    <span class="badge badge-light-dark me-1">
-                                                        {{ $article->getMinRead() }}
-                                                    </span>
+                                                    {{ $article->getMinRead() }}
                                                 </td>
                                                 <td>
                                                     <span class="badge rounded-pill badge-light-{{ $article->getCssClassStatus() }} me-1">
