@@ -166,11 +166,15 @@ class Product extends Model implements Viewable
     /**
      * Get rate score.
      *
-     * @return string
+     * @return int
      */
     public function getRate()
     {
-        return ''; // TODO
+        $totalRate      = $this->rates()->get()->sum('rates');
+        $totalRateCount = $this->rates()->count();
+        $calculateRate  = (int) $totalRate / $totalRateCount;
+
+        return (int) round((int) $calculateRate);
     }
 
     /**
