@@ -2,6 +2,7 @@
 
 namespace Modules\Home\Http\Controllers\Product;
 
+use Modules\Home\Repositories\Product\ProductRepoEloquentInterface;
 use Modules\Share\Http\Controllers\Controller;
 
 class ProductController extends Controller
@@ -9,9 +10,11 @@ class ProductController extends Controller
     /**
      * Get latest products.
      */
-    public function index()
+    public function index(ProductRepoEloquentInterface $productRepoEloquent)
     {
-        return view('Home::Pages.products.index');
+        $products = $productRepoEloquent->getLatest()->with(['user', 'first_media'])->paginate(16);
+
+        return view('Home::Pages.products.index', compact(['products']));
     }
 
     /**
