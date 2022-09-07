@@ -27,6 +27,7 @@ class ProductController extends Controller
 
         $advs = resolve(AdvertisingRepoEloquentInterface::class)
             ->getAdvertisingsByLocation(AdvertisingLocationEnum::LOCATION_PRODUCT_PAGE->value)
+            ->with('media')
             ->limit(8)
             ->latest()
             ->get();
