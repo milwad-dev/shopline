@@ -8,15 +8,15 @@
             <div class="row">
                 <div class="col-12">
                     <div class="breadscrumb-contain">
-                        <h2>Shop Left Sidebar</h2>
+                        <h2>Products</h2>
                         <nav>
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item">
-                                    <a href="index.html">
+                                    <a href="{{ route('home.index') }}">
                                         <i class="fa-solid fa-house"></i>
                                     </a>
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">Shop Left Sidebar</li>
+                                <li class="breadcrumb-item active" aria-current="page">Products</li>
                             </ol>
                         </nav>
                     </div>

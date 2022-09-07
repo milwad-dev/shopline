@@ -18,7 +18,7 @@ class ProductController extends Controller
      */
     public function index(ProductRepoEloquentInterface $productRepoEloquent)
     {
-        $products = $productRepoEloquent->getLatest()->with(['user', 'first_media'])->paginate(16);
+        $products = $productRepoEloquent->getLatest()->with(['first_media'])->paginate(16);
 
         return view('Home::Pages.products.index', compact(['products']));
     }

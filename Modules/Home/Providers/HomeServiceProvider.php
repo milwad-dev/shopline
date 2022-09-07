@@ -5,8 +5,8 @@ namespace Modules\Home\Providers;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Modules\Home\Repositories\Home\HomeRepoEloquent;
-use Modules\Home\Repositories\Home\HomeRepoEloquentInterface;
+use Modules\Home\Repositories\Home\{HomeRepoEloquent, HomeRepoEloquentInterface};
+use Modules\Home\Repositories\Product\{ProductRepoEloquent, ProductRepoEloquentInterface};
 
 class HomeServiceProvider extends ServiceProvider
 {
@@ -55,7 +55,7 @@ class HomeServiceProvider extends ServiceProvider
         $this->loadViewFiles();
         $this->loadRouteFiles();
 
-        $this->bindRepository();
+        $this->bindRepositories();
     }
 
     /**
@@ -106,13 +106,14 @@ class HomeServiceProvider extends ServiceProvider
     }
 
     /**
-     * Bind home repository.
+     * Bind repositories.
      *
      * @return void
      */
-    private function bindRepository()
+    private function bindRepositories()
     {
         $this->app->bind(HomeRepoEloquentInterface::class, HomeRepoEloquent::class);
+        $this->app->bind(ProductRepoEloquentInterface::class, ProductRepoEloquent::class);
     }
 
     /**
