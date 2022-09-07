@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Modules\Home\Repositories\Home\{HomeRepoEloquent, HomeRepoEloquentInterface};
 use Modules\Home\Repositories\Product\{ProductRepoEloquent, ProductRepoEloquentInterface};
+use Modules\Home\Repositories\Advertising\{AdvertisingRepoEloquent, AdvertisingRepoEloquentInterface};
 
 class HomeServiceProvider extends ServiceProvider
 {
@@ -114,6 +115,7 @@ class HomeServiceProvider extends ServiceProvider
     {
         $this->app->bind(HomeRepoEloquentInterface::class, HomeRepoEloquent::class);
         $this->app->bind(ProductRepoEloquentInterface::class, ProductRepoEloquent::class);
+        $this->app->bind(AdvertisingRepoEloquentInterface::class, AdvertisingRepoEloquent::class);
     }
 
     /**

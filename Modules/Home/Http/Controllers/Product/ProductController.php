@@ -5,6 +5,8 @@ namespace Modules\Home\Http\Controllers\Product;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Modules\Advertising\Enums\AdvertisingLocationEnum;
+use Modules\Home\Repositories\Advertising\AdvertisingRepoEloquentInterface;
 use Modules\Home\Repositories\Product\ProductRepoEloquentInterface;
 use Modules\Share\Http\Controllers\Controller;
 
@@ -18,9 +20,18 @@ class ProductController extends Controller
      */
     public function index(ProductRepoEloquentInterface $productRepoEloquent)
     {
-        $products = $productRepoEloquent->getLatest()->with(['first_media'])->paginate(16);
+        $products = $productRepoEloquent
+            ->getLatest()
+            ->with(['first_media'])
+            ->paginate(16);
 
-        return view('Home::Pages.products.index', compact(['products']));
+        $advs = resolve(AdvertisingRepoEloquentInterface::class)
+            ->getAdvertisingsByLocation(AdvertisingLocationEnum::LOCATION_PRODUCT_PAGE->value)
+            ->limit(8)
+            ->latest()
+            ->get();
+
+        return view('Home::Pages.products.index', compact(['products', 'advs']));
     }
 
     /**
