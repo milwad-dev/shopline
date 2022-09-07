@@ -15,6 +15,6 @@ class HomeController extends Controller
      */
     public function index(HomeRepoEloquentInterface $homeRepo)
     {
-        return view('Home::index', compact('homeRepo'));
+        return view('Home::Pages.home.index', compact('homeRepo'));
     }
 }
