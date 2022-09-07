@@ -23,6 +23,7 @@ class ProductController extends Controller
         $products = $productRepoEloquent
             ->getLatest()
             ->with(['first_media'])
+            ->withCount('rates')
             ->paginate(16);
 
         $advs = resolve(AdvertisingRepoEloquentInterface::class)

@@ -16,7 +16,7 @@
         <div class="container-fluid-lg">
             <div class="row">
                 @include('Home::Pages.products.section.main-page.filter')
-                @include('Home::Pages.products.section.main-page.products')
+                @include('Home::Pages.products.section.main-page.products', ['products' => $products])
             </div>
         </div>
     </section>
