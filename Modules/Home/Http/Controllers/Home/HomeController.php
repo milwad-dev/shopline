@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Home\Http\Controllers;
+namespace Modules\Home\Http\Controllers\Home;
 
 use Modules\Home\Repositories\Home\HomeRepoEloquentInterface;
 use Modules\Share\Http\Controllers\Controller;

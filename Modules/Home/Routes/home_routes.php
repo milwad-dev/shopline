@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group([], static function ($router) {
-    $router->get('/', ['uses' => 'HomeController@index', 'as' => 'home.index']);
-    $router->get('comming-soon', ['uses' => 'HomeController@commingSoon', 'as' => 'comming-soon']);
+    // Home
+    $router->get('/', ['uses' => 'Home\HomeController@index', 'as' => 'home.index']);
+    $router->get('comming-soon', ['uses' => 'Home\HomeController@commingSoon', 'as' => 'comming-soon']);
+
+    // Products
+    $router->get('products', ['uses' => 'Product\ProductController@index', 'as' => 'products.home']);
+    $router->get('products/{sku}/d/{slug}', ['uses' => 'Product\ProductController@details', 'as' => 'products.details']);
 });
