@@ -42,25 +42,24 @@
                     </ul>
                 </div>
             </div>
-
             <div class="grid-option">
                 <ul>
                     <li class="three-grid d-xxl-inline-block d-none">
                         <a href="javascript:void(0)">
-                            <img src="../assets/svg/grid-3.svg" class="blur-up lazyload" alt="">
+                            <img src="{{ asset('home/svg/grid-3.svg') }}" class="blur-up lazyload" alt="">
                         </a>
                     </li>
                     <li class="grid-btn active">
                         <a href="javascript:void(0)">
-                            <img src="../assets/svg/grid-4.svg"
+                            <img src="{{ asset('home/svg/grid-4.svg') }}"
                                  class="blur-up lazyload d-lg-inline-block d-none" alt="">
-                            <img src="../assets/svg/grid.svg"
+                            <img src="{{ asset('home/svg/grid.svg') }}"
                                  class="blur-up lazyload img-fluid d-lg-none d-inline-block" alt="">
                         </a>
                     </li>
                     <li class="list-btn">
                         <a href="javascript:void(0)">
-                            <img src="../assets/svg/list.svg" class="blur-up lazyload" alt="">
+                            <img src="{{ asset('home/svg/list.svg') }}" class="blur-up lazyload" alt="">
                         </a>
                     </li>
                 </ul>
