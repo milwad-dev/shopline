@@ -39,109 +39,77 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-xl-6 wow fadeInUp" data-wow-delay="0.1s">
                             <div class="right-box-contain">
-                                <h6 class="offer-top">30% Off</h6>
-                                <h2 class="name">Creamy Chocolate Cake</h2>
+{{--                                <h6 class="offer-top">30% Off</h6> TODO --}}
+                                <h2 class="name">{{ $product->title }}</h2>
                                 <div class="price-rating">
-                                    <h3 class="theme-color price">$49.50 <del class="text-content">$58.46</del> <span
-                                            class="offer theme-color">(8% off)</span></h3>
+                                    <h3 class="theme-color price">
+                                        ${{ $product->getPrice() }}
+{{--                                        <del class="text-content">$58.46</del>--}}
+{{--                                        <span class="offer theme-color">(8% off)</span>--}}
+                                    </h3>
                                     <div class="product-rating custom-rate">
                                         <ul class="rating">
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star"></i>
-                                            </li>
+                                            @if ((int) $product->rates_count === 0)
+                                                <li>
+                                                    <i data-feather="star" class="fill"></i>
+                                                </li>
+                                            @else
+                                                @for ($i = 0; $i < $product->rates_count; $i++)
+                                                    <li>
+                                                        <i data-feather="star" class="fill"></i>
+                                                    </li>
+                                                @endfor
+                                            @endif
                                         </ul>
-                                        <span class="review">23 Customer Review</span>
+                                        <span>({{ $product->rates_count }}) Customer Review</span>
                                     </div>
                                 </div>
-
                                 <div class="procuct-contain">
-                                    <p>Lollipop cake chocolate chocolate cake dessert jujubes. Shortbread sugar plum
-                                        dessert
-                                        powder cookie sweet brownie. Cake cookie apple pie dessert sugar plum muffin
-                                        cheesecake.
+                                    <p>
+                                        {{ $product->short_description }}
                                     </p>
                                 </div>
-
-                                <div class="product-packege">
-                                    <div class="product-title">
-                                        <h4>Weight</h4>
-                                    </div>
-                                    <ul class="select-packege">
-                                        <li>
-                                            <a href="javascript:void(0)" class="active">1/2 KG</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)">1 KG</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)">1.5 KG</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)">Red Roses</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)">With Pink Roses</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="time deal-timer product-deal-timer mx-md-0 mx-auto">
-                                    <div class="product-title">
-                                        <h4>Hurry up! Sales Ends In</h4>
-                                    </div>
-                                    <ul>
-                                        <li>
-                                            <div class="counter">
-                                                <div>
-                                                    <h5 id="days2"></h5>
-                                                    <h6>Days</h6>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="counter">
-                                                <div>
-                                                    <h5 id="hours2"></h5>
-                                                    <h6>Hours</h6>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="counter">
-                                                <div>
-                                                    <h5 id="minutes2"></h5>
-                                                    <h6>Min</h6>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="counter">
-                                                <div>
-                                                    <h5 id="seconds2"></h5>
-                                                    <h6>Sec</h6>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-
-
-
+{{--                                <div class="time deal-timer product-deal-timer mx-md-0 mx-auto">--}}
+{{--                                    <div class="product-title">--}}
+{{--                                        <h4>Hurry up! Sales Ends In</h4>--}}
+{{--                                    </div>--}}
+{{--                                    <ul>--}}
+{{--                                        <li>--}}
+{{--                                            <div class="counter">--}}
+{{--                                                <div>--}}
+{{--                                                    <h5 id="days2"></h5>--}}
+{{--                                                    <h6>Days</h6>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </li>--}}
+{{--                                        <li>--}}
+{{--                                            <div class="counter">--}}
+{{--                                                <div>--}}
+{{--                                                    <h5 id="hours2"></h5>--}}
+{{--                                                    <h6>Hours</h6>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </li>--}}
+{{--                                        <li>--}}
+{{--                                            <div class="counter">--}}
+{{--                                                <div>--}}
+{{--                                                    <h5 id="minutes2"></h5>--}}
+{{--                                                    <h6>Min</h6>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </li>--}}
+{{--                                        <li>--}}
+{{--                                            <div class="counter">--}}
+{{--                                                <div>--}}
+{{--                                                    <h5 id="seconds2"></h5>--}}
+{{--                                                    <h6>Sec</h6>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
+{{--                                        </li>--}}
+{{--                                    </ul>--}}
+{{--                                </div> TODO--}}
                                 <div class="note-box product-packege">
                                     <div class="cart_qty qty-box product-qty">
                                         <div class="input-group">
@@ -155,18 +123,16 @@
                                                 <i class="fa fa-minus" aria-hidden="true"></i>
                                             </button>
                                         </div>
-                                    </div>
-
+                                    </div> {{-- FIX TODO --}}
                                     <button onclick="location.href = 'cart.html';"
-                                            class="btn btn-md bg-dark cart-button text-white w-100">Add To Cart</button>
+                                        class="btn btn-md bg-dark cart-button text-white w-100">Add To Cart
+                                    </button>
                                 </div>
-
                                 <div class="buy-box">
                                     <a href="wishlist.html">
                                         <i data-feather="heart"></i>
                                         <span>Add To Wishlist</span>
                                     </a>
-
                                     <a href="compare.html">
                                         <i data-feather="shuffle"></i>
                                         <span>Add To Compare</span>
@@ -175,63 +141,72 @@
 
                                 <div class="pickup-box">
                                     <div class="product-title">
-                                        <h4>Store Information</h4>
+                                        <h4>Product Information</h4>
                                     </div>
-
-                                    <div class="pickup-detail">
-                                        <h4 class="text-content">Lollipop cake chocolate chocolate cake dessert jujubes.
-                                            Shortbread sugar plum dessert powder cookie sweet brownie.</h4>
-                                    </div>
-
                                     <div class="product-info">
                                         <ul class="product-info-list product-info-list-2">
-                                            <li>Type : <a href="javascript:void(0)">Black Forest</a></li>
-                                            <li>SKU : <a href="javascript:void(0)">SDFVW65467</a></li>
-                                            <li>MFG : <a href="javascript:void(0)">Jun 4, 2022</a></li>
-                                            <li>Stock : <a href="javascript:void(0)">2 Items Left</a></li>
-                                            <li>Tags : <a href="javascript:void(0)">Cake,</a> <a
-                                                    href="javascript:void(0)">Backery</a></li>
+                                            <li>Type :
+                                                <a href="javascript:void(0)">{{ $product->type }}</a>
+                                            </li>
+                                            <li>SKU :
+                                                <a href="javascript:void(0)">{{ $product->getSku() }}</a>
+                                            </li>
+                                            <li>Created At :
+                                                <a href="javascript:void(0)">{{ $product->getCreatedAt() }}</a>
+                                            </li>
+                                            <li>Stock :
+                                                <a href="javascript:void(0)">2 Items Left</a>
+                                            </li>
+                                            <li>Tags :
+                                                @foreach ($product->tags as $tag)
+                                                    <a href="{{ $tag->path() }}">{{ $tag->name }},</a>
+                                                @endforeach
+                                            </li>
+                                            <li>Categories :
+                                                @foreach ($product->categories as $category)
+                                                    <a href="{{ $category->path() }}">{{ $category->title }},</a>
+                                                @endforeach
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
-
-                                <div class="paymnet-option">
-                                    <div class="product-title">
-                                        <h4>Guaranteed Safe Checkout</h4>
-                                    </div>
-                                    <ul>
-                                        <li>
-                                            <a href="javascript:void(0)">
-                                                <img src="../assets/images/product/payment/1.svg"
-                                                     class="blur-up lazyload" alt="">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)">
-                                                <img src="../assets/images/product/payment/2.svg"
-                                                     class="blur-up lazyload" alt="">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)">
-                                                <img src="../assets/images/product/payment/3.svg"
-                                                     class="blur-up lazyload" alt="">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)">
-                                                <img src="../assets/images/product/payment/4.svg"
-                                                     class="blur-up lazyload" alt="">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)">
-                                                <img src="../assets/images/product/payment/5.svg"
-                                                     class="blur-up lazyload" alt="">
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
+{{--                                <div class="paymnet-option">--}}
+{{--                                    <div class="product-title">--}}
+{{--                                        <h4>Guaranteed Safe Checkout</h4>--}}
+{{--                                    </div>--}}
+{{--                                    <ul>--}}
+{{--                                        <li>--}}
+{{--                                            <a href="javascript:void(0)">--}}
+{{--                                                <img src="{{ asset('home/svg/paypal.svg') }}"--}}
+{{--                                                class="blur-up lazyload" alt="paypal">--}}
+{{--                                            </a>--}}
+{{--                                        </li>--}}
+{{--                                        <li>--}}
+{{--                                            <a href="javascript:void(0)">--}}
+{{--                                                <img src="{{ asset('home/svg/visa.svg') }}"--}}
+{{--                                                class="blur-up lazyload" alt="visa">--}}
+{{--                                            </a>--}}
+{{--                                        </li>--}}
+{{--                                        <li>--}}
+{{--                                            <a href="javascript:void(0)">--}}
+{{--                                                <img src="{{ asset('home/svg/master-card.svg') }}"--}}
+{{--                                                class="blur-up lazyload" alt="master card">--}}
+{{--                                            </a>--}}
+{{--                                        </li>--}}
+{{--                                        <li>--}}
+{{--                                            <a href="javascript:void(0)">--}}
+{{--                                                <img src="{{ asset('home/svg/stripe.svg') }}"--}}
+{{--                                                class="blur-up lazyload" alt="stripe">--}}
+{{--                                            </a>--}}
+{{--                                        </li>--}}
+{{--                                        <li>--}}
+{{--                                            <a href="javascript:void(0)">--}}
+{{--                                                <img src="{{ asset('home/svg/express.svg') }}"--}}
+{{--                                                class="blur-up lazyload" alt="express">--}}
+{{--                                            </a>--}}
+{{--                                        </li>--}}
+{{--                                    </ul>--}}
+{{--                                </div>--}}
                             </div>
                         </div>
 

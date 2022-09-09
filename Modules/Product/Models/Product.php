@@ -2,6 +2,7 @@
 
 namespace Modules\Product\Models;
 
+use Carbon\Carbon;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -112,6 +113,29 @@ class Product extends Model implements Viewable
         });
     }
 
+    // Scopes
+    /**
+     * Scope product popular.
+     *
+     * @param  $query
+     * @return mixed
+     */
+    public function scopePopular($query)
+    {
+        return $query->where('is_popular', 1);
+    }
+
+    /**
+     * Scope active status.
+     *
+     * @param  $query
+     * @return mixed
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('status', ProductStatusEnum::STATUS_ACTIVE->value);
+    }
+
     // Methods
     /**
      * Get css class for status.
@@ -170,17 +194,6 @@ class Product extends Model implements Viewable
     }
 
     /**
-     * Scope active status.
-     *
-     * @param  $query
-     * @return mixed
-     */
-    public function scopeActive($query)
-    {
-        return $query->where('status', ProductStatusEnum::STATUS_ACTIVE->value);
-    }
-
-    /**
      * Add product to wishlist.
      *
      * @return string
@@ -211,13 +224,12 @@ class Product extends Model implements Viewable
     }
 
     /**
-     * Scope product popular.
+     * Get created at by format.
      *
-     * @param  $query
-     * @return mixed
+     * @return string
      */
-    public function scopePopular($query)
+    public function getCreatedAt()
     {
-        return $query->where('is_popular', 1);
+        return Carbon::make($this->created_at)->format('Y, m D');
     }
 }
