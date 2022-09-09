@@ -24,4 +24,18 @@ class BlogController extends Controller
 
         return view('Home::Pages.blog.index', compact(['articles', 'randomArticles', 'categories']));
     }
+
+    /**
+     * Blog details page.
+     *
+     * @param  $slug
+     * @param  BlogRepoEloquentInterface $blogRepoEloquent
+     * @return Application|Factory|View
+     */
+    public function details($slug, BlogRepoEloquentInterface $blogRepoEloquent)
+    {
+        $article = $blogRepoEloquent->findArticleBySlug($slug);
+
+        return view('Home::Pages.blog.details', compact(['article']));
+    }
 }

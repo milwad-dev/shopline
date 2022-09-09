@@ -50,4 +50,18 @@ class BlogRepoEloquent implements BlogRepoEloquentInterface
             ->limit(6)
             ->get();
     }
+
+    /**
+     * Find article by slug.
+     *
+     * @param  $slug
+     * @return mixed
+     */
+    public function findArticleBySlug($slug)
+    {
+        return Article::query()
+            ->active()
+            ->where('slug', $slug)
+            ->first();
+    }
 }
