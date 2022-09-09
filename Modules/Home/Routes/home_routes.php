@@ -19,4 +19,8 @@ Route::group([], static function ($router) {
     // Products
     $router->get('products', ['uses' => 'Product\ProductController@index', 'as' => 'products.home']);
     $router->get('products/{sku}/d/{slug}', ['uses' => 'Product\ProductController@details', 'as' => 'products.details']);
+
+    // Blogs
+    $router->get('blog', ['uses' => 'Blog\BlogController@index', 'as' => 'blog.home']);
+    $router->get('blog/{slug}', ['uses' => 'Blog\BlogController@details', 'as' => 'blog.details']);
 });
