@@ -192,7 +192,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
         /*
          * Modules Service Providers...
          */
@@ -208,6 +207,7 @@ return [
         Modules\Article\Providers\ArticleServiceProvider::class,
         Modules\Slider\Providers\SliderServiceProvider::class,
         Modules\Advertising\Providers\AdvertisingServiceProvider::class,
+        Modules\Comment\Providers\CommentServiceProvider::class,
         /**
          * Package Service Providers...
          */

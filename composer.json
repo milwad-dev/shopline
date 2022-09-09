@@ -43,7 +43,8 @@
             "Modules\\Product\\": "Modules/Product/",
             "Modules\\Article\\": "Modules/Article/",
             "Modules\\Slider\\": "Modules/Slider/",
-            "Modules\\Advertising\\": "Modules/Advertising/"
+            "Modules\\Advertising\\": "Modules/Advertising/",
+            "Modules\\Comment\\": "Modules/Comment/"
         },
         "files": [
             "Modules/Share/helpers.php"
