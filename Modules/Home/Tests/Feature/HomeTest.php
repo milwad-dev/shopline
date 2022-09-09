@@ -14,7 +14,7 @@ class HomeTest extends TestCase
     public function test_can_see_home_page()
     {
         $response = $this->get(route('home.index'));
-        $response->assertViewIs('Home::index');
+        $response->assertViewIs('Home::Pages.home.index');
         $response->assertViewHas('homeRepo');
     }
 }
