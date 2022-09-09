@@ -99,6 +99,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return '';
     }
 
+    /**
+     * Get image avatar.
+     *
+     * @return string
+     */
+    public function getAvatar()
+    {
+        return '';
+    }
+
     // Relations
     /**
      * Relations to Category model, relation is one to many.

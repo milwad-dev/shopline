@@ -587,45 +587,21 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-xxl-3 col-xl-4 col-lg-5 d-none d-lg-block wow fadeInUp">
                     <div class="right-sidebar-box">
                         <div class="vendor-box">
                             <div class="verndor-contain">
                                 <div class="vendor-image">
-                                    <img src="../assets/images/product/vendor.png" class="blur-up lazyload" alt="">
+                                    <img src="{{ $product->vendor->getAvatar() }}" class="blur-up lazyload" alt="">
                                 </div>
-
                                 <div class="vendor-name">
-                                    <h5 class="fw-500">Noodles Co.</h5>
-
-                                    <div class="product-rating mt-1">
-                                        <ul class="rating">
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star" class="fill"></i>
-                                            </li>
-                                            <li>
-                                                <i data-feather="star"></i>
-                                            </li>
-                                        </ul>
-                                        <span>(36 Reviews)</span>
-                                    </div>
-
+                                    <h5 class="fw-500">{{ $product->vendor->name }}</h5>
                                 </div>
                             </div>
-
                             <p class="vendor-detail">Noodles & Company is an American fast-casual
-                                restaurant that offers international and American noodle dishes and pasta.</p>
-
+                                restaurant that offers international and American noodle dishes and pasta.
+                                {{-- TODO ADD FIELDS --}}
+                            </p>
                             <div class="vendor-list">
                                 <ul>
                                     <li>
@@ -634,22 +610,25 @@
                                             <h5>Address: <span class="text-content">1288 Franklin Avenue</span></h5>
                                         </div>
                                     </li>
-
                                     <li>
                                         <div class="address-contact">
                                             <i data-feather="headphones"></i>
-                                            <h5>Contact Seller: <span class="text-content">(+1)-123-456-789</span></h5>
+                                            <h5>Contact Seller:
+                                                <span class="text-content">
+                                                    <a href="tel:{{ $product->vendor->phone }}">
+                                                        {{ $product->vendor->phone }}
+                                                    </a>
+                                                </span>
+                                            </h5>
                                         </div>
                                     </li>
                                 </ul>
                             </div>
                         </div>
-
                         <!-- Trending Product -->
                         <div class="pt-25">
                             <div class="category-menu">
                                 <h3>Treanding Products</h3>
-
                                 <ul class="product-list product-right-sidebar border-0 p-0">
                                     <li>
                                         <div class="offer-product">
