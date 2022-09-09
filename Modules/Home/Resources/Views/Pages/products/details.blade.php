@@ -242,38 +242,12 @@
                                         <div class="table-responsive">
                                             <table class="table info-table">
                                                 <tbody>
-                                                <tr>
-                                                    <td>Specialty</td>
-                                                    <td>Vegetarian</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Ingredient Type</td>
-                                                    <td>Vegetarian</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Brand</td>
-                                                    <td>Lavian Exotique</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Form</td>
-                                                    <td>Bar Brownie</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Package Information</td>
-                                                    <td>Box</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Manufacturer</td>
-                                                    <td>Prayagh Nutri Product Pvt Ltd</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Item part number</td>
-                                                    <td>LE 014 - 20pcs Crème Bakes (Pack of 2)</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Net Quantity</td>
-                                                    <td>40.00 count</td>
-                                                </tr>
+                                                    @foreach ($product->attributes as $attribute)
+                                                        <tr>
+                                                            <td>{{ $attribute->title }}</td>
+                                                            <td>{{ $attribute->value }}</td>
+                                                        </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
@@ -281,7 +255,7 @@
                                     <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
                                         <div class="review-box">
                                             <div class="row g-4">
-                                                <div class="col-xl-6">
+                                                <div class="col-xl-6">{{-- TODO --}}
                                                     <div class="review-title">
                                                         <h4 class="fw-500">Customer reviews</h4>
                                                     </div>
