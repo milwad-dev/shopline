@@ -4,6 +4,8 @@ namespace Modules\Category\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Modules\Article\Models\Article;
 use Modules\Category\Enums\CategoryStatusEnum;
 use Modules\User\Models\User;
 
@@ -60,6 +62,16 @@ class Category extends Model
         return $this->hasMany(__CLASS__, 'parent_id');
     }
 
+    /**
+     * Relation to articles, relation is one to many.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function articles()
+    {
+        return $this->belongsToMany(Article::class);
+    }
+
     // Methods
 
     /**
@@ -86,6 +98,7 @@ class Category extends Model
         return '';
     }
 
+    // Scopes
     /**
      * Actvie scope.
      *

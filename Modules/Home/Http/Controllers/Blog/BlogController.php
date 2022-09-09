@@ -22,6 +22,6 @@ class BlogController extends Controller
         $randomArticles = $blogRepoEloquent->getRandomArticles();
         $categories = $blogRepoEloquent->getArticlesWithCount();
 
-        return view('Home::Pages.blog.index', compact(['articles', 'randomArticles']));
+        return view('Home::Pages.blog.index', compact(['articles', 'randomArticles', 'categories']));
     }
 }

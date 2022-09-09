@@ -85,12 +85,11 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
-                                            aria-controls="panelsStayOpen-collapseTwo">
+                                        data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                                        aria-controls="panelsStayOpen-collapseTwo">
                                         Category
                                     </button>
                                 </h2>
@@ -99,59 +98,16 @@
                                     <div class="accordion-body p-0">
                                         <div class="category-list-box">
                                             <ul>
-                                                <li>
-                                                    <a href="blog-list.html">
-                                                        <div class="category-name">
-                                                            <h5>Latest Recipes</h5>
-                                                            <span>10</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="blog-list.html">
-                                                        <div class="category-name">
-                                                            <h5>Diet Food</h5>
-                                                            <span>6</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="blog-list.html">
-                                                        <div class="category-name">
-                                                            <h5>Low calorie Items</h5>
-                                                            <span>8</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="blog-list.html">
-                                                        <div class="category-name">
-                                                            <h5>Cooking Method</h5>
-                                                            <span>9</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="blog-list.html">
-                                                        <div class="category-name">
-                                                            <h5>Dairy Free</h5>
-                                                            <span>12</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
-
-                                                <li>
-                                                    <a href="blog-list.html">
-                                                        <div class="category-name">
-                                                            <h5>Vegetarian Food</h5>
-                                                            <span>10</span>
-                                                        </div>
-                                                    </a>
-                                                </li>
+                                                @foreach ($categories as $category)
+                                                    <li>
+                                                        <a href="{{ $category->path() }}">
+                                                            <div class="category-name">
+                                                                <h5>{{ $category->title }}</h5>
+                                                                <span>{{ $category->articles_count }}</span>
+                                                            </div>
+                                                        </a>
+                                                    </li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                     </div>
