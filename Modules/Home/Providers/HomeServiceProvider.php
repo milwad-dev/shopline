@@ -5,9 +5,9 @@ namespace Modules\Home\Providers;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Modules\Home\Repositories\Advertising\{AdvertisingRepoEloquent, AdvertisingRepoEloquentInterface};
 use Modules\Home\Repositories\Home\{HomeRepoEloquent, HomeRepoEloquentInterface};
 use Modules\Home\Repositories\Product\{ProductRepoEloquent, ProductRepoEloquentInterface};
-use Modules\Home\Repositories\Advertising\{AdvertisingRepoEloquent, AdvertisingRepoEloquentInterface};
 
 class HomeServiceProvider extends ServiceProvider
 {

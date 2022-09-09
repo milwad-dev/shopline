@@ -2,7 +2,6 @@
 
 namespace Modules\Home\Repositories\Product;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Modules\Product\Models\Product;
 
