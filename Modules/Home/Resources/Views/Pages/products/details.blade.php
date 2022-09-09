@@ -625,10 +625,9 @@
                                 </ul>
                             </div>
                         </div>
-                        <!-- Trending Product -->
                         <div class="pt-25">
                             <div class="category-menu">
-                                <h3>Treanding Products</h3>
+                                <h3>Similar Products</h3>
                                 <ul class="product-list product-right-sidebar border-0 p-0">
                                     <li>
                                         <div class="offer-product">

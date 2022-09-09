@@ -47,6 +47,8 @@ class ProductController extends Controller
             abort(404);
         }
 
-        return view('Home::Pages.products.details', compact(['product']));
+        $similarProducts = $productRepoEloquent->getSimilarProductsByCategories($product->categories);
+
+        return view('Home::Pages.products.details', compact(['product', 'similarProducts']));
     }
 }

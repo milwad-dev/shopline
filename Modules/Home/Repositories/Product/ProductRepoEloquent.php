@@ -2,6 +2,8 @@
 
 namespace Modules\Home\Repositories\Product;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Modules\Product\Models\Product;
 
 class ProductRepoEloquent implements ProductRepoEloquentInterface
@@ -34,5 +36,22 @@ class ProductRepoEloquent implements ProductRepoEloquentInterface
             ->where('sku', (int) $sku)
             ->where('slug', $slug)
             ->first();
+    }
+
+    /**
+     * Get similar products by categories.
+     *
+     * @param  array|object $categories
+     * @return Collection
+     */
+    public function getSimilarProductsByCategories(array|object $categories)
+    {
+        $categories = collect($categories)->pluck('title')->toArray();
+        return Product::query()
+            ->whereHas('categories', function ($query) use ($categories) {
+                $query->whereIn('title', $categories);
+            })
+            ->limit(20)
+            ->get();
     }
 }
