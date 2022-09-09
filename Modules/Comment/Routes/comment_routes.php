@@ -2,7 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group([], function ($router) {
+/*
+|--------------------------------------------------------------------------
+| Comment routes
+|--------------------------------------------------------------------------
+|
+| Here you can see comment routes.
+|
+*/
 
+Route::group(['prefix' => 'panel', 'middleware' => 'auth'], static function ($router) {
+    $router->resource('comments', 'CommentController', ['except' => 'show']);
 });
-        
