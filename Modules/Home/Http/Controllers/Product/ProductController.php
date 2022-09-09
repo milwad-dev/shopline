@@ -43,7 +43,7 @@ class ProductController extends Controller
     {
         $product = $productRepoEloquent->findProductBySkuWithSlug($sku, $slug);
 
-        if ($product) {
+        if (!$product) {
             abort(404);
         }
 

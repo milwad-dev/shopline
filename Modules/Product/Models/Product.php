@@ -149,7 +149,10 @@ class Product extends Model implements Viewable
      */
     public function path()
     {
-        return ''; // TODO
+        return route('products.details', [
+            'sku' => $this->sku,
+            'slug' => $this->slug
+        ]);
     }
 
     /**

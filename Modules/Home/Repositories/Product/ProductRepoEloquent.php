@@ -29,7 +29,7 @@ class ProductRepoEloquent implements ProductRepoEloquentInterface
     {
         return Product::query()
             ->active()
-            ->where('sku', $sku)
+            ->where('sku', (int) $sku)
             ->where('slug', $slug)
             ->first();
     }
