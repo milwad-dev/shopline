@@ -17,4 +17,20 @@ class ProductRepoEloquent implements ProductRepoEloquentInterface
             ->active()
             ->latest();
     }
+
+    /**
+     * Find product by sku & slug.
+     *
+     * @param  $sku
+     * @param  $slug
+     * @return mixed
+     */
+    public function findProductBySkuWithSlug($sku, $slug)
+    {
+        return Product::query()
+            ->active()
+            ->where('sku', $sku)
+            ->where('slug', $slug)
+            ->first();
+    }
 }

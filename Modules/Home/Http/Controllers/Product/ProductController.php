@@ -39,8 +39,14 @@ class ProductController extends Controller
     /**
      * Detail product with sku & slug.
      */
-    public function details($sku, $slug)
+    public function details($sku, $slug, ProductRepoEloquentInterface $productRepoEloquent)
     {
+        $product = $productRepoEloquent->findProductBySkuWithSlug($sku, $slug);
 
+        if ($product) {
+            abort(404);
+        }
+
+        return view('Home::Pages.products.details', compact(['product']));
     }
 }
