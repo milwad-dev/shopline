@@ -4,18 +4,28 @@ namespace Modules\Comment\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Modules\Comment\Models\Comment;
+use Modules\Comment\Repositories\CommentRepoEloquentInterface;
 use Modules\Share\Http\Controllers\Controller;
 
 class CommentController extends Controller
 {
+    public CommentRepoEloquentInterface $repo;
+
+    public function __construct(CommentRepoEloquentInterface $commentRepoEloquent)
+    {
+        $this->repo = $commentRepoEloquent;
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        //
+        $comments = $this->repo->getLatest()->paginate();
+
+        return view('Comment::index', compact('comments'));
     }
 
     /**

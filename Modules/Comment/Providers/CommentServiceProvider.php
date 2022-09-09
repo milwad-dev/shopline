@@ -4,6 +4,7 @@ namespace Modules\Comment\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Modules\Comment\Repositories\{CommentRepoEloquent, CommentRepoEloquentInterface};
 
 class CommentServiceProvider extends ServiceProvider
 {
@@ -17,5 +18,7 @@ class CommentServiceProvider extends ServiceProvider
         Route::middleware(['web', 'verify'])
             ->namespace($this->namespace)
             ->group(__DIR__ . '/../Routes/comment_routes.php');
+
+        $this->app->bind(CommentRepoEloquentInterface::class, CommentRepoEloquent::class);
     }
 }
