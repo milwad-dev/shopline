@@ -60,6 +60,7 @@ class BlogRepoEloquent implements BlogRepoEloquentInterface
     public function findArticleBySlug($slug)
     {
         return Article::query()
+            ->with(['media', 'categories'])
             ->active()
             ->where('slug', $slug)
             ->first();
