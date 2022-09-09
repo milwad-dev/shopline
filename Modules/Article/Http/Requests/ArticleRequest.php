@@ -27,6 +27,7 @@ class ArticleRequest extends FormRequest
     {
         $rules = [
             'image' => ['required', 'file', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'body' => ['required', 'string', 'min:3'],
             'title' => ['required', 'string', 'min:3', 'max:255', 'unique:articles,title'],
             'categories' => ['required', 'array'],
             'status' => ['required', 'string', new Enum(ArticleStatusEnum::class)],
