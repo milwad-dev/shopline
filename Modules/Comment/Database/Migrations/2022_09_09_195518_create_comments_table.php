@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('comment_id')->nullable()->constrained('comments')->nullOnDelete();
+            $table->unsignedBigInteger('commentable_id');
+            $table->string('commentable_type' , 50);
+            $table->longText('body');
+            $table->enum('status' , get_value_enums(Modules\Comment\Enums\CommentStatusEnum::cases()))
+                ->default(Modules\Comment\Enums\CommentStatusEnum::STATUS_NEW->value);
             $table->timestamps();
         });
     }
