@@ -19,4 +19,19 @@ class BlogRepoEloquent implements BlogRepoEloquentInterface
             ->latest()
             ->paginate(15);
     }
+
+    /**
+     * Get random articles.
+     *
+     * @return mixed
+     */
+    public function getRandomArticles()
+    {
+        return Article::query()
+            ->with(['media'])
+            ->active()
+            ->inRandomOrder()
+            ->limit(4)
+            ->get();
+    }
 }

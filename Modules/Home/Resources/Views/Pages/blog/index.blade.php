@@ -43,84 +43,44 @@
                         {{ $articles->links() }}
                     </nav>
                 </div>
-
                 <div class="col-xxl-3 col-xl-4 col-lg-5 order-lg-1">
                     <div class="left-sidebar-box wow fadeInUp">
                         <div class="left-search-box">
                             <div class="search-box">
                                 <input type="search" class="form-control" id="exampleFormControlInput1"
-                                       placeholder="Search....">
+                                placeholder="Search....">
                             </div>
                         </div>
-
                         <div class="accordion left-accordion-box" id="accordionPanelsStayOpenExample">
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                            data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
-                                            aria-controls="panelsStayOpen-collapseOne">
-                                        Recent Post
+                                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                        aria-controls="panelsStayOpen-collapseOne">
+                                        Random Article
                                     </button>
                                 </h2>
                                 <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
-                                     aria-labelledby="panelsStayOpen-headingOne">
+                                    aria-labelledby="panelsStayOpen-headingOne">
                                     <div class="accordion-body pt-0">
                                         <div class="recent-post-box">
-                                            <div class="recent-box">
-                                                <a href="blog-detail.html" class="recent-image">
-                                                    <img src="../assets/images/inner-page/blog/1.jpg"
-                                                         class="img-fluid blur-up lazyload" alt="">
-                                                </a>
-
-                                                <div class="recent-detail">
-                                                    <a href="blog-detail.html">
-                                                        <h5 class="recent-name">Green onion knife and salad placed</h5>
+                                            @foreach ($randomArticles as $article)
+                                                <div class="recent-box">
+                                                    <a href="{{ $article->path() }}" class="recent-image">
+                                                        <img src="{{ $article->media->thumb }}"
+                                                        class="img-fluid blur-up lazyload" alt="article image">
                                                     </a>
-                                                    <h6>25 Jan, 2022 <i data-feather="thumbs-up"></i></h6>
+                                                    <div class="recent-detail">
+                                                        <a href="{{ $article->path() }}">
+                                                            <h5 class="recent-name">{{ $article->title }}</h5>
+                                                        </a>
+                                                        <h6>
+                                                            {{ $article->getCreatedAtByFormat() }}
+                                                            <i data-feather="thumbs-up"></i>
+                                                        </h6>
+                                                    </div>
                                                 </div>
-                                            </div>
-
-                                            <div class="recent-box">
-                                                <a href="blog-detail.html" class="recent-image">
-                                                    <img src="../assets/images/inner-page/blog/2.jpg"
-                                                         class="img-fluid blur-up lazyload" alt="">
-                                                </a>
-
-                                                <div class="recent-detail">
-                                                    <a href="blog-detail.html">
-                                                        <h5 class="recent-name">Health and skin for your organic</h5>
-                                                    </a>
-                                                    <h6>25 Jan, 2022 <i data-feather="thumbs-up"></i></h6>
-                                                </div>
-                                            </div>
-
-                                            <div class="recent-box">
-                                                <a href="blog-detail.html" class="recent-image">
-                                                    <img src="../assets/images/inner-page/blog/3.jpg"
-                                                         class="img-fluid blur-up lazyload" alt="">
-                                                </a>
-
-                                                <div class="recent-detail">
-                                                    <a href="blog-detail.html">
-                                                        <h5 class="recent-name">Organics mix masala fresh & soft</h5>
-                                                    </a>
-                                                    <h6>25 Jan, 2022 <i data-feather="thumbs-up"></i></h6>
-                                                </div>
-                                            </div>
-
-                                            <div class="recent-box">
-                                                <a href="blog-detail.html" class="recent-image">
-                                                    <img src="../assets/images/inner-page/blog/4.jpg"
-                                                         class="img-fluid blur-up lazyload" alt="">
-                                                </a>
-
-                                                <div class="recent-detail">
-                                                    <a href="blog-detail.html">
-                                                        <h5 class="recent-name">Fresh organics brand and picnic</h5>
-                                                    </a>
-                                                    <h6>25 Jan, 2022 <i data-feather="thumbs-up"></i></h6>
-                                                </div>
-                                            </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>

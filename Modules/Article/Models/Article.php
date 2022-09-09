@@ -147,10 +147,11 @@ class Article extends Model
     /**
      * Get created at by format.
      *
+     * @param  string $format
      * @return string
      */
-    public function getCreatedAtByFormat()
+    public function getCreatedAtByFormat(string $format = 'Y-m-d')
     {
-        return Carbon::make($this->created_at)->format('Y-m-d'); // TODO
+        return Carbon::make($this->created_at)->format($format);
     }
 }

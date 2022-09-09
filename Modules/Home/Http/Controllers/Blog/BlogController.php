@@ -19,7 +19,8 @@ class BlogController extends Controller
     public function index(BlogRepoEloquentInterface $blogRepoEloquent)
     {
         $articles = $blogRepoEloquent->getLatestArticles();
+        $randomArticles = $blogRepoEloquent->getRandomArticles();
 
-        return view('Home::Pages.blog.index', compact(['articles']));
+        return view('Home::Pages.blog.index', compact(['articles', 'randomArticles']));
     }
 }
