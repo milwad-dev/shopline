@@ -8,6 +8,12 @@ use Modules\RolePermission\Models\Permission;
 
 class CommentService
 {
+    /**
+     * Store comment by data.
+     *
+     * @param  array $data
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
+     */
     public function store(array $data)
     {
         return $this->query()->create([
@@ -20,18 +26,34 @@ class CommentService
         ]);
     }
 
+    /**
+     * Get query model (builder).
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     private function query()
     {
         return Comment::query();
     }
 
-    private function getStatusByUserPermission()
+    /**
+     * Get status comment by user permission
+     *
+     * @return string
+     */
+    private function getStatusByUserPermission(): string
     {
         return auth()->user()->can(Permission::PERMISSION_COMMENTS)
             ? CommentStatusEnum::STATUS_ACTIVE->value
             : CommentStatusEnum::STATUS_NEW->value;
     }
 
+    /**
+     * Check comment_id is exists.
+     *
+     * @param  array $data
+     * @return mixed
+     */
     private function getCommentId(array $data): mixed
     {
         return array_key_exists("comment_id", $data) ? $data['comment_id'] : null;
