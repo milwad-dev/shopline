@@ -2,6 +2,7 @@
 
 namespace Modules\Article\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -140,6 +141,16 @@ class Article extends Model
      */
     public function path()
     {
-        return '';
+        return route('blog.details', $this->slug);
+    }
+
+    /**
+     * Get created at by format.
+     *
+     * @return string
+     */
+    public function getCreatedAtByFormat()
+    {
+        return Carbon::make($this->created_at)->format('Y-m-d'); // TODO
     }
 }

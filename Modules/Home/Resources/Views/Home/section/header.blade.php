@@ -256,7 +256,7 @@
                                             </div>
                                         </li>
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link" href="javascript:void(0)">
+                                            <a class="nav-link" href="{{ route('blog.home') }}">
                                                 Blog
                                             </a>
                                         </li>

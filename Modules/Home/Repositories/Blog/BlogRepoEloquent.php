@@ -14,6 +14,7 @@ class BlogRepoEloquent implements BlogRepoEloquentInterface
     public function getLatestArticles()
     {
         return Article::query()
+            ->with(['media'])
             ->active()
             ->latest()
             ->paginate(15);
