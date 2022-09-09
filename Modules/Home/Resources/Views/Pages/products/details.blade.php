@@ -13,99 +13,27 @@
                                 <div class="row g-2">
                                     <div class="col-12">
                                         <div class="product-main-1 no-arrow">
-                                            <div>
-                                                <div class="slider-image">
-                                                    <img src="../assets/images/product/category/1.jpg" id="img-1"
-                                                         data-zoom-image="../assets/images/product/category/1.jpg"
-                                                         class="img-fluid image_zoom_cls-0 blur-up lazyload" alt="">
+                                            @foreach ($product->galleries as $gallery)
+                                                <div>
+                                                    <div class="slider-image">
+                                                        <img src="{{ $gallery->thumb }}" id="img-1" alt="gallery"
+                                                        data-zoom-image="{{ $gallery->thumb }}"
+                                                        class="img-fluid image_zoom_cls-0 blur-up lazyload">
+                                                    </div>
                                                 </div>
-                                            </div>
-
-                                            <div>
-                                                <div class="slider-image">
-                                                    <img src="../assets/images/product/category/2.jpg"
-                                                         data-zoom-image="../assets/images/product/category/2.jpg"
-                                                         class="img-fluid image_zoom_cls-1 blur-up lazyload" alt="">
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <div class="slider-image">
-                                                    <img src="../assets/images/product/category/3.jpg"
-                                                         data-zoom-image="../assets/images/product/category/3.jpg"
-                                                         class="img-fluid image_zoom_cls-2 blur-up lazyload" alt="">
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <div class="slider-image">
-                                                    <img src="../assets/images/product/category/4.jpg"
-                                                         data-zoom-image="../assets/images/product/category/4.jpg"
-                                                         class="img-fluid image_zoom_cls-3 blur-up lazyload" alt="">
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <div class="slider-image">
-                                                    <img src="../assets/images/product/category/5.jpg"
-                                                         data-zoom-image="../assets/images/product/category/5.jpg"
-                                                         class="img-fluid image_zoom_cls-4 blur-up lazyload" alt="">
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <div class="slider-image">
-                                                    <img src="../assets/images/product/category/6.jpg"
-                                                         data-zoom-image="../assets/images/product/category/6.jpg"
-                                                         class="img-fluid image_zoom_cls-5 blur-up lazyload" alt="">
-                                                </div>
-                                            </div>
+                                            @endforeach
                                         </div>
                                     </div>
-
                                     <div class="col-12">
                                         <div class="bottom-slider-image left-slider no-arrow slick-top">
-                                            <div>
-                                                <div class="sidebar-image">
-                                                    <img src="../assets/images/product/category/1.jpg"
-                                                         class="img-fluid blur-up lazyload" alt="">
+                                            @foreach ($product->galleries as $gallery)
+                                                <div>
+                                                    <div class="sidebar-image">
+                                                        <img src="{{ $gallery->thumb }}" alt="gallery"
+                                                        class="img-fluid blur-up lazyload">
+                                                    </div>
                                                 </div>
-                                            </div>
-
-                                            <div>
-                                                <div class="sidebar-image">
-                                                    <img src="../assets/images/product/category/2.jpg"
-                                                         class="img-fluid blur-up lazyload" alt="">
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <div class="sidebar-image">
-                                                    <img src="../assets/images/product/category/3.jpg"
-                                                         class="img-fluid blur-up lazyload" alt="">
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <div class="sidebar-image">
-                                                    <img src="../assets/images/product/category/4.jpg"
-                                                         class="img-fluid blur-up lazyload" alt="">
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <div class="sidebar-image">
-                                                    <img src="../assets/images/product/category/5.jpg"
-                                                         class="img-fluid blur-up lazyload" alt="">
-                                                </div>
-                                            </div>
-
-                                            <div>
-                                                <div class="sidebar-image">
-                                                    <img src="../assets/images/product/category/6.jpg"
-                                                         class="img-fluid blur-up lazyload" alt="">
-                                                </div>
-                                            </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
