@@ -3,6 +3,7 @@
 namespace Modules\Home\Repositories\Blog;
 
 use Modules\Article\Models\Article;
+use Modules\Category\Models\Category;
 
 class BlogRepoEloquent implements BlogRepoEloquentInterface
 {
@@ -32,6 +33,21 @@ class BlogRepoEloquent implements BlogRepoEloquentInterface
             ->active()
             ->inRandomOrder()
             ->limit(4)
+            ->get();
+    }
+
+    /**
+     * Get categories with article count.
+     *
+     * @return mixed
+     */
+    public function getArticlesWithCount()
+    {
+        return Category::query()
+            ->active()
+            ->withCount('articles')
+            ->latest()
+            ->limit(6)
             ->get();
     }
 }
