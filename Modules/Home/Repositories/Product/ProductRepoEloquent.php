@@ -48,6 +48,8 @@ class ProductRepoEloquent implements ProductRepoEloquentInterface
     {
         $categories = collect($categories)->pluck('title')->toArray();
         return Product::query()
+            ->with('first_media')
+            ->withCount('rates')
             ->whereHas('categories', function ($query) use ($categories) {
                 $query->whereIn('title', $categories);
             })
