@@ -18,9 +18,9 @@ class ProductService implements ProductServiceInterface
     public function store(array $data)
     {
         return $this->query()->create([
-            'vendor_id' => auth()->id(),
-            'slug' => ShareService::makeSlug($data['title']),
-            'sku' => ShareService::makeUniqueSku(Product::class),
+            'vendor_id'         => auth()->id(),
+            'slug'              => ShareService::makeSlug($data['title']),
+            'sku'               => ShareService::makeUniqueSku(Product::class),
             'first_media_id'    => $data['first_media_id'],
             'title'             => $data['title'],
             'price'             => $data['price'],
@@ -43,16 +43,16 @@ class ProductService implements ProductServiceInterface
     public function update($request, $id)
     {
         return $this->query()->whereId($id)->update([
-            'first_media_id' => $request->first_media_id,
-            'title' => $request->title,
-            'slug' => ShareService::makeSlug($request->title),
-            'price' => $request->price,
-            'count' => $request->count,
-            'type' => $request->type,
+            'first_media_id'    => $request->first_media_id,
+            'title'             => $request->title,
+            'slug'              => ShareService::makeSlug($request->title),
+            'price'             => $request->price,
+            'count'             => $request->count,
+            'type'              => $request->type,
             'short_description' => $request->short_description,
-            'body' => $request->body,
-            'status' => $request->status,
-            'is_popular' => $request->is_popular,
+            'body'              => $request->body,
+            'status'            => $request->status,
+            'is_popular'        => $request->is_popular,
         ]);
     }
 
