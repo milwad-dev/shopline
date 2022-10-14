@@ -13,7 +13,7 @@
                                 <div class="people-box">
                                     <div>
                                         <div class="people-image">
-                                            <img src="../assets/images/review/1.jpg"
+                                            <img src="{{ $comment->user->getAvatar() }}"
                                                  class="img-fluid blur-up lazyload"
                                                  alt="">
                                         </div>
