@@ -75,7 +75,7 @@ class Comment extends Model
      *
      * @return string
      */
-    public function getStatusCss()
+    public function getCssClassStatus()
     {
         if ($this->status === CommentStatusEnum::STATUS_ACTIVE->value) {
             return 'text-success';
