@@ -78,6 +78,11 @@ class CommentServiceProvider extends ServiceProvider
         $this->setMenuForPanel();
     }
 
+    /**
+     * Set menu for panel.
+     *
+     * @return void
+     */
     private function setMenuForPanel(): void
     {
         config()->set('panelConfig.menus.comments', [

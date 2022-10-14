@@ -145,7 +145,7 @@ class AdvertisingServiceProvider extends ServiceProvider
     }
 
     /**
-     * Set menu for panel
+     * Set menu for panel.
      *
      * @return void
      */
