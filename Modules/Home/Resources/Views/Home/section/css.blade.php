@@ -29,4 +29,7 @@ href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200
 
 {{-- Template css --}}
 <link id="color-link" rel="stylesheet" type="text/css" href="{{ asset('home/css/style.css') }}">
+
+{{-- Custom css --}}
+<link rel="stylesheet" type="text/css" href="{{ asset('home/css/custom.css') }}">
 @yield('css')
