@@ -2,8 +2,8 @@
 
 namespace Modules\Comment\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 use Modules\Comment\Repositories\{CommentRepoEloquent, CommentRepoEloquentInterface};
 
 class CommentServiceProvider extends ServiceProvider
