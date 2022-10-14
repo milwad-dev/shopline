@@ -20,12 +20,24 @@ class CommentTest extends TestCase
      */
     public function admin_user_can_see_comments_index_page()
     {
-        $this->withoutExceptionHandling();
         $this->createUserWithLoginWithAssignPermissionWithAssignPermission();
 
         $response = $this->get(route('comments.index'));
         $response->assertViewHas('comments');
         $response->assertViewIs('Comment::index');
+    }
+
+    /**
+     * Test usual user can not see comments index page.
+     *
+     * @test
+     * @return void
+     */
+    public function usual_user_can_not_see_comments_index_page()
+    {
+        $this->callPermissionSeeder();
+        $this->createUserWithLoginWithAssignPermissionWithAssignPermission(false);
+        $this->get(route('comments.index'))->assertForbidden();
     }
 
     /**
