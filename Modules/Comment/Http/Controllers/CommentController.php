@@ -2,13 +2,16 @@
 
 namespace Modules\Comment\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Auth\Access\AuthorizationException;
 use Modules\Comment\Models\Comment;
 use Modules\Comment\Repositories\CommentRepoEloquentInterface;
 use Modules\Share\Http\Controllers\Controller;
+use Modules\Share\Responses\AjaxResponses;
 
 class CommentController extends Controller
 {
+    private string $class = Comment::class;
+
     public CommentRepoEloquentInterface $repo;
 
     public function __construct(CommentRepoEloquentInterface $commentRepoEloquent)
@@ -17,80 +20,32 @@ class CommentController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Get the latest comments & show view page.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws AuthorizationException
      */
     public function index()
     {
-        $comments = $this->repo->getLatest()->paginate();
+        $this->authorize('manage', $this->class);
 
-        return view('Comment::index', compact('comments'));
+        return view('Comment::index', [
+            'comments' => $this->repo->getLatest()->paginate()
+        ]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Remove comment by route model binding.
      *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \Modules\Comment\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Comment $comment)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \Modules\Comment\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Comment $comment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Modules\Comment\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Comment $comment)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \Modules\Comment\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
+     * @param  Comment $comment
+     * @return \Illuminate\Http\JsonResponse
+     * @throws AuthorizationException
      */
     public function destroy(Comment $comment)
     {
-        //
+        $this->authorize('manage', $this->class);
+        $comment->delete();
+
+        return AjaxResponses::SuccessResponse();
     }
 }
