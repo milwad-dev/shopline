@@ -27,6 +27,7 @@ Shopline made with Laravel - JS - Bootstrap.
 * Invertation image
 * Test coverage
 * Laravel component
+* Polymorphic relationships
 
 ## Demos
 Comming soon
