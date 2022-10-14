@@ -26,6 +26,18 @@ class Comment extends Model
      */
     protected $with = ['user', 'comments'];
 
+    # Attributes
+
+    /**
+     * Set comment_id (reply) attributes.
+     *
+     * @return string
+     */
+    public function getReplyAttribute()
+    {
+        return (is_null($this->comment_id)) ? 'No reply' : $this->comment->title;
+    }
+
     # Relations
 
     /**
@@ -78,13 +90,13 @@ class Comment extends Model
     public function getCssClassStatus()
     {
         if ($this->status === CommentStatusEnum::STATUS_ACTIVE->value) {
-            return 'text-success';
+            return 'success';
         }
         if ($this->status === CommentStatusEnum::STATUS_NEW->value) {
-            return 'text-warning';
+            return 'warning';
         }
 
-        return 'text-danger';
+        return 'danger';
     }
 
     /**

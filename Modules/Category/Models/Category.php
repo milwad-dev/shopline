@@ -19,7 +19,7 @@ class Category extends Model
      */
     protected $fillable = ['user_id', 'parent_id', 'title', 'slug', 'keywords', 'status', 'description'];
 
-    // Attributes
+    # Attributes
     /**
      * Set parent attributes.
      *
@@ -30,7 +30,7 @@ class Category extends Model
         return (is_null($this->parent_id)) ? 'No parent' : $this->parent->title;
     }
 
-    // Relations
+    # Relations
     /**
      * Relation to user, relation is one to many.
      *
@@ -71,7 +71,7 @@ class Category extends Model
         return $this->belongsToMany(Article::class);
     }
 
-    // Methods
+    # Methods
 
     /**
      * Return css class for category status.
@@ -97,7 +97,7 @@ class Category extends Model
         return '';
     }
 
-    // Scopes
+    # Scopes
     /**
      * Actvie scope.
      *

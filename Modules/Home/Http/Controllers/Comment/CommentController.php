@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Home\Http\Controllers;
+namespace Modules\Home\Http\Controllers\Comment;
 
 use Modules\Home\Http\Requests\Comment\CommentRequest;
 use Modules\Home\Services\Comment\CommentService;

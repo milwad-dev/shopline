@@ -38,12 +38,15 @@
                                                 </a>
                                             </td>
                                             <td>
-                                                {{ $comment->user->name }}
-                                            </td>
-                                            <td>
                                                 <span class="badge rounded-pill badge-light-{{ $comment->getCssClassStatus() }} me-1">
                                                     {{ $comment->status }}
                                                 </span>
+                                            </td>
+                                            <td>
+                                                {{ $comment->user->name }}
+                                            </td>
+                                            <td>
+                                                {{ $comment->reply }}
                                             </td>
                                             <td>{{ $comment->getCreatedAt() }}</td>
                                             <td>
