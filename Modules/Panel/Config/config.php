@@ -14,5 +14,6 @@ return [
         'articles' => [],
         'sliders' => [],
         'advertisings' => [],
+        'comments' => [],
     ],
 ];
