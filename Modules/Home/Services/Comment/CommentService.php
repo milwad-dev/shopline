@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Comment\Services;
+namespace Modules\Home\Services\Comment;
 
 use Modules\Comment\Enums\CommentStatusEnum;
 use Modules\Comment\Models\Comment;

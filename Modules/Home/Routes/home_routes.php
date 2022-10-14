@@ -23,4 +23,7 @@ Route::group([], static function ($router) {
     // Blogs
     $router->get('blog', ['uses' => 'Blog\BlogController@index', 'as' => 'blog.home']);
     $router->get('blog/{slug}', ['uses' => 'Blog\BlogController@details', 'as' => 'blog.details']);
+
+    // Comments
+    $router->post('comments', ['uses' => 'Comment\CommentController@store', 'as' => 'comments.store']);
 });

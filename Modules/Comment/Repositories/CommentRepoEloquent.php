@@ -2,6 +2,7 @@
 
 namespace Modules\Comment\Repositories;
 
+use Modules\Comment\Enums\CommentStatusEnum;
 use Modules\Comment\Models\Comment;
 
 class CommentRepoEloquent implements CommentRepoEloquentInterface
@@ -25,6 +26,20 @@ class CommentRepoEloquent implements CommentRepoEloquentInterface
     public function findById($id)
     {
         return $this->query()->findOrFail($id);
+    }
+
+    /**
+     * Get active comment by id.
+     *
+     * @param  $id
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|null
+     */
+    public function findActiveCommentById($id)
+    {
+        return $this->query()
+            ->where('id' , $id)
+            ->where('status' , CommentStatusEnum::STATUS_ACTIVE->value)
+            ->first();
     }
 
     /**
