@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Milwad\LaravelAttributes\Traits\Attributable;
 use Modules\Category\Models\Category;
+use Modules\Comment\Traits\Commentable;
 use Modules\Media\Models\Media;
 use Modules\Product\Enums\ProductStatusEnum;
 use Modules\User\Models\User;
@@ -17,7 +18,7 @@ use Spatie\Tags\HasTags;
 
 class Product extends Model implements Viewable
 {
-    use HasFactory, Attributable, HasTags, InteractsWithViews;
+    use HasFactory, Attributable, HasTags, InteractsWithViews, Commentable;
 
     /**
      * Set column in fillable.

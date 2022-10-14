@@ -8,7 +8,7 @@
                 </div>
                 <div class="review-people">
                     <ul class="review-list">
-                        @foreach($commentable->comments()->active()->get() as $comment)
+                        @foreach($commentable->comments()->activeComments()->get() as $comment)
                             <li>
                                 <div class="people-box">
                                     <div>
