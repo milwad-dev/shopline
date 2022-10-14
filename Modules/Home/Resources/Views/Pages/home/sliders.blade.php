@@ -20,7 +20,7 @@
                     </div>
                 </div>
             @endforeach
-            @include('Home::Home.parts.adv-sliders', ['adv' => $adv])
+            @include('Home::Pages.home.adv-sliders', ['adv' => $adv])
         </div>
     </div>
 </section>
