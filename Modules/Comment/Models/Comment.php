@@ -2,6 +2,7 @@
 
 namespace Modules\Comment\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Comment\Enums\CommentStatusEnum;
@@ -84,5 +85,15 @@ class Comment extends Model
         }
 
         return 'text-danger';
+    }
+
+    /**
+     * Get created_at.
+     *
+     * @return string
+     */
+    public function getCreatedAt()
+    {
+        return Carbon::make($this->created_at)->format('Y-m-d');
     }
 }
