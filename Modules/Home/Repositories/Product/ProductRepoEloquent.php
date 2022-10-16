@@ -34,7 +34,7 @@ class ProductRepoEloquent implements ProductRepoEloquentInterface
             ->active()
             ->where('sku', (int) $sku)
             ->where('slug', $slug)
-            ->first();
+            ->firstOrFail();
     }
 
     /**

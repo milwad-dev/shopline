@@ -41,7 +41,7 @@ class Advertising extends Model
         return $this->belongsTo(Media::class, 'media_id');
     }
 
-    // Methods
+    # Methods
 
     /**
      * Get css class for status.
@@ -73,7 +73,7 @@ class Advertising extends Model
         return $link;
     }
 
-    // Scopes
+    # Scopes
 
     /**
      * Get active scope.

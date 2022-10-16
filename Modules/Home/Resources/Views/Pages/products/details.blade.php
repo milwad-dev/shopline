@@ -296,23 +296,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="ratio_156 pt-25">
-                            <div class="home-contain">
-                                <img src="{{ asset('home/images/vegetable/banner/8.jpg') }}" class="bg-img blur-up lazyload"
-                                     alt="">
-                                <div class="home-detail p-top-left home-p-medium">
-                                    <div>
-                                        <h6 class="text-yellow home-banner">Seafood</h6>
-                                        <h3 class="text-uppercase fw-normal"><span
-                                                class="theme-color fw-bold">Freshes</span> Products</h3>
-                                        <h3 class="fw-light">every hour</h3>
-                                        <button onclick="location.href = 'shop-left-sidebar.html';"
-                                                class="btn btn-animation btn-md fw-bold mend-auto">Shop Now <i
-                                                class="fa-solid fa-arrow-right icon"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @include('Home::Pages.products.section-details-page.advertising', ['advertising' => $advertising])
                     </div>
                 </div>
             </div>
