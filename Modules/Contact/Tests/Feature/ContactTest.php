@@ -97,6 +97,50 @@ class ContactTest extends TestCase
     }
 
     /**
+     * Test admin user can update is_read to true.
+     *
+     * @test
+     * @return void
+     */
+    public function admin_user_can_update_is_read()
+    {
+        $this->createUserWithLoginWithAssignPermission();
+
+        $contact = Contact::factory()->create(['is_read' => false]);
+
+        $this->patch(route('contacts.update-is-read', $contact->id))->assertOk();
+        $this->assertDatabaseHas($this->tableName, [
+            'name' => $contact->name,
+            'email' => $contact->email,
+            'phone' => $contact->phone,
+            'sujbect' => $contact->sujbect,
+            'message' => $contact->message,
+            'is_read' => 1
+        ]);
+        $this->assertDatabaseCount($this->tableName, 1);
+        $this->assertEquals(1, Contact::query()->count());
+    }
+
+    /**
+     * Test usual user can not update is_read to true.
+     *
+     * @test
+     * @return void
+     */
+    public function usual_user_can_not_update_is_read()
+    {
+        $this->createUserWithLoginWithAssignPermission(false);
+
+        $contact = Contact::factory()->create(['is_read' => false]);
+
+        $this->patch(route('contacts.update-is-read', $contact->id))->assertForbidden();
+        $this->assertDatabaseMissing($this->tableName, ['is_read' => true]);
+        $this->assertDatabaseHas($this->tableName, ['is_read' => false]);
+        $this->assertDatabaseCount($this->tableName, 1);
+        $this->assertEquals(1, Contact::query()->count());
+    }
+
+    /**
      * Create user with login & assign permission.
      *
      * @param  bool $permission
