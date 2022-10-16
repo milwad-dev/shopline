@@ -3,10 +3,12 @@
 namespace Modules\Contact\Http\Controllers;
 
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Modules\Contact\Models\Contact;
 use Modules\Contact\Repositories\ContactRepoEloquent;
 use Modules\Share\Http\Controllers\Controller;
+use Modules\Share\Responses\AjaxResponses;
 
 class ContactController extends Controller
 {
@@ -26,74 +28,23 @@ class ContactController extends Controller
      */
     public function index()
     {
-//        return view('Contact::index', ['contacts' => $this->repo->getLatest()->notRead()->paginate()]);
         $this->authorize('manage', $this->class);
-        return view('Contact::index', ['contacts' => $this->repo->getLatest()->paginate()]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \Modules\Contact\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Contact $contact)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \Modules\Contact\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Contact $contact)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Modules\Contact\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Contact $contact)
-    {
-        //
+        return view('Contact::index', ['contacts' => $this->repo->getLatest()->notRead()->paginate()]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Modules\Contact\Contact  $contact
-     * @return \Illuminate\Http\Response
+     * @param  Contact $contact
+     * @return JsonResponse
+     * @throws AuthorizationException
+     * @throws \Throwable
      */
     public function destroy(Contact $contact)
     {
-        //
+        $this->authorize('manage', $this->class);
+        $contact->deleteOrFail();
+
+        return AjaxResponses::SuccessResponse();
     }
 }
