@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\{Gate, Route};
 use Illuminate\Support\ServiceProvider;
 use Modules\Contact\Models\Contact;
 use Modules\Contact\Policies\ContactPolicy;
-use Modules\Contact\Services\{ContactService, ContactServiceInterface};
 use Modules\Contact\Repositories\{ContactRepoEloquent, ContactRepoInterface};
+use Modules\Contact\Services\{ContactService, ContactServiceInterface};
 
 class ContactServiceProvider extends ServiceProvider
 {
@@ -79,16 +79,31 @@ class ContactServiceProvider extends ServiceProvider
         $this->setMenuForPanel();
     }
 
+    /**
+     * Load migration files.
+     *
+     * @return void
+     */
     private function loadMigrationFiles(): void
     {
         $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
     }
 
+    /**
+     * Load view files.
+     *
+     * @return void
+     */
     private function loadViewFiles(): void
     {
         $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
     }
 
+    /**
+     * Load route files.
+     *
+     * @return void
+     */
     private function loadRouteFiles(): void
     {
         Route::middleware($this->routeMiddleware)
@@ -96,16 +111,31 @@ class ContactServiceProvider extends ServiceProvider
             ->group(__DIR__ . $this->routePath);
     }
 
+    /**
+     * Load policy files.
+     *
+     * @return void
+     */
     private function loadPolicyFiles(): void
     {
         Gate::policy(Contact::class, ContactPolicy::class);
     }
 
+    /**
+     * Bind service into interface.
+     *
+     * @return void
+     */
     private function bindService(): void
     {
         $this->app->bind(ContactServiceInterface::class, ContactService::class);
     }
 
+    /**
+     * Bind repository into interface.
+     *
+     * @return void
+     */
     private function bindRepository(): void
     {
         $this->app->bind(ContactRepoInterface::class, ContactRepoEloquent::class);

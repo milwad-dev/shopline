@@ -93,7 +93,7 @@ class AdvertisingServiceProvider extends ServiceProvider
     }
 
     /**
-     * bind service into interface.
+     * Bind service into interface.
      *
      * @return void
      */
