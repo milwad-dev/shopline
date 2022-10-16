@@ -39,4 +39,16 @@ class Contact extends Model
     {
         return $query->where('is_read', 0);
     }
+
+    # Methods
+
+    /**
+     * Get created_at.
+     *
+     * @return string
+     */
+    public function getCreatedAt()
+    {
+        return \Carbon\Carbon::make($this->created_at)->format('Y-m-d');
+    }
 }
