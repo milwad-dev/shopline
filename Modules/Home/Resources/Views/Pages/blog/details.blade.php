@@ -129,7 +129,7 @@
                                         <div class="user-box border-color">
                                             @auth
                                                 <div class="reply-button">
-                                                    <i class="fa-solid fa-reply"></i>
+                                                    <i data-feather="arrow-right"></i>
                                                     <span class="theme-color">Reply</span>
                                                 </div>
                                             @endauth
@@ -153,7 +153,7 @@
                                             <div class="user-box">
                                                 @auth
                                                     <div class="reply-button">
-                                                        <i class="fa-solid fa-reply"></i>
+                                                        <i data-feather="arrow-right"></i>
                                                         <span class="theme-color">Reply</span>
                                                     </div>
                                                 @endauth
