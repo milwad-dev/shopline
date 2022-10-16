@@ -69,6 +69,16 @@ class ContactServiceProvider extends ServiceProvider
         $this->bindRepository();
     }
 
+    /**
+     * Boot service provider.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->setMenuForPanel();
+    }
+
     private function loadMigrationFiles(): void
     {
         $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
@@ -99,5 +109,19 @@ class ContactServiceProvider extends ServiceProvider
     private function bindRepository(): void
     {
         $this->app->bind(ContactRepoInterface::class, ContactRepoEloquent::class);
+    }
+
+    /**
+     * Set menu for panel.
+     *
+     * @return void
+     */
+    private function setMenuForPanel(): void
+    {
+        config()->set('panelConfig.menus.contacts', [
+            'title' => 'Contact',
+            'icon' => 'phone',
+            'url' => route('contacts.index'),
+        ]);
     }
 }

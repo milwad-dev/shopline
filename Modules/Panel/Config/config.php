@@ -15,5 +15,6 @@ return [
         'sliders' => [],
         'advertisings' => [],
         'comments' => [],
+        'contacts' => [],
     ],
 ];
