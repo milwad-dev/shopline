@@ -4,15 +4,15 @@ namespace Modules\Contact\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Modules\Contact\Models\Contact;
-use Modules\Contact\Repositories\ContactRepo;
+use Modules\Contact\Repositories\ContactRepoEloquent;
 use Modules\Share\Http\Controllers\Controller;
 
 class ContactController extends Controller
 {
     private string $class = Contact::class;
-    protected ContactRepo $repo;
+    protected ContactRepoEloquent $repo;
 
-    public function __construct(ContactRepo $contactRepo)
+    public function __construct(ContactRepoEloquent $contactRepo)
     {
         $this->repo = $contactRepo;
     }
