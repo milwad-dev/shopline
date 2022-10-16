@@ -266,7 +266,7 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link nav-link-2" href="contact-us.html">Contact</a>
+                                            <a class="nav-link nav-link-2" href="{{ route('contacts.create') }}">Contact</a>
                                         </li>
                                     </ul>
                                 </div>

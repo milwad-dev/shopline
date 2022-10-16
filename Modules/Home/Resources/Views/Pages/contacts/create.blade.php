@@ -1,6 +1,6 @@
-@extends('Home::layouts.master')
+@extends('Home::Home.layouts.master')
 
-@section('title', 'تماس با ما')
+@section('title', 'Contact us')
 
 @section('content')
     <section class="contact-box-section">
@@ -9,70 +9,37 @@
                 <div class="col-xxl-6">
                     <div class="left-sidebar-box">
                         <div class="contact-image">
-                            <img src="../assets/images/inner-page/contact-us.png" class="img-fluid blur-up lazyloaded" alt="">
+                            <img src="{{ asset('home/images/inner-page/contact-us.png') }}" class="img-fluid blur-up lazyloaded"
+                                 alt="contact-us img">
                         </div>
                         <div class="contact-title">
                             <h3>Get In Touch</h3>
                         </div>
-
                         <div class="contact-detail">
                             <div class="row g-4">
                                 <div class="col-sm-6">
                                     <div class="contact-detail-box">
                                         <div class="contact-icon">
-                                            <i class="fa-solid fa-phone"></i>
+                                            <i data-feather="phone"></i>
                                         </div>
                                         <div class="contact-detail-title">
                                             <h4>Phone</h4>
                                         </div>
-
                                         <div class="contact-detail-contain">
-                                            <p>(+1) 618 190 496</p>
+                                            <p>{{ config('app.phone') }}</p>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="col-sm-6">
                                     <div class="contact-detail-box">
                                         <div class="contact-icon">
-                                            <i class="fa-solid fa-envelope"></i>
+                                            <i data-feather="mail"></i>
                                         </div>
                                         <div class="contact-detail-title">
                                             <h4>Email</h4>
                                         </div>
-
                                         <div class="contact-detail-contain">
-                                            <p>geweto9420@chokxus.com</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="contact-detail-box">
-                                        <div class="contact-icon">
-                                            <i class="fa-solid fa-location-dot"></i>
-                                        </div>
-                                        <div class="contact-detail-title">
-                                            <h4>London Office</h4>
-                                        </div>
-
-                                        <div class="contact-detail-contain">
-                                            <p>Cruce Casa de Postas 29</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <div class="contact-detail-box">
-                                        <div class="contact-icon">
-                                            <i class="fa-solid fa-building"></i>
-                                        </div>
-                                        <div class="contact-detail-title">
-                                            <h4>Bournemouth Office</h4>
-                                        </div>
-
-                                        <div class="contact-detail-contain">
-                                            <p>Visitación de la Encina 22</p>
+                                            <p>{{ config('app.email') }}</p>
                                         </div>
                                     </div>
                                 </div>
