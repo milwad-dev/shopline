@@ -6,7 +6,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Modules\Contact\Models\Contact;
 use Modules\Contact\Repositories\ContactRepoEloquent;
-use Modules\Contact\Services\ContactService;
+use Modules\Contact\Services\ContactServiceInterface;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
 
@@ -58,7 +58,7 @@ class ContactController extends Controller
     public function updateIsRead(Contact $contact)
     {
         $this->authorize('manage', $this->class);
-        resolve(ContactService::class)->updateIsRead($contact);
+        resolve(ContactServiceInterface::class)->updateIsRead($contact);
 
         return AjaxResponses::SuccessResponse();
     }
