@@ -11,16 +11,61 @@ use Modules\Contact\Repositories\{ContactRepoEloquent, ContactRepoInterface};
 
 class ContactServiceProvider extends ServiceProvider
 {
-    public string $namespace = 'Modules\Contact\Http\Controllers';
+    /**
+     * Get namespace for contacts controllers.
+     *
+     * @var string
+     */
+    private string $namespace = 'Modules\Contact\Http\Controllers';
 
+    /**
+     * Get migration path.
+     *
+     * @var string
+     */
+    private string $migrationPath = '/../Database/Migrations';
+
+    /**
+     * Get view path.
+     *
+     * @var string
+     */
+    private string $viewPath = '/../Resources/Views/';
+
+    /**
+     * Get route path.
+     *
+     * @var string
+     */
+    private string $routePath = '/../Routes/contact_routes.php';
+
+    /**
+     * Get name.
+     *
+     * @var string
+     */
+    private string $name = 'Contact';
+
+    /**
+     * Get route middleware.
+     *
+     * @var array|string[]
+     */
+    private array $routeMiddleware = ['web', 'verify'];
+
+    /**
+     * Register files.
+     *
+     * @return void
+     */
     public function register()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
-        $this->loadViewsFrom(__DIR__ . '/../Resources/Views/', 'Contact');
+        $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
+        $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
 
-        Route::middleware(['web', 'verify'])
+        Route::middleware($this->routeMiddleware)
             ->namespace($this->namespace)
-            ->group(__DIR__ . '/../Routes/contact_routes.php');
+            ->group(__DIR__ . $this->routePath);
         Gate::policy(Contact::class, ContactPolicy::class);
 
         $this->app->bind(ContactServiceInterface::class, ContactService::class);
