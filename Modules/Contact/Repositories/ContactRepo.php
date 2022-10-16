@@ -6,7 +6,7 @@ use Modules\Contact\Models\Contact;
 
 class ContactRepo
 {
-    public function index()
+    public function getLatest()
     {
 
     }

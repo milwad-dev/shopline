@@ -14,16 +14,30 @@ class ContactTest extends TestCase
     use RefreshDatabase, WithFaker;
 
     /**
-     * A basic feature test example.
+     * Test admin user can see index contact page.
      *
      * @test
      * @return void
      */
-    public function test_example()
+    public function admin_user_can_see_index_contact_page()
     {
-        $response = $this->get('/');
+        $this->createUserWithLoginWithAssignPermission();
 
-        $response->assertStatus(200);
+        $response = $this->get(route('contacts.index'));
+        $response->assertViewIs('Contact::index');
+        $response->assertViewHas('contacts');
+    }
+
+    /**
+     * Test usual user can not see index contact page.
+     *
+     * @test
+     * @return void
+     */
+    public function usual_user_can_not_see_index_contact_page()
+    {
+        $this->createUserWithLoginWithAssignPermission(false);
+        $this->get(route('contacts.index'))->assertForbidden();
     }
 
     /**
