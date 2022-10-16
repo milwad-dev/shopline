@@ -260,42 +260,7 @@
                 </div>
                 <div class="col-xxl-3 col-xl-4 col-lg-5 d-none d-lg-block wow fadeInUp">
                     <div class="right-sidebar-box">
-                        <div class="vendor-box">
-                            <div class="verndor-contain">
-                                <div class="vendor-image">
-                                    <img src="{{ $product->vendor->getAvatar() }}" class="blur-up lazyload" alt="">
-                                </div>
-                                <div class="vendor-name">
-                                    <h5 class="fw-500">{{ $product->vendor->name }}</h5>
-                                </div>
-                            </div>
-                            <p class="vendor-detail">Noodles & Company is an American fast-casual
-                                restaurant that offers international and American noodle dishes and pasta.
-                                {{-- TODO ADD FIELDS --}}
-                            </p>
-                            <div class="vendor-list">
-                                <ul>
-                                    <li>
-                                        <div class="address-contact">
-                                            <i data-feather="map-pin"></i>
-                                            <h5>Address: <span class="text-content">1288 Franklin Avenue</span></h5>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="address-contact">
-                                            <i data-feather="headphones"></i>
-                                            <h5>Contact Seller:
-                                                <span class="text-content">
-                                                    <a href="tel:{{ $product->vendor->phone }}">
-                                                        {{ $product->vendor->phone }}
-                                                    </a>
-                                                </span>
-                                            </h5>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                        @include('Home::Pages.products.section.details-page.vendor', ['vendor' => $product->vendor])
                         @if (! is_null($advertising))
                             @include('Home::Pages.products.section.details-page.advertising', ['advertising' => $advertising])
                         @endif

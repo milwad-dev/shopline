@@ -45,6 +45,7 @@ class ProductController extends Controller
         $similarProducts = $productRepoEloquent->getSimilarProductsByCategories($product->categories);
         $advertising = resolve(AdvertisingRepoEloquentInterface::class)
             ->getAdvertisingsByLocation(AdvertisingLocationEnum::LOCATION_PRODUCT_DETAIL->value)
+            ->with('media')
             ->first();
 
         return view('Home::Pages.products.details', compact(['product', 'similarProducts', 'advertising']));
