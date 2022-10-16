@@ -38,6 +38,9 @@
         <testsuite name="Feature">
             <directory suffix="Test.php">./Modules/Comment/Tests/Feature</directory>
         </testsuite>
+        <testsuite name="Feature">
+            <directory suffix="Test.php">./Modules/Contact/Tests/Feature</directory>
+        </testsuite>
         <!-- Unit tests -->
     </testsuites>
     <coverage processUncoveredFiles="true">
