@@ -4,7 +4,6 @@ namespace Modules\Contact\Http\Controllers;
 
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Modules\Contact\Models\Contact;
 use Modules\Contact\Repositories\ContactRepoEloquent;
 use Modules\Share\Http\Controllers\Controller;
