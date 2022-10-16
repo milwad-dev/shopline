@@ -26,7 +26,7 @@ Route::group([], static function ($router) {
 
     # Comments
     $router->post('comments', ['uses' => 'Comment\CommentController@store', 'as' => 'comments.store']);
-    
+
     # Contacts
     $router->get('contacts', ['uses' => 'Contact\ContactController@create', 'as' => 'contacts.create']);
     $router->post('contacts', ['uses' => 'Contact\ContactController@store', 'as' => 'contacts.store']);
