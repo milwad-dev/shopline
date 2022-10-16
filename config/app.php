@@ -19,6 +19,30 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Application Phone
+    |--------------------------------------------------------------------------
+    |
+    | This value is the phone of your application. This value is used when the
+    | need to show phone app.
+    |
+    */
+
+    'phone' => env('APP_PHONE', 'xxxx-xxx-xxxx'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Email
+    |--------------------------------------------------------------------------
+    |
+    | This value is the email of your application. This value is used when the
+    | need to show email app.
+    |
+    */
+
+    'email' => env('APP_EMAIL', 'info@shopline.com'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Logo
     |--------------------------------------------------------------------------
     |
