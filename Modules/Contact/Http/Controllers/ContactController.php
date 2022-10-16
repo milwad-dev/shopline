@@ -6,6 +6,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Modules\Contact\Models\Contact;
 use Modules\Contact\Repositories\ContactRepoEloquent;
+use Modules\Contact\Services\ContactService;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
 
@@ -20,7 +21,7 @@ class ContactController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Get the latest contacts with show view page.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws AuthorizationException
@@ -32,7 +33,7 @@ class ContactController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove contact by route model binding.
      *
      * @param  Contact $contact
      * @return JsonResponse
@@ -43,6 +44,21 @@ class ContactController extends Controller
     {
         $this->authorize('manage', $this->class);
         $contact->deleteOrFail();
+
+        return AjaxResponses::SuccessResponse();
+    }
+
+    /**
+     * Update is_read with route model binding.
+     *
+     * @param  Contact $contact
+     * @return JsonResponse
+     * @throws AuthorizationException
+     */
+    public function updateIsRead(Contact $contact)
+    {
+        $this->authorize('manage', $this->class);
+        resolve(ContactService::class)->updateIsRead($contact);
 
         return AjaxResponses::SuccessResponse();
     }
