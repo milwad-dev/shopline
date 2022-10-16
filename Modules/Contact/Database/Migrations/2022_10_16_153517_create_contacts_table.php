@@ -13,8 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('contacts', static function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('email');
+            $table->string('phone');
+            $table->string('sujbect');
+            $table->mediumText('message');
+            $table->boolean('is_read')->default(false);
             $table->timestamps();
         });
     }
