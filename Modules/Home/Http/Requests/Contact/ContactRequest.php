@@ -3,7 +3,6 @@
 namespace Modules\Home\Http\Requests\Contact;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 use Milwad\LaravelValidate\Rules\ValidPhoneNumber;
 
 class ContactRequest extends FormRequest
