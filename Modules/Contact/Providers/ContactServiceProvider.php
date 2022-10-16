@@ -60,15 +60,44 @@ class ContactServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
-        $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
+        $this->loadMigrationFiles();
+        $this->loadViewFiles();
+        $this->loadRouteFiles();
+        $this->loadPolicyFiles();
 
+        $this->bindService();
+        $this->bindRepository();
+    }
+
+    private function loadMigrationFiles(): void
+    {
+        $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
+    }
+
+    private function loadViewFiles(): void
+    {
+        $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
+    }
+
+    private function loadRouteFiles(): void
+    {
         Route::middleware($this->routeMiddleware)
             ->namespace($this->namespace)
             ->group(__DIR__ . $this->routePath);
-        Gate::policy(Contact::class, ContactPolicy::class);
+    }
 
+    private function loadPolicyFiles(): void
+    {
+        Gate::policy(Contact::class, ContactPolicy::class);
+    }
+
+    private function bindService(): void
+    {
         $this->app->bind(ContactServiceInterface::class, ContactService::class);
+    }
+
+    private function bindRepository(): void
+    {
         $this->app->bind(ContactRepoInterface::class, ContactRepoEloquent::class);
     }
 }
