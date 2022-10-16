@@ -208,6 +208,7 @@ return [
         Modules\Slider\Providers\SliderServiceProvider::class,
         Modules\Advertising\Providers\AdvertisingServiceProvider::class,
         Modules\Comment\Providers\CommentServiceProvider::class,
+        Modules\Contact\Providers\ContactServiceProvider::class,
         /**
          * Package Service Providers...
          */
