@@ -45,9 +45,9 @@
                                                 </td>
                                                 <td>{{ $contact->subject }}</td>
                                                 <td>{{ $contact->message }}</td>
-                                                <td>
+                                                <td class="read">
                                                     <span class="badge rounded-pill badge-light-info me-1">
-                                                        خوانده نشده
+                                                        No Read
                                                     </span>
                                                 </td>
                                                 <td>{{ $contact->getCreatedAt() }}</td>
@@ -57,6 +57,20 @@
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
                                                         </button>
                                                         <div class="dropdown-menu dropdown-menu-end">
+                                                            <a class="dropdown-item"
+                                                               onclick="updateStatus(event,
+                                                                '{{ route('contacts.update-is-read', $contact->id) }}',
+                                                                'readed',
+                                                                'read'
+                                                                )">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                     width="14" height="14" viewBox="0 0 24 24"
+                                                                     stroke-width="1.5" stroke="currentColor" class="me-50">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                                </svg>
+                                                                <span>Read</span>
+                                                            </a>
                                                             <a class="dropdown-item"
                                                                onclick="deleteItem(event, '{{ route('contacts.destroy', $contact->id) }}')">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash me-50"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
