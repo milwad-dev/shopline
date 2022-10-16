@@ -10,7 +10,7 @@
                     </h3>
 {{--                    <h3 class="fw-light">every hour</h3> TODO ADD DESC--}}
                     <button class="btn btn-animation btn-md fw-bold mend-auto">
-                        Shop Now<i class="fa-solid fa-arrow-right icon"></i>
+                        Shop Now<i data-feather="arrow-right"></i>
                     </button>
                 </div>
             </div>

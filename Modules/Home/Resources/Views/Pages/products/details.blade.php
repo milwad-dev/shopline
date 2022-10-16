@@ -296,7 +296,9 @@
                                 </ul>
                             </div>
                         </div>
-                        @include('Home::Pages.products.section-details-page.advertising', ['advertising' => $advertising])
+                        @if (! is_null($advertising))
+                            @include('Home::Pages.products.section.details-page.advertising', ['advertising' => $advertising])
+                        @endif
                     </div>
                 </div>
             </div>

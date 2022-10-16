@@ -42,13 +42,11 @@ class ProductController extends Controller
     public function details($sku, $slug, ProductRepoEloquentInterface $productRepoEloquent)
     {
         $product = $productRepoEloquent->findProductBySkuWithSlug($sku, $slug);
-
-        if (!$product) {
-            abort(404);
-        }
-
         $similarProducts = $productRepoEloquent->getSimilarProductsByCategories($product->categories);
+        $advertising = resolve(AdvertisingRepoEloquentInterface::class)
+            ->getAdvertisingsByLocation(AdvertisingLocationEnum::LOCATION_PRODUCT_DETAIL->value)
+            ->first();
 
-        return view('Home::Pages.products.details', compact(['product', 'similarProducts']));
+        return view('Home::Pages.products.details', compact(['product', 'similarProducts', 'advertising']));
     }
 }
