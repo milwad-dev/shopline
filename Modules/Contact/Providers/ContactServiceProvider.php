@@ -2,8 +2,11 @@
 
 namespace Modules\Contact\Providers;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Modules\Contact\Models\Contact;
+use Modules\Contact\Policies\Policies\ContactPolicy;
 
 class ContactServiceProvider extends ServiceProvider
 {
@@ -17,5 +20,6 @@ class ContactServiceProvider extends ServiceProvider
         Route::middleware(['web', 'verify'])
             ->namespace($this->namespace)
             ->group(__DIR__ . '/../Routes/contact_routes.php');
+        Gate::policy(Contact::class, ContactPolicy::class);
     }
 }

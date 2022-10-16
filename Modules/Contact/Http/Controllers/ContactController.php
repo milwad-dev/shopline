@@ -2,6 +2,7 @@
 
 namespace Modules\Contact\Http\Controllers;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Modules\Contact\Models\Contact;
 use Modules\Contact\Repositories\ContactRepoEloquent;
@@ -21,10 +22,12 @@ class ContactController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws AuthorizationException
      */
     public function index()
     {
 //        return view('Contact::index', ['contacts' => $this->repo->getLatest()->notRead()->paginate()]);
+        $this->authorize('manage', $this->class);
         return view('Contact::index', ['contacts' => $this->repo->getLatest()->paginate()]);
     }
 

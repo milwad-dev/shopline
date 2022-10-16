@@ -3,6 +3,8 @@
 namespace Modules\Contact\Policies\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Modules\RolePermission\Models\Permission;
+use Modules\User\Models\User;
 
 class ContactPolicy
 {
@@ -16,5 +18,20 @@ class ContactPolicy
     public function __construct()
     {
         //
+    }
+
+    /**
+     * Check user has permission.
+     *
+     * @param  User $user
+     * @return bool
+     */
+    public function manage(User $user)
+    {
+        if ($user->hasPermissionTo(Permission::PERMISSION_CONTACTS)) {
+            return true;
+        }
+
+        return false;
     }
 }
