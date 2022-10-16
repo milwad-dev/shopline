@@ -28,8 +28,8 @@ class ContactRequest extends FormRequest
         return [
             'name'    => 'required|string|min:3|max:250',
             'email'   => 'required|email|min:3|max:250',
-            'phone'   => ['required', 'numeric', 'digits:11', Rule::in(ValidPhoneNumber::class)],
-            'sujbect' => 'required|string|min:3|max:250',
+            'phone'   => ['required', 'numeric', 'digits:11', new ValidPhoneNumber],
+            'subject' => 'required|string|min:3|max:250',
             'message' => 'required|string|min:3|max:800'
         ];
     }

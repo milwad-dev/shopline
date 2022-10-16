@@ -14,7 +14,7 @@ class Contact extends Model
      *
      * @var string[]
      */
-    protected $fillable = ['name', 'email', 'phone', 'sujbect', 'message', 'is_read'];
+    protected $fillable = ['name', 'email', 'phone', 'subject', 'message', 'is_read'];
 
     # Scopes
 

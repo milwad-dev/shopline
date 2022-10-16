@@ -20,7 +20,7 @@ class ContactFactory extends Factory
             'name' => $this->faker->name,
             'email' => $this->faker->email,
             'phone' => "09103400042",
-            'sujbect' => $this->faker->title,
+            'subject' => $this->faker->title,
             'message' => $this->faker->text,
         ];
     }

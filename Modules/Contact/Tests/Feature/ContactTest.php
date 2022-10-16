@@ -65,7 +65,7 @@ class ContactTest extends TestCase
             'name' => $contact->name,
             'email' => $contact->email,
             'phone' => $contact->phone,
-            'sujbect' => $contact->sujbect,
+            'subject' => $contact->subject,
             'message' => $contact->message
         ]);
         $this->assertDatabaseCount($this->tableName, 0);
@@ -89,7 +89,7 @@ class ContactTest extends TestCase
             'name' => $contact->name,
             'email' => $contact->email,
             'phone' => $contact->phone,
-            'sujbect' => $contact->sujbect,
+            'subject' => $contact->subject,
             'message' => $contact->message
         ]);
         $this->assertDatabaseCount($this->tableName, 1);
@@ -113,7 +113,7 @@ class ContactTest extends TestCase
             'name' => $contact->name,
             'email' => $contact->email,
             'phone' => $contact->phone,
-            'sujbect' => $contact->sujbect,
+            'subject' => $contact->subject,
             'message' => $contact->message,
             'is_read' => 1
         ]);

@@ -18,7 +18,7 @@ class ContactService
             'name'    => $data['name'],
             'email'   => $data['email'],
             'phone'   => $data['phone'],
-            'sujbect' => $data['sujbect'],
+            'subject' => $data['subject'],
             'message' => $data['message']
         ]);
     }
