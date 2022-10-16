@@ -2,13 +2,12 @@
 
 namespace Modules\Contact\Providers;
 
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\{Gate, Route};
 use Illuminate\Support\ServiceProvider;
 use Modules\Contact\Models\Contact;
 use Modules\Contact\Policies\ContactPolicy;
-use Modules\Contact\Services\ContactService;
-use Modules\Contact\Services\ContactServiceInterface;
+use Modules\Contact\Services\{ContactService, ContactServiceInterface};
+use Modules\Contact\Repositories\{ContactRepoEloquent, ContactRepoInterface};
 
 class ContactServiceProvider extends ServiceProvider
 {
@@ -23,6 +22,8 @@ class ContactServiceProvider extends ServiceProvider
             ->namespace($this->namespace)
             ->group(__DIR__ . '/../Routes/contact_routes.php');
         Gate::policy(Contact::class, ContactPolicy::class);
+
         $this->app->bind(ContactServiceInterface::class, ContactService::class);
+        $this->app->bind(ContactRepoInterface::class, ContactRepoEloquent::class);
     }
 }

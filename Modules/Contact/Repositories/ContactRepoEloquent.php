@@ -5,7 +5,7 @@ namespace Modules\Contact\Repositories;
 use Illuminate\Database\Eloquent\Builder;
 use Modules\Contact\Models\Contact;
 
-class ContactRepoEloquent
+class ContactRepoEloquent implements ContactRepoInterface
 {
     /**
      * Get latest contacts.

@@ -5,7 +5,7 @@ namespace Modules\Contact\Http\Controllers;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Modules\Contact\Models\Contact;
-use Modules\Contact\Repositories\ContactRepoEloquent;
+use Modules\Contact\Repositories\ContactRepoInterface;
 use Modules\Contact\Services\ContactServiceInterface;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
@@ -13,9 +13,10 @@ use Modules\Share\Responses\AjaxResponses;
 class ContactController extends Controller
 {
     private string $class = Contact::class;
-    protected ContactRepoEloquent $repo;
 
-    public function __construct(ContactRepoEloquent $contactRepo)
+    protected ContactRepoInterface $repo;
+
+    public function __construct(ContactRepoInterface $contactRepo)
     {
         $this->repo = $contactRepo;
     }
