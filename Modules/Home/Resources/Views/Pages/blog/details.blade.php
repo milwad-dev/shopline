@@ -31,7 +31,7 @@
                                                 <div class="recent-box">
                                                     <a href="{{ $article->path() }}" class="recent-image">
                                                         <img src="{{ $article->media->thumb }}"
-                                                             class="img-fluid blur-up lazyload" alt="article image">
+                                                        class="img-fluid blur-up lazyload" alt="article image">
                                                     </a>
                                                     <div class="recent-detail">
                                                         <a href="{{ $article->path() }}">
@@ -48,7 +48,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -110,8 +109,8 @@
                                 <li>
                                     <div class="user-list">
                                         <i data-feather="message-square"></i>
-                                        <span>82 Comment</span>
-                                    </div>{{-- TODO --}}
+                                        <span>{{ $article->activeComments()->count() }} Comment</span>
+                                    </div>
                                 </li>
                             </ul>
                         </div>

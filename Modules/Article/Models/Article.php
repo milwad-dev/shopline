@@ -9,13 +9,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Modules\Article\Enums\ArticleStatusEnum;
 use Modules\Category\Models\Category;
+use Modules\Comment\Traits\Commentable;
 use Modules\Media\Models\Media;
 use Modules\User\Models\User;
 use Spatie\Tags\HasTags;
 
 class Article extends Model
 {
-    use HasFactory, HasTags;
+    use HasFactory, HasTags, Commentable;
 
     /**
      * Add columns to fillable.
