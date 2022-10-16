@@ -63,6 +63,6 @@ class BlogRepoEloquent implements BlogRepoEloquentInterface
             ->with(['media', 'categories'])
             ->active()
             ->where('slug', $slug)
-            ->first();
+            ->firstOrFail();
     }
 }
