@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Modules\Contact\Models\Contact;
-use Modules\Contact\Policies\Policies\ContactPolicy;
+use Modules\Contact\Policies\ContactPolicy;
 
 class ContactServiceProvider extends ServiceProvider
 {

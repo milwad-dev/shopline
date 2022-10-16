@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Contact\Policies\Policies;
+namespace Modules\Contact\Policies;
 
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Modules\RolePermission\Models\Permission;
