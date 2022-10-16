@@ -87,7 +87,7 @@ class CommentServiceProvider extends ServiceProvider
     {
         config()->set('panelConfig.menus.comments', [
             'title' => 'Comment',
-            'icon'  => 'conversation',
+            'icon'  => 'message-square',
             'url'   => route('comments.index'),
         ]);
     }
