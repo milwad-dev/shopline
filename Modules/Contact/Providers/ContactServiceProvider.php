@@ -11,10 +11,11 @@ class ContactServiceProvider extends ServiceProvider
 
     public function register()
     {
-//        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
-//        $this->loadViewsFrom(__DIR__ . '/../Resources/Views/', 'Contact');
-//
-//        Route::middleware(['web', 'verify'])->namespace($this->namespace)
-//        ->group(__DIR__ . '/../Routes/contact\_routes.php');
+        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadViewsFrom(__DIR__ . '/../Resources/Views/', 'Contact');
+
+        Route::middleware(['web', 'verify'])
+            ->namespace($this->namespace)
+            ->group(__DIR__ . '/../Routes/contact_routes.php');
     }
 }
