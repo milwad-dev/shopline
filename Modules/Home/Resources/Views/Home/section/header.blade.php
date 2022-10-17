@@ -195,16 +195,29 @@
                                     </div>
                                     <div class="onhover-div onhover-div-login">
                                         <ul class="user-box-name">
-                                            <li class="product-box-contain">
-                                                <i></i>
-                                                <a href="log-in.html">Log In</a>
-                                            </li>
-                                            <li class="product-box-contain">
-                                                <a href="sign-up.html">Register</a>
-                                            </li>
-                                            <li class="product-box-contain">
-                                                <a href="forgot.html">Forgot Password</a>
-                                            </li>
+                                            @auth
+                                                <li class="product-box-contain">
+                                                    <i></i>
+                                                    <a href="log-in.html">Profile</a>
+                                                </li>
+                                                <li class="product-box-contain">
+                                                    <a href="sign-up.html">Orders</a>
+                                                </li>
+                                                <li class="product-box-contain">
+                                                    <a href="{{ route('logout') }}">Logout</a>
+                                                </li>
+                                            @else
+                                                <li class="product-box-contain">
+                                                    <i></i>
+                                                    <a href="{{ route('login') }}">Log In</a>
+                                                </li>
+                                                <li class="product-box-contain">
+                                                    <a href="{{ route('register') }}">Register</a>
+                                                </li>
+                                                <li class="product-box-contain">
+                                                    <a href="{{ route('password.request') }}">Forgot Password</a>
+                                                </li>
+                                            @endauth
                                         </ul>
                                     </div>
                                 </li>
