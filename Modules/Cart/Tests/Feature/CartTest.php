@@ -6,5 +6,5 @@ use Tests\TestCase;
 
 class CartTest extends TestCase
 {
-
+    
 }
