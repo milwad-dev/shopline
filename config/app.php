@@ -233,6 +233,7 @@ return [
         Modules\Advertising\Providers\AdvertisingServiceProvider::class,
         Modules\Comment\Providers\CommentServiceProvider::class,
         Modules\Contact\Providers\ContactServiceProvider::class,
+        Modules\Cart\Providers\CartServiceProvider::class,
         /**
          * Package Service Providers...
          */
