@@ -9,15 +9,7 @@ class CartService implements CartServiceInterface
     public function add($productId)
     {
         $product = resolve(ProductRepoEloquent::class)->findById($productId);
-        $cart = session()->get('cart');
-
-        if ($this->check($productId)) {
-            $cart[$productId]['quantity']++;
-        } else {
-            $product = $product->toArray();
-            $product['quantity'] = 1;
-            $cart[$productId] = $product;
-        }
+        $cart = $this->checkCart($productId, session()->get('cart'), $product);
 
         session()->put('cart', $cart);
     }
@@ -39,6 +31,18 @@ class CartService implements CartServiceInterface
 
     public function check($id)
     {
-        return session()->has($id);
+        return session()->has("cart.$id");
+    }
+
+    private function checkCart($productId, mixed $cart, \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Builder|array|null $product): mixed
+    {
+        if ($this->check($productId)) {
+            $cart[$productId]['quantity']++;
+        } else {
+            $product = $product->toArray();
+            $product['quantity'] = 1;
+            $cart[$productId] = $product;
+        }
+        return $cart;
     }
 }

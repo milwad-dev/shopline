@@ -20,7 +20,6 @@ class CartTest extends TestCase
      */
     public function login_user_can_add_product_into_cart()
     {
-        $this->withoutExceptionHandling();
         $this->createUserWithLogin();
 
         $product = Product::factory()->create(['slug' => "rexa" . random_int(1, 50)]);
