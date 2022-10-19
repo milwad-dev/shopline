@@ -21,9 +21,6 @@ class CartService implements CartServiceInterface
         }
 
         session()->put('cart', $cart);
-
-        ShareService::successToast('Add to cart successfully');
-        return redirect()->back();
     }
 
     public function update()
