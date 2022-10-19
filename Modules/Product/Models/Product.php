@@ -181,6 +181,16 @@ class Product extends Model implements Viewable
     }
 
     /**
+     * Get cart path.
+     *
+     * @return string
+     */
+    public function cartPath()
+    {
+        return route('cart.add', $this->id);
+    }
+
+    /**
      * Get rate score.
      *
      * @return int

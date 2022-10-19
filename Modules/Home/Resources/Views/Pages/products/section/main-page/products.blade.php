@@ -128,10 +128,10 @@
 {{--                                <del>$15.15</del>--}}
                             </h5>
                             <div class="add-to-cart-box bg-white">
-                                <button class="btn btn-add-cart addcart-button">
+                                <a class="btn btn-add-cart addcart-button" href="{{ $product->cartPath() }}">
                                     Add
                                     <i class="fa-solid fa-plus bg-gray"></i>
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
