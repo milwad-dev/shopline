@@ -12,8 +12,6 @@ class CartController extends Controller
     {
         resolve(CartService::class)->add($productId);
 
-        session()->put('cart', ['afasf']);
-
         ShareService::successToast('Add to cart successfully');
         return redirect()->back();
     }

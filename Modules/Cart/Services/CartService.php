@@ -3,7 +3,6 @@
 namespace Modules\Cart\Services;
 
 use Modules\Product\Repositories\ProductRepoEloquent;
-use Modules\Share\Services\ShareService;
 
 class CartService implements CartServiceInterface
 {

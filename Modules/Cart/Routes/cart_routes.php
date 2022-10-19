@@ -4,13 +4,13 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Product routes
+| Cart routes
 |--------------------------------------------------------------------------
 |
-| Here you can see product routes.
+| Here you can see cart routes.
 |
 */
 
 Route::group(['middleware' => 'auth'], static function ($router) {
-    $router->get('cart-add/{product-id}', ['uses' => 'CartController@add', 'as' => 'cart.add']);
+    $router->get('cart-add/{id}', ['uses' => 'CartController@add', 'as' => 'cart.add']);
 });
