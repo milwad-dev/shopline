@@ -14,11 +14,6 @@ class CartService implements CartServiceInterface
         session()->put('cart', $cart);
     }
 
-    public function update()
-    {
-        // TODO: Implement update() method.
-    }
-
     public function remove($productId)
     {
         $cart = session()->get('cart');
@@ -34,9 +29,9 @@ class CartService implements CartServiceInterface
         }
     }
 
-    public function removeAll($productIds)
+    public function removeAll()
     {
-        // TODO: Implement removeAll() method.
+        session()->forget('cart');
     }
 
     public function check($id)
@@ -50,8 +45,10 @@ class CartService implements CartServiceInterface
     {
         $total = 0;
 
-        foreach (session()->get('cart') as $item) {
-            $total += $item['price'] * $item['quantity'];
+        if (! is_null(session()->get('cart'))) {
+            foreach (session()->get('cart') as $item) {
+                $total += $item['price'] * $item['quantity'];
+            }
         }
 
         return $total;

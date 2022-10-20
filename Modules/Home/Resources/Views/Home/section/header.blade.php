@@ -149,6 +149,9 @@
 
                                             <div class="button-group">
                                                 <a href="cart.html" class="btn btn-sm cart-button">View Cart</a>
+                                                <a href="{{ route('cart.delete.all') }}" class="btn btn-sm cart-button">
+                                                    Remove all
+                                                </a>
                                                 <a href="checkout.html" class="btn btn-sm cart-button theme-bg-color
                                                         text-white">Checkout</a>
                                             </div>

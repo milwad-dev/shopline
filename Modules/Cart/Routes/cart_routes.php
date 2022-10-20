@@ -13,5 +13,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => 'auth'], static function ($router) {
     $router->get('cart-add/{id}', ['uses' => 'CartController@add', 'as' => 'cart.add']);
-    $router->get('cart-add/{id}/delete', ['uses' => 'CartController@delete', 'as' => 'cart.delete']);
+    $router->get('cart/{id}/delete', ['uses' => 'CartController@delete', 'as' => 'cart.delete']);
+    $router->get('cart/delete/all', ['uses' => 'CartController@deleteAll', 'as' => 'cart.delete.all']);
 });

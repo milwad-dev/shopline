@@ -29,6 +29,13 @@ class CartController extends Controller
         return $this->sucessMessageWithRedirect('Remove item from cart successfully');
     }
 
+    public function deleteAll()
+    {
+        $this->service->removeAll();
+
+        return $this->sucessMessageWithRedirect('All item deleted from cart successfully');
+    }
+
     private function sucessMessageWithRedirect(string $title): \Illuminate\Http\RedirectResponse
     {
         ShareService::successToast($title);
