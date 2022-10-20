@@ -19,12 +19,17 @@ class CartService implements CartServiceInterface
         // TODO: Implement update() method.
     }
 
-    public function remove()
+    public function remove($productId)
     {
-        // TODO: Implement remove() method.
+        $cart = session()->get('cart');
+
+        if (isset($cart[$productId])) {
+            unset($cart[$productId]);
+            session()->put('cart', $cart);
+        }
     }
 
-    public function removeAll()
+    public function removeAll($productIds)
     {
         // TODO: Implement removeAll() method.
     }

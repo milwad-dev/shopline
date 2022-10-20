@@ -39,6 +39,12 @@
 {{-- script js --}}
 <script src="{{ asset('home/js/script.js') }}"></script>
 
+{{-- custom js --}}
+<script src="{{ asset('home/js/custom.js') }}"></script>
+
 {{-- thme setting js --}}
 <script src="{{ asset('home/js/theme-setting.js') }}"></script>
+
+{{-- sweetalert js --}}
+<script src="{{ asset('panel/js/scripts/sweetalert/sweetalert.min.js') }}"></script>
 @yield('js')

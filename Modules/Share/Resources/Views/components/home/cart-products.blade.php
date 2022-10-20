@@ -9,7 +9,8 @@
                 <h5>{{ $product['title'] }}</h5>
             </a>
             <h6><span>{{ $product['quantity'] }} x</span> {{ $product['price'] }}</h6>
-            <a class="close-button close_button">
+            <a class="close-button close_button" href="#"
+               onclick="showConfirmMessage('Are you sure to delete?', '{{ route('cart.delete', $product['id']) }}');">
                 <i data-feather="x-circle"></i>
             </a>
         </div>

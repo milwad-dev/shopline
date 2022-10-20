@@ -8,11 +8,30 @@ use Modules\Share\Services\ShareService;
 
 class CartController extends Controller
 {
+    public CartService $service;
+
+    public function __construct(CartService $cartService)
+    {
+        $this->service = $cartService;
+    }
+
     public function add($productId)
     {
-        resolve(CartService::class)->add($productId);
+        $this->service->add($productId);
 
-        ShareService::successToast('Add to cart successfully');
+        return $this->sucessMessageWithRedirect('Add to cart successfully');
+    }
+
+    public function delete($productId)
+    {
+        $this->service->remove($productId);
+
+        return $this->sucessMessageWithRedirect('Remove item from cart successfully');
+    }
+
+    private function sucessMessageWithRedirect(string $title): \Illuminate\Http\RedirectResponse
+    {
+        ShareService::successToast($title);
         return redirect()->back();
     }
 }
