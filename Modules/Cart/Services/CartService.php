@@ -6,6 +6,14 @@ use Modules\Product\Repositories\ProductRepoEloquent;
 
 class CartService implements CartServiceInterface
 {
+    /**
+     * Add product into cart in session by product id.
+     *
+     * @param  $productId
+     * @return void
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
     public function add($productId)
     {
         $product = resolve(ProductRepoEloquent::class)->findById($productId)->load('first_media');
@@ -14,6 +22,14 @@ class CartService implements CartServiceInterface
         session()->put('cart', $cart);
     }
 
+    /**
+     * Remove product from session by product id.
+     *
+     * @param  $productId
+     * @return void
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
     public function remove($productId)
     {
         $cart = session()->get('cart');
@@ -29,11 +45,22 @@ class CartService implements CartServiceInterface
         }
     }
 
+    /**
+     * Remove cart session.
+     *
+     * @return void
+     */
     public function removeAll()
     {
         session()->forget('cart');
     }
 
+    /**
+     * Check item in cart by id.
+     *
+     * @param  $id
+     * @return bool
+     */
     public function check($id)
     {
         return session()->has("cart.$id");
@@ -41,6 +68,13 @@ class CartService implements CartServiceInterface
 
     # Static methods
 
+    /**
+     * Handle total price.
+     *
+     * @return  float|int
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
     public static function handleTotalPrice()
     {
         $total = 0;
@@ -54,6 +88,16 @@ class CartService implements CartServiceInterface
         return $total;
     }
 
+    # Private methods
+
+    /**
+     * Check & store item.
+     *
+     * @param  $productId
+     * @param  mixed $cart
+     * @param  $product
+     * @return mixed
+     */
     private function checkCart($productId, mixed $cart, $product): mixed
     {
         if ($this->check($productId)) {

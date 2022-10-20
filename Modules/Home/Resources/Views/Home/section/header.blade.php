@@ -139,14 +139,12 @@
                                                     <p>Cart is empty.</p>
                                                 @endif
                                             </ul>
-
                                             <div class="price-box">
                                                 <h5>Total :</h5>
                                                 <h4 class="theme-color fw-bold">
                                                     ${{ number_format(\Modules\Cart\Services\CartService::handleTotalPrice()) }}
                                                 </h4>
                                             </div>
-
                                             <div class="button-group">
                                                 <a href="cart.html" class="btn btn-sm cart-button">View Cart</a>
                                                 <a href="{{ route('cart.delete.all') }}"
