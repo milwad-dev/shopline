@@ -24,7 +24,12 @@ class CartService implements CartServiceInterface
         $cart = session()->get('cart');
 
         if (isset($cart[$productId])) {
-            unset($cart[$productId]);
+            if ($cart[$productId]['quantity'] > 1) {
+                $cart[$productId]['quantity'] -= 1;
+            } else {
+                unset($cart[$productId]);
+            }
+
             session()->put('cart', $cart);
         }
     }
