@@ -8,6 +8,6 @@ class CartController extends Controller
 {
     public function __invoke()
     {
-        return view('Home::Pages.cart.index');
+        return view('Home::Pages.cart.index', ['carts' => session()->get('cart')]);
     }
 }

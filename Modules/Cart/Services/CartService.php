@@ -88,6 +88,25 @@ class CartService implements CartServiceInterface
         return $total;
     }
 
+    /**
+     * Handle one product price.
+     *
+     * @param  $productId
+     * @return float|int
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    public static function handleTotalOneItemPrice($productId)
+    {
+        $product = (object) session()->get('cart')[$productId];
+
+        if (is_null($product)) {
+            return 0;
+        }
+
+        return $product->price * $product->quantity;
+    }
+
     # Private methods
 
     /**
