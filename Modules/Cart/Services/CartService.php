@@ -8,7 +8,7 @@ class CartService implements CartServiceInterface
 {
     public function add($productId)
     {
-        $product = resolve(ProductRepoEloquent::class)->findById($productId);
+        $product = resolve(ProductRepoEloquent::class)->findById($productId)->load('first_media');
         $cart = $this->checkCart($productId, session()->get('cart'), $product);
 
         session()->put('cart', $cart);
@@ -34,15 +34,31 @@ class CartService implements CartServiceInterface
         return session()->has("cart.$id");
     }
 
-    private function checkCart($productId, mixed $cart, \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Builder|array|null $product): mixed
+    # Static methods
+
+    public static function handleTotalPrice()
+    {
+        $total = 0;
+
+        foreach (session()->get('cart') as $item) {
+            $total += $item['price'] * $item['quantity'];
+        }
+
+        return $total;
+    }
+
+    private function checkCart($productId, mixed $cart, $product): mixed
     {
         if ($this->check($productId)) {
             $cart[$productId]['quantity']++;
         } else {
+            $firstMedia = $product->first_media->thumb;
             $product = $product->toArray();
             $product['quantity'] = 1;
+            $product['first-media'] = $firstMedia;
             $cart[$productId] = $product;
         }
+
         return $cart;
     }
 }

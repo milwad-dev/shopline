@@ -31,9 +31,9 @@
                         <li class="right-nav-list">
                             <div class="dropdown theme-form-select">
                                 <button class="btn dropdown-toggle" type="button" id="select-language"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                        data-bs-toggle="dropdown" aria-expanded="false">
                                     <img src="{{ asset('home/images/country/united-states.png') }}"
-                                    class="img-fluid blur-up lazyload" alt="">
+                                         class="img-fluid blur-up lazyload" alt="">
                                     <span>English</span>
                                     <i data-feather="chevron-down"></i>
                                 </button>
@@ -73,7 +73,7 @@
                 <div class="col-12">
                     <div class="navbar-top">
                         <button class="navbar-toggler d-xl-none d-inline navbar-menu-button" type="button"
-                            data-bs-toggle="offcanvas" data-bs-target="#primaryMenu">
+                                data-bs-toggle="offcanvas" data-bs-target="#primaryMenu">
                             <span class="navbar-toggler-icon">
                                 <i class="fa-solid fa-bars"></i>
                             </span>
@@ -125,55 +125,26 @@
                                         <button type="button" class="btn p-0 position-relative header-wishlist">
                                             <i data-feather="shopping-cart"></i>
                                             <span class="position-absolute top-0 start-100 translate-middle badge">
-                                                {{ count(session()->get('cart')) }}
+                                                {{ session()->has('cart') ? count(session()->get('cart')) : 0 }}
                                                 <span class="visually-hidden">unread messages</span>
                                             </span>
                                         </button>
                                         <div class="onhover-div">
                                             <ul class="cart-list">
-                                                <li class="product-box-contain">
-                                                    <div class="drop-cart">
-                                                        <a href="product-left.html" class="drop-image">
-                                                            <img src="{{ asset('home/images/vegetable/product/1.png') }}"
-                                                                 class="blur-up lazyload" alt="">
-                                                        </a>
-
-                                                        <div class="drop-contain">
-                                                            <a href="product-left.html">
-                                                                <h5>Fantasy Crunchy Choco Chip Cookies</h5>
-                                                            </a>
-                                                            <h6><span>1 x</span> $80.58</h6>
-                                                            <button class="close-button close_button">
-                                                                <i class="fa-solid fa-xmark"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </li>
-
-                                                <li class="product-box-contain">
-                                                    <div class="drop-cart">
-                                                        <a href="product-left.html" class="drop-image">
-                                                            <img src="{{ asset('home/images/vegetable/product/2.png') }}"
-                                                                 class="blur-up lazyload" alt="">
-                                                        </a>
-
-                                                        <div class="drop-contain">
-                                                            <a href="product-left.html">
-                                                                <h5>Peanut Butter Bite Premium Butter Cookies 600 g
-                                                                </h5>
-                                                            </a>
-                                                            <h6><span>1 x</span> $25.68</h6>
-                                                            <button class="close-button close_button">
-                                                                <i class="fa-solid fa-xmark"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </li>
+                                                @if (session()->has('cart') && count(session()->get('cart')) > 0)
+                                                    @foreach(session()->get('cart') as $product)
+                                                        @include('Share::components.home.cart-products', ['product' => $product])
+                                                    @endforeach
+                                                @else
+                                                    <p>Cart is empty.</p>
+                                                @endif
                                             </ul>
 
                                             <div class="price-box">
                                                 <h5>Total :</h5>
-                                                <h4 class="theme-color fw-bold">$106.58</h4>
+                                                <h4 class="theme-color fw-bold">
+                                                    ${{ number_format(\Modules\Cart\Services\CartService::handleTotalPrice()) }}
+                                                </h4>
                                             </div>
 
                                             <div class="button-group">
@@ -280,7 +251,8 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link nav-link-2" href="{{ route('contacts.create') }}">Contact</a>
+                                            <a class="nav-link nav-link-2"
+                                               href="{{ route('contacts.create') }}">Contact</a>
                                         </li>
                                     </ul>
                                 </div>

@@ -47,7 +47,7 @@ class Product extends Model implements Viewable
      */
     protected $with = ['vendor'];
 
-    // Relations
+    # Relations
     /**
      * Relation to User model, one to many.
      *
@@ -98,7 +98,7 @@ class Product extends Model implements Viewable
         return $this->belongsToMany(User::class, 'product_rates');
     }
 
-    // Booted
+    # Booted
     /**
      * Boot product model.
      */
@@ -114,7 +114,7 @@ class Product extends Model implements Viewable
         });
     }
 
-    // Scopes
+    # Scopes
     /**
      * Scope product popular.
      *
@@ -137,7 +137,7 @@ class Product extends Model implements Viewable
         return $query->where('status', ProductStatusEnum::STATUS_ACTIVE->value);
     }
 
-    // Methods
+    # Methods
     /**
      * Get css class for status.
      *
