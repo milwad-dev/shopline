@@ -32,5 +32,8 @@ Route::group([], static function ($router) {
     $router->post('contacts', ['uses' => 'Contact\ContactController@store', 'as' => 'contacts.store']);
 
     # Carts
-    $router->get('carts', ['uses' => 'Cart\CartController', 'as' => 'carts.index']);
+    $router->get('carts', ['uses' => 'Cart\CartController', 'as' => 'carts.home']);
+
+    # Checkouts
+    $router->get('checkouts', ['Checkout\CheckoutController', 'as' => 'checkouts.home']);
 });

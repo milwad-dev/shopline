@@ -109,7 +109,6 @@
 {{--                                </li>--}}
                             </ul>
                         </div>
-
                         <ul class="summery-total">
                             <li class="list-total border-top-0">
                                 <h4>Total (USD)</h4>
@@ -121,7 +120,7 @@
                         <div class="button-group cart-button">
                             <ul>
                                 <li>
-                                    <button onclick="location.href = 'checkout.html';"
+                                    <button onclick="location.href = '{{ route('checkouts.home') }}';"
                                         class="btn btn-animation proceed-btn fw-bold">Process To Checkout
                                     </button>
                                 </li>

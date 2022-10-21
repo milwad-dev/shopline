@@ -146,12 +146,12 @@
                                                 </h4>
                                             </div>
                                             <div class="button-group">
-                                                <a href="{{ route('carts.index') }}" class="btn btn-sm cart-button">View Cart</a>
+                                                <a href="{{ route('carts.home') }}" class="btn btn-sm cart-button">View Cart</a>
                                                 <a href="{{ route('cart.delete.all') }}"
                                                    class="btn btn-sm cart-button theme-bg-color text-white">
                                                     Remove all
                                                 </a>
-                                                <a href="checkout.html" class="btn btn-sm cart-button">Checkout</a>
+                                                <a href="{{ route('checkouts.home') }}" class="btn btn-sm cart-button">Checkout</a>
                                             </div>
                                         </div>
                                     </div>
