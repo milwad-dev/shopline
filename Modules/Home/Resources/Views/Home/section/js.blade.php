@@ -36,15 +36,15 @@
 <script src="{{ asset('home/js/wow.min.js') }}"></script>
 <script src="{{ asset('home/js/custom-wow.js') }}"></script>
 
-{{-- script js --}}
+{{-- Script js --}}
 <script src="{{ asset('home/js/script.js') }}"></script>
 
-{{-- custom js --}}
+{{-- Custom js --}}
 <script src="{{ asset('home/js/custom.js') }}"></script>
 
-{{-- thme setting js --}}
+{{-- Theme setting js --}}
 <script src="{{ asset('home/js/theme-setting.js') }}"></script>
 
-{{-- sweetalert js --}}
+{{-- Sweetalert js --}}
 <script src="{{ asset('panel/js/scripts/sweetalert/sweetalert.min.js') }}"></script>
 @yield('js')
