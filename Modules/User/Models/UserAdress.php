@@ -15,4 +15,23 @@ class UserAdress extends Model
      * @var string[]
      */
     protected $fillable = ['user_id', 'title', 'postcode', 'address'];
+
+    /**
+     * With relations.
+     *
+     * @var string[]
+     */
+    protected $with = ['user'];
+
+    # Relations
+
+    /**
+     * Relation to User model, one to many.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

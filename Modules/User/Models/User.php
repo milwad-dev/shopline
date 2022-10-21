@@ -4,6 +4,7 @@ namespace Modules\User\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -64,7 +65,7 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->notify(new ResetPasswordRequestNotification());
     }
 
-    // Methods
+    # Methods
     /*
      * Get text email verified at.
      */
@@ -109,7 +110,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return '';
     }
 
-    // Relations
+    # Relations
     /**
      * Relations to Category model, relation is one to many.
      *
@@ -143,7 +144,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Relations to Slider model, relation is one to many.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function sliders()
     {
@@ -153,10 +154,20 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Relations to Advertising model, relation is one to many.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function advertisings()
     {
         return $this->hasMany(Advertising::class);
+    }
+
+    /**
+     * Relations to UserAdress model, relation is one-to-many.
+     *
+     * @return HasMany
+     */
+    public function address()
+    {
+        return $this->hasMany(UserAdress::class);
     }
 }
