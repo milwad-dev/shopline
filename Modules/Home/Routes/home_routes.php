@@ -35,5 +35,5 @@ Route::group([], static function ($router) {
     $router->get('carts', ['uses' => 'Cart\CartController', 'as' => 'carts.home']);
 
     # Checkouts
-    $router->get('checkouts', ['uses' => 'Checkout\CheckoutController', 'as' => 'checkouts.home']);
+    $router->get('checkouts', ['uses' => 'Checkout\CheckoutController', 'as' => 'checkouts.home'])->middleware('auth');
 });

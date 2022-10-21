@@ -99,105 +99,61 @@
                                 </ul>
                             </div>
                         </div>
-
                         <div class="tab-pane" id="d-address" role="tabpanel" aria-labelledby="delivery-address">
                             <div class="d-flex align-items-center mb-3">
                                 <h2 class="tab-title mb-0">Delivery Address</h2>
                                 <button class="btn btn-animation btn-sm fw-bold ms-auto" type="button"
-                                        data-bs-toggle="modal" data-bs-target="#add-address">
+                                    data-bs-toggle="modal" data-bs-target="#add-address">
                                     <i class="fa-solid fa-plus d-block d-sm-none m-0"></i>
-                                    <span class="d-none d-sm-block">+ Add New</span>
+                                    <span class="d-none d-sm-block">+ Add New</span>{{-- TODO ADD Route --}}
                                 </button>
                             </div>
-
                             <div class="row g-4">
-                                <div class="col-xxl-6 col-lg-12 col-md-6">
-                                    <div class="delivery-address-box">
-                                        <div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="jack"
-                                                       id="flexRadioDefault1">
+                                @foreach(auth()->user()->address()->latest()->get() as $address)
+                                    <div class="col-xxl-6 col-lg-12 col-md-6">
+                                        <div class="delivery-address-box">
+                                            <div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="address"
+                                                    id="address" value="{{ $address->address }}"
+                                                    @if ($loop->index === 0) checked @endif>
+                                                </div>
+                                                <ul class="delivery-address-detail">
+                                                    <li>
+                                                        <h4 class="fw-500">{{ $address->title }}</h4>
+                                                    </li>
+                                                    <li>
+                                                        <p class="text-content">
+                                                            <span class="text-title">
+                                                                Address:
+                                                            </span>{{ $address->address }}
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <h6 class="text-content">
+                                                            <span class="text-title">
+                                                                Pin Code:
+                                                            </span>{{ $address->postcode }}
+                                                        </h6>
+                                                    </li>
+                                                </ul>
                                             </div>
-
-                                            <div class="label">
-                                                <label>Home</label>
-                                            </div>
-
-                                            <ul class="delivery-address-detail">
-                                                <li>
-                                                    <h4 class="fw-500">Jack Jennas</h4>
-                                                </li>
-
-                                                <li>
-                                                    <p class="text-content"><span class="text-title">Address
-                                                            : </span>8424 James Lane South San Francisco, CA 94080</p>
-                                                </li>
-
-                                                <li>
-                                                    <h6 class="text-content"><span class="text-title">Pin Code
-                                                            :</span> +380</h6>
-                                                </li>
-
-                                                <li>
-                                                    <h6 class="text-content mb-0"><span class="text-title">Phone
-                                                            :</span> + 380 (0564) 53 - 29 - 68</h6>
-                                                </li>
-                                            </ul>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="col-xxl-6 col-lg-12 col-md-6">
-                                    <div class="delivery-address-box">
-                                        <div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="jack"
-                                                       id="flexRadioDefault2" checked="checked">
-                                            </div>
-
-                                            <div class="label">
-                                                <label>Office</label>
-                                            </div>
-
-                                            <ul class="delivery-address-detail">
-                                                <li>
-                                                    <h4 class="fw-500">Jack Jennas</h4>
-                                                </li>
-
-                                                <li>
-                                                    <p class="text-content"><span class="text-title">Address
-                                                            :</span>Nakhimovskiy R-N / Lastovaya Ul., bld. 5/A, appt. 12
-                                                    </p>
-                                                </li>
-
-                                                <li>
-                                                    <h6 class="text-content"><span class="text-title">Pin Code :</span>
-                                                        +380</h6>
-                                                </li>
-
-                                                <li>
-                                                    <h6 class="text-content mb-0"><span class="text-title">Phone
-                                                            :</span> + 380 (0564) 53 - 29 - 68</h6>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
-
                             <div class="button-group">
                                 <ul class="button-group-list">
                                     <li>
                                         <button class="btn btn-light shopping-button backward-btn text-dark">
-                                            <i class="fa-solid fa-arrow-left-long ms-0"></i>Return To Shopping
-                                            Cart</button>
+                                            <i class="fa-solid fa-arrow-left-long ms-0"></i>
+                                            Return To Shopping Cart
+                                        </button> {{-- TODO CORRECT BUTTON --}}
                                     </li>
-
                                     <li>
                                         <button class="btn btn-animation proceed-btn">Continue Delivery Option</button>
                                     </li>
                                 </ul>
-
                             </div>
                         </div>
 
