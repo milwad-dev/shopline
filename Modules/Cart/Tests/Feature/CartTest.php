@@ -29,6 +29,20 @@ class CartTest extends TestCase
     }
 
     /**
+     * Test guest user can not add product into cart.
+     *
+     * @test
+     * @return void
+     * @throws \Exception
+     */
+    public function guest_user_can_not_add_product_into_cart()
+    {
+        $product = Product::factory()->create(['slug' => "rexa" . random_int(1, 50)]);
+        $this->get(route('cart.add', ['id' => $product->id]))->assertRedirect();
+        $this->assertNull(auth()->user());
+    }
+
+    /**
      * Create user with login.
      *
      * @return void

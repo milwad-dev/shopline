@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\Product\Enums\ProductStatusEnum;
 use Modules\Product\Models\Product;
 use Modules\Share\Services\ShareService;
+use Modules\User\Models\User;
 
 class ProductFactory extends Factory
 {
@@ -23,7 +24,7 @@ class ProductFactory extends Factory
 
         return [
             'first_media_id' => null,
-            'vendor_id' => auth()->id(),
+            'vendor_id' => User::factory()->create()->id,
             'title' => $title,
             'slug' => ShareService::makeSlug($title),
             'sku' => ShareService::makeUniqueSku(Product::class),
