@@ -65,18 +65,24 @@ class CartTest extends TestCase
     }
 
     /**
-     * Test guest user can not add product from cart.
+     * Test guest user can not delete product from cart.
      *
      * @test
      * @return void
      * @throws \Exception
      */
-//    public function guest_user_can_not_add_product_from_cart()
-//    {
-//        $product = Product::factory()->create(['slug' => "rexa" . random_int(1, 50)]);
-//        $this->get(route('cart.add', ['id' => $product->id]))->assertRedirect();
-//        $this->assertNull(auth()->user());
-//    }
+    public function guest_user_can_not_delete_product_from_cart()
+    {
+        $product = Product::factory()->create(['slug' => "rexa" . random_int(1, 50)]);
+
+        $this->get(route('cart.add', ['id' => $product->id]))->assertRedirect();
+
+        $response = $this->get(route('cart.delete', ['id' => $product->id]));
+        $response->assertSessionMissing(['cart']);
+        $response->assertRedirect();
+
+        $this->assertNull(auth()->user());
+    }
 
     /**
      * Create user with login.
