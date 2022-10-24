@@ -85,6 +85,45 @@ class CartTest extends TestCase
     }
 
     /**
+     * Test login user can remove all products from cart.
+     *
+     * @test
+     * @return void
+     * @throws \Exception
+     */
+    public function login_user_can_remove_all_products_from_cart()
+    {
+        $this->createUserWithLogin();
+
+        $product = Product::factory()->create(['slug' => "product" . random_int(1, 50)]);
+        $product2 = Product::factory()->create(['slug' => "product 2" . random_int(1, 50)]);
+
+        $this->get(route('cart.add', ['id' => $product->id]))->assertRedirect();
+        $this->get(route('cart.add', ['id' => $product2->id]))->assertRedirect();
+
+        $response = $this->get(route('cart.delete.all'));
+        $response->assertSessionMissing(['cart', "cart.$product->id"]);
+        $response->assertRedirect();
+    }
+
+    /**
+     * Test guest user can not remove all products from cart.
+     *
+     * @test
+     * @return void
+     * @throws \Exception
+     */
+    public function guest_user_can_not_remove_all_products_from_cart()
+    {
+        $product = Product::factory()->create(['slug' => "product" . random_int(1, 50)]);
+        $product2 = Product::factory()->create(['slug' => "product 2" . random_int(1, 50)]);
+
+        $this->get(route('cart.add', ['id' => $product->id]))->assertRedirect();
+        $this->get(route('cart.add', ['id' => $product2->id]))->assertRedirect();
+        $this->get(route('cart.delete.all'))->assertRedirect();
+    }
+
+    /**
      * Create user with login.
      *
      * @return void
