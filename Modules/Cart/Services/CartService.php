@@ -122,7 +122,7 @@ class CartService implements CartServiceInterface
         if ($this->check($productId)) {
             $cart[$productId]['quantity']++;
         } else {
-            $firstMedia = $product->first_media->thumb;
+            $firstMedia = optional($product->first_media)->thumb;
             $product = $product->toArray();
             $product['quantity'] = 1;
             $product['first-media'] = $firstMedia;

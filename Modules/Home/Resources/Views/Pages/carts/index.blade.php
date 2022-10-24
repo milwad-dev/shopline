@@ -26,11 +26,13 @@
                                         <tr class="product-box-contain">
                                             <td class="product-detail">
                                                 <div class="product border-0">
-                                                    <a href="{{ route('products.details', ['sku' => $product['sku'], 'slug' => $product['slug']]) }}"
-                                                       class="product-image">
-                                                        <img src="{{ $product['first-media'] }}"
-                                                             class="img-fluid blur-up lazyload" alt="product image">
-                                                    </a>
+                                                    @if (! is_null($product['first-media']))
+                                                        <a href="{{ route('products.details', ['sku' => $product['sku'], 'slug' => $product['slug']]) }}"
+                                                           class="product-image">
+                                                            <img src="{{ $product['first-media'] }}"
+                                                                 class="img-fluid blur-up lazyload" alt="product image">
+                                                        </a>
+                                                    @endif
                                                     <div class="product-detail">
                                                         <ul>
                                                             <li class="name">
