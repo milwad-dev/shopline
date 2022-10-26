@@ -2,8 +2,8 @@
 
 namespace Modules\About\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 
 class AboutServiceProvider extends ServiceProvider
 {
