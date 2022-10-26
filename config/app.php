@@ -234,6 +234,7 @@ return [
         Modules\Comment\Providers\CommentServiceProvider::class,
         Modules\Contact\Providers\ContactServiceProvider::class,
         Modules\Cart\Providers\CartServiceProvider::class,
+        Modules\About\Providers\AboutServiceProvider::class,
         /**
          * Package Service Providers...
          */
