@@ -39,4 +39,7 @@ Route::group([], static function ($router) {
 
     # Categories
     $router->get('categories/{category:slug}', ['uses' => 'Category\CategoryController@detail', 'as' => 'categories.detail']);
+
+    # About-us
+    $router->get('about-us', ['uses' => 'About\AboutController', 'as' => 'about-us.home']);
 });
