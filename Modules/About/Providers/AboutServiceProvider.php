@@ -10,7 +10,13 @@ use Modules\About\Policies\Policies\AboutPolicy;
 
 class AboutServiceProvider extends ServiceProvider
 {
-    public string $namespace = 'Modules\About\Http\Controllers';
+    private string $namespace = 'Modules\About\Http\Controllers';
+
+    private string $migrationPath = '/../Database/Migrations';
+    private string $viewPath = '/../Resources/Views/';
+    private string $name = 'About';
+    private string $routePath = '/../Routes/about_routes.php';
+    private array  $routeMiddleware = ['web', 'verify'];
 
     public function register()
     {
@@ -22,19 +28,19 @@ class AboutServiceProvider extends ServiceProvider
 
     private function loadMigrationFiles(): void
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
     }
 
     private function loadViewFiles(): void
     {
-        $this->loadViewsFrom(__DIR__ . '/../Resources/Views/', 'About');
+        $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
     }
 
     private function loadRouteFiles(): void
     {
-        Route::middleware(['web', 'verify'])
+        Route::middleware($this->routeMiddleware)
             ->namespace($this->namespace)
-            ->group(__DIR__ . '/../Routes/about_routes.php');
+            ->group(__DIR__ . $this->routePath);
     }
 
     private function loadPolicyFiles(): void
