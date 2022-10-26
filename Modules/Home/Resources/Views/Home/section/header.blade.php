@@ -247,13 +247,14 @@
                                             </a>
                                         </li>
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link" href="javascript:void(0)">
+                                            <a class="nav-link" href="{{ route('about-us.home') }}">
                                                 About-us
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link nav-link-2"
-                                               href="{{ route('contacts.create') }}">Contact</a>
+                                            <a class="nav-link nav-link-2" href="{{ route('contacts.create') }}">
+                                                Contact
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
