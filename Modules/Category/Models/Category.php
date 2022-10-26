@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Article\Models\Article;
 use Modules\Category\Enums\CategoryStatusEnum;
+use Modules\Product\Models\Product;
 use Modules\User\Models\User;
 
 class Category extends Model
@@ -68,7 +69,17 @@ class Category extends Model
      */
     public function articles()
     {
-        return $this->belongsToMany(Article::class);
+        return $this->belongsToMany(Article::class, 'article_category');
+    }
+
+    /**
+     * Relation to products, relation is one to many.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'product_category');
     }
 
     # Methods
@@ -94,7 +105,7 @@ class Category extends Model
      */
     public function path()
     {
-        return '';
+        return route('categories.detail', $this->slug);
     }
 
     # Scopes
