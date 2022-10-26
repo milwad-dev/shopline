@@ -41,6 +41,30 @@ class AboutTest extends TestCase
     }
 
     /**
+     * Test admin user can see create abouts page.
+     *
+     * @test
+     * @return void
+     */
+    public function admin_user_can_see_create_abouts_page()
+    {
+        $this->createUserWithLoginWithAssignPermission();
+        $this->get(route('abouts.create'))->assertViewIs('About::create');
+    }
+
+    /**
+     * Test guest user can not see create abouts page.
+     *
+     * @test
+     * @return void
+     */
+    public function guest_user_can_not_see_create_abouts_page()
+    {
+        $this->createUserWithLoginWithAssignPermission(false);
+        $this->get(route('abouts.create'))->assertForbidden();
+    }
+
+    /**
      * Create user with login & assign permission.
      *
      * @param  bool $permission
