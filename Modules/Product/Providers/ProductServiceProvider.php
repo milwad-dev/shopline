@@ -73,7 +73,7 @@ class ProductServiceProvider extends ServiceProvider
     }
 
     /**
-     * Set menu.
+     * Boot service provider.
      *
      * @return void
      */

@@ -16,5 +16,6 @@ return [
         'advertisings' => [],
         'comments' => [],
         'contacts' => [],
+        'abouts' => [],
     ],
 ];

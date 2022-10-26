@@ -66,6 +66,30 @@ class AboutServiceProvider extends ServiceProvider
     }
 
     /**
+     * Boot service provider.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->setUpMenuForPanel();
+    }
+
+    /**
+     * Set menu for panel
+     *
+     * @return void
+     */
+    private function setUpMenuForPanel(): void
+    {
+        config()->set('panelConfig.menus.abouts', [
+            'title' => 'About-us',
+            'icon'  => 'menu',
+            'url'   => route('abouts.index'),
+        ]);
+    }
+
+    /**
      * Load migration files.
      *
      * @return void
