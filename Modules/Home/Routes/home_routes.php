@@ -36,4 +36,7 @@ Route::group([], static function ($router) {
 
     # Checkouts
     $router->get('checkouts', ['uses' => 'Checkout\CheckoutController', 'as' => 'checkouts.home'])->middleware('auth');
+
+    # Categories
+    $router->get('categories/{category:slug}', ['uses' => 'Category\CategoryController@detail', 'as' => 'categories.detail']);
 });
