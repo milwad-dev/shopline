@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class About extends Model
 {
     use HasFactory;
+
+    /**
+     * Fillable columns.
+     *
+     * @var string[]
+     */
+    protected $fillable = ['body'];
 }
