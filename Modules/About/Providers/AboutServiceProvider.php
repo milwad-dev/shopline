@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Modules\About\Models\About;
-use Modules\About\Policies\Policies\AboutPolicy;
+use Modules\About\Policies\AboutPolicy;
 
 class AboutServiceProvider extends ServiceProvider
 {

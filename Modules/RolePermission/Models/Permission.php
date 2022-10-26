@@ -18,6 +18,7 @@ class Permission extends \Spatie\Permission\Models\Permission
     public const PERMISSION_ADVERTISINGS = 'permission advertisings';
     public const PERMISSION_COMMENTS = 'permission comments';
     public const PERMISSION_CONTACTS = 'permission contacts';
+    public const PERMISSION_ABOUTS = 'permission abouts';
 
     /**
      * Get permissions in array with static.
@@ -36,5 +37,6 @@ class Permission extends \Spatie\Permission\Models\Permission
         self::PERMISSION_ADVERTISINGS,
         self::PERMISSION_COMMENTS,
         self::PERMISSION_CONTACTS,
+        self::PERMISSION_ABOUTS,
     ];
 }

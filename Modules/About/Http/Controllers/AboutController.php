@@ -2,20 +2,25 @@
 
 namespace Modules\About\Http\Controllers;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Modules\About\Models\About;
 use Modules\Share\Http\Controllers\Controller;
 
 class AboutController extends Controller
 {
+    private string $class = About::class;
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws AuthorizationException
      */
     public function index()
     {
-        //
+        $this->authorize('manage', $this->class);
+        return view('About::index', ['abouts' => []]);
     }
 
     /**
