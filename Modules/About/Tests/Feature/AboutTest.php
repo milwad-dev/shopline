@@ -148,6 +148,43 @@ class AboutTest extends TestCase
     }
 
     /**
+     * Test admin user can update about only one.
+     *
+     * @test
+     * @return void
+     */
+    public function admin_user_can_update_about()
+    {
+        $this->createUserWithLoginWithAssignPermission();
+
+        $about = About::factory()->create();
+
+        $this->patch(route('abouts.update', $about->id), ['body' => $body = $this->faker->text]);
+        $this->assertDatabaseHas($this->tableName, ['body' => $body]);
+        $this->assertDatabaseCount($this->tableName, 1);
+        $this->assertEquals(1, About::query()->count());
+    }
+
+    /**
+     * Test guest user can not update about only one.
+     *
+     * @test
+     * @return void
+     */
+    public function guest_user_can_not_update_about()
+    {
+        $this->createUserWithLoginWithAssignPermission(false);
+
+        $about = About::factory()->create();
+
+        $this->patch(route('abouts.update', $about->id), ['body' => $body = $this->faker->text]);
+        $this->assertDatabaseMissing($this->tableName, ['body' => $body]);
+        $this->assertDatabaseHas($this->tableName, ['body' => $about->body]);
+        $this->assertDatabaseCount($this->tableName, 1);
+        $this->assertEquals(1, About::query()->count());
+    }
+
+    /**
      * Create user with login & assign permission.
      *
      * @param  bool $permission

@@ -18,15 +18,15 @@ class AboutService
     }
 
     /**
-     * Update about by id & array of data.
+     * Update about.
      *
-     * @param  array $data
-     * @param  $id
+     * @param  $about
+     * @param  $body
      * @return int
      */
-    public function update(array $data, $id)
+    public function update($about, $body)
     {
-        return $this->query()->where('id', $id)->update(['body' => $data['body']]);
+        return $about->update(['body' => $body]);
     }
 
     /**

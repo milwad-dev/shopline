@@ -6,6 +6,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Modules\About\Http\Requests\AboutRequest;
 use Modules\About\Models\About;
@@ -51,8 +52,8 @@ class AboutController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param  AboutRequest $request
+     * @return RedirectResponse
      * @throws AuthorizationException
      */
     public function store(AboutRequest $request)
@@ -84,16 +85,19 @@ class AboutController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param \Modules\About\About $about
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      * @throws AuthorizationException
      */
     public function update(AboutRequest $request, About $about)
     {
         $this->authorize('manage', $this->class);
+        $this->service->update($about, $request->body);
 
+        return $this->successMessageWithRedirect('Update about');
     }
 
     # Private methods
+
     /**
      * Show success message with redirect;
      *
