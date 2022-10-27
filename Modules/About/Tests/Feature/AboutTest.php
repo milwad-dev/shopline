@@ -89,6 +89,21 @@ class AboutTest extends TestCase
     }
 
     /**
+     * Test validate store about successful.
+     *
+     * @test
+     * @return void
+     */
+    public function validate_store_about_successful()
+    {
+        $this->createUserWithLoginWithAssignPermission();
+
+        $this->post(route('abouts.store'), [])->assertSessionHasErrors('body');
+        $this->assertDatabaseCount($this->tableName, 0);
+        $this->assertEquals(0, About::query()->count());
+    }
+
+    /**
      * Test admin user can not store about more than one.
      *
      * @test
