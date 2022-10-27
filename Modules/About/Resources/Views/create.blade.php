@@ -1,6 +1,6 @@
 @extends('Panel::layouts.master')
 
-@section('title', 'New category')
+@section('title', 'New about')
 
 @section('css')
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
@@ -11,9 +11,9 @@
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper container-xxl p-0">
-            <x-panel-content-header title="Create new category">
+            <x-panel-content-header title="Create new about">
                 <li class="breadcrumb-item active">
-                    Create category
+                    Create about
                 </li>
             </x-panel-content-header>
             <div class="content-body">
