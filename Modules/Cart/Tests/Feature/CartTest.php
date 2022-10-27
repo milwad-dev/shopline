@@ -137,11 +137,12 @@ class CartTest extends TestCase
     /**
      * Create product.
      *
-     * @param  string $slug
+     * @param string $slug
      * @return mixed
+     * @throws \Exception
      */
     private function createProduct(string $slug = "product"): mixed
     {
-        return Product::factory()->create(['slug' => $slug]);
+        return Product::factory()->create(['slug' => $slug, 'title' => 'product title ' . random_int(1, 99)]);
     }
 }
