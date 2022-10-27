@@ -53,32 +53,5 @@
 
 @section('js')
     <script src="https://cdn.quilljs.com/1.3.6/quill.min.js" type="text/javascript"></script>
-    <script>
-        const toolbar = [
-            ['bold', 'italic', 'underline', 'strike'],
-            ['blockquote', 'code-block'],
-            [{ 'header': 1 }, { 'header': 2 }],
-            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-            [{ 'script': 'sub'}, { 'script': 'super' }],
-            [{ 'indent': '-1'}, { 'indent': '+1' }],
-            [{ 'direction': 'rtl' }],
-            [{ 'size': ['small', false, 'large', 'huge'] }],
-            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-            [{ 'color': [] }, { 'background': [] }],
-            [{ 'font': [] }],
-            [{ 'align': [] }],
-            ['clean']
-        ];
-
-        let quill = new Quill('#editor', {
-            modules: {toolbar},
-            theme: 'snow'
-        });
-
-        let form = document.getElementById('form-container');
-        form.onsubmit = function() {
-            let body = document.querySelector('input[name=body]');
-            body.value = JSON.stringify(quill.root.innerHTML.trim());
-        };
-    </script>
+    <script src="{{ asset('panel/js/scripts/quill-config.js') }}" type="text/javascript"></script>
 @endsection
