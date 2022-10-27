@@ -15,6 +15,13 @@ class AboutTest extends TestCase
     use RefreshDatabase, WithFaker;
 
     /**
+     * Get table name.
+     *
+     * @var string
+     */
+    private string $tableName = 'abouts';
+
+    /**
      * Test admin user can see index abouts page.
      *
      * @test
@@ -63,6 +70,56 @@ class AboutTest extends TestCase
     {
         $this->createUserWithLoginWithAssignPermission(false);
         $this->get(route('abouts.create'))->assertForbidden();
+    }
+
+    /**
+     * Test admin user can store about only one.
+     *
+     * @test
+     * @return void
+     */
+    public function admin_user_can_store_about_only_one()
+    {
+        $this->createUserWithLoginWithAssignPermission();
+
+        $this->post(route('abouts.store'), ['body' => $body = $this->faker->text]);
+        $this->assertDatabaseHas($this->tableName, ['body' => $body]);
+        $this->assertDatabaseCount($this->tableName, 1);
+        $this->assertEquals(1, About::query()->count());
+    }
+
+    /**
+     * Test admin user can not store about more than one.
+     *
+     * @test
+     * @return void
+     */
+    public function admin_user_can_not_store_about_more_than_one()
+    {
+        $this->createUserWithLoginWithAssignPermission();
+
+        $this->post(route('abouts.store'), ['body' => $body = $this->faker->text]);
+        $this->post(route('abouts.store'), ['body' => $this->faker->text])->assertForbidden();
+
+        $this->assertDatabaseHas($this->tableName, ['body' => $body]);
+        $this->assertDatabaseCount($this->tableName, 1);
+        $this->assertEquals(1, About::query()->count());
+    }
+
+    /**
+     * Test guest user can not store about only one.
+     *
+     * @test
+     * @return void
+     */
+    public function guest_user_can_not_store_about_only_one()
+    {
+        $this->createUserWithLoginWithAssignPermission(false);
+
+        $this->post(route('abouts.store'), ['body' => $body = $this->faker->text]);
+        $this->assertDatabaseMissing($this->tableName, ['body' => $body]);
+        $this->assertDatabaseCount($this->tableName, 0);
+        $this->assertEquals(0, About::query()->count());
     }
 
     /**
