@@ -54,9 +54,11 @@ class AboutController extends Controller
      *
      * @param  About $about
      * @return Application|Factory|View
+     * @throws AuthorizationException
      */
     public function edit(About $about)
     {
+        $this->authorize('manage', $this->class);
         return view('About::edit', compact('about'));
     }
 
