@@ -23,8 +23,18 @@ class AboutRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'body' => 'required|string|min:3|filled'
-        ];
+        return ['body' => 'required|string|min:3|filled'];
+    }
+
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'body' => str_replace('"', '', $this->body)
+        ]);
     }
 }

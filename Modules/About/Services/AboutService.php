@@ -14,7 +14,9 @@ class AboutService
      */
     public function store(array $data)
     {
-        return $this->query()->create(['body' => $this->replaceBody($data['body'])]);
+        return $this->query()->create([
+            'body' => $data['body']
+        ]);
     }
 
     /**
@@ -26,7 +28,7 @@ class AboutService
      */
     public function update($about, $body)
     {
-        return $about->update(['body' => $this->replaceBody($body)]);
+        return $about->update(['body' => $body]);
     }
 
     /**
@@ -37,16 +39,5 @@ class AboutService
     private function query()
     {
         return About::query();
-    }
-
-    /**
-     * Replace body.
-     *
-     * @param  $body
-     * @return string
-     */
-    private function replaceBody($body): string
-    {
-        return str_replace('"', '', $body);
     }
 }

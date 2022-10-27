@@ -22,11 +22,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body">
-                                    @if (count($errors) > 1)
-                                        @foreach ($errors->all() as $error)
-                                            <p>{{ $error }}</p>
-                                        @endforeach
-                                    @endif
+                                    <x-panel-all-error />
                                     <form action="{{ route('abouts.store') }}" method="POST" id="form-container">
                                         <div class="row">
                                             @csrf
