@@ -24,7 +24,7 @@ class AboutRequest extends FormRequest
     public function rules()
     {
         return [
-            'body' => 'required|string|min:3'
+            'body' => 'required|string|min:3|filled'
         ];
     }
 }

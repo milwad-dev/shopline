@@ -140,6 +140,7 @@ class ShareServiceProvider extends ServiceProvider
             \Modules\Share\Components\Panel\Select::class,
             \Modules\Share\Components\Panel\Textarea::class,
             \Modules\Share\Components\Panel\File::class,
+            \Modules\Share\Components\Panel\AllError::class,
         ]);
     }
 
