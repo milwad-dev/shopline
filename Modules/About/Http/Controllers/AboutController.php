@@ -105,6 +105,6 @@ class AboutController extends Controller
     private function successMessageWithRedirect(string $title)
     {
         ShareService::successToast($title);
-        return to_route('products.index');
+        return to_route('abouts.index');
     }
 }
