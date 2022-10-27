@@ -17,7 +17,6 @@ use Modules\Share\Services\ShareService;
 class AboutController extends Controller
 {
     private string $class = About::class;
-
     protected AboutService $service;
 
     public function __construct(AboutService $aboutService)
@@ -26,7 +25,7 @@ class AboutController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Get all abouts with show index about page.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws AuthorizationException
@@ -38,7 +37,7 @@ class AboutController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show create about page.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws AuthorizationException
@@ -50,7 +49,7 @@ class AboutController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store about.
      *
      * @param  AboutRequest $request
      * @return RedirectResponse
@@ -68,7 +67,7 @@ class AboutController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show edit about page.
      *
      * @param  About $about
      * @return Application|Factory|View
@@ -81,10 +80,10 @@ class AboutController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update about by route model binding.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \Modules\About\About $about
+     * @param  AboutRequest $request
+     * @param  About $about
      * @return RedirectResponse
      * @throws AuthorizationException
      */
@@ -99,7 +98,7 @@ class AboutController extends Controller
     # Private methods
 
     /**
-     * Show success message with redirect;
+     * Show success message with redirect.
      *
      * @param  string $title
      * @return \Illuminate\Http\RedirectResponse
