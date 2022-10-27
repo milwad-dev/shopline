@@ -26,13 +26,13 @@ class AboutController extends Controller
     /**
      * Get all abouts with show index about page.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      * @throws AuthorizationException
      */
     public function index()
     {
         $this->authorize('manage', $this->class);
-        return view('About::index', ['abouts' => []]);
+        return view('About::index', ['abouts' => About::query()->latest()->get()]);
     }
 
     /**
