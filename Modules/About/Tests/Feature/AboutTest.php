@@ -4,6 +4,7 @@ namespace Modules\About\Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Modules\About\Models\About;
 use Modules\RolePermission\Database\Seeds\PermissionSeeder;
 use Modules\RolePermission\Models\Permission;
 use Modules\User\Models\User;
@@ -62,6 +63,31 @@ class AboutTest extends TestCase
     {
         $this->createUserWithLoginWithAssignPermission(false);
         $this->get(route('abouts.create'))->assertForbidden();
+    }
+
+    /**
+     * Test admin user can see edit abouts page.
+     *
+     * @test
+     * @return void
+     */
+    public function admin_user_can_see_edit_abouts_page()
+    {
+        $this->createUserWithLoginWithAssignPermission();
+        $this->get(route('abouts.edit', About::factory()->create()->id))
+            ->assertViewIs('About::edit');
+    }
+
+    /**
+     * Test guest user can not see edit abouts page.
+     *
+     * @test
+     * @return void
+     */
+    public function guest_user_can_not_see_edit_abouts_page()
+    {
+        $this->createUserWithLoginWithAssignPermission(false);
+        $this->get(route('abouts.edit', About::factory()->create()->id))->assertForbidden();
     }
 
     /**

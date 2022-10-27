@@ -3,6 +3,9 @@
 namespace Modules\About\Http\Controllers;
 
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Modules\About\Models\About;
 use Modules\Share\Http\Controllers\Controller;
@@ -47,25 +50,14 @@ class AboutController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \Modules\About\About  $about
-     * @return \Illuminate\Http\Response
-     */
-    public function show(About $about)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @param  \Modules\About\About  $about
-     * @return \Illuminate\Http\Response
+     * @param  About $about
+     * @return Application|Factory|View
      */
     public function edit(About $about)
     {
-        //
+        return view('About::edit', compact('about'));
     }
 
     /**
@@ -76,17 +68,6 @@ class AboutController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, About $about)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \Modules\About\About  $about
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(About $about)
     {
         //
     }
