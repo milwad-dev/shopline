@@ -41,12 +41,14 @@ class AboutController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
+     * @throws AuthorizationException
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('manage', $this->class);
+
     }
 
     /**
@@ -65,12 +67,14 @@ class AboutController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Modules\About\About  $about
+     * @param \Illuminate\Http\Request $request
+     * @param \Modules\About\About $about
      * @return \Illuminate\Http\Response
+     * @throws AuthorizationException
      */
     public function update(Request $request, About $about)
     {
-        //
+        $this->authorize('manage', $this->class);
+
     }
 }
