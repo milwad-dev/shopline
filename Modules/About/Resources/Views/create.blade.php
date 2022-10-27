@@ -37,7 +37,7 @@
                                                 <x-panel-button style="width: 100%" />
                                             </div>
                                         </div>
-                                    </form>-
+                                    </form>
                                 </div>
                             </div>
                         </div>

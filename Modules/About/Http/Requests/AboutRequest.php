@@ -33,8 +33,9 @@ class AboutRequest extends FormRequest
      */
     protected function prepareForValidation()
     {
-        $this->merge([
-            'body' => str_replace('"', '', $this->body)
-        ]);
+        $this->body = str_replace('"', '', $this->body);
+        $this->body = str_replace('\\', '', $this->body);
+
+        $this->merge(['body' => $this->body]);
     }
 }
