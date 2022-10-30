@@ -80,24 +80,11 @@
                     </div>
                     <div class="footer-contain">
                         <ul>
-                            <li>
-                                <a href="shop-left-sidebar.html" class="text-content">Vegetables & Fruit</a>
-                            </li>
-                            <li>
-                                <a href="shop-left-sidebar.html" class="text-content">Beverages</a>
-                            </li>
-                            <li>
-                                <a href="shop-left-sidebar.html" class="text-content">Meats & Seafood</a>
-                            </li>
-                            <li>
-                                <a href="shop-left-sidebar.html" class="text-content">Frozen Foods</a>
-                            </li>
-                            <li>
-                                <a href="shop-left-sidebar.html" class="text-content">Biscuits & Snacks</a>
-                            </li>
-                            <li>
-                                <a href="shop-left-sidebar.html" class="text-content">Grocery & Staples</a>
-                            </li>
+                            @foreach ($categories->slice(0, 6) as $category) {{-- From service provider with view composer --}}
+                                <li>
+                                    <a href="{{ $category->path() }}" class="text-content">{{ $category->title }}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
