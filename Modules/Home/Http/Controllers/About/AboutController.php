@@ -13,6 +13,6 @@ class AboutController extends Controller
      */
     public function __invoke()
     {
-        return view('Home::Pages.about-us.home');
+        return view('Home::Pages.about-us.index');
     }
 }

@@ -11,12 +11,7 @@
                         <div>
                             <div class="delivery-list">
                                 <p class="text-content">
-                                    Just a few seconds to measure your body temperature. Up to 5
-                                    users! The battery lasts up to 2 years. There are many variations of passages of
-                                    Lorem Ipsum available.We started in 2019 and haven't stopped smashing it since. A
-                                    global brand that doesn't sleep, we are 24/7 and always bringing something new with
-                                    over 100 new products dropping on the monhtly, bringing you the latest looks for
-                                    less.
+                                    {!! \Modules\About\Models\About::query()->value('body') !!}
                                 </p>
                             </div>
                         </div>
