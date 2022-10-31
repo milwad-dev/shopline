@@ -95,19 +95,19 @@
                     <div class="footer-contain">
                         <ul>
                             <li>
-                                <a href="index.html" class="text-content">Home</a>
+                                <a href="{{ route('home.index') }}" class="text-content">Home</a>
                             </li>
                             <li>
-                                <a href="shop-left-sidebar.html" class="text-content">Shop</a>
+                                <a href="{{ route('products.home') }}" class="text-content">Products</a>
                             </li>
                             <li>
-                                <a href="about-us.html" class="text-content">About Us</a>
+                                <a href="{{ route('blog.home') }}" class="text-content">Blog</a>
                             </li>
                             <li>
-                                <a href="blog-list.html" class="text-content">Blog</a>
+                                <a href="{{ route('about-us.home') }}" class="text-content">About Us</a>
                             </li>
                             <li>
-                                <a href="contact-us.html" class="text-content">Contact Us</a>
+                                <a href="{{ route('contacts.create') }}" class="text-content">Contact Us</a>
                             </li>
                         </ul>
                     </div>
