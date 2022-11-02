@@ -113,31 +113,53 @@
                     </div>
                 </div>
                 <div class="col-xl-2 col-sm-3">
-                    <div class="footer-title">
-                        <h4>Help Center</h4>
-                    </div>
-                    <div class="footer-contain">
-                        <ul>
-                            <li>
-                                <a href="order-success.html" class="text-content">Your Order</a>
-                            </li>
-                            <li>
-                                <a href="user-dashboard.html" class="text-content">Your Account</a>
-                            </li>
-                            <li>
-                                <a href="order-tracking.html" class="text-content">Track Order</a>
-                            </li>
-                            <li>
-                                <a href="wishlist.html" class="text-content">Your Wishlist</a>
-                            </li>
-                            <li>
-                                <a href="search.html" class="text-content">Search</a>
-                            </li>
-                            <li>
-                                <a href="faq.html" class="text-content">FAQ</a>
-                            </li>
-                        </ul>
-                    </div>
+                    @auth
+                        <div class="footer-title">
+                            <h4>Help Center</h4>
+                        </div>
+                        <div class="footer-contain">
+                            <ul>
+                                <li>
+                                    <a href="order-success.html" class="text-content">Your Order</a>
+                                </li>
+                                <li>
+                                    <a href="user-dashboard.html" class="text-content">Your Account</a>
+                                </li>
+                                <li>
+                                    <a href="wishlist.html" class="text-content">Your Wishlist</a>
+                                </li>
+                                <li>
+                                    <a href="wishlist.html" class="text-content">Privacy & Security</a>
+                                </li>
+                                <li>
+                                    <a href="faq.html" class="text-content">FAQ</a>
+                                </li>
+                            </ul>
+                        </div>
+                    @else
+                        <div class="footer-title">
+                            <h4>Account</h4>
+                        </div>
+                        <div class="footer-contain">
+                            <ul>
+                                <li>
+                                    <a href="{{ route('register') }}" class="text-content">Register</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('login') }}" class="text-content">Login</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('password.request') }}" class="text-content">Forgot Password</a>
+                                </li>
+                                <li>
+                                    <a href="wishlist.html" class="text-content">Privacy & Security</a>
+                                </li>
+                                <li>
+                                    <a href="faq.html" class="text-content">FAQ</a>
+                                </li>
+                            </ul>
+                        </div>
+                    @endauth
                 </div>
                 <div class="col-xl-3 col-lg-4 col-sm-6">
                     <div class="footer-title">
