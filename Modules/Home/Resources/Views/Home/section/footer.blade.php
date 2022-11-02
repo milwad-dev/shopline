@@ -218,17 +218,17 @@
                 <h6 class="text-content">Stay connected :</h6>
                 <ul>
                     <li>
-                        <a href="https://www.facebook.com/" target="_blank">
+                        <a href="{{ config('app.facebook') }}" target="_blank">
                             <i data-feather="facebook"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://twitter.com/" target="_blank">
+                        <a href="{{ config('app.twitter') }}" target="_blank">
                             <i data-feather="twitter"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.instagram.com/" target="_blank">
+                        <a href="{{ config('app.instagram') }}" target="_blank">
                             <i data-feather="instagram"></i>
                         </a>
                     </li>
