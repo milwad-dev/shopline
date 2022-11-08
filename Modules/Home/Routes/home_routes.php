@@ -42,4 +42,7 @@ Route::group([], static function ($router) {
 
     # About-us
     $router->get('about-us', ['uses' => 'About\AboutController', 'as' => 'about-us.home']);
+
+    # Search
+    $router->get('search', ['uses' => 'Search\SearchController', 'as' => 'search.home']);
 });
