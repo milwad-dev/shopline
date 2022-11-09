@@ -18,6 +18,6 @@ class SearchController extends Controller
         $search = $request->search;
         $products = resolve(SearchRepoEloquent::class)->searchProducts($search);
 
-        return view('Home::pages.search.home');
+        return view('Home::pages.search.home', compact(['search', 'products']));
     }
 }
