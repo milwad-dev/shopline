@@ -15,6 +15,10 @@ class SearchRepoEloquent
     public function searchProducts(string $search)
     {
         return Product::query()
+            ->with('first_media')
+            ->whereHas('vendor', function ($query) use ($search) {
+                $query->where('name', 'LIKE', "%$search%");
+            })
             ->orWhere('title', 'LIKE', "%$search%")
             ->orWhere('sku', 'LIKE', "%$search%")
             ->orWhere('price', 'LIKE', "%$search%")
