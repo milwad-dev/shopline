@@ -24,16 +24,22 @@ class BlogRepoEloquent implements BlogRepoEloquentInterface
     /**
      * Get random articles.
      *
+     * @param  string|int|null $id
      * @return mixed
      */
-    public function getRandomArticles()
+    public function getRandomArticles(string|int $id = null)
     {
-        return Article::query()
+        $query = Article::query()
             ->with(['media'])
             ->active()
             ->inRandomOrder()
-            ->limit(4)
-            ->get();
+            ->limit(4);
+
+        if (! is_null($id)) {
+            return $query->where('id', '!=', $id);
+        }
+
+        return $query->get();
     }
 
     /**
@@ -61,8 +67,8 @@ class BlogRepoEloquent implements BlogRepoEloquentInterface
     {
         return Article::query()
             ->with(['media', 'categories'])
-            ->active()
             ->where('slug', $slug)
+            ->active()
             ->firstOrFail();
     }
 }

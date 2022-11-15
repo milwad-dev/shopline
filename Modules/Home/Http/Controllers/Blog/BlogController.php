@@ -35,7 +35,7 @@ class BlogController extends Controller
     public function details($slug, BlogRepoEloquentInterface $blogRepoEloquent)
     {
         $article = $blogRepoEloquent->findArticleBySlug($slug);
-        $randomArticles = $blogRepoEloquent->getRandomArticles();
+        $randomArticles = $blogRepoEloquent->getRandomArticles($article->id);
         $categories = $blogRepoEloquent->getArticlesWithCount();
 
         return view('Home::Pages.blog.details', compact(['article', 'randomArticles', 'categories']));

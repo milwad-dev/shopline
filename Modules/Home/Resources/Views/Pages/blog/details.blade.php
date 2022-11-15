@@ -81,7 +81,7 @@
                 </div>
                 <div class="col-xxl-9 col-xl-8 col-lg-7 ratio_50">
                     <div class="blog-detail-image rounded-3 mb-4">
-                        <img src="{{ $article->media->thumb }}" class="bg-img blur-up lazyload" alt="">
+                        <img src="{{ optional($article->media)->thumb }}" class="bg-img blur-up lazyload" alt="article photo">
                         <div class="blog-image-contain">
                             <ul class="contain-list">
                                 @foreach ($article->categories as $category)
@@ -92,12 +92,11 @@
                                     </li>
                                 @endforeach
                             </ul>
-                            <h2>{{ $category->title }}</h2>
                             <ul class="contain-comment-list">
                                 <li>
                                     <div class="user-list">
                                         <i data-feather="user"></i>
-                                        <span>{{ $category->user->name }}</span>
+                                        <span>{{ $article->user->name }}</span>
                                     </div>
                                 </li>
                                 <li>
