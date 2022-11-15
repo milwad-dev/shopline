@@ -23,7 +23,7 @@ class ArticleFactory extends Factory
         $title = $this->faker->title;
 
         return [
-            'user_id' => User::query()->inRandomOrder()->first()->id,
+            'user_id' => User::factory()->create()->id,
             'title' => $title,
             'slug' => ShareService::makeSlug($title),
             'min_read' => random_int(1, 10),
