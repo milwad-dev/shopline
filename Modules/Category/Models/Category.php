@@ -109,6 +109,7 @@ class Category extends Model
     }
 
     # Scopes
+
     /**
      * Actvie scope.
      *
