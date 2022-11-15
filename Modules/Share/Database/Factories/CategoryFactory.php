@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\Category\Enums\CategoryStatusEnum;
 use Modules\Category\Models\Category;
 use Modules\Share\Services\ShareService;
+use Modules\User\Models\User;
 
 class CategoryFactory extends Factory
 {
@@ -22,12 +23,12 @@ class CategoryFactory extends Factory
 
         return [
             'parent_id' => null,
+            'user_id' => User::factory()->create()->id,
             'title' => $title,
             'slug' => ShareService::makeSlug($title),
             'keywords' => $this->faker->text,
             'status' => CategoryStatusEnum::STATUS_ACTIVE->value,
             'description' => null,
-            'user_id' => 1,
         ];
     }
 }
