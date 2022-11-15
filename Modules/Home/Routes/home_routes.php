@@ -25,7 +25,7 @@ Route::group([], static function ($router) {
     $router->get('blog/{slug}', ['uses' => 'Blog\BlogController@details', 'as' => 'blog.details']);
 
     # Comments
-    $router->post('comments', ['uses' => 'Comment\CommentController@store', 'as' => 'comments.store']);
+    $router->post('comments', ['uses' => 'Comment\CommentController@store', 'as' => 'comments.store'])->middleware('auth');
 
     # Contacts
     $router->get('contacts', ['uses' => 'Contact\ContactController@create', 'as' => 'contacts.create']);

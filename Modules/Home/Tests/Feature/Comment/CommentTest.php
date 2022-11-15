@@ -38,7 +38,7 @@ class CommentTest extends TestCase
         $response->assertRedirect();
         $response->assertSessionMissing('alert');
 
-        $this->assertDatabaseHas($this->tableName, ['body' => $body]);
+        $this->assertDatabaseMissing($this->tableName, ['body' => $body]);
         $this->assertDatabaseCount($this->tableName, 0);
         $this->assertEquals(0, Comment::query()->count());
     }
