@@ -13,6 +13,13 @@ class CommentTest extends TestCase
     use RefreshDatabase, WithFaker;
 
     /**
+     * Get table name.
+     *
+     * @var string
+     */
+    private string $tableName = 'comments';
+
+    /**
      * Test guest user can not store comment.
      *
      * @test
