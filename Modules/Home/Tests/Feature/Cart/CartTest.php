@@ -2,12 +2,15 @@
 
 namespace Modules\Home\Tests\Feature\Cart;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\Product\Models\Product;
 use Modules\User\Models\User;
 use Tests\TestCase;
 
 class CartTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * Test guest user can not access to cart view page.
      *
