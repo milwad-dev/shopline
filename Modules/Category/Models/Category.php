@@ -9,6 +9,9 @@ use Modules\Category\Enums\CategoryStatusEnum;
 use Modules\Product\Models\Product;
 use Modules\User\Models\User;
 
+/**
+ * @property $status
+ */
 class Category extends Model
 {
     use HasFactory;
