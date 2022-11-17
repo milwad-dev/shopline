@@ -3,8 +3,6 @@
 namespace Modules\Home\Tests\Feature\Category;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Modules\Category\Models\Category;
-use Modules\User\Models\User;
 use Tests\TestCase;
 
 class CategoryTest extends TestCase
