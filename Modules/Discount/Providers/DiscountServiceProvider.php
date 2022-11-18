@@ -15,6 +15,6 @@ class DiscountServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../Resources/Views/', 'Discount');
 
         Route::middleware(['web', 'verify'])->namespace($this->namespace)
-        ->group(__DIR__ . '/../Routes/discount\_routes.php');
+        ->group(__DIR__ . '/../Routes/discount_routes.php');
     }
 }

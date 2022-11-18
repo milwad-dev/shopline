@@ -268,6 +268,7 @@ return [
         Modules\Contact\Providers\ContactServiceProvider::class,
         Modules\Cart\Providers\CartServiceProvider::class,
         Modules\About\Providers\AboutServiceProvider::class,
+        Modules\Discount\Providers\DiscountServiceProvider::class,
         /**
          * Package Service Providers...
          */
