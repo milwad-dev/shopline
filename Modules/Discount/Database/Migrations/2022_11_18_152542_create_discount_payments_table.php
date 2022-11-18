@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('discount_payments', static function (Blueprint $table) {
             $table->foreignId('discount_id')->constrained('discounts')->cascadeOnDelete();
-            $table->foreignId('payment_id')->constrained('payments')->cascadeOnDelete();
+            $table->foreignId('payment_id')->constrained('payments')->cascadeOnDelete(); // TODO CORRECT
             $table->primary(['discount_id' , 'payment_id']);
             $table->timestamps();
         });
