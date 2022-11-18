@@ -4,6 +4,7 @@ namespace Modules\Payment\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Modules\Payment\Enums\PaymentStatusEnum;
+use Modules\Payment\Gateways\Gateway;
 use Modules\Payment\Models\Payment;
 use Modules\Payment\Repositories\PaymentRepoEloquentInterface;
 use Modules\Share\Http\Controllers\Controller;

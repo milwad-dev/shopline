@@ -4,6 +4,7 @@ namespace Modules\Payment\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Modules\Payment\Gateways\Gateway;
 use Modules\Payment\Repositories\PaymentRepoEloquent;
 use Modules\Payment\Repositories\PaymentRepoEloquentInterface;
 
@@ -63,6 +64,7 @@ class PaymentServiceProvider extends ServiceProvider
         $this->loadRouteFiles();
 
         $this->bindRepositories();
+        $this->setGateway();
     }
 
     /**
@@ -105,5 +107,17 @@ class PaymentServiceProvider extends ServiceProvider
     private function bindRepositories()
     {
         app()->bind(PaymentRepoEloquentInterface::class, PaymentRepoEloquent::class);
+    }
+
+    /**
+     * Set gatewaty.
+     *
+     * @return void
+     */
+    private function setGateway()
+    {
+        $this->app->singleton(Gateway::class , static function ($app) {
+//            return new PayClass();
+        });
     }
 }
