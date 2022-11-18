@@ -48,7 +48,8 @@
             "Modules\\Contact\\": "Modules/Contact/",
             "Modules\\Cart\\": "Modules/Cart/",
             "Modules\\About\\": "Modules/About/",
-            "Modules\\Discount\\": "Modules/Discount/"
+            "Modules\\Discount\\": "Modules/Discount/",
+            "Modules\\Payment\\": "Modules/Payment/"
         },
         "files": [
             "Modules/Share/helpers.php"

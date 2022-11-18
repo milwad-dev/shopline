@@ -15,6 +15,6 @@ class PaymentServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../Resources/Views/', 'Payment');
 
         Route::middleware(['web', 'verify'])->namespace($this->namespace)
-        ->group(__DIR__ . '/../Routes/payment\_routes.php');
+        ->group(__DIR__ . '/../Routes/payment_routes.php');
     }
 }
