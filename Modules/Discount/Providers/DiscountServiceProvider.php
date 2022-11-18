@@ -11,7 +11,7 @@ class DiscountServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+//        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
         $this->loadViewsFrom(__DIR__ . '/../Resources/Views/', 'Discount');
 
         Route::middleware(['web', 'verify'])->namespace($this->namespace)
