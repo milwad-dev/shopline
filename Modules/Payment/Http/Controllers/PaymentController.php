@@ -2,86 +2,72 @@
 
 namespace Modules\Payment\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Modules\Payment\Http\Requests\StorePaymentRequest;
-use Modules\Payment\Http\Requests\UpdatePaymentRequest;
+use Illuminate\Http\Request;
 use Modules\Payment\Models\Payment;
+use Modules\Share\Http\Controllers\Controller;
+use Modules\Share\Services\ShareService;
 
 class PaymentController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Callback from gateway.
      *
-     * @return \Illuminate\Http\Response
+     * @param  Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function index()
+    public function callback(Request $request)
     {
-        //
+        $gateway = resolve(Gateway::class);
+        $paymentRepo = new PaymentRepo();
+        $payment = $paymentRepo->findByInvoiceId($gateway->getInvoiceIdFromRequest($request));
+
+        if (! $payment) {
+            ShareService::errorToast('تراکنش ناموفق');
+            return redirect('/');
+        }
+
+        $result = $gateway->verify($payment);
+
+        if (is_array($result)) {
+            newFeedback('عملیات ناموفق' , $result['message'] , 'error');
+            $paymentRepo->changeStatus($payment->id , Payment::STATUS_FAIL);
+            return redirect()->to($payment->paymentable->path());
+        } else {
+            event(new PaymentWasSuccessful($payment));
+            newFeedback('عملیات موفق', 'پرداخت با موفقیت انجام شد', 'success');
+            $paymentRepo->changeStatus($payment->id, Payment::STATUS_SUCCESS);
+        }
+
+        return redirect()->to($payment->paymentable->path());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function index(PaymentRepo $paymentRepo , Request $request)
     {
-        //
+        $this->authorize("manage", Payment::class);
+        $payments = $paymentRepo
+            ->searchEmail($request->email)
+            ->searchAmount($request->amount)
+            ->searchInvoiceId($request->invoice_id)
+            ->searchAfterDate(dateFromJalali($request->start_date))
+            ->searchBeforeDate(dateFromJalali($request->end_date))
+            ->paginate();
+        $last30DaysTotal = $paymentRepo->getLastNDaysTotal(-30);
+        $last30DaysBenefit = $paymentRepo->getLastNDaysSiteBenefit(-30);
+        $last30DaysSellerShare = $paymentRepo->getLastNDaysSellerShare(-30);
+        $totalSell = $paymentRepo->getLastNDaysTotal();
+        $totalBenefit = $paymentRepo->getLastNDaysSiteBenefit();
+        $dates = collect();
+        foreach (range(-30, 0) as $i) {
+            $dates->put(now()->addDays($i)->format("Y-m-d"), 0);
+        }
+        $summery =  $paymentRepo->getDailySummery($dates);
+        return view("Payment::index", compact("payments", "last30DaysTotal", "last30DaysBenefit", "totalSell",
+            "totalBenefit", "last30DaysSellerShare", "summery", "dates"));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Modules\Payment\Http\Requests\StorePaymentRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StorePaymentRequest $request)
+    public function purchases()
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \Modules\Payment\Models\Payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Payment $payment)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \Modules\Payment\Models\Payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Payment $payment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Modules\Payment\Http\Requests\UpdatePaymentRequest  $request
-     * @param  \Modules\Payment\Models\Payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdatePaymentRequest $request, Payment $payment)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \Modules\Payment\Models\Payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Payment $payment)
-    {
-        //
+        $payments = auth()->user()->payments()->with('paymentable')->paginate();
+        return view('Payment::purchases.index' , compact('payments'));
     }
 }
