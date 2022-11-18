@@ -4,6 +4,8 @@ namespace Modules\Payment\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Modules\Payment\Repositories\PaymentRepoEloquent;
+use Modules\Payment\Repositories\PaymentRepoEloquentInterface;
 
 class PaymentServiceProvider extends ServiceProvider
 {
@@ -59,6 +61,8 @@ class PaymentServiceProvider extends ServiceProvider
         $this->loadMigrationFiles();
         $this->loadViewFiles();
         $this->loadRouteFiles();
+
+        $this->bindRepositories();
     }
 
     /**
@@ -91,5 +95,15 @@ class PaymentServiceProvider extends ServiceProvider
         Route::middleware($this->middlewareRoute)
             ->namespace($this->namespace)
             ->group(__DIR__ . $this->routePath);
+    }
+
+    /**
+     * Bind repositories.
+     *
+     * @return void
+     */
+    private function bindRepositories()
+    {
+        app()->bind(PaymentRepoEloquentInterface::class, PaymentRepoEloquent::class);
     }
 }
