@@ -7,6 +7,7 @@ use Modules\Payment\Enums\PaymentStatusEnum;
 use Modules\Payment\Gateways\Gateway;
 use Modules\Payment\Models\Payment;
 use Modules\Payment\Repositories\PaymentRepoEloquentInterface;
+use Modules\Payment\Services\PaymentService;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Services\ShareService;
 
@@ -29,12 +30,6 @@ class PaymentController extends Controller
     {
         $gateway = resolve(Gateway::class);
         $payment = $this->repo->findByInvoiceId($gateway->getInvoiceIdFromRequest($request));
-
-        if (!$payment) {
-            ShareService::errorToast('Fail transaction');
-            return redirect('/');
-        }
-
         $result = $gateway->verify($payment);
 
         if (is_array($result)) {
@@ -60,6 +55,6 @@ class PaymentController extends Controller
      */
     private function changeStatus($payment, string $status): \Illuminate\Http\RedirectResponse
     {
-        $this->repo->changeStatus($payment->id, $status);
+        resolve(PaymentService::class)->changeStatus($payment->id, $status);
     }
 }

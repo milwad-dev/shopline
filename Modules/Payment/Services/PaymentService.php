@@ -4,6 +4,7 @@ namespace Modules\Payment\Services;
 
 use Illuminate\Http\RedirectResponse;
 use Modules\Payment\Enums\PaymentStatusEnum;
+use Modules\Payment\Gateways\Gateway;
 use Modules\Payment\Models\Payment;
 use Modules\User\Models\User;
 
@@ -59,6 +60,22 @@ class PaymentService
             'site_share' => $site_share,
         ], $discounts);
     }
+
+    /**
+     * Change status by id.
+     *
+     * @param  int $id
+     * @param  string $status
+     * @return int
+     */
+    public function changeStatus(int $id, string $status)
+    {
+        return Payment::query()
+            ->where('id', $id)
+            ->update(['status' => $status]);
+    }
+
+    # Private methods
 
     /**
      * Store payments.
