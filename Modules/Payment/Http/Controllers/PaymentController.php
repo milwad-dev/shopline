@@ -50,10 +50,10 @@ class PaymentController extends Controller
      * Change payment status.
      *
      * @param  $payment
-     * @param string $status
-     * @return \Illuminate\Http\RedirectResponse
+     * @param  string $status
+     * @return void
      */
-    private function changeStatus($payment, string $status): \Illuminate\Http\RedirectResponse
+    private function changeStatus($payment, string $status): void
     {
         resolve(PaymentService::class)->changeStatus($payment->id, $status);
     }
