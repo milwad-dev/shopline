@@ -11,10 +11,25 @@ class DiscountServiceProvider extends ServiceProvider
 
     public function register()
     {
-//        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
-        $this->loadViewsFrom(__DIR__ . '/../Resources/Views/', 'Discount');
+        $this->loadMigrationFiles();
+        $this->loadViewFiles();
+        $this->loadRouteFiles();
+    }
 
-        Route::middleware(['web', 'verify'])->namespace($this->namespace)
-        ->group(__DIR__ . '/../Routes/discount_routes.php');
+    private function loadRouteFiles(): void
+    {
+        Route::middleware(['web', 'verify'])
+            ->namespace($this->namespace)
+            ->group(__DIR__ . '/../Routes/discount_routes.php');
+    }
+
+    private function loadViewFiles(): void
+    {
+        $this->loadViewsFrom(__DIR__ . '/../Resources/Views/', 'Discount');
+    }
+
+    private function loadMigrationFiles(): void
+    {
+        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     }
 }
