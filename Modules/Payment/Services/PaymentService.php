@@ -20,7 +20,7 @@ class PaymentService
      * @param  array $discounts
      * @return false|RedirectResponse|Payment
      */
-    public static function generate(
+    public function generate(
         string $amount,
         object $paymentable,
         User $buyer,

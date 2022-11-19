@@ -5,7 +5,6 @@ namespace Modules\Payment\Http\Controllers;
 use Illuminate\Http\Request;
 use Modules\Payment\Enums\PaymentStatusEnum;
 use Modules\Payment\Gateways\Gateway;
-use Modules\Payment\Models\Payment;
 use Modules\Payment\Repositories\PaymentRepoEloquentInterface;
 use Modules\Payment\Services\PaymentService;
 use Modules\Share\Http\Controllers\Controller;
@@ -39,7 +38,7 @@ class PaymentController extends Controller
             return redirect()->to($payment->paymentable->path());
         }
 
-//        event(new PaymentWasSuccessful($payment));
+//       TODO event(new PaymentWasSuccessful($payment));
         $this->changeStatus($payment, PaymentStatusEnum::STATUS_SUCCESS->value);
 
         ShareService::successToast('Success payment');
