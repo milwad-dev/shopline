@@ -5,6 +5,7 @@ namespace Modules\Discount\Services;
 use Modules\Discount\Enums\DiscountTypeEnum;
 use Modules\Discount\Models\Discount;
 use Modules\Discount\Repositories\DiscountRepoEloquent;
+use Modules\Discount\Repositories\DiscountRepoEloquentInterface;
 
 class DiscountService
 {
@@ -43,7 +44,7 @@ class DiscountService
      */
     public function update(array $data, int $id)
     {
-        $discount = resolve(DiscountRepoEloquent::class)->findById($id);
+        $discount = resolve(DiscountRepoEloquentInterface::class)->findById($id);
 
         $discount->update([
             "code" => $data["code"],
