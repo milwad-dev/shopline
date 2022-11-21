@@ -4,6 +4,8 @@ namespace Modules\Discount\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Modules\Discount\Repositories\DiscountRepoEloquent;
+use Modules\Discount\Repositories\DiscountRepoEloquentInterface;
 
 class DiscountServiceProvider extends ServiceProvider
 {
@@ -59,6 +61,8 @@ class DiscountServiceProvider extends ServiceProvider
         $this->loadMigrationFiles();
         $this->loadViewFiles();
         $this->loadRouteFiles();
+
+        $this->bindRepository();
     }
 
     /**
@@ -91,5 +95,15 @@ class DiscountServiceProvider extends ServiceProvider
     private function loadMigrationFiles(): void
     {
         $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
+    }
+
+    /**
+     * Bind repository.
+     *
+     * @return void
+     */
+    private function bindRepository()
+    {
+        app()->bind(DiscountRepoEloquentInterface::class, DiscountRepoEloquent::class);
     }
 }
