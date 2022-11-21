@@ -5,6 +5,7 @@ namespace Modules\Discount\Services;
 use Modules\Discount\Enums\DiscountTypeEnum;
 use Modules\Discount\Models\Discount;
 use Modules\Discount\Repositories\DiscountRepo;
+use Morilog\Jalali\Jalalian;
 
 class DiscountService
 {
@@ -21,7 +22,7 @@ class DiscountService
             'code' => $data['code'],
             'percent' => $data['percent'],
             'usage_limitation' => $data['usage_limitation'],
-            'expire_at' => $data['expire_at'] ? Jalalian::fromFormat('Y/m/d H:i', $data['expire_at'])->toCarbon() : null,
+            'expire_at' => $this->setExpiredAt($data["expire_at"]),
             'link' => $data['link'],
             'type' => $data['type'],
             'description' => $data['description'],
@@ -49,7 +50,7 @@ class DiscountService
             "code" => $data["code"],
             "percent" => $data["percent"],
             "usage_limitation" => $data["usage_limitation"],
-            "expire_at" => $data["expire_at"] ? Jalalian::fromFormat("Y/m/d H:i", $data["expire_at"])->toCarbon() : null,
+            "expire_at" => $this->setExpiredAt($data["expire_at"]),
             "link" => $data["link"],
             "type" => $data["type"],
             "description" => $data["description"],
@@ -84,5 +85,16 @@ class DiscountService
         $discount->type === DiscountTypeEnum::TYPE_SPECIAL->value
             ? $discount->products()->sync($products)
             : $discount->products()->sync([]);
+    }
+
+    /**
+     * Set expire_at.
+     *
+     * @param  $expire_at
+     * @return \Carbon\Carbon|null
+     */
+    private function setExpiredAt($expire_at)
+    {
+        return $expire_at ?: null;
     }
 }
