@@ -28,9 +28,7 @@ class DiscountService
             'description' => $data['description'],
             'uses' => 0
         ]);
-        if ($discount->type === DiscountTypeEnum::TYPE_SPECIAL->value) {
-            $discount->products()->sync($data['courses']);
-        }
+        $this->syncDiscountToProducts($discount, $data["products"]);
 
         return $discount;
     }
@@ -45,7 +43,6 @@ class DiscountService
     public function update(array $data, int $id)
     {
         $discount = resolve(DiscountRepoEloquentInterface::class)->findById($id);
-
         $discount->update([
             "code" => $data["code"],
             "percent" => $data["percent"],
