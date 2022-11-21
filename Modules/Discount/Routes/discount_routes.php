@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group([], function ($router) {
-
+/**
+ * Discount routes.
+ */
+Route::group(['prefix' => 'panel', 'middleware' => 'auth'], static function ($router) {
+    $router->resource('discounts', 'DiscountController');
 });
-        
