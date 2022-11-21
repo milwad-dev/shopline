@@ -8,6 +8,12 @@ use Modules\Discount\Repositories\DiscountRepo;
 
 class DiscountService
 {
+    /**
+     * Store discount & sync discount to products by array of data.
+     *
+     * @param array $data
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
+     */
     public function store(array $data)
     {
         $discount = $this->query()->create([
@@ -28,11 +34,18 @@ class DiscountService
         return $discount;
     }
 
+    /**
+     * Update discount with sync to products by id & array of data.
+     *
+     * @param array $data
+     * @param int $id
+     * @return null
+     */
     public function update(array $data, int $id)
     {
         $discount = resolve(DiscountRepo::class)->findById($id);
 
-        Discount::query()->where('id' , $id)->update([
+        $discount->update([
             "code" => $data["code"],
             "percent" => $data["percent"],
             "usage_limitation" => $data["usage_limitation"],
@@ -49,17 +62,27 @@ class DiscountService
 
     # Private methods
 
+    /**
+     * Get query for article model.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
     private function query()
     {
         return Discount::query();
     }
 
+    /**
+     * Sync discount & products.
+     *
+     * @param  $discount
+     * @param  $products
+     * @return void
+     */
     private function syncDiscountToProducts($discount, $products): void
     {
-        if ($discount->type === DiscountTypeEnum::TYPE_SPECIAL->value) {
-            $discount->products()->sync($products);
-        } else {
-            $discount->products()->sync([]);
-        }
+        $discount->type === DiscountTypeEnum::TYPE_SPECIAL->value
+            ? $discount->products()->sync($products)
+            : $discount->products()->sync([]);
     }
 }
