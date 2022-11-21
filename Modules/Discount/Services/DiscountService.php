@@ -4,7 +4,7 @@ namespace Modules\Discount\Services;
 
 use Modules\Discount\Enums\DiscountTypeEnum;
 use Modules\Discount\Models\Discount;
-use Modules\Discount\Repositories\DiscountRepo;
+use Modules\Discount\Repositories\DiscountRepoEloquent;
 
 class DiscountService
 {
@@ -43,7 +43,7 @@ class DiscountService
      */
     public function update(array $data, int $id)
     {
-        $discount = resolve(DiscountRepo::class)->findById($id);
+        $discount = resolve(DiscountRepoEloquent::class)->findById($id);
 
         $discount->update([
             "code" => $data["code"],
@@ -58,6 +58,17 @@ class DiscountService
         $this->syncDiscountToProducts($discount, $data["products"]);
 
         return $discount;
+    }
+
+    /**
+     * Delete discount by id.
+     *
+     * @param  $id
+     * @return bool|mixed|null
+     */
+    public function delete($id)
+    {
+        return $this->query()->findOrFail($id)->delete();
     }
 
     # Private methods
