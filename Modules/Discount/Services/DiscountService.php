@@ -58,17 +58,6 @@ class DiscountService
         return $discount;
     }
 
-    /**
-     * Delete discount by id.
-     *
-     * @param  $id
-     * @return bool|mixed|null
-     */
-    public function delete($id)
-    {
-        return $this->query()->findOrFail($id)->delete();
-    }
-
     # Private methods
 
     /**
