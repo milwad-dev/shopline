@@ -2,12 +2,41 @@
 
 namespace Modules\Discount\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Modules\Discount\Discount;
+use Modules\Discount\Models\Discount;
+use Modules\Discount\Repositories\DiscountRepoEloquentInterface;
+use Modules\Discount\Services\DiscountService;
+use Modules\Share\Http\Controllers\Controller;
 
 class DiscountController extends Controller
 {
+    /**
+     * Get class.
+     *
+     * @var string
+     */
+    private string $class = Discount::class;
+
+    /**
+     * Get discount repo eloquent.
+     *
+     * @var DiscountRepoEloquentInterface
+     */
+    protected DiscountRepoEloquentInterface $repo;
+
+    /**
+     * Get discount service.
+     *
+     * @var DiscountService
+     */
+    protected DiscountService $service;
+
+    public function __construct(DiscountRepoEloquentInterface $discountRepoEloquent, DiscountService $discountService)
+    {
+        $this->repo = $discountRepoEloquent;
+        $this->service = $discountService;
+    }
+
     /**
      * Display a listing of the resource.
      *
