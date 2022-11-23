@@ -2,8 +2,8 @@
 
 namespace Modules\Payment\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 use Modules\Payment\Gateways\Gateway;
 use Modules\Payment\Repositories\PaymentRepoEloquent;
 use Modules\Payment\Repositories\PaymentRepoEloquentInterface;
