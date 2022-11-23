@@ -12,10 +12,14 @@ use Modules\About\Models\About;
 use Modules\About\Services\AboutService;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Services\ShareService;
+use Modules\Share\Traits\SuccessToastMessageWithRedirectTrait;
 
 class AboutController extends Controller
 {
+    use SuccessToastMessageWithRedirectTrait;
+
     private string $class = About::class;
+    private string $redirectRoute = 'abouts.index';
     protected AboutService $service;
 
     public function __construct(AboutService $aboutService)
@@ -92,19 +96,5 @@ class AboutController extends Controller
         $this->service->update($about, $request->body);
 
         return $this->successMessageWithRedirect('Update about');
-    }
-
-    # Private methods
-
-    /**
-     * Show success message with redirect.
-     *
-     * @param  string $title
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    private function successMessageWithRedirect(string $title)
-    {
-        ShareService::successToast($title);
-        return to_route('abouts.index');
     }
 }
