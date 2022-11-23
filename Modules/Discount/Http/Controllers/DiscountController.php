@@ -111,6 +111,7 @@ class DiscountController extends Controller
      */
     public function destroy(Discount $discount)
     {
+        $this->authorize('manage', $this->class);
         $discount->delete();
 
         return AjaxResponses::SuccessResponse();
