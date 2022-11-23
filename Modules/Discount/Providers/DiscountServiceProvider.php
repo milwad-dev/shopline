@@ -2,8 +2,8 @@
 
 namespace Modules\Discount\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
 use Modules\Discount\Repositories\DiscountRepoEloquent;
 use Modules\Discount\Repositories\DiscountRepoEloquentInterface;
 

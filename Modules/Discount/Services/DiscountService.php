@@ -4,7 +4,6 @@ namespace Modules\Discount\Services;
 
 use Modules\Discount\Enums\DiscountTypeEnum;
 use Modules\Discount\Models\Discount;
-use Modules\Discount\Repositories\DiscountRepoEloquent;
 use Modules\Discount\Repositories\DiscountRepoEloquentInterface;
 
 class DiscountService
