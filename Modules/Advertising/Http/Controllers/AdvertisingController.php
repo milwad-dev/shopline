@@ -12,10 +12,14 @@ use Modules\Advertising\Services\AdvertisingServiceInterface;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
 use Modules\Share\Services\ShareService;
+use Modules\Share\Traits\SuccessToastMessageWithRedirectTrait;
 
 class AdvertisingController extends Controller
 {
+    use SuccessToastMessageWithRedirectTrait;
+
     private string $class = Advertising::class;
+    private string $redirectRoute = 'advertisings.index';
 
     public AdvertisingRepoEloquentInterface $repo;
     public AdvertisingServiceInterface $service;
@@ -146,18 +150,6 @@ class AdvertisingController extends Controller
         }
 
         return AjaxResponses::SuccessResponse();
-    }
-
-    /**
-     * Show success message with redirect;
-     *
-     * @param  string $title
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    private function successMessageWithRedirect(string $title)
-    {
-        ShareService::successToast($title);
-        return to_route('advertisings.index');
     }
 
     /**
