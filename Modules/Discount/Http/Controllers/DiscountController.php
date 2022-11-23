@@ -2,7 +2,12 @@
 
 namespace Modules\Discount\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Modules\Discount\Http\Requests\DiscountRequest;
 use Modules\Discount\Models\Discount;
 use Modules\Discount\Repositories\DiscountRepoEloquentInterface;
@@ -41,9 +46,10 @@ class DiscountController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Get the latest discounts with show view page.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws AuthorizationException
      */
     public function index()
     {
@@ -52,9 +58,10 @@ class DiscountController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show create view page.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @throws AuthorizationException
      */
     public function create()
     {
@@ -63,10 +70,11 @@ class DiscountController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store new discount by request & show success alert with redirect.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param  DiscountRequest $request
+     * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function store(DiscountRequest $request)
     {
@@ -77,10 +85,11 @@ class DiscountController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show edit view page.
      *
-     * @param  \Modules\Discount\Discount  $discount
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @param  Discount $discount
+     * @return Application|Factory|View
+     * @throws AuthorizationException
      */
     public function edit(Discount $discount)
     {
@@ -89,11 +98,12 @@ class DiscountController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update discount with success alert with redirect.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Modules\Discount\Discount  $discount
-     * @return \Illuminate\Http\RedirectResponse
+     * @param  DiscountRequest $request
+     * @param  Discount $discount
+     * @return RedirectResponse
+     * @throws AuthorizationException
      */
     public function update(DiscountRequest $request, Discount $discount)
     {
@@ -104,10 +114,11 @@ class DiscountController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Delete discount with json response.
      *
-     * @param  \Modules\Discount\Discount  $discount
-     * @return \Illuminate\Http\JsonResponse
+     * @param  Discount $discount
+     * @return JsonResponse
+     * @throws AuthorizationException
      */
     public function destroy(Discount $discount)
     {
