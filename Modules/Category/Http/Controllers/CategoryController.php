@@ -12,9 +12,14 @@ use Modules\Category\Services\CategoryServiceInterface;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
 use Modules\Share\Services\ShareService;
+use Modules\Share\Traits\SuccessToastMessageWithRedirectTrait;
 
 class CategoryController extends Controller
 {
+    use SuccessToastMessageWithRedirectTrait;
+
+    private string $redirectRoute = 'categories.index';
+
     private string $class = Category::class;
 
     public CategoryServiceInterface $service;
@@ -144,17 +149,5 @@ class CategoryController extends Controller
         $this->repo->changeStatus($id, CategoryStatusEnum::STATUS_INACTIVE->value);
 
         return AjaxResponses::SuccessResponse();
-    }
-
-    /**
-     * Show success message with redirect;
-     *
-     * @param  string $title
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    private function successMessageWithRedirect(string $title)
-    {
-        ShareService::successToast($title);
-        return to_route('categories.index');
     }
 }
