@@ -11,8 +11,6 @@ class CartController extends Controller
 {
     use SuccessToastMessageWithRedirectTrait;
 
-    private string $redirectRoute = '';
-    
     public CartService $service;
 
     public function __construct(CartService $cartService)

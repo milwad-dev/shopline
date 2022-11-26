@@ -17,6 +17,11 @@ trait SuccessToastMessageWithRedirectTrait
     private function successMessageWithRedirect(string $title, array $params = [])
     {
         ShareService::successToast($title);
+
+        if (! $this->redirectRoute) {
+            return redirect()->back();
+        }
+
         return to_route($this->redirectRoute, $params);
     }
 }
