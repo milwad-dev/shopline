@@ -17,10 +17,15 @@ use Modules\Category\Repositories\CategoryRepoEloquentInterface;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
 use Modules\Share\Services\ShareService;
+use Modules\Share\Traits\SuccessToastMessageWithRedirectTrait;
 
 class ArticleController extends Controller
 {
+    use SuccessToastMessageWithRedirectTrait;
+
     private string $class = Article::class;
+
+    private string $redirectRoute = 'articles.index';
 
     public ArticleRepoEloquentInterface $repo;
     public ArticleServiceInterface $service;
@@ -116,8 +121,9 @@ class ArticleController extends Controller
 
         if (! is_null($request->image)) {
             ShareService::uploadMediaWithAddInRequest($request);
+        } else {
+            $request->request->add(['media_id' => $product->media_id]);
         }
-        else $request->request->add(['media_id' => $product->media_id]);
 
         $this->service->update($request, $id);
 
@@ -150,6 +156,7 @@ class ArticleController extends Controller
     public function changeStatus($id, string $status)
     {
         $this->authorize('manage', $this->class);
+
         $active = ArticleStatusEnum::STATUS_ACTIVE->value;
         $in_progress = ArticleStatusEnum::STATUS_IN_PROGRESS->value;
         $inactive = ArticleStatusEnum::STATUS_INACTIVE->value;
@@ -169,17 +176,5 @@ class ArticleController extends Controller
         }
 
         return AjaxResponses::SuccessResponse();
-    }
-
-    /**
-     * Show success message with redirect.
-     *
-     * @param  string $title
-     * @return RedirectResponse
-     */
-    private function successMessageWithRedirect(string $title)
-    {
-        ShareService::successToast($title);
-        return to_route('articles.index');
     }
 }
