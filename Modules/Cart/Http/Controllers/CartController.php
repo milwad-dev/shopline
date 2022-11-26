@@ -5,9 +5,14 @@ namespace Modules\Cart\Http\Controllers;
 use Modules\Cart\Services\CartService;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Services\ShareService;
+use Modules\Share\Traits\SuccessToastMessageWithRedirectTrait;
 
 class CartController extends Controller
 {
+    use SuccessToastMessageWithRedirectTrait;
+
+    private string $redirectRoute = '';
+    
     public CartService $service;
 
     public function __construct(CartService $cartService)
@@ -27,7 +32,7 @@ class CartController extends Controller
     {
         $this->service->add($productId);
 
-        return $this->sucessMessageWithRedirect('Add to cart successfully');
+        return $this->successMessageWithRedirect('Add to cart successfully');
     }
 
     /**
@@ -42,7 +47,7 @@ class CartController extends Controller
     {
         $this->service->remove($productId);
 
-        return $this->sucessMessageWithRedirect('Remove item from cart successfully');
+        return $this->successMessageWithRedirect('Remove item from cart successfully');
     }
 
     /**
@@ -54,20 +59,6 @@ class CartController extends Controller
     {
         $this->service->removeAll();
 
-        return $this->sucessMessageWithRedirect('All item deleted from cart successfully');
-    }
-
-    # Private methods
-
-    /**
-     * Show success message with redirect.
-     *
-     * @param  string $title
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    private function sucessMessageWithRedirect(string $title): \Illuminate\Http\RedirectResponse
-    {
-        ShareService::successToast($title);
-        return redirect()->back();
+        return $this->successMessageWithRedirect('All item deleted from cart successfully');
     }
 }
