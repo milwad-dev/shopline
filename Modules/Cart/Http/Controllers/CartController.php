@@ -4,7 +4,6 @@ namespace Modules\Cart\Http\Controllers;
 
 use Modules\Cart\Services\CartService;
 use Modules\Share\Http\Controllers\Controller;
-use Modules\Share\Services\ShareService;
 use Modules\Share\Traits\SuccessToastMessageWithRedirectTrait;
 
 class CartController extends Controller

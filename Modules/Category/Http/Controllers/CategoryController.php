@@ -11,7 +11,6 @@ use Modules\Category\Repositories\CategoryRepoEloquentInterface;
 use Modules\Category\Services\CategoryServiceInterface;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
-use Modules\Share\Services\ShareService;
 use Modules\Share\Traits\SuccessToastMessageWithRedirectTrait;
 
 class CategoryController extends Controller

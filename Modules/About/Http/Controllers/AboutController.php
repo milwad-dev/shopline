@@ -11,7 +11,6 @@ use Modules\About\Http\Requests\AboutRequest;
 use Modules\About\Models\About;
 use Modules\About\Services\AboutService;
 use Modules\Share\Http\Controllers\Controller;
-use Modules\Share\Services\ShareService;
 use Modules\Share\Traits\SuccessToastMessageWithRedirectTrait;
 
 class AboutController extends Controller
