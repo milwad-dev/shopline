@@ -15,9 +15,14 @@ use Modules\Discount\Services\DiscountService;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
 use Modules\Share\Services\ShareService;
+use Modules\Share\Traits\SuccessToastMessageWithRedirectTrait;
 
 class DiscountController extends Controller
 {
+    use SuccessToastMessageWithRedirectTrait;
+
+    private string $redirectRoute = 'discounts.index';
+
     /**
      * Get class.
      *
@@ -126,17 +131,5 @@ class DiscountController extends Controller
         $discount->delete();
 
         return AjaxResponses::SuccessResponse();
-    }
-
-    /**
-     * Show success message with redirect;
-     *
-     * @param  string $title
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    private function successMessageWithRedirect(string $title)
-    {
-        ShareService::successToast($title);
-        return to_route('categories.index');
     }
 }
