@@ -9,9 +9,14 @@ use Modules\Payment\Repositories\PaymentRepoEloquentInterface;
 use Modules\Payment\Services\PaymentService;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Services\ShareService;
+use Modules\Share\Traits\SuccessToastMessageWithRedirectTrait;
 
 class PaymentController extends Controller
 {
+    use SuccessToastMessageWithRedirectTrait;
+
+    private string $redirectRoute = 'payments.index';
+
     protected PaymentRepoEloquentInterface $repo;
 
     public function __construct(PaymentRepoEloquentInterface $paymentRepoEloquent)
@@ -41,8 +46,8 @@ class PaymentController extends Controller
 //       TODO event(new PaymentWasSuccessful($payment));
         $this->changeStatus($payment, PaymentStatusEnum::STATUS_SUCCESS->value);
 
-        ShareService::successToast('Success payment');
-        return redirect()->to($payment->paymentable->path());
+        $this->redirectRoute = $payment->paymentable->path();
+        return $this->successMessageWithRedirect('Success payment');
     }
 
     /**
