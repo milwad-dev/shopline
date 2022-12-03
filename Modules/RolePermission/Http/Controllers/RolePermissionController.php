@@ -14,9 +14,14 @@ use Modules\RolePermission\Services\RolePermissionService;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
 use Modules\Share\Services\ShareService;
+use Modules\Share\Traits\SuccessToastMessageWithRedirectTrait;
 
 class RolePermissionController extends Controller
 {
+    use SuccessToastMessageWithRedirectTrait;
+
+    private string $redirectRoute = 'role-permissions.index';
+
     private string $class = Permission::class;
 
     public RolePermissionRepoEloquentInterface $repo;
@@ -116,17 +121,5 @@ class RolePermissionController extends Controller
         $this->repo->delete($id);
 
         return AjaxResponses::SuccessResponse();
-    }
-
-    /**
-     * Show success message with redirect.
-     *
-     * @param  string $title
-     * @return RedirectResponse
-     */
-    private function successMessageWithRedirect(string $title)
-    {
-        ShareService::successToast($title);
-        return to_route('role-permissions.index');
     }
 }
