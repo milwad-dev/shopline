@@ -16,9 +16,14 @@ use Modules\Product\Services\ProductServiceInterface;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
 use Modules\Share\Services\ShareService;
+use Modules\Share\Traits\SuccessToastMessageWithRedirectTrait;
 
 class ProductController extends Controller
 {
+    use SuccessToastMessageWithRedirectTrait;
+
+    private string $redirectRoute = 'products.index';
+
     /**
      * Get product class.
      *
@@ -151,17 +156,7 @@ class ProductController extends Controller
         return AjaxResponses::SuccessResponse();
     }
 
-    /**
-     * Show success message with redirect;
-     *
-     * @param  string $title
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    private function successMessageWithRedirect(string $title)
-    {
-        ShareService::successToast($title);
-        return to_route('products.index');
-    }
+    # Private methods
 
     /**
      * Check & attach attributes.
