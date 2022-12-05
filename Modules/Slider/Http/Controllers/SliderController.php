@@ -7,6 +7,7 @@ use Illuminate\Http\JsonResponse;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
 use Modules\Share\Services\ShareService;
+use Modules\Share\Traits\SuccessToastMessageWithRedirectTrait;
 use Modules\Slider\Enums\SliderStatusEnum;
 use Modules\Slider\Http\Requests\SliderRequest;
 use Modules\Slider\Models\Slider;
@@ -15,6 +16,10 @@ use Modules\Slider\Services\SliderServiceInterface;
 
 class SliderController extends Controller
 {
+    use SuccessToastMessageWithRedirectTrait;
+
+    private string $redirectRoute = 'sliders.index';
+
     /**
      * Get model.
      *
@@ -159,18 +164,6 @@ class SliderController extends Controller
         $this->service->updateStatus($slider, SliderStatusEnum::STATUS_INACTIVE->value);
 
         return AjaxResponses::SuccessResponse();
-    }
-
-    /**
-     * Show success message with redirect;
-     *
-     * @param  string $title
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    private function successMessageWithRedirect(string $title)
-    {
-        ShareService::successToast($title);
-        return to_route('sliders.index');
     }
 
     /**
