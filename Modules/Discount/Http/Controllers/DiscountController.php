@@ -14,7 +14,6 @@ use Modules\Discount\Repositories\DiscountRepoEloquentInterface;
 use Modules\Discount\Services\DiscountService;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
-use Modules\Share\Services\ShareService;
 use Modules\Share\Traits\SuccessToastMessageWithRedirectTrait;
 
 class DiscountController extends Controller

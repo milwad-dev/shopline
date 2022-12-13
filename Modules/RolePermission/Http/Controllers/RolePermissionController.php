@@ -13,7 +13,6 @@ use Modules\RolePermission\Repositories\RolePermissionRepoEloquentInterface;
 use Modules\RolePermission\Services\RolePermissionService;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
-use Modules\Share\Services\ShareService;
 use Modules\Share\Traits\SuccessToastMessageWithRedirectTrait;
 
 class RolePermissionController extends Controller
