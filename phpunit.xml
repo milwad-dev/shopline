@@ -49,7 +49,7 @@
         </testsuite>
         <!-- Unit tests -->
     </testsuites>
-    <coverage processUncoveredFiles="true">
+    <coverage>
         <include>
             <directory suffix=".php">./app</directory>
             <directory suffix=".php">./Modules</directory>
