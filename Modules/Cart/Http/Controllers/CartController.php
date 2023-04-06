@@ -10,6 +10,13 @@ class CartController extends Controller
 {
     use SuccessToastMessageWithRedirectTrait;
 
+    /**
+     * Redirect route.
+     *
+     * @var mixed|null
+     */
+    private mixed $redirectRoute = null;
+
     public CartService $service;
 
     public function __construct(CartService $cartService)
