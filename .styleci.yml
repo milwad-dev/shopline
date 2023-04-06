@@ -1,12 +1,22 @@
-php:
-  preset: laravel
-  disabled:
-    - no_unused_imports
-  finder:
-    not-name:
-      - index.php
-js:
-  finder:
-    not-name:
-      - webpack.mix.js
-css: true
+risky: false
+version: 8.1
+preset: recommended
+monolithic: true
+php: true
+js: false
+ts: false
+css: false
+vue: false
+py: false
+finder:
+  exclude:
+    - "node_modules"
+    - "nova"
+    - "nova-components"
+    - "storage"
+    - "spark"
+    - "vendor"
+  name: "*.php"
+  not-name:
+    - "*.blade.php"
+    - "_ide_helper.php"
