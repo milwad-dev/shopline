@@ -22,7 +22,8 @@ class ResetPasswordController extends Controller
     /**
      * Reset password by request.
      *
-     * @param  ResetPasswordRequest $request
+     * @param ResetPasswordRequest $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function reset(ResetPasswordRequest $request)
@@ -30,6 +31,7 @@ class ResetPasswordController extends Controller
         ResetPasswordService::changePassword(auth()->user(), $request->password);
 
         ShareService::successToast('Your password changed successfully');
+
         return to_route('home.index');
     }
 }

@@ -12,7 +12,8 @@ use Tests\TestCase;
 
 class CommentTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     /**
      * Get table name.
@@ -25,6 +26,7 @@ class CommentTest extends TestCase
      * Test guest user can not store comment.
      *
      * @test
+     *
      * @return void
      */
     public function guest_user_can_not_store_comment()
@@ -33,8 +35,8 @@ class CommentTest extends TestCase
         $body = $this->faker->text;
 
         $response = $this->post(route('comments.store'), [
-            'body' => $body,
-            'commentable_id' => $product->id,
+            'body'             => $body,
+            'commentable_id'   => $product->id,
             'commentable_type' => get_class($product),
         ]);
         $response->assertRedirect();
@@ -49,6 +51,7 @@ class CommentTest extends TestCase
      * Test login user can store comment.
      *
      * @test
+     *
      * @return void
      */
     public function login_user_can_store_comment()
@@ -60,8 +63,8 @@ class CommentTest extends TestCase
         $body = $this->faker->text;
 
         $response = $this->post(route('comments.store'), [
-            'body' => $body,
-            'commentable_id' => (string) $product->id,
+            'body'             => $body,
+            'commentable_id'   => (string) $product->id,
             'commentable_type' => get_class($product),
         ]);
         $response->assertRedirect();

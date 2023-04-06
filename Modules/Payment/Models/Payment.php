@@ -28,10 +28,10 @@ class Payment extends Model
         'seller_share',
         'site_share',
         'seller_p',
-        'status'
+        'status',
     ];
 
-    # Relations
+    // Relations
 
     /**
      * Relation polymorphic.

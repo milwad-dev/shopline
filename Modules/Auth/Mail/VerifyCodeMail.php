@@ -8,11 +8,12 @@ use Illuminate\Queue\SerializesModels;
 
 class VerifyCodeMail extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     public string $code;
 
-    public function __construct( $code)
+    public function __construct($code)
     {
         $this->code = $code;
     }
@@ -21,6 +22,6 @@ class VerifyCodeMail extends Mailable
     {
         return $this
             ->markdown('Auth::Mails.verify-mail')
-            ->subject('Verify account | ' . config('app.name'));
+            ->subject('Verify account | '.config('app.name'));
     }
 }

@@ -15,22 +15,23 @@ class ArticleFactory extends Factory
     /**
      * Define the model's default state.
      *
-     * @return array<string, mixed>
      * @throws \Exception
+     *
+     * @return array<string, mixed>
      */
     public function definition()
     {
         $title = $this->faker->title;
 
         return [
-            'user_id' => User::factory()->create()->id,
-            'title' => $title,
-            'slug' => ShareService::makeSlug($title),
-            'min_read' => random_int(1, 10),
-            'body' => $this->faker->text,
-            'keywords' => $this->faker->title,
+            'user_id'     => User::factory()->create()->id,
+            'title'       => $title,
+            'slug'        => ShareService::makeSlug($title),
+            'min_read'    => random_int(1, 10),
+            'body'        => $this->faker->text,
+            'keywords'    => $this->faker->title,
             'description' => $this->faker->text,
-            'status' => ArticleStatusEnum::STATUS_ACTIVE->value,
+            'status'      => ArticleStatusEnum::STATUS_ACTIVE->value,
         ];
     }
 }

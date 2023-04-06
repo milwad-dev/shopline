@@ -14,7 +14,8 @@ use Tests\TestCase;
 
 class CategoryTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     /**
      * Test admin user can see list of category.
@@ -63,15 +64,16 @@ class CategoryTest extends TestCase
     /**
      * Test check parent id validation is successful.
      *
-     * @return void
      * @throws \Exception
+     *
+     * @return void
      */
     public function test_parent_id_validation_successful()
     {
         $this->createUserWithLoginWithAssignPermission();
 
         $response = $this->post(route('categories.store'), [
-            'parent_id' => random_int(1, 10)
+            'parent_id' => random_int(1, 10),
         ])->assertSessionHasErrors([
             'title',
             'status',
@@ -91,10 +93,10 @@ class CategoryTest extends TestCase
 
         $title = $this->faker->unique()->title;
         $response = $this->post(route('categories.store'), [
-            'parent_id' => null,
-            'title' => $title,
-            'keywords' => $this->faker->text(),
-            'status' => CategoryStatusEnum::STATUS_ACTIVE->value,
+            'parent_id'   => null,
+            'title'       => $title,
+            'keywords'    => $this->faker->text(),
+            'status'      => CategoryStatusEnum::STATUS_ACTIVE->value,
             'description' => null,
         ]);
         $response->assertRedirect(route('categories.index'));
@@ -155,18 +157,18 @@ class CategoryTest extends TestCase
         $title = 'milwad dev';
         $category = $this->createCategory();
         $response = $this->patch(route('categories.update', $category->id), [
-            'id' => $category->id,
-            'title' => $title,
+            'id'          => $category->id,
+            'title'       => $title,
             'description' => 'shopline category',
-            'status' => CategoryStatusEnum::STATUS_INACTIVE->value,
+            'status'      => CategoryStatusEnum::STATUS_INACTIVE->value,
         ]);
         $response->assertRedirect(route('categories.index'));
         $response->assertSessionHas('alert');
 
         $this->assertDatabaseHas('categories', [
-            'id' => $category->id,
-            'title' => $title,
-            'status' => CategoryStatusEnum::STATUS_INACTIVE->value,
+            'id'          => $category->id,
+            'title'       => $title,
+            'status'      => CategoryStatusEnum::STATUS_INACTIVE->value,
             'description' => 'shopline category',
         ]);
         $this->assertDatabaseCount('categories', 1);
@@ -244,16 +246,15 @@ class CategoryTest extends TestCase
     private function createCategory()
     {
         return Category::factory()->create([
-            'user_id' => auth()->id(),
-            'parent_id' => null,
-            'title' => $this->faker->title,
-            'slug' => ShareService::makeSlug($this->faker->title),
-            'keywords' => $this->faker->text(),
-            'status' => CategoryStatusEnum::STATUS_ACTIVE->value,
+            'user_id'     => auth()->id(),
+            'parent_id'   => null,
+            'title'       => $this->faker->title,
+            'slug'        => ShareService::makeSlug($this->faker->title),
+            'keywords'    => $this->faker->text(),
+            'status'      => CategoryStatusEnum::STATUS_ACTIVE->value,
             'description' => null,
         ]);
     }
-
 
     /**
      * Call permission seeder.

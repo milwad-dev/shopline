@@ -52,33 +52,39 @@ class DiscountController extends Controller
     /**
      * Get the latest discounts with show view page.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws AuthorizationException
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
         $this->authorize('manage', $this->class);
+
         return view('Discount::index', ['discounts' => $this->repo->getLatest()->paginate()]);
     }
 
     /**
      * Show create view page.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws AuthorizationException
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
         $this->authorize('manage', $this->class);
+
         return view('Discount::create');
     }
 
     /**
      * Store new discount by request & show success alert with redirect.
      *
-     * @param  DiscountRequest $request
-     * @return RedirectResponse
+     * @param DiscountRequest $request
+     *
      * @throws AuthorizationException
+     *
+     * @return RedirectResponse
      */
     public function store(DiscountRequest $request)
     {
@@ -91,23 +97,28 @@ class DiscountController extends Controller
     /**
      * Show edit view page.
      *
-     * @param  Discount $discount
-     * @return Application|Factory|View
+     * @param Discount $discount
+     *
      * @throws AuthorizationException
+     *
+     * @return Application|Factory|View
      */
     public function edit(Discount $discount)
     {
         $this->authorize('manage', $this->class);
+
         return view('Discout::edit', compact('discount'));
     }
 
     /**
      * Update discount with success alert with redirect.
      *
-     * @param  DiscountRequest $request
-     * @param  Discount $discount
-     * @return RedirectResponse
+     * @param DiscountRequest $request
+     * @param Discount        $discount
+     *
      * @throws AuthorizationException
+     *
+     * @return RedirectResponse
      */
     public function update(DiscountRequest $request, Discount $discount)
     {
@@ -120,9 +131,11 @@ class DiscountController extends Controller
     /**
      * Delete discount with json response.
      *
-     * @param  Discount $discount
-     * @return JsonResponse
+     * @param Discount $discount
+     *
      * @throws AuthorizationException
+     *
+     * @return JsonResponse
      */
     public function destroy(Discount $discount)
     {

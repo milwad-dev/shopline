@@ -12,7 +12,6 @@ class RegisterTest extends TestCase
 
     /**
      * Test user can see register page.
-     *
      */
     public function test_user_can_see_register_page()
     {
@@ -47,17 +46,16 @@ class RegisterTest extends TestCase
 
     /**
      * Test user can register.
-     *
      */
     public function test_user_can_register()
     {
         $response = $this->post(route('register'), [
-            'name' => 'milwad',
-            'email' => 'milwad@gmail.com',
-            'phone' => '09103400042',
-            'type' => 'customer',
+            'name'     => 'milwad',
+            'email'    => 'milwad@gmail.com',
+            'phone'    => '09103400042',
+            'type'     => 'customer',
             'password' => 'Milad123!',
-            'policy' => '1'
+            'policy'   => '1',
         ]);
 
         $response->assertRedirect(route('home.index'));

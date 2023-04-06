@@ -2,7 +2,7 @@
 
 namespace Modules\Advertising\Enums;
 
-enum AdvertisingLocationEnum:string
+enum AdvertisingLocationEnum: string
 {
     case LOCATION_SLIDER = 'slider';
     case LOCATION_BANNER = 'banner';

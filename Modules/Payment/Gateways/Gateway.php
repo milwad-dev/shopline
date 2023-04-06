@@ -2,4 +2,6 @@
 
 namespace Modules\Payment\Gateways;
 
-class Gateway {}
+class Gateway
+{
+}

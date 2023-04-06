@@ -10,7 +10,8 @@ class AjaxResponses
     /**
      * Return json response with status 200 (success).
      *
-     * @param  string $message
+     * @param string $message
+     *
      * @return JsonResponse
      */
     public static function SuccessResponse(string $message = 'The operation was successful.')
@@ -21,7 +22,8 @@ class AjaxResponses
     /**
      * Return json response with status 500 (serve error).
      *
-     * @param  string $message
+     * @param string $message
+     *
      * @return JsonResponse
      */
     public static function FailedResponse(string $message = 'The operation was not successful.')

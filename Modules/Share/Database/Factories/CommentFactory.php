@@ -22,11 +22,11 @@ class CommentFactory extends Factory
         $product = Product::factory()->create();
 
         return [
-            'user_id' => User::factory()->create()->id,
-            'commentable_id' => $product->id,
+            'user_id'          => User::factory()->create()->id,
+            'commentable_id'   => $product->id,
             'commentable_type' => get_class($product),
-            'body' => $this->faker->text,
-            'status' => CommentStatusEnum::STATUS_ACTIVE->value,
+            'body'             => $this->faker->text,
+            'status'           => CommentStatusEnum::STATUS_ACTIVE->value,
         ];
     }
 }

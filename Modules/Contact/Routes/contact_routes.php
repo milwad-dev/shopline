@@ -16,6 +16,6 @@ Route::group(['prefix' => 'panel', 'middleware' => 'auth'], static function ($ro
     $router->delete('contacts/{contact}', ['uses' => 'ContactController@destroy', 'as' => 'contacts.destroy']);
     $router->patch('contacts/{contact}/update-is-read', [
         'uses' => 'ContactController@updateIsRead',
-        'as' => 'contacts.update-is-read'
+        'as'   => 'contacts.update-is-read',
     ]);
 });

@@ -10,7 +10,8 @@ class HomeController extends Controller
     /**
      * Show home page.
      *
-     * @param  HomeRepoEloquentInterface $homeRepo
+     * @param HomeRepoEloquentInterface $homeRepo
+     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index(HomeRepoEloquentInterface $homeRepo)

@@ -23,7 +23,7 @@ class UserAdress extends Model
      */
     protected $with = ['user'];
 
-    # Relations
+    // Relations
 
     /**
      * Relation to User model, one to many.

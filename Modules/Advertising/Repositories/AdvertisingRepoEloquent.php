@@ -19,7 +19,8 @@ class AdvertisingRepoEloquent implements AdvertisingRepoEloquentInterface
     /**
      * Find or fail advertising by id.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
      */
     public function findById(int $id)
@@ -30,7 +31,8 @@ class AdvertisingRepoEloquent implements AdvertisingRepoEloquentInterface
     /**
      * Delete advertising by id.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return mixed
      */
     public function delete(int $id)

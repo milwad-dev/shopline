@@ -16,11 +16,12 @@ class CommentableRule implements Rule
      *
      * @param $attribute
      * @param $value
+     *
      * @return bool
      */
     public function passes($attribute, $value)
     {
-        return class_exists($value) && method_exists($value , 'comments');
+        return class_exists($value) && method_exists($value, 'comments');
     }
 
     /**

@@ -11,8 +11,9 @@ class VerifyService
     /**
      * Generate code.
      *
-     * @return  int
-     * @throws  \Exception
+     * @throws \Exception
+     *
+     * @return int
      */
     public static function generate()
     {
@@ -22,52 +23,60 @@ class VerifyService
     /**
      * Store code in cache.
      *
-     * @param  $id
-     * @param  $code
-     * @param  $time
-     * @return void
+     * @param $id
+     * @param $code
+     * @param $time
+     *
      * @throws \Psr\SimpleCache\InvalidArgumentException
+     *
+     * @return void
      */
     public static function store($id, $code, $time)
     {
-        cache()->set(self::$prefix . $id, $code, $time);
+        cache()->set(self::$prefix.$id, $code, $time);
     }
 
     /**
      * Get code from cache.
      *
-     * @param  $id
-     * @return \Illuminate\Contracts\Cache\Repository|mixed
+     * @param $id
+     *
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
+     *
+     * @return \Illuminate\Contracts\Cache\Repository|mixed
      */
     public static function get($id)
     {
-        return cache()->get(self::$prefix . $id);
+        return cache()->get(self::$prefix.$id);
     }
 
     /**
      * Check cache has code with id.
      *
-     * @param  $id
-     * @return bool
+     * @param $id
+     *
      * @throws \Psr\SimpleCache\InvalidArgumentException
+     *
+     * @return bool
      */
     public static function has($id)
     {
-        return cache()->has(self::$prefix . $id);
+        return cache()->has(self::$prefix.$id);
     }
 
     /**
      * Delete code from cache.
      *
-     * @param  $id
-     * @return bool
+     * @param $id
+     *
      * @throws \Psr\SimpleCache\InvalidArgumentException
+     *
+     * @return bool
      */
     public static function delete($id)
     {
-        return cache()->delete(self::$prefix . $id);
+        return cache()->delete(self::$prefix.$id);
     }
 
     /**
@@ -77,7 +86,7 @@ class VerifyService
      */
     public static function getRule()
     {
-        return 'required|numeric|between:' . self::$min .','. self::$max;
+        return 'required|numeric|between:'.self::$min.','.self::$max;
     }
 
     /**
@@ -85,16 +94,21 @@ class VerifyService
      *
      * @param $id
      * @param $code
-     * @return bool
+     *
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      * @throws \Psr\SimpleCache\InvalidArgumentException
+     *
+     * @return bool
      */
     public static function check($id, $code)
     {
-        if (self::get($id) != $code) return false;
+        if (self::get($id) != $code) {
+            return false;
+        }
 
         self::delete($id);
+
         return true;
     }
 }

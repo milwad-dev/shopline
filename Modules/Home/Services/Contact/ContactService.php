@@ -9,7 +9,8 @@ class ContactService
     /**
      * Store contact by data.
      *
-     * @param  array $data
+     * @param array $data
+     *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
      */
     public function store(array $data)
@@ -19,7 +20,7 @@ class ContactService
             'email'   => $data['email'],
             'phone'   => $data['phone'],
             'subject' => $data['subject'],
-            'message' => $data['message']
+            'message' => $data['message'],
         ]);
     }
 }

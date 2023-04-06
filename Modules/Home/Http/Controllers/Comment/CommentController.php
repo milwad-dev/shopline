@@ -12,7 +12,8 @@ class CommentController extends Controller
     /**
      * Store comment by request.
      *
-     * @param  CommentRequest $request
+     * @param CommentRequest $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(CommentRequest $request)
@@ -20,6 +21,7 @@ class CommentController extends Controller
         resolve(CommentService::class)->store($request->all());
 
         ShareService::successToast('Comment successfully created.');
+
         return redirect()->back();
     }
 }

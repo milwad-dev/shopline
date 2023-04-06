@@ -25,16 +25,20 @@ class ForgotPasswordController extends Controller
     /**
      * Send email to user.
      *
-     * @param  SendResetPasswordVerifyCodeRequest $request
-     * @param  UserRepoEloquent $userRepo
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @param SendResetPasswordVerifyCodeRequest $request
+     * @param UserRepoEloquent                   $userRepo
+     *
      * @throws \Psr\SimpleCache\InvalidArgumentException
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function sendVerifyCodeEmail(SendResetPasswordVerifyCodeRequest $request, UserRepoEloquent $userRepo)
     {
         $user = $userRepo->findByEmail($request->email);
 
-        if ($user && ! VerifyService::has($user->id)) SendResetPasswordMailJob::dispatch($user);
+        if ($user && !VerifyService::has($user->id)) {
+            SendResetPasswordMailJob::dispatch($user);
+        }
 
         return view('Auth::passwords.enter-verify-code');
     }
@@ -42,22 +46,25 @@ class ForgotPasswordController extends Controller
     /**
      * Check verify code.
      *
-     * @param  ResetPasswordVerifyCodeRequest $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param ResetPasswordVerifyCodeRequest $request
+     *
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      * @throws \Psr\SimpleCache\InvalidArgumentException
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function checkVerifyCode(ResetPasswordVerifyCodeRequest $request)
     {
         $user = resolve(UserRepoEloquent::class)->findByEmail($request->email);
-        if ($user == null || ! VerifyService::check($user->id, $request->verify_code)) {
+        if ($user == null || !VerifyService::check($user->id, $request->verify_code)) {
             return back()->withErrors(['verify_code' => 'code is invalid!']);
         }
 
         auth()->loginUsingId($user->id);
 
         ShareService::successToast('Password reset successfully');
+
         return to_route('password.showResetForm');
     }
 }

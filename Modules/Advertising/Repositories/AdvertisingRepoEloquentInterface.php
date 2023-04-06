@@ -4,5 +4,4 @@ namespace Modules\Advertising\Repositories;
 
 interface AdvertisingRepoEloquentInterface
 {
-
 }

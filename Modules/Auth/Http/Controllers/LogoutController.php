@@ -18,6 +18,7 @@ class LogoutController extends Controller
         Auth::logout();
 
         ShareService::successToast('You logout successfully');
+
         return to_route('home.index');
     }
 }

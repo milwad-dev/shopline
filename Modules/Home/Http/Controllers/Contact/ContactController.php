@@ -17,13 +17,14 @@ class ContactController extends Controller
      */
     public function create()
     {
-       return view('Home::Pages.contacts.create');
+        return view('Home::Pages.contacts.create');
     }
 
     /**
      * Store contact by request.
      *
-     * @param  ContactRequest $request
+     * @param ContactRequest $request
+     *
      * @return RedirectResponse
      */
     public function store(ContactRequest $request)
@@ -31,6 +32,7 @@ class ContactController extends Controller
         resolve(ContactService::class)->store($request->all());
 
         ShareService::successToast('Contact created successfully');
+
         return to_route('contacts.create');
     }
 }

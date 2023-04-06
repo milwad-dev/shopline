@@ -28,6 +28,7 @@ class PaymentController extends Controller
      * Callback from gateway.
      *
      * @param Request $request
+     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function callback(Request $request)
@@ -40,6 +41,7 @@ class PaymentController extends Controller
             $this->changeStatus($payment, PaymentStatusEnum::STATUS_FAIL->value);
 
             ShareService::errorToast('Fail payment');
+
             return redirect()->to($payment->paymentable->path());
         }
 
@@ -47,14 +49,16 @@ class PaymentController extends Controller
         $this->changeStatus($payment, PaymentStatusEnum::STATUS_SUCCESS->value);
 
         $this->redirectRoute = $payment->paymentable->path();
+
         return $this->successMessageWithRedirect('Success payment');
     }
 
     /**
      * Change payment status.
      *
-     * @param  $payment
-     * @param  string $status
+     * @param        $payment
+     * @param string $status
+     *
      * @return void
      */
     private function changeStatus($payment, string $status): void

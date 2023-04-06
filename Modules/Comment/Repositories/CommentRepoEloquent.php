@@ -20,7 +20,8 @@ class CommentRepoEloquent implements CommentRepoEloquentInterface
     /**
      * Find comment by id.
      *
-     * @param  $id
+     * @param $id
+     *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
      */
     public function findById($id)
@@ -31,14 +32,15 @@ class CommentRepoEloquent implements CommentRepoEloquentInterface
     /**
      * Get active comment by id.
      *
-     * @param  $id
+     * @param $id
+     *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|null
      */
     public function findActiveCommentById($id)
     {
         return $this->query()
-            ->where('id' , $id)
-            ->where('status' , CommentStatusEnum::STATUS_ACTIVE->value)
+            ->where('id', $id)
+            ->where('status', CommentStatusEnum::STATUS_ACTIVE->value)
             ->first();
     }
 

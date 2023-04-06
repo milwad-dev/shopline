@@ -11,7 +11,8 @@ class CommentService
     /**
      * Store comment by data.
      *
-     * @param  array $data
+     * @param array $data
+     *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
      */
     public function store(array $data)
@@ -37,7 +38,7 @@ class CommentService
     }
 
     /**
-     * Get status comment by user permission
+     * Get status comment by user permission.
      *
      * @return string
      */
@@ -51,11 +52,12 @@ class CommentService
     /**
      * Check comment_id is exists.
      *
-     * @param  array $data
+     * @param array $data
+     *
      * @return mixed
      */
     private function getCommentId(array $data): mixed
     {
-        return array_key_exists("comment_id", $data) ? $data['comment_id'] : null;
+        return array_key_exists('comment_id', $data) ? $data['comment_id'] : null;
     }
 }

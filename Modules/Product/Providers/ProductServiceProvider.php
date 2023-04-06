@@ -109,7 +109,7 @@ class ProductServiceProvider extends ServiceProvider
      */
     private function loadMigrationFiles(): void
     {
-        $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
+        $this->loadMigrationsFrom(__DIR__.$this->migrationPath);
     }
 
     /**
@@ -119,7 +119,7 @@ class ProductServiceProvider extends ServiceProvider
      */
     private function loadViewFiles(): void
     {
-        $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
+        $this->loadViewsFrom(__DIR__.$this->viewPath, $this->name);
     }
 
     /**
@@ -141,11 +141,11 @@ class ProductServiceProvider extends ServiceProvider
     {
         Route::middleware($this->routeMiddleware)
             ->namespace($this->namespace)
-            ->group(__DIR__ . $this->routePath);
+            ->group(__DIR__.$this->routePath);
     }
 
     /**
-     * Set menu for panel
+     * Set menu for panel.
      *
      * @return void
      */
@@ -153,8 +153,8 @@ class ProductServiceProvider extends ServiceProvider
     {
         config()->set('panelConfig.menus.products', [
             'title' => 'Products',
-            'icon' => 'gift',
-            'url' => route('products.index'),
+            'icon'  => 'gift',
+            'url'   => route('products.index'),
         ]);
     }
 }

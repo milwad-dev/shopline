@@ -12,7 +12,8 @@ use Tests\TestCase;
 
 class AboutTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     /**
      * Get table name.
@@ -25,6 +26,7 @@ class AboutTest extends TestCase
      * Test admin user can see index abouts page.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_see_index_abouts_page()
@@ -40,6 +42,7 @@ class AboutTest extends TestCase
      * Test guest user can not see index abouts page.
      *
      * @test
+     *
      * @return void
      */
     public function guest_user_can_not_see_index_abouts_page()
@@ -52,6 +55,7 @@ class AboutTest extends TestCase
      * Test admin user can see create abouts page.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_see_create_abouts_page()
@@ -64,6 +68,7 @@ class AboutTest extends TestCase
      * Test guest user can not see create abouts page.
      *
      * @test
+     *
      * @return void
      */
     public function guest_user_can_not_see_create_abouts_page()
@@ -76,6 +81,7 @@ class AboutTest extends TestCase
      * Test admin user can store about only one.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_store_about_only_one()
@@ -92,6 +98,7 @@ class AboutTest extends TestCase
      * Test validate store about successful.
      *
      * @test
+     *
      * @return void
      */
     public function validate_store_about_successful()
@@ -107,6 +114,7 @@ class AboutTest extends TestCase
      * Test admin user can not store about more than one.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_not_store_about_more_than_one()
@@ -125,6 +133,7 @@ class AboutTest extends TestCase
      * Test guest user can not store about only one.
      *
      * @test
+     *
      * @return void
      */
     public function guest_user_can_not_store_about_only_one()
@@ -141,6 +150,7 @@ class AboutTest extends TestCase
      * Test admin user can see edit abouts page.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_see_edit_abouts_page()
@@ -154,6 +164,7 @@ class AboutTest extends TestCase
      * Test guest user can not see edit abouts page.
      *
      * @test
+     *
      * @return void
      */
     public function guest_user_can_not_see_edit_abouts_page()
@@ -166,6 +177,7 @@ class AboutTest extends TestCase
      * Test admin user can update about only one.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_update_about()
@@ -184,6 +196,7 @@ class AboutTest extends TestCase
      * Test guest user can not update about only one.
      *
      * @test
+     *
      * @return void
      */
     public function guest_user_can_not_update_about()
@@ -202,7 +215,8 @@ class AboutTest extends TestCase
     /**
      * Create user with login & assign permission.
      *
-     * @param  bool $permission
+     * @param bool $permission
+     *
      * @return void
      */
     private function createUserWithLoginWithAssignPermission(bool $permission = true)

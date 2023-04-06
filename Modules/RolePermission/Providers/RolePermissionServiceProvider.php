@@ -88,8 +88,8 @@ class RolePermissionServiceProvider extends ServiceProvider
     {
         config()->set('panelConfig.menus.role-permissions', [
             'title' => 'Role & Permissions',
-            'icon' => 'alert-triangle',
-            'url' => route('role-permissions.index'),
+            'icon'  => 'alert-triangle',
+            'url'   => route('role-permissions.index'),
         ]);
     }
 
@@ -110,7 +110,7 @@ class RolePermissionServiceProvider extends ServiceProvider
      */
     private function loadMigrationFiles(): void
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
     }
 
     /**
@@ -120,7 +120,7 @@ class RolePermissionServiceProvider extends ServiceProvider
      */
     private function loadViewFiles(): void
     {
-        $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
+        $this->loadViewsFrom(__DIR__.$this->viewPath, $this->name);
     }
 
     /**
@@ -142,7 +142,7 @@ class RolePermissionServiceProvider extends ServiceProvider
     {
         Route::middleware($this->middlewareRoute)
             ->namespace($this->namespace)
-            ->group(__DIR__ . $this->routePath);
+            ->group(__DIR__.$this->routePath);
     }
 
     /**

@@ -43,15 +43,16 @@ class SliderController extends Controller
 
     public function __construct(SliderServiceInterface $sliderService, SliderRepoEloquentInterface $sliderRepo)
     {
-        $this->service  = $sliderService;
-        $this->repo     = $sliderRepo;
+        $this->service = $sliderService;
+        $this->repo = $sliderRepo;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws AuthorizationException
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -64,21 +65,25 @@ class SliderController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws AuthorizationException
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
         $this->authorize('manage', $this->class);
+
         return view('Slider::create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  SliderRequest $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param SliderRequest $request
+     *
      * @throws AuthorizationException
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(SliderRequest $request)
     {
@@ -93,23 +98,28 @@ class SliderController extends Controller
     /**
      * Edit slider with route model binding.
      *
-     * @param  Slider $slider
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @param Slider $slider
+     *
      * @throws AuthorizationException
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit(Slider $slider)
     {
         $this->authorize('manage', $this->class);
+
         return view('Slider::edit', compact('slider'));
     }
 
     /**
      * Update slider with route model binding & request.
      *
-     * @param  SliderRequest $request
-     * @param  Slider $slider
-     * @return \Illuminate\Http\RedirectResponse
+     * @param SliderRequest $request
+     * @param Slider        $slider
+     *
      * @throws AuthorizationException
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(SliderRequest $request, Slider $slider)
     {
@@ -124,9 +134,11 @@ class SliderController extends Controller
     /**
      * Delete slider route model binding.
      *
-     * @param  Slider $slider
-     * @return JsonResponse
+     * @param Slider $slider
+     *
      * @throws AuthorizationException
+     *
+     * @return JsonResponse
      */
     public function destroy(Slider $slider)
     {
@@ -139,9 +151,11 @@ class SliderController extends Controller
     /**
      * Update status to active.
      *
-     * @param  Slider $slider
-     * @return JsonResponse
+     * @param Slider $slider
+     *
      * @throws AuthorizationException
+     *
+     * @return JsonResponse
      */
     public function active(Slider $slider)
     {
@@ -154,9 +168,11 @@ class SliderController extends Controller
     /**
      * Update status to inactive.
      *
-     * @param  Slider $slider
-     * @return JsonResponse
+     * @param Slider $slider
+     *
      * @throws AuthorizationException
+     *
+     * @return JsonResponse
      */
     public function inactive(Slider $slider)
     {
@@ -169,8 +185,9 @@ class SliderController extends Controller
     /**
      * Upload image by request.
      *
-     * @param  SliderRequest $request
-     * @param  Slider $slider
+     * @param SliderRequest $request
+     * @param Slider        $slider
+     *
      * @return void
      */
     private function uploadMediaForUpdateSlider(SliderRequest $request, Slider $slider): void

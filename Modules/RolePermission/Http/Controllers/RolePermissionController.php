@@ -35,8 +35,9 @@ class RolePermissionController extends Controller
     /**
      * Get latest roles.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws AuthorizationException
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -49,8 +50,9 @@ class RolePermissionController extends Controller
     /**
      * Create page for role.
      *
-     * @return Application|Factory|View
      * @throws AuthorizationException
+     *
+     * @return Application|Factory|View
      */
     public function create()
     {
@@ -63,9 +65,11 @@ class RolePermissionController extends Controller
     /**
      * Store role with redirect.
      *
-     * @param  RolePermissionRequest $request
-     * @return RedirectResponse
+     * @param RolePermissionRequest $request
+     *
      * @throws AuthorizationException
+     *
+     * @return RedirectResponse
      */
     public function store(RolePermissionRequest $request)
     {
@@ -78,9 +82,11 @@ class RolePermissionController extends Controller
     /**
      * Edit role by id.
      *
-     * @param  $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @param $id
+     *
      * @throws AuthorizationException
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
@@ -95,9 +101,11 @@ class RolePermissionController extends Controller
      * Update role by id.
      *
      * @param RolePermissionRequest $request
-     * @param  $id
-     * @return RedirectResponse
+     * @param                       $id
+     *
      * @throws AuthorizationException
+     *
+     * @return RedirectResponse
      */
     public function update(RolePermissionRequest $request, $id)
     {
@@ -110,9 +118,11 @@ class RolePermissionController extends Controller
     /**
      * Delete role by id.
      *
-     * @param  $id
-     * @return \Illuminate\Http\JsonResponse
+     * @param $id
+     *
      * @throws AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {

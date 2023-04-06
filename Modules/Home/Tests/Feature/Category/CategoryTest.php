@@ -8,7 +8,7 @@ use Tests\TestCase;
 class CategoryTest extends TestCase
 {
     use RefreshDatabase;
-//TODO WRITE CORRECT TEST
+    //TODO WRITE CORRECT TEST
 //    /**
 //     * Test guest user can see category details page.
 //     *

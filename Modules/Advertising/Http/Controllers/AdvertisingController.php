@@ -33,8 +33,9 @@ class AdvertisingController extends Controller
     /**
      * Get latest adveritings & show index page.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws AuthorizationException
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
@@ -47,21 +48,25 @@ class AdvertisingController extends Controller
     /**
      * Show advertising create page.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws AuthorizationException
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
         $this->authorize('manage', $this->class);
+
         return view('Advertising::create');
     }
 
     /**
      * Store adveritisng by request.
      *
-     * @param  AdvertisingRequest $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param AdvertisingRequest $request
+     *
      * @throws AuthorizationException
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(AdvertisingRequest $request)
     {
@@ -76,9 +81,11 @@ class AdvertisingController extends Controller
     /**
      * Show edit advertising page by id.
      *
-     * @param  $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @param $id
+     *
      * @throws AuthorizationException
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
@@ -91,10 +98,12 @@ class AdvertisingController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  AdvertisingRequest $request
-     * @param  $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @param AdvertisingRequest $request
+     * @param                    $id
+     *
      * @throws AuthorizationException
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(AdvertisingRequest $request, $id)
     {
@@ -111,9 +120,11 @@ class AdvertisingController extends Controller
     /**
      * Delete advertising by id.
      *
-     * @param  $id
-     * @return \Illuminate\Http\JsonResponse
+     * @param $id
+     *
      * @throws AuthorizationException
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
@@ -126,10 +137,12 @@ class AdvertisingController extends Controller
     /**
      * Update advertising status by id.
      *
-     * @param  $id
-     * @param  string $status
-     * @return JsonResponse
+     * @param        $id
+     * @param string $status
+     *
      * @throws AuthorizationException
+     *
+     * @return JsonResponse
      */
     public function updateStatus($id, string $status)
     {
@@ -153,8 +166,9 @@ class AdvertisingController extends Controller
     }
 
     /**
-     * @param  AdvertisingRequest $request
-     * @param  Advertising $advertising
+     * @param AdvertisingRequest $request
+     * @param Advertising        $advertising
+     *
      * @return void
      */
     private function uploadMediaForUpdateAdvertising(AdvertisingRequest $request, Advertising $advertising): void

@@ -119,7 +119,7 @@ class AdvertisingServiceProvider extends ServiceProvider
      */
     private function loadMigrationFiles(): void
     {
-        $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
+        $this->loadMigrationsFrom(__DIR__.$this->migrationPath);
     }
 
     /**
@@ -129,7 +129,7 @@ class AdvertisingServiceProvider extends ServiceProvider
      */
     private function loadViewFiles(): void
     {
-        $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
+        $this->loadViewsFrom(__DIR__.$this->viewPath, $this->name);
     }
 
     /**
@@ -141,7 +141,7 @@ class AdvertisingServiceProvider extends ServiceProvider
     {
         Route::middleware($this->routeMiddleware)
             ->namespace($this->namespace)
-            ->group(__DIR__ . $this->routePath);
+            ->group(__DIR__.$this->routePath);
     }
 
     /**
@@ -153,8 +153,8 @@ class AdvertisingServiceProvider extends ServiceProvider
     {
         config()->set('panelConfig.menus.advertisings', [
             'title' => 'Advertising',
-            'icon' => 'youtube',
-            'url' => route('advertisings.index'),
+            'icon'  => 'youtube',
+            'url'   => route('advertisings.index'),
         ]);
     }
 }

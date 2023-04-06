@@ -19,7 +19,8 @@ class VerifyMailNotification extends Notification
     /**
      * Send via (email).
      *
-     * @param  $notifiable
+     * @param $notifiable
+     *
      * @return string[]
      */
     public function via($notifiable)
@@ -43,7 +44,8 @@ class VerifyMailNotification extends Notification
     /**
      * Save into database.
      *
-     * @param  $notifiable
+     * @param $notifiable
+     *
      * @return array
      */
     public function toArray($notifiable)

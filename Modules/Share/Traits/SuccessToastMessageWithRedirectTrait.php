@@ -8,17 +8,18 @@ use Modules\Share\Services\ShareService;
 trait SuccessToastMessageWithRedirectTrait
 {
     /**
-     * Show success message with redirect;
+     * Show success message with redirect;.
      *
-     * @param  string $title
-     * @param  array $params
+     * @param string $title
+     * @param array  $params
+     *
      * @return RedirectResponse
      */
     private function successMessageWithRedirect(string $title, array $params = [])
     {
         ShareService::successToast($title);
 
-        if (! $this->redirectRoute) {
+        if (!$this->redirectRoute) {
             return redirect()->back();
         }
 

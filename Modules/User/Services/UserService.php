@@ -10,16 +10,17 @@ class UserService
     /**
      * Store user by request.
      *
-     * @param  $request
+     * @param $request
+     *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
      */
     public function store($request)
     {
         return $this->query()->create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'type' => $request->type,
+            'name'     => $request->name,
+            'email'    => $request->email,
+            'phone'    => $request->phone,
+            'type'     => $request->type,
             'password' => Hash::make($request->password),
         ]);
     }
@@ -27,17 +28,18 @@ class UserService
     /**
      * Update user with id by request.
      *
-     * @param  $request
-     * @param  $id
+     * @param $request
+     * @param $id
+     *
      * @return int
      */
     public function update($request, $id)
     {
         return $this->query()->where('id', $id)->update([
-            'name' => $request->name,
+            'name'  => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
-            'type' => $request->type,
+            'type'  => $request->type,
         ]);
     }
 

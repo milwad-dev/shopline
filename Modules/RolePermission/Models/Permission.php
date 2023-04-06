@@ -5,7 +5,7 @@ namespace Modules\RolePermission\Models;
 class Permission extends \Spatie\Permission\Models\Permission
 {
     /**
-     * Permissions
+     * Permissions.
      */
     public const PERMISSION_SUPER_ADMIN = 'permission super admin';
     public const PERMISSION_PANEL = 'permission panel';

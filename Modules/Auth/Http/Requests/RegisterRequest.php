@@ -21,7 +21,7 @@ class RegisterRequest extends FormRequest
     }
 
     /**
-     * Rules of register
+     * Rules of register.
      *
      * @return array<string, mixed>
      */

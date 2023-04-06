@@ -9,7 +9,8 @@ class AdvertisingService implements AdvertisingServiceInterface
     /**
      * Store advertising by data.
      *
-     * @param  array $data
+     * @param array $data
+     *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
      */
     public function store(array $data)
@@ -27,8 +28,9 @@ class AdvertisingService implements AdvertisingServiceInterface
     /**
      * Update advertising by id & data.
      *
-     * @param  array $data
-     * @param  int $id
+     * @param array $data
+     * @param int   $id
+     *
      * @return int
      */
     public function update(array $data, int $id)
@@ -45,8 +47,9 @@ class AdvertisingService implements AdvertisingServiceInterface
     /**
      * Update status advertising by id.
      *
-     * @param  int $id
-     * @param  string $status
+     * @param int    $id
+     * @param string $status
+     *
      * @return int
      */
     public function updateStatus(int $id, string $status)

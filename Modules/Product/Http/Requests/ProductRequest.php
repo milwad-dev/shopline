@@ -26,20 +26,20 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'first_media'  => 'required|file|mimes:jpeg,png,jpg|max:2048',
-            'title' => 'required|string|min:3|max:255|unique:products,title',
-            'price' => 'required|string',
-            'count' => 'required|numeric',
-            'type' => 'required|string|max:255',
+            'first_media'       => 'required|file|mimes:jpeg,png,jpg|max:2048',
+            'title'             => 'required|string|min:3|max:255|unique:products,title',
+            'price'             => 'required|string',
+            'count'             => 'required|numeric',
+            'type'              => 'required|string|max:255',
             'short_description' => 'required|string|min:3',
-            'body' => 'required|string|min:3',
-            'status' => ['required', 'string', 'max:255', new Enum(ProductStatusEnum::class)],
-            'categories' => 'required|array',
+            'body'              => 'required|string|min:3',
+            'status'            => ['required', 'string', 'max:255', new Enum(ProductStatusEnum::class)],
+            'categories'        => 'required|array',
         ];
 
         if (request()->method === 'PATCH') {
             $rules['first_media_id'] = 'nullable|file|mimes:jpeg,png,jpg|max:2048';
-            $rules['title'] = 'required|string|min:3|max:255|unique:products,title,' . request()->id;
+            $rules['title'] = 'required|string|min:3|max:255|unique:products,title,'.request()->id;
         }
 
         return $rules;

@@ -23,7 +23,8 @@ class ContactPolicy
     /**
      * Check user has permission.
      *
-     * @param  User $user
+     * @param User $user
+     *
      * @return bool
      */
     public function manage(User $user)

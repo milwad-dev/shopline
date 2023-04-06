@@ -93,7 +93,7 @@ class UserServiceProvider extends ServiceProvider
      */
     private function loadMigrationFiles(): void
     {
-        $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
+        $this->loadMigrationsFrom(__DIR__.$this->migrationPath);
     }
 
     /**
@@ -103,7 +103,7 @@ class UserServiceProvider extends ServiceProvider
      */
     private function loadViewFiles(): void
     {
-        $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->namespaceUserView);
+        $this->loadViewsFrom(__DIR__.$this->viewPath, $this->namespaceUserView);
     }
 
     /**
@@ -114,7 +114,7 @@ class UserServiceProvider extends ServiceProvider
     private function loadRouteFiles(): void
     {
         Route::middleware($this->middlewareRoute)->namespace($this->namespace)
-            ->group(__DIR__ . '/../Routes/user_routes.php');
+            ->group(__DIR__.'/../Routes/user_routes.php');
     }
 
     /**
@@ -136,8 +136,8 @@ class UserServiceProvider extends ServiceProvider
     {
         config()->set('panelConfig.menus.users', [
             'title' => 'Users',
-            'icon' => 'user',
-            'url' => route('users.index'),
+            'icon'  => 'user',
+            'url'   => route('users.index'),
         ]);
     }
 

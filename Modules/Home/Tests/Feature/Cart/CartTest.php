@@ -15,6 +15,7 @@ class CartTest extends TestCase
      * Test guest user can not access to cart view page.
      *
      * @test
+     *
      * @return void
      */
     public function guest_user_can_not_access_to_cart_view_page()
@@ -28,6 +29,7 @@ class CartTest extends TestCase
      * Test login user can access to cart view page.
      *
      * @test
+     *
      * @return void
      */
     public function login_user_can_access_to_cart_view_page()

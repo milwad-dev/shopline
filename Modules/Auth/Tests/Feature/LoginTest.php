@@ -56,7 +56,7 @@ class LoginTest extends TestCase
     {
         $user = $this->createUser();
         $response = $this->post(route('login'), [
-            'email' => $user->email,
+            'email'    => $user->email,
             'password' => 'Milwad123!',
         ]);
 
@@ -72,7 +72,7 @@ class LoginTest extends TestCase
     {
         $user = $this->createUser();
         $response = $this->post(route('login'), [
-            'email' => $user->phone,
+            'email'    => $user->phone,
             'password' => 'Milwad123!',
         ]);
 

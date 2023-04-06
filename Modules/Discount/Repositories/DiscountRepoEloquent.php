@@ -19,7 +19,8 @@ class DiscountRepoEloquent implements DiscountRepoEloquentInterface
     /**
      * Find by id.
      *
-     * @param  int|string $id
+     * @param int|string $id
+     *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
      */
     public function findById(int|string $id)

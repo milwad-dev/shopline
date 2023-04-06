@@ -28,7 +28,7 @@ class Slider extends Model
     {
         parent::boot();
 
-        static::deleting(static function($slider) {
+        static::deleting(static function ($slider) {
             $slider->media()->delete();
         });
     }

@@ -78,11 +78,11 @@ class HomeServiceProvider extends ServiceProvider
      */
     private function loadViewFiles(): void
     {
-        $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
+        $this->loadViewsFrom(__DIR__.$this->viewPath, $this->name);
     }
 
     /**
-     * Set menu for panel
+     * Set menu for panel.
      *
      * @return void
      */
@@ -90,8 +90,8 @@ class HomeServiceProvider extends ServiceProvider
     {
         config()->set('panelConfig.menus.home', [
             'title' => 'Home',
-            'icon' => 'home',
-            'url' => route('home.index'),
+            'icon'  => 'home',
+            'url'   => route('home.index'),
         ]);
     }
 
@@ -104,7 +104,7 @@ class HomeServiceProvider extends ServiceProvider
     {
         Route::middleware($this->middlewareRoute)
             ->namespace($this->namespace)
-            ->group(__DIR__ . $this->routePath);
+            ->group(__DIR__.$this->routePath);
     }
 
     /**

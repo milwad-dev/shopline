@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'auth', 'prefix' => 'panel'], static function ($router) {
     $router->patch(
         'advertisings/{id}/update/status/{status}',
-        ['uses' => 'AdvertisingController@updateStatus', 'as' => 'advertisings.update.status'
-    ]);
+        ['uses' => 'AdvertisingController@updateStatus', 'as' => 'advertisings.update.status',
+        ]
+    );
     $router->resource('advertisings', 'AdvertisingController', ['except' => 'show']);
 });

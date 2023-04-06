@@ -14,9 +14,10 @@ class CheckoutController extends Controller
     /**
      * Show checkout view page.
      *
-     * @return Application|Factory|View
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
+     *
+     * @return Application|Factory|View
      */
     public function __invoke()
     {

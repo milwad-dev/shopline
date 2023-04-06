@@ -16,11 +16,11 @@ class PanelTest extends TestCase
      */
     public function test_admin_user_can_see_panel_page()
     {
-         $this->createUserWithLoginWithAssignPermission();
+        $this->createUserWithLoginWithAssignPermission();
 
-         $response = $this->get(route('panel.index'));
+        $response = $this->get(route('panel.index'));
 //         $response->assertViewHas();
-         $response->assertViewIs('Panel::index');
+        $response->assertViewIs('Panel::index');
     }
 
     /**
@@ -39,7 +39,8 @@ class PanelTest extends TestCase
     /**
      * Create user with login.
      *
-     * @param  bool $permission
+     * @param bool $permission
+     *
      * @return void
      */
     private function createUserWithLoginWithAssignPermission(bool $permission = true): void

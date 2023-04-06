@@ -18,7 +18,11 @@ use Spatie\Tags\HasTags;
 
 class Product extends Model implements Viewable
 {
-    use HasFactory, Attributable, HasTags, InteractsWithViews, Commentable;
+    use HasFactory;
+    use Attributable;
+    use HasTags;
+    use InteractsWithViews;
+    use Commentable;
 
     /**
      * Set column in fillable.
@@ -47,7 +51,7 @@ class Product extends Model implements Viewable
      */
     protected $with = ['vendor'];
 
-    # Relations
+    // Relations
     /**
      * Relation to User model, one to many.
      *
@@ -98,7 +102,7 @@ class Product extends Model implements Viewable
         return $this->belongsToMany(User::class, 'product_rates');
     }
 
-    # Booted
+    // Booted
     /**
      * Boot product model.
      */
@@ -106,7 +110,7 @@ class Product extends Model implements Viewable
     {
         parent::boot();
 
-        static::deleting(static function($product) {
+        static::deleting(static function ($product) {
             $product->categories()->delete();
             $product->tags()->delete();
             $product->galleries()->delet();
@@ -114,11 +118,12 @@ class Product extends Model implements Viewable
         });
     }
 
-    # Scopes
+    // Scopes
     /**
      * Scope product popular.
      *
-     * @param  $query
+     * @param $query
+     *
      * @return mixed
      */
     public function scopePopular($query)
@@ -129,7 +134,8 @@ class Product extends Model implements Viewable
     /**
      * Scope active status.
      *
-     * @param  $query
+     * @param $query
+     *
      * @return mixed
      */
     public function scopeActive($query)
@@ -137,7 +143,7 @@ class Product extends Model implements Viewable
         return $query->where('status', ProductStatusEnum::STATUS_ACTIVE->value);
     }
 
-    # Methods
+    // Methods
     /**
      * Get css class for status.
      *
@@ -159,7 +165,8 @@ class Product extends Model implements Viewable
     /**
      * Check category id is in categories product.
      *
-     * @param  int $categoryId
+     * @param int $categoryId
+     *
      * @return mixed
      */
     public function checkSelectedCategoryies(int $categoryId)
@@ -175,8 +182,8 @@ class Product extends Model implements Viewable
     public function path()
     {
         return route('products.details', [
-            'sku' => $this->sku,
-            'slug' => $this->slug
+            'sku'  => $this->sku,
+            'slug' => $this->slug,
         ]);
     }
 
@@ -197,9 +204,9 @@ class Product extends Model implements Viewable
      */
     public function getRate()
     {
-        $totalRate      = $this->rates()->get()->sum('rates');
+        $totalRate = $this->rates()->get()->sum('rates');
         $totalRateCount = $this->rates()->count();
-        $calculateRate  = (int) $totalRate / $totalRateCount;
+        $calculateRate = (int) $totalRate / $totalRateCount;
 
         return (int) round((int) $calculateRate);
     }
