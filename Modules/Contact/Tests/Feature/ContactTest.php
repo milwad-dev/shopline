@@ -12,7 +12,8 @@ use Tests\TestCase;
 
 class ContactTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     /**
      * Get table name.
@@ -25,6 +26,7 @@ class ContactTest extends TestCase
      * Test admin user can see index contact page.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_see_index_contact_page()
@@ -40,6 +42,7 @@ class ContactTest extends TestCase
      * Test usual user can not see index contact page.
      *
      * @test
+     *
      * @return void
      */
     public function usual_user_can_not_see_index_contact_page()
@@ -52,6 +55,7 @@ class ContactTest extends TestCase
      * Test admin user can delete contact.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_delete_contact()
@@ -62,11 +66,11 @@ class ContactTest extends TestCase
 
         $this->delete(route('contacts.destroy', $contact->id))->assertOk();
         $this->assertDatabaseMissing($this->tableName, [
-            'name' => $contact->name,
-            'email' => $contact->email,
-            'phone' => $contact->phone,
+            'name'    => $contact->name,
+            'email'   => $contact->email,
+            'phone'   => $contact->phone,
             'subject' => $contact->subject,
-            'message' => $contact->message
+            'message' => $contact->message,
         ]);
         $this->assertDatabaseCount($this->tableName, 0);
         $this->assertEquals(0, Contact::query()->count());
@@ -76,6 +80,7 @@ class ContactTest extends TestCase
      * Test usual user can delete contact.
      *
      * @test
+     *
      * @return void
      */
     public function usual_user_can_delete_contact()
@@ -86,11 +91,11 @@ class ContactTest extends TestCase
 
         $this->delete(route('contacts.destroy', $contact->id))->assertForbidden();
         $this->assertDatabaseHas($this->tableName, [
-            'name' => $contact->name,
-            'email' => $contact->email,
-            'phone' => $contact->phone,
+            'name'    => $contact->name,
+            'email'   => $contact->email,
+            'phone'   => $contact->phone,
             'subject' => $contact->subject,
-            'message' => $contact->message
+            'message' => $contact->message,
         ]);
         $this->assertDatabaseCount($this->tableName, 1);
         $this->assertEquals(1, Contact::query()->count());
@@ -100,6 +105,7 @@ class ContactTest extends TestCase
      * Test admin user can update is_read to true.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_update_is_read()
@@ -110,12 +116,12 @@ class ContactTest extends TestCase
 
         $this->patch(route('contacts.update-is-read', $contact->id))->assertOk();
         $this->assertDatabaseHas($this->tableName, [
-            'name' => $contact->name,
-            'email' => $contact->email,
-            'phone' => $contact->phone,
+            'name'    => $contact->name,
+            'email'   => $contact->email,
+            'phone'   => $contact->phone,
             'subject' => $contact->subject,
             'message' => $contact->message,
-            'is_read' => 1
+            'is_read' => 1,
         ]);
         $this->assertDatabaseCount($this->tableName, 1);
         $this->assertEquals(1, Contact::query()->count());
@@ -125,6 +131,7 @@ class ContactTest extends TestCase
      * Test usual user can not update is_read to true.
      *
      * @test
+     *
      * @return void
      */
     public function usual_user_can_not_update_is_read()
@@ -143,7 +150,8 @@ class ContactTest extends TestCase
     /**
      * Create user with login & assign permission.
      *
-     * @param  bool $permission
+     * @param bool $permission
+     *
      * @return void
      */
     private function createUserWithLoginWithAssignPermission(bool $permission = true)

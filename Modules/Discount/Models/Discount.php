@@ -26,7 +26,7 @@ class Discount extends Model
         'percent',
         'expire_at',
         'status',
-        'type'
+        'type',
     ];
 
     /**
@@ -36,7 +36,7 @@ class Discount extends Model
      */
     protected $casts = ['expire_at' => 'datetime'];
 
-    # Relations
+    // Relations
 
     /**
      * Relation to Product model, one to many morph.
@@ -55,6 +55,6 @@ class Discount extends Model
      */
     public function payments()
     {
-        return $this->belongsToMany(Payment::class , 'discount_payments');
+        return $this->belongsToMany(Payment::class, 'discount_payments');
     }
 }

@@ -22,12 +22,12 @@ class CategoryFactory extends Factory
         $title = $this->faker->unique()->title;
 
         return [
-            'parent_id' => null,
-            'user_id' => User::factory()->create()->id,
-            'title' => $title,
-            'slug' => ShareService::makeSlug($title),
-            'keywords' => $this->faker->text,
-            'status' => CategoryStatusEnum::STATUS_ACTIVE->value,
+            'parent_id'   => null,
+            'user_id'     => User::factory()->create()->id,
+            'title'       => $title,
+            'slug'        => ShareService::makeSlug($title),
+            'keywords'    => $this->faker->text,
+            'status'      => CategoryStatusEnum::STATUS_ACTIVE->value,
             'description' => null,
         ];
     }

@@ -7,5 +7,4 @@ namespace Modules\Home\Repositories\Advertising;
  */
 interface AdvertisingRepoEloquentInterface
 {
-
 }

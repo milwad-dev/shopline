@@ -2,7 +2,7 @@
 
 namespace Modules\Comment\Enums;
 
-enum CommentStatusEnum:string
+enum CommentStatusEnum: string
 {
     case STATUS_ACTIVE = 'active';
     case STATUS_NEW = 'new';

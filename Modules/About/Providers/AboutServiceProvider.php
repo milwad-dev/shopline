@@ -76,7 +76,7 @@ class AboutServiceProvider extends ServiceProvider
     }
 
     /**
-     * Set menu for panel
+     * Set menu for panel.
      *
      * @return void
      */
@@ -96,7 +96,7 @@ class AboutServiceProvider extends ServiceProvider
      */
     private function loadMigrationFiles(): void
     {
-        $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
+        $this->loadMigrationsFrom(__DIR__.$this->migrationPath);
     }
 
     /**
@@ -106,7 +106,7 @@ class AboutServiceProvider extends ServiceProvider
      */
     private function loadViewFiles(): void
     {
-        $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
+        $this->loadViewsFrom(__DIR__.$this->viewPath, $this->name);
     }
 
     /**
@@ -118,7 +118,7 @@ class AboutServiceProvider extends ServiceProvider
     {
         Route::middleware($this->routeMiddleware)
             ->namespace($this->namespace)
-            ->group(__DIR__ . $this->routePath);
+            ->group(__DIR__.$this->routePath);
     }
 
     /**

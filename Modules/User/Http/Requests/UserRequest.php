@@ -38,8 +38,8 @@ class UserRequest extends FormRequest
 
         // Add id for some rules for update users
         if (request()->method === 'PATCH') {
-            $rules['email'] = ['required', 'email', 'min:3', 'max:190', 'unique:users,email,' . request()->id];
-            $rules['phone'] = ['required', 'numeric', 'digits:11', 'unique:users,phone,' . request()->id, new ValidPhoneNumber()];
+            $rules['email'] = ['required', 'email', 'min:3', 'max:190', 'unique:users,email,'.request()->id];
+            $rules['phone'] = ['required', 'numeric', 'digits:11', 'unique:users,phone,'.request()->id, new ValidPhoneNumber()];
             $rules['password'] = ['nullable', 'string', 'min:8', 'max:150', new ValidStrongPassword()];
         }
 

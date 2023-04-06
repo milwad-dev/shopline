@@ -15,8 +15,9 @@ class MediaFileService
     public static function privateUpload(UploadedFile $file)
     {
         self::$file = $file;
-        self::$dir = "private/";
+        self::$dir = 'private/';
         self::$isPrivate = true;
+
         return self::upload();
     }
 
@@ -34,12 +35,12 @@ class MediaFileService
         $extension = self::normalizeExtension(self::$file);
         foreach (config('mediaFile.MediaTypeServices') as $type => $service) {
             if (in_array($extension, $service['extensions'])) {
-                return self::uploadByHandler(new $service['handler'], $type);
+                return self::uploadByHandler(new $service['handler'](), $type);
             }
         }
     }
 
-    static function stream(Media $media)
+    public static function stream(Media $media)
     {
         foreach (config('mediaFile.MediaTypeServices') as $type => $service) {
             if ($media->type == $type) {
@@ -76,13 +77,16 @@ class MediaFileService
         $media->filename = self::$file->getClientOriginalName();
         $media->is_private = self::$isPrivate;
         $media->save();
+
         return $media;
     }
 
     public static function thumb(Media $media)
     {
         foreach (config('mediaFile.MediaTypeServices') as $type => $service) {
-            if ($media->type == $type) return $service['handler']::thumb($media);
+            if ($media->type == $type) {
+                return $service['handler']::thumb($media);
+            }
         }
     }
 

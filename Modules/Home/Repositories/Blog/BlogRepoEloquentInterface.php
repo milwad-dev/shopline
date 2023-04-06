@@ -10,5 +10,4 @@ namespace Modules\Home\Repositories\Blog;
  */
 interface BlogRepoEloquentInterface
 {
-
 }

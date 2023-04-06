@@ -11,7 +11,10 @@ use Modules\User\Models\User;
 
 class SendResetPasswordMailJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     public User $user;
 

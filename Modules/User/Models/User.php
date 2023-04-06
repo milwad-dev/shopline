@@ -19,7 +19,10 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
+    use HasRoles;
 
     /**
      * Set fillable for columns.
@@ -42,11 +45,11 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'type' => UserTypeEnum::class,
+        'type'              => UserTypeEnum::class,
     ];
 
     /**
-     * Override verify mail notification
+     * Override verify mail notification.
      *
      * @return void
      */
@@ -65,7 +68,7 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->notify(new ResetPasswordRequestNotification());
     }
 
-    # Methods
+    // Methods
     /*
      * Get text email verified at.
      */
@@ -110,7 +113,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return '';
     }
 
-    # Relations
+    // Relations
     /**
      * Relations to Category model, relation is one to many.
      *

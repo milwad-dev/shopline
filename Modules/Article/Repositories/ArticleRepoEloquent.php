@@ -19,7 +19,8 @@ class ArticleRepoEloquent implements ArticleRepoEloquentInterface
     /**
      * Find article by id.
      *
-     * @param  $id
+     * @param $id
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function findById($id)
@@ -30,7 +31,8 @@ class ArticleRepoEloquent implements ArticleRepoEloquentInterface
     /**
      * Delete article by id.
      *
-     * @param  $id
+     * @param $id
+     *
      * @return mixed
      */
     public function delete($id)

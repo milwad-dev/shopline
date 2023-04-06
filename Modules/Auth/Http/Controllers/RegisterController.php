@@ -23,8 +23,9 @@ class RegisterController extends Controller
     /**
      * Register user by request.
      *
-     * @param  RegisterRequest $request
-     * @param  RegisterService $registerService
+     * @param RegisterRequest $request
+     * @param RegisterService $registerService
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function register(RegisterRequest $request, RegisterService $registerService)
@@ -35,6 +36,7 @@ class RegisterController extends Controller
         event(new Registered($user)); // Fire event
 
         ShareService::successToast('You register successfully');
+
         return to_route('home.index');
     }
 }

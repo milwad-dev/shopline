@@ -15,8 +15,10 @@ class CartTest extends TestCase
      * Test login user can add product into cart.
      *
      * @test
-     * @return void
+     *
      * @throws \Exception
+     *
+     * @return void
      */
     public function login_user_can_add_product_into_cart()
     {
@@ -32,8 +34,10 @@ class CartTest extends TestCase
      * Test guest user can not add product into cart.
      *
      * @test
-     * @return void
+     *
      * @throws \Exception
+     *
+     * @return void
      */
     public function guest_user_can_not_add_product_into_cart()
     {
@@ -46,8 +50,10 @@ class CartTest extends TestCase
      * Test login user can delete product from cart.
      *
      * @test
-     * @return void
+     *
      * @throws \Exception
+     *
+     * @return void
      */
     public function login_user_can_delete_product_from_cart()
     {
@@ -67,8 +73,10 @@ class CartTest extends TestCase
      * Test guest user can not delete product from cart.
      *
      * @test
-     * @return void
+     *
      * @throws \Exception
+     *
+     * @return void
      */
     public function guest_user_can_not_delete_product_from_cart()
     {
@@ -87,15 +95,17 @@ class CartTest extends TestCase
      * Test login user can remove all products from cart.
      *
      * @test
-     * @return void
+     *
      * @throws \Exception
+     *
+     * @return void
      */
     public function login_user_can_remove_all_products_from_cart()
     {
         $this->createUserWithLogin();
 
-        $product  = $this->createProduct();
-        $product2 = $this->createProduct("product 2");
+        $product = $this->createProduct();
+        $product2 = $this->createProduct('product 2');
 
         $this->get(route('cart.add', ['id' => $product->id]))->assertRedirect();
         $this->get(route('cart.add', ['id' => $product2->id]))->assertRedirect();
@@ -109,20 +119,22 @@ class CartTest extends TestCase
      * Test guest user can not remove all products from cart.
      *
      * @test
-     * @return void
+     *
      * @throws \Exception
+     *
+     * @return void
      */
     public function guest_user_can_not_remove_all_products_from_cart()
     {
-        $product  = $this->createProduct();
-        $product2 = $this->createProduct("product 2");
+        $product = $this->createProduct();
+        $product2 = $this->createProduct('product 2');
 
         $this->get(route('cart.add', ['id' => $product->id]))->assertRedirect();
         $this->get(route('cart.add', ['id' => $product2->id]))->assertRedirect();
         $this->get(route('cart.delete.all'))->assertRedirect();
     }
 
-    # Private methods
+    // Private methods
 
     /**
      * Create user with login.
@@ -138,11 +150,13 @@ class CartTest extends TestCase
      * Create product.
      *
      * @param string $slug
-     * @return mixed
+     *
      * @throws \Exception
+     *
+     * @return mixed
      */
-    private function createProduct(string $slug = "product"): mixed
+    private function createProduct(string $slug = 'product'): mixed
     {
-        return Product::factory()->create(['slug' => $slug, 'title' => 'product title ' . random_int(1, 99)]);
+        return Product::factory()->create(['slug' => $slug, 'title' => 'product title '.random_int(1, 99)]);
     }
 }

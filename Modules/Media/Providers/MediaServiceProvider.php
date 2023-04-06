@@ -11,10 +11,10 @@ class MediaServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
-        $this->mergeConfigFrom(__DIR__ . "/../Config/mediaFile.php", 'mediaFile');
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
+        $this->mergeConfigFrom(__DIR__.'/../Config/mediaFile.php', 'mediaFile');
 
         Route::middleware(['web', 'verify'])->namespace($this->namespace)
-            ->group(__DIR__ . '/../Routes/media_routes.php');
+            ->group(__DIR__.'/../Routes/media_routes.php');
     }
 }

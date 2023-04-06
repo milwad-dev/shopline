@@ -13,12 +13,10 @@ class SliderRepoEloquent implements SliderRepoEloquentInterface
 
     public function findById($id)
     {
-
     }
 
     public function delete($id)
     {
-
     }
 
     private function query()

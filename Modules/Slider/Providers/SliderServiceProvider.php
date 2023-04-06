@@ -89,7 +89,7 @@ class SliderServiceProvider extends ServiceProvider
      */
     private function loadMigrationFiles(): void
     {
-        $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
+        $this->loadMigrationsFrom(__DIR__.$this->migrationPath);
     }
 
     /**
@@ -99,7 +99,7 @@ class SliderServiceProvider extends ServiceProvider
      */
     private function loadViewFiles(): void
     {
-        $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
+        $this->loadViewsFrom(__DIR__.$this->viewPath, $this->name);
     }
 
     /**
@@ -111,7 +111,7 @@ class SliderServiceProvider extends ServiceProvider
     {
         Route::middleware($this->middlewareRoute)
             ->namespace($this->namespace)
-            ->group(__DIR__ . $this->routePath);
+            ->group(__DIR__.$this->routePath);
     }
 
     /**
@@ -123,8 +123,8 @@ class SliderServiceProvider extends ServiceProvider
     {
         config()->set('panelConfig.menus.sliders', [
             'title' => 'Sliders',
-            'icon' => 'file',
-            'url' => route('sliders.index'),
+            'icon'  => 'file',
+            'url'   => route('sliders.index'),
         ]);
     }
 

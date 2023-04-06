@@ -37,6 +37,6 @@ class CartServiceProvider extends ServiceProvider
     {
         Route::middleware($this->routeMiddleware)
             ->namespace($this->namespace)
-            ->group(__DIR__ . $this->cartPath);
+            ->group(__DIR__.$this->cartPath);
     }
 }

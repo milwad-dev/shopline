@@ -74,7 +74,7 @@ class DiscountServiceProvider extends ServiceProvider
     {
         Route::middleware($this->middlewareRoute)
             ->namespace($this->namespace)
-            ->group(__DIR__ . $this->routePath);
+            ->group(__DIR__.$this->routePath);
     }
 
     /**
@@ -84,7 +84,7 @@ class DiscountServiceProvider extends ServiceProvider
      */
     private function loadViewFiles(): void
     {
-        $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->namespaceDiscountView);
+        $this->loadViewsFrom(__DIR__.$this->viewPath, $this->namespaceDiscountView);
     }
 
     /**
@@ -94,7 +94,7 @@ class DiscountServiceProvider extends ServiceProvider
      */
     private function loadMigrationFiles(): void
     {
-        $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
+        $this->loadMigrationsFrom(__DIR__.$this->migrationPath);
     }
 
     /**

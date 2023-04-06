@@ -17,12 +17,14 @@ use Tests\TestCase;
 
 class ArticleTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     /**
      * Test admin user can see article index page.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_see_article_index_page()
@@ -31,13 +33,14 @@ class ArticleTest extends TestCase
 
         $response = $this->get(route('articles.index'));
         $response->assertViewIs('Article::index');
-        $response->assertViewHas('articles', (new ArticleRepoEloquent)->getLatestArticles()->paginate());
+        $response->assertViewHas('articles', (new ArticleRepoEloquent())->getLatestArticles()->paginate());
     }
 
     /**
      * Test admin user can see article create page.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_see_article_create_page()
@@ -47,13 +50,14 @@ class ArticleTest extends TestCase
 
         $response = $this->get(route('articles.create'));
         $response->assertViewIs('Article::create');
-        $response->assertViewHas('categories', (new CategoryRepoEloquent)->getActiveCategories()->get());
+        $response->assertViewHas('categories', (new CategoryRepoEloquent())->getActiveCategories()->get());
     }
 
     /**
      * Test admin user can see validate store article.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_see_validated_store_article()
@@ -69,6 +73,7 @@ class ArticleTest extends TestCase
      * Test admin user can store article with categories.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_store_article_with_categories()
@@ -77,16 +82,16 @@ class ArticleTest extends TestCase
 
         $title = $this->faker->unique()->title;
         $response = $this->post(route('articles.store'), [
-            'image' => UploadedFile::fake()->image('image.jpg'),
-            'title' => $title,
-            'body' => $this->faker->text,
-            'keywords' => $this->faker->title,
+            'image'       => UploadedFile::fake()->image('image.jpg'),
+            'title'       => $title,
+            'body'        => $this->faker->text,
+            'keywords'    => $this->faker->title,
             'description' => $this->faker->text,
-            'status' => ArticleStatusEnum::STATUS_ACTIVE->value,
-            'categories' => [
+            'status'      => ArticleStatusEnum::STATUS_ACTIVE->value,
+            'categories'  => [
                 Category::factory()->create()->id,
                 Category::factory()->create()->id,
-            ]
+            ],
         ]);
         $response->assertSessionHas('alert');
         $response->assertRedirect(route('articles.index'));
@@ -101,6 +106,7 @@ class ArticleTest extends TestCase
      * Test admin user can see article edit page by id.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_see_article_edit_page()
@@ -117,6 +123,7 @@ class ArticleTest extends TestCase
      * Update article by id.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_update_article_with_categories()
@@ -126,17 +133,17 @@ class ArticleTest extends TestCase
 
         $title = $this->faker->unique()->title;
         $response = $this->patch(route('articles.update', $article->id), [
-            'id' => $article->id,
-            'image' => UploadedFile::fake()->image('image.jpg'),
-            'title' => $title,
-            'body' => $this->faker->text,
-            'keywords' => $this->faker->title,
+            'id'          => $article->id,
+            'image'       => UploadedFile::fake()->image('image.jpg'),
+            'title'       => $title,
+            'body'        => $this->faker->text,
+            'keywords'    => $this->faker->title,
             'description' => $this->faker->text,
-            'status' => ArticleStatusEnum::STATUS_ACTIVE->value,
-            'categories' => [
+            'status'      => ArticleStatusEnum::STATUS_ACTIVE->value,
+            'categories'  => [
                 Category::factory()->create()->id,
                 Category::factory()->create()->id,
-            ]
+            ],
         ]);
         $response->assertSessionHas('alert');
         $response->assertRedirect(route('articles.index'));
@@ -151,6 +158,7 @@ class ArticleTest extends TestCase
      * Delete article by id.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_delete_article_by_id()
@@ -166,6 +174,7 @@ class ArticleTest extends TestCase
      * Change article status by id to active.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_change_article_status_to_active()
@@ -174,11 +183,12 @@ class ArticleTest extends TestCase
         $article = Article::factory()->create();
         $status = ArticleStatusEnum::STATUS_ACTIVE->value;
 
-        $this->patch(route('articles.change.status',
-        ['id' => $article->id, 'status' => $status]
+        $this->patch(route(
+            'articles.change.status',
+            ['id' => $article->id, 'status' => $status]
         ))->assertOk();
         $this->assertDatabaseHas('articles', [
-            'status' => $status
+            'status' => $status,
         ]);
     }
 
@@ -186,6 +196,7 @@ class ArticleTest extends TestCase
      * Change article status by id to in progress.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_change_article_status_to_in_progress()
@@ -194,11 +205,12 @@ class ArticleTest extends TestCase
         $article = Article::factory()->create();
         $status = ArticleStatusEnum::STATUS_IN_PROGRESS->value;
 
-        $this->patch(route('articles.change.status',
+        $this->patch(route(
+            'articles.change.status',
             ['id' => $article->id, 'status' => $status]
         ))->assertOk();
         $this->assertDatabaseHas('articles', [
-            'status' => $status
+            'status' => $status,
         ]);
     }
 
@@ -206,6 +218,7 @@ class ArticleTest extends TestCase
      * Change article status by id to inactive.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_change_article_status_to_inactive()
@@ -214,11 +227,12 @@ class ArticleTest extends TestCase
         $article = Article::factory()->create();
         $status = ArticleStatusEnum::STATUS_INACTIVE->value;
 
-        $this->patch(route('articles.change.status',
+        $this->patch(route(
+            'articles.change.status',
             ['id' => $article->id, 'status' => $status]
         ))->assertOk();
         $this->assertDatabaseHas('articles', [
-            'status' => $status
+            'status' => $status,
         ]);
     }
 
@@ -226,6 +240,7 @@ class ArticleTest extends TestCase
      * Change article status by id to active.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_cant_change_article_status_to_except_main_statuses()
@@ -234,11 +249,12 @@ class ArticleTest extends TestCase
         $article = Article::factory()->create();
         $status = 'test';
 
-        $this->patch(route('articles.change.status',
+        $this->patch(route(
+            'articles.change.status',
             ['id' => $article->id, 'status' => $status]
         ))->assertStatus(500);
         $this->assertDatabaseMissing('articles', [
-            'status' => $status
+            'status' => $status,
         ]);
     }
 

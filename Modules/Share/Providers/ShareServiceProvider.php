@@ -54,7 +54,7 @@ class ShareServiceProvider extends ServiceProvider
     private function loadCommandFiles()
     {
         $this->commands([
-            MakeModule::class
+            MakeModule::class,
         ]);
     }
 
@@ -66,7 +66,7 @@ class ShareServiceProvider extends ServiceProvider
     private function loadFactoriesFiles()
     {
         Factory::guessFactoryNamesUsing(static function (string $modelName) {
-            return 'Modules\Share\Database\\Factories\\' . class_basename($modelName) . 'Factory';
+            return 'Modules\Share\Database\\Factories\\'.class_basename($modelName).'Factory';
         });
     }
 
@@ -77,7 +77,7 @@ class ShareServiceProvider extends ServiceProvider
      */
     private function loadMigrationFiles()
     {
-        $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
+        $this->loadMigrationsFrom(__DIR__.$this->migrationPath);
     }
 
     /**
@@ -87,7 +87,7 @@ class ShareServiceProvider extends ServiceProvider
      */
     private function loadViewFiles(): void
     {
-        $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
+        $this->loadViewsFrom(__DIR__.$this->viewPath, $this->name);
     }
 
     /**
@@ -97,7 +97,7 @@ class ShareServiceProvider extends ServiceProvider
      */
     private function loadConfigFiles()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../Config/config.php', 'shareConfig');
+        $this->mergeConfigFrom(__DIR__.'/../Config/config.php', 'shareConfig');
     }
 
     /**

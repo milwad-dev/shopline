@@ -8,7 +8,8 @@ use Illuminate\Queue\SerializesModels;
 
 class ResetPasswordRequestMail extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     public string $code;
 
@@ -21,6 +22,6 @@ class ResetPasswordRequestMail extends Mailable
     {
         return $this
             ->markdown('Auth::Mails.reset-password-verify-code')
-            ->subject('Reset password | ' . config('app.name'));
+            ->subject('Reset password | '.config('app.name'));
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Modules\Product\Enums;
 
-enum ProductRateEnum:int
+enum ProductRateEnum: int
 {
     case RATE_VERY_LOW = 1;
     case RATE_LOW = 2;

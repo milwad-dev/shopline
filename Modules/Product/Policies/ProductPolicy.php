@@ -23,7 +23,8 @@ class ProductPolicy
     /**
      * Check user have permission.
      *
-     * @param  User $user
+     * @param User $user
+     *
      * @return bool
      */
     public function manage(User $user)

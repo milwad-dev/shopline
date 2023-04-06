@@ -20,7 +20,8 @@ class CategoryRepoEloquent implements CategoryRepoEloquentInterface
     /**
      * Find category by id.
      *
-     * @param  $id
+     * @param $id
+     *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
      */
     public function findById($id)
@@ -31,7 +32,8 @@ class CategoryRepoEloquent implements CategoryRepoEloquentInterface
     /**
      * Delete category by id.
      *
-     * @param  $id
+     * @param $id
+     *
      * @return mixed
      */
     public function delete($id)
@@ -42,8 +44,9 @@ class CategoryRepoEloquent implements CategoryRepoEloquentInterface
     /**
      * Change status by id.
      *
-     * @param  $id
-     * @param  string $status
+     * @param        $id
+     * @param string $status
+     *
      * @return int
      */
     public function changeStatus($id, string $status)

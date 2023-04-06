@@ -16,12 +16,13 @@ class Contact extends Model
      */
     protected $fillable = ['name', 'email', 'phone', 'subject', 'message', 'is_read'];
 
-    # Scopes
+    // Scopes
 
     /**
      * Scope is_read is true.
      *
-     * @param  $query
+     * @param $query
+     *
      * @return mixed
      */
     public function scopeRead($query)
@@ -32,7 +33,8 @@ class Contact extends Model
     /**
      * Scope is_read is false.
      *
-     * @param  $query
+     * @param $query
+     *
      * @return mixed
      */
     public function scopeNotRead($query)
@@ -40,7 +42,7 @@ class Contact extends Model
         return $query->where('is_read', 0);
     }
 
-    # Methods
+    // Methods
 
     /**
      * Get created_at.

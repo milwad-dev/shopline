@@ -17,7 +17,7 @@ trait Commentable
      */
     public function comments()
     {
-        return $this->morphMany(Comment::class , 'commentable');
+        return $this->morphMany(Comment::class, 'commentable');
     }
 
     /**
@@ -28,7 +28,7 @@ trait Commentable
     public function activeComments()
     {
         return $this->comments() // Recursive
-            ->where('status' , CommentStatusEnum::STATUS_ACTIVE->value)
+            ->where('status', CommentStatusEnum::STATUS_ACTIVE->value)
             ->whereNull('comment_id')
             ->with('comments');
     }

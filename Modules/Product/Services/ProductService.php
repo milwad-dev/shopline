@@ -11,9 +11,11 @@ class ProductService implements ProductServiceInterface
     /**
      * Store product with request.
      *
-     * @param  array $data
-     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
+     * @param array $data
+     *
      * @throws \Exception
+     *
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
      */
     public function store(array $data)
     {
@@ -36,8 +38,9 @@ class ProductService implements ProductServiceInterface
     /**
      * Update product with request by id.
      *
-     * @param  $request
-     * @param  $id
+     * @param $request
+     * @param $id
+     *
      * @return mixed
      */
     public function update($request, $id)
@@ -59,8 +62,9 @@ class ProductService implements ProductServiceInterface
     /**
      * Attach categories to product.
      *
-     * @param  $categories
-     * @param  $product
+     * @param $categories
+     * @param $product
+     *
      * @return void
      */
     public function attachCategoriesToProduct($categories, $product)
@@ -73,8 +77,9 @@ class ProductService implements ProductServiceInterface
     /**
      * Attach categories to product.
      *
-     * @param  $galleries
-     * @param  $product
+     * @param $galleries
+     * @param $product
+     *
      * @return void
      */
     public function attachGalleriesToProduct($galleries, $product)
@@ -87,8 +92,9 @@ class ProductService implements ProductServiceInterface
     /**
      * Attach attributes to product.
      *
-     * @param  $attributes
-     * @param  $product
+     * @param $attributes
+     * @param $product
+     *
      * @return void
      */
     public function attachAttributesToProduct($attributes, $product)
@@ -101,8 +107,9 @@ class ProductService implements ProductServiceInterface
     /**
      * Attach tags to product.
      *
-     * @param  array $tags
-     * @param  $product
+     * @param array $tags
+     * @param       $product
+     *
      * @return mixed
      */
     public function attachTagsToProduct(array $tags, $product)
@@ -113,8 +120,9 @@ class ProductService implements ProductServiceInterface
     /**
      * First or create categories product.
      *
-     * @param  array $categories
-     * @param  $product
+     * @param array $categories
+     * @param       $product
+     *
      * @return void
      */
     public function firstOrCreateCategoriesToProduct(array $categories, $product)

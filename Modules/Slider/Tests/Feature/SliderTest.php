@@ -14,12 +14,14 @@ use Tests\TestCase;
 
 class SliderTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     /**
      * Test admin user can see slider index page.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_see_slider_index_page()
@@ -35,6 +37,7 @@ class SliderTest extends TestCase
      * Test usual user can not see slider index page.
      *
      * @test
+     *
      * @return void
      */
     public function usual_user_can_not_see_slider_index_page()
@@ -49,6 +52,7 @@ class SliderTest extends TestCase
      * Test admin user can see slider create page.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_see_slider_create_page()
@@ -63,6 +67,7 @@ class SliderTest extends TestCase
      * Test usual user can not see slider create page.
      *
      * @test
+     *
      * @return void
      */
     public function usual_user_can_not_see_slider_create_page()
@@ -77,8 +82,10 @@ class SliderTest extends TestCase
      * Test admin user can store slider.
      *
      * @test
-     * @return void
+     *
      * @throws \Exception
+     *
+     * @return void
      */
     public function admin_user_can_store_slider()
     {
@@ -89,18 +96,18 @@ class SliderTest extends TestCase
         $title_color = random_int(111111, 9999999);
 
         $response = $this->post(route('sliders.store'), [
-            'image' => UploadedFile::fake()->image('google.jpg'),
-            'link' => $link,
-            'status' => SliderStatusEnum::STATUS_ACTIVE->value,
-            'title' => $title,
+            'image'       => UploadedFile::fake()->image('google.jpg'),
+            'link'        => $link,
+            'status'      => SliderStatusEnum::STATUS_ACTIVE->value,
+            'title'       => $title,
             'title_color' => $title_color,
         ]);
         $response->assertSessionHas('alert');
         $response->assertRedirect(route('sliders.index'));
 
         $this->assertDatabaseHas('sliders', [
-            'link' => $link,
-            'title' => $title,
+            'link'        => $link,
+            'title'       => $title,
             'title_color' => $title_color,
         ]);
         $this->assertDatabaseCount('sliders', 1);
@@ -110,18 +117,20 @@ class SliderTest extends TestCase
      * Test usual user can not store slider.
      *
      * @test
-     * @return void
+     *
      * @throws \Exception
+     *
+     * @return void
      */
     public function usual_user_can_not_store_slider()
     {
         $this->createUserWithLoginWithAssignPermission(false);
 
         $response = $this->post(route('sliders.store'), [
-            'image' => UploadedFile::fake()->image('google.jpg'),
-            'link' => 'google.com',
-            'status' => SliderStatusEnum::STATUS_ACTIVE->value,
-            'title' => $this->faker->title,
+            'image'       => UploadedFile::fake()->image('google.jpg'),
+            'link'        => 'google.com',
+            'status'      => SliderStatusEnum::STATUS_ACTIVE->value,
+            'title'       => $this->faker->title,
             'title_color' => random_int(111111, 9999999),
         ]);
         $response->assertForbidden();
@@ -131,6 +140,7 @@ class SliderTest extends TestCase
      * Test store slider validated successful.
      *
      * @test
+     *
      * @return void
      */
     public function store_slider_validated_successful()
@@ -148,6 +158,7 @@ class SliderTest extends TestCase
      * Test admin user can edit slider by id.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_edit_slider()
@@ -164,6 +175,7 @@ class SliderTest extends TestCase
      * Test usual user can not edit slider by id.
      *
      * @test
+     *
      * @return void
      */
     public function usual_user_can_not_edit_slider()
@@ -179,8 +191,10 @@ class SliderTest extends TestCase
      * Test admin user can update slider by id.
      *
      * @test
-     * @return void
+     *
      * @throws \Exception
+     *
+     * @return void
      */
     public function admin_user_can_update_slider()
     {
@@ -200,7 +214,7 @@ class SliderTest extends TestCase
 
         $this->assertDatabaseCount('sliders', 1);
         $this->assertDatabaseHas('sliders', [
-            'link' => $link,
+            'link'   => $link,
             'status' => SliderStatusEnum::STATUS_INACTIVE->value,
         ]);
     }
@@ -209,8 +223,10 @@ class SliderTest extends TestCase
      * Test usual user can not update slider by id.
      *
      * @test
-     * @return void
+     *
      * @throws \Exception
+     *
+     * @return void
      */
     public function usual_user_can_not_update_slider()
     {
@@ -218,9 +234,9 @@ class SliderTest extends TestCase
 
         $slider = Slider::factory()->create();
         $response = $this->patch(route('sliders.update', $slider->id), [
-            'image'  => UploadedFile::fake()->image('slider.jpg'),
-            'link'   => 'milwad.ir',
-            'status' => SliderStatusEnum::STATUS_INACTIVE->value,
+            'image'         => UploadedFile::fake()->image('slider.jpg'),
+            'link'          => 'milwad.ir',
+            'status'        => SliderStatusEnum::STATUS_INACTIVE->value,
             'title'         => $this->faker->title,
             'title_color'   => random_int(111111, 9999999),
         ]);
@@ -231,6 +247,7 @@ class SliderTest extends TestCase
      * Test update slider validated successful.
      *
      * @test
+     *
      * @return void
      */
     public function update_slider_validated_successful()
@@ -249,6 +266,7 @@ class SliderTest extends TestCase
      * Test admin user can delete slider.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_delete_slider()
@@ -266,6 +284,7 @@ class SliderTest extends TestCase
      * Test usual user can not delete slider.
      *
      * @test
+     *
      * @return void
      */
     public function usual_user_can_not_delete_slider()
@@ -283,6 +302,7 @@ class SliderTest extends TestCase
      * Test admin user can update status to active slider.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_update_status_to_active_slider()
@@ -301,6 +321,7 @@ class SliderTest extends TestCase
      * Test usual user can update status to active slider.
      *
      * @test
+     *
      * @return void
      */
     public function usual_user_can_update_status_to_active_slider()
@@ -319,6 +340,7 @@ class SliderTest extends TestCase
      * Test admin user can update status to inactive slider.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_update_status_to_inactive_slider()
@@ -337,6 +359,7 @@ class SliderTest extends TestCase
      * Test usual user can update status to inactive slider.
      *
      * @test
+     *
      * @return void
      */
     public function usual_user_can_update_status_to_inactive_slider()
@@ -354,7 +377,8 @@ class SliderTest extends TestCase
     /**
      * Create user with login.
      *
-     * @param  bool $permission
+     * @param bool $permission
+     *
      * @return void
      */
     private function createUserWithLoginWithAssignPermission(bool $permission = true): void

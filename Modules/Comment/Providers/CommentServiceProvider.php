@@ -47,7 +47,7 @@ class CommentServiceProvider extends ServiceProvider
     private string $name = 'Comment';
 
     /**
-     * Get route middleware/
+     * Get route middleware/.
      *
      * @var array|string[]
      */
@@ -109,7 +109,7 @@ class CommentServiceProvider extends ServiceProvider
      */
     private function loadMigrationFiles(): void
     {
-        $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
+        $this->loadMigrationsFrom(__DIR__.$this->migrationPath);
     }
 
     /**
@@ -119,7 +119,7 @@ class CommentServiceProvider extends ServiceProvider
      */
     private function loadViewFiles(): void
     {
-        $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
+        $this->loadViewsFrom(__DIR__.$this->viewPath, $this->name);
     }
 
     /**
@@ -131,7 +131,7 @@ class CommentServiceProvider extends ServiceProvider
     {
         Route::middleware($this->routeMiddleware)
             ->namespace($this->namespace)
-            ->group(__DIR__ . $this->routePath);
+            ->group(__DIR__.$this->routePath);
     }
 
     /**

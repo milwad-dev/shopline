@@ -12,7 +12,8 @@ use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     /**
      * Admin user can see list of the latest users.
@@ -94,10 +95,10 @@ class UserTest extends TestCase
         $phone = 12345678900;
 
         $response = $this->post(route('users.store'), [
-            'name' => $this->faker->name,
-            'email' => $email,
-            'phone' => $phone,
-            'type' => UserTypeEnum::TYPE_CUSTOMER->value,
+            'name'     => $this->faker->name,
+            'email'    => $email,
+            'phone'    => $phone,
+            'type'     => UserTypeEnum::TYPE_CUSTOMER->value,
             'password' => 'Milwad123!',
         ]);
         $response->assertRedirect(route('users.index'));
@@ -105,8 +106,8 @@ class UserTest extends TestCase
 
         $this->assertDatabaseCount('users', 2);
         $this->assertDatabaseHas('users', [
-             'email' => $email,
-             'phone' => $phone,
+            'email' => $email,
+            'phone' => $phone,
         ]);
     }
 
@@ -123,10 +124,10 @@ class UserTest extends TestCase
         $phone = 12345678900;
 
         $response = $this->post(route('users.store'), [
-            'name' => $this->faker->name,
-            'email' => $email,
-            'phone' => $phone,
-            'type' => UserTypeEnum::TYPE_CUSTOMER->value,
+            'name'     => $this->faker->name,
+            'email'    => $email,
+            'phone'    => $phone,
+            'type'     => UserTypeEnum::TYPE_CUSTOMER->value,
             'password' => 'Milwad123!',
         ]);
         $response->assertStatus(403);
@@ -250,7 +251,8 @@ class UserTest extends TestCase
     /**
      * Create user with login.
      *
-     * @param  bool $permission
+     * @param bool $permission
+     *
      * @return void
      */
     private function createUserWithLoginWithAssignPermission(bool $permission = true): void

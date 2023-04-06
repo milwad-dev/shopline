@@ -11,6 +11,7 @@ class AboutTest extends TestCase
      * Test guest user can see about page.
      *
      * @test
+     *
      * @return void
      */
     public function guest_user_can_see_about_page()
@@ -23,6 +24,7 @@ class AboutTest extends TestCase
      * Test login user can see about page.
      *
      * @test
+     *
      * @return void
      */
     public function login_user_can_see_about_page()

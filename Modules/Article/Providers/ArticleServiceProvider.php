@@ -101,7 +101,7 @@ class ArticleServiceProvider extends ServiceProvider
     {
         Route::middleware($this->middlewareRoute)
             ->namespace($this->namespace)
-            ->group(__DIR__ . $this->routePath);
+            ->group(__DIR__.$this->routePath);
     }
 
     /**
@@ -111,7 +111,7 @@ class ArticleServiceProvider extends ServiceProvider
      */
     private function loadViewFiles(): void
     {
-        $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
+        $this->loadViewsFrom(__DIR__.$this->viewPath, $this->name);
     }
 
     /**
@@ -121,7 +121,7 @@ class ArticleServiceProvider extends ServiceProvider
      */
     private function loadMigrationFiles(): void
     {
-        $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
+        $this->loadMigrationsFrom(__DIR__.$this->migrationPath);
     }
 
     /**
@@ -133,8 +133,8 @@ class ArticleServiceProvider extends ServiceProvider
     {
         config()->set('panelConfig.menus.articles', [
             'title' => 'Article',
-            'icon' => 'book',
-            'url' => route('articles.index'),
+            'icon'  => 'book',
+            'url'   => route('articles.index'),
         ]);
     }
 

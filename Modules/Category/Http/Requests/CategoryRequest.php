@@ -26,15 +26,15 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'parent_id' => 'nullable|exists:categories,id',
-            'title' => 'required|string|min:3|max:255|unique:categories,title',
-            'keywords' => 'nullable|string|min:3|max:255',
-            'status' => ['required', 'string', new Enum(CategoryStatusEnum::class)],
+            'parent_id'   => 'nullable|exists:categories,id',
+            'title'       => 'required|string|min:3|max:255|unique:categories,title',
+            'keywords'    => 'nullable|string|min:3|max:255',
+            'status'      => ['required', 'string', new Enum(CategoryStatusEnum::class)],
             'description' => 'nullable|string|min:3',
         ];
 
         if (request()->method === 'PATCH') {
-            $rules['title'] = 'required|string|min:3|max:255|unique:categories,title,' . request()->id;
+            $rules['title'] = 'required|string|min:3|max:255|unique:categories,title,'.request()->id;
         }
 
         return $rules;

@@ -27,10 +27,12 @@ class CartController extends Controller
     /**
      * Add product into session by product id & show success messag with redirect.
      *
-     * @param  $productId
-     * @return \Illuminate\Http\RedirectResponse
+     * @param $productId
+     *
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function add($productId)
     {
@@ -42,10 +44,12 @@ class CartController extends Controller
     /**
      * Delete product from session by product id.
      *
-     * @param  $productId
-     * @return \Illuminate\Http\RedirectResponse
+     * @param $productId
+     *
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function delete($productId)
     {

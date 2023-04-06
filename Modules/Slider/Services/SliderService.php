@@ -9,7 +9,8 @@ class SliderService implements SliderServiceInterface
     /**
      * Store slider by data.
      *
-     * @param  array $data
+     * @param array $data
+     *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
      */
     public function store(array $data)
@@ -27,8 +28,9 @@ class SliderService implements SliderServiceInterface
     /**
      * Update slider by id & data.
      *
-     * @param  array $data
-     * @param  Slider $slider
+     * @param array  $data
+     * @param Slider $slider
+     *
      * @return bool
      */
     public function update(array $data, Slider $slider)
@@ -45,8 +47,9 @@ class SliderService implements SliderServiceInterface
     /**
      * Update status.
      *
-     * @param  Slider $slider
-     * @param  string $status
+     * @param Slider $slider
+     * @param string $status
+     *
      * @return bool
      */
     public function updateStatus(Slider $slider, string $status)

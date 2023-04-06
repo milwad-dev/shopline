@@ -23,7 +23,8 @@ class RolePermissionPolicy
     /**
      * Check user have permissions.
      *
-     * @param  User $user
+     * @param User $user
+     *
      * @return bool
      */
     public function manage(User $user)

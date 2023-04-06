@@ -89,7 +89,7 @@ class CategoryServiceProvider extends ServiceProvider
      */
     private function loadMigrationFiles(): void
     {
-        $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
+        $this->loadMigrationsFrom(__DIR__.$this->migrationPath);
     }
 
     /**
@@ -99,7 +99,7 @@ class CategoryServiceProvider extends ServiceProvider
      */
     private function loadViewFiles(): void
     {
-        $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
+        $this->loadViewsFrom(__DIR__.$this->viewPath, $this->name);
     }
 
     /**
@@ -111,7 +111,7 @@ class CategoryServiceProvider extends ServiceProvider
     {
         Route::middleware($this->middlewareRoute)
             ->namespace($this->namespace)
-            ->group(__DIR__ . $this->routePath);
+            ->group(__DIR__.$this->routePath);
     }
 
     /**
@@ -125,7 +125,7 @@ class CategoryServiceProvider extends ServiceProvider
     }
 
     /**
-     * Set menu for panel
+     * Set menu for panel.
      *
      * @return void
      */
@@ -133,8 +133,8 @@ class CategoryServiceProvider extends ServiceProvider
     {
         config()->set('panelConfig.menus.categories', [
             'title' => 'Category',
-            'icon' => 'git-commit',
-            'url' => route('categories.index'),
+            'icon'  => 'git-commit',
+            'url'   => route('categories.index'),
         ]);
     }
 

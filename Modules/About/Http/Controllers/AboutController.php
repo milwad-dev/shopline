@@ -29,33 +29,39 @@ class AboutController extends Controller
     /**
      * Get all abouts with show index about page.
      *
-     * @return Application|Factory|View
      * @throws AuthorizationException
+     *
+     * @return Application|Factory|View
      */
     public function index()
     {
         $this->authorize('manage', $this->class);
+
         return view('About::index', ['abouts' => About::query()->latest()->get()]);
     }
 
     /**
      * Show create about page.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws AuthorizationException
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
         $this->authorize('manage', $this->class);
+
         return view('About::create');
     }
 
     /**
      * Store about.
      *
-     * @param  AboutRequest $request
-     * @return RedirectResponse
+     * @param AboutRequest $request
+     *
      * @throws AuthorizationException
+     *
+     * @return RedirectResponse
      */
     public function store(AboutRequest $request)
     {
@@ -71,23 +77,28 @@ class AboutController extends Controller
     /**
      * Show edit about page.
      *
-     * @param  About $about
-     * @return Application|Factory|View
+     * @param About $about
+     *
      * @throws AuthorizationException
+     *
+     * @return Application|Factory|View
      */
     public function edit(About $about)
     {
         $this->authorize('manage', $this->class);
+
         return view('About::edit', compact('about'));
     }
 
     /**
      * Update about by route model binding.
      *
-     * @param  AboutRequest $request
-     * @param  About $about
-     * @return RedirectResponse
+     * @param AboutRequest $request
+     * @param About        $about
+     *
      * @throws AuthorizationException
+     *
+     * @return RedirectResponse
      */
     public function update(AboutRequest $request, About $about)
     {

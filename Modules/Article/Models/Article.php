@@ -16,7 +16,9 @@ use Spatie\Tags\HasTags;
 
 class Article extends Model
 {
-    use HasFactory, HasTags, Commentable;
+    use HasFactory;
+    use HasTags;
+    use Commentable;
 
     /**
      * Add columns to fillable.
@@ -67,7 +69,8 @@ class Article extends Model
     /**
      * Scope active status.
      *
-     * @param  $query
+     * @param $query
+     *
      * @return mixed
      */
     public function scopeActive($query)
@@ -83,7 +86,7 @@ class Article extends Model
     {
         parent::boot();
 
-        static::deleting(static function($article) {
+        static::deleting(static function ($article) {
             $article->categories()->delete();
             $article->tags()->delete();
         });
@@ -121,7 +124,8 @@ class Article extends Model
     /**
      * Check category in select.
      *
-     * @param  int $id
+     * @param int $id
+     *
      * @return bool
      */
     public function checkSelectCategory(int $id)
@@ -148,7 +152,8 @@ class Article extends Model
     /**
      * Get created at by format.
      *
-     * @param  string $format
+     * @param string $format
+     *
      * @return string
      */
     public function getCreatedAtByFormat(string $format = 'Y-m-d')

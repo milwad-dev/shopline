@@ -17,6 +17,7 @@ class CommentTest extends TestCase
      * Test admin user can see comments index page.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_see_comments_index_page()
@@ -32,6 +33,7 @@ class CommentTest extends TestCase
      * Test usual user can not see comments index page.
      *
      * @test
+     *
      * @return void
      */
     public function usual_user_can_not_see_comments_index_page()
@@ -44,6 +46,7 @@ class CommentTest extends TestCase
      * Test admin user can delete comment.
      *
      * @test
+     *
      * @return void
      */
     public function admin_user_can_delete_comment()
@@ -62,6 +65,7 @@ class CommentTest extends TestCase
      * Test usual user can not delete comment.
      *
      * @test
+     *
      * @return void
      */
     public function usual_user_can_not_delete_comment()
@@ -79,7 +83,8 @@ class CommentTest extends TestCase
     /**
      * Create user with login & assign permission.
      *
-     * @param  bool $permission
+     * @param bool $permission
+     *
      * @return void
      */
     private function createUserWithLoginWithAssignPermissionWithAssignPermission(bool $permission = true)

@@ -74,7 +74,7 @@ class PaymentServiceProvider extends ServiceProvider
      */
     private function loadMigrationFiles(): void
     {
-        $this->loadMigrationsFrom(__DIR__ . $this->migrationPath);
+        $this->loadMigrationsFrom(__DIR__.$this->migrationPath);
     }
 
     /**
@@ -84,7 +84,7 @@ class PaymentServiceProvider extends ServiceProvider
      */
     private function loadViewFiles(): void
     {
-        $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->namespaceUserView);
+        $this->loadViewsFrom(__DIR__.$this->viewPath, $this->namespaceUserView);
     }
 
     /**
@@ -96,7 +96,7 @@ class PaymentServiceProvider extends ServiceProvider
     {
         Route::middleware($this->middlewareRoute)
             ->namespace($this->namespace)
-            ->group(__DIR__ . $this->routePath);
+            ->group(__DIR__.$this->routePath);
     }
 
     /**
@@ -116,7 +116,7 @@ class PaymentServiceProvider extends ServiceProvider
      */
     private function setGateway()
     {
-        $this->app->singleton(Gateway::class , static function ($app) {
+        $this->app->singleton(Gateway::class, static function ($app) {
 //            return new PayClass();
         });
     }

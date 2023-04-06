@@ -22,8 +22,9 @@ class ProductRepoEloquent implements ProductRepoEloquentInterface
     /**
      * Find product by sku & slug.
      *
-     * @param  $sku
-     * @param  $slug
+     * @param $sku
+     * @param $slug
+     *
      * @return mixed
      */
     public function findProductBySkuWithSlug($sku, $slug)
@@ -40,12 +41,14 @@ class ProductRepoEloquent implements ProductRepoEloquentInterface
     /**
      * Get similar products by categories.
      *
-     * @param  array|object $categories
+     * @param array|object $categories
+     *
      * @return Collection
      */
     public function getSimilarProductsByCategories(array|object $categories)
     {
         $categories = collect($categories)->pluck('title')->toArray();
+
         return Product::query()
             ->with('first_media')
             ->withCount('rates')

@@ -84,7 +84,7 @@ class PanelServiceProvider extends ServiceProvider
      */
     private function loadViewFiles(): void
     {
-        $this->loadViewsFrom(__DIR__ . $this->viewPath, $this->name);
+        $this->loadViewsFrom(__DIR__.$this->viewPath, $this->name);
     }
 
     /**
@@ -94,7 +94,7 @@ class PanelServiceProvider extends ServiceProvider
      */
     private function loadConfigFiles(): void
     {
-        $this->mergeConfigFrom(__DIR__ . $this->configPath, 'panelConfig');
+        $this->mergeConfigFrom(__DIR__.$this->configPath, 'panelConfig');
     }
 
     /**
@@ -106,7 +106,7 @@ class PanelServiceProvider extends ServiceProvider
     {
         Route::middleware($this->middlewareRoute)
             ->namespace($this->namespace)
-            ->group(__DIR__ . $this->routePath);
+            ->group(__DIR__.$this->routePath);
     }
 
     /**
@@ -128,8 +128,8 @@ class PanelServiceProvider extends ServiceProvider
     {
         config()->set('panelConfig.menus.panel', [
             'title' => 'Panel',
-            'icon' => 'home',
-            'url' => route('panel.index'),
+            'icon'  => 'home',
+            'url'   => route('panel.index'),
         ]);
     }
 }

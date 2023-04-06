@@ -22,7 +22,8 @@ class LoginController extends Controller
     /**
      * Login user by request.
      *
-     * @param  LoginRequest $request
+     * @param LoginRequest $request
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function login(LoginRequest $request)
@@ -32,17 +33,20 @@ class LoginController extends Controller
 
         if (Auth::attempt([$field => $email, 'password' => $request->password])) {
             ShareService::successToast('Login successfully');
+
             return to_route('home.index');
         }
 
         ShareService::errorToast('Login unsuccessfully');
+
         return back();
     }
 
     /**
      * Filter string to give email or phone for login.
      *
-     * @param  string $field
+     * @param string $field
+     *
      * @return string
      */
     private function filterEmail(string $field): string

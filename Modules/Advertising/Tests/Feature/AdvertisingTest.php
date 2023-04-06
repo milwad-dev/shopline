@@ -15,7 +15,8 @@ use Tests\TestCase;
 
 class AdvertisingTest extends TestCase
 {
-    use RefreshDatabase, WithFaker;
+    use RefreshDatabase;
+    use WithFaker;
 
     /**
      * Test admin user can see advertising index page.
@@ -97,21 +98,21 @@ class AdvertisingTest extends TestCase
         $title = $this->faker->title;
 
         $response = $this->post(route('advertisings.store'), [
-            'image' => UploadedFile::fake()->image('advertisings.jpg'),
-            'link' => $link,
-            'title' => $title,
+            'image'    => UploadedFile::fake()->image('advertisings.jpg'),
+            'link'     => $link,
+            'title'    => $title,
             'location' => AdvertisingLocationEnum::LOCATION_BANNER->value,
-            'status' => AdvertisingStatusEnum::STATUS_ACTIVE->value,
+            'status'   => AdvertisingStatusEnum::STATUS_ACTIVE->value,
         ]);
         $response->assertSessionHas('alert');
         $response->assertRedirect(route('advertisings.index'));
 
         $this->assertDatabaseCount('advertisings', 1);
         $this->assertDatabaseHas('advertisings', [
-            'link' => $link,
-            'title' => $title,
+            'link'     => $link,
+            'title'    => $title,
             'location' => AdvertisingLocationEnum::LOCATION_BANNER->value,
-            'status' => AdvertisingStatusEnum::STATUS_ACTIVE->value,
+            'status'   => AdvertisingStatusEnum::STATUS_ACTIVE->value,
         ]);
     }
 
@@ -125,17 +126,17 @@ class AdvertisingTest extends TestCase
         $this->createUserWithLoginWithAssignPermissionWithAssignPermission(false);
 
         $this->post(route('advertisings.store'), [
-            'image' => UploadedFile::fake()->image('advertisings.jpg'),
-            'link' => $this->faker->url,
-            'title' => $this->faker->title,
+            'image'    => UploadedFile::fake()->image('advertisings.jpg'),
+            'link'     => $this->faker->url,
+            'title'    => $this->faker->title,
             'location' => AdvertisingLocationEnum::LOCATION_BANNER->value,
-            'status' => AdvertisingStatusEnum::STATUS_ACTIVE->value,
+            'status'   => AdvertisingStatusEnum::STATUS_ACTIVE->value,
         ])->assertForbidden();
 
         $this->assertDatabaseCount('advertisings', 0);
         $this->assertDatabaseMissing('advertisings', [
             'location' => AdvertisingLocationEnum::LOCATION_BANNER->value,
-            'status' => AdvertisingStatusEnum::STATUS_ACTIVE->value,
+            'status'   => AdvertisingStatusEnum::STATUS_ACTIVE->value,
         ]);
     }
 
@@ -201,21 +202,21 @@ class AdvertisingTest extends TestCase
         $title = $this->faker->title;
 
         $response = $this->patch(route('advertisings.update', $advertising->id), [
-            'image' => UploadedFile::fake()->image('advertisings-update.jpg'),
-            'link' => $link,
-            'title' => $title,
+            'image'    => UploadedFile::fake()->image('advertisings-update.jpg'),
+            'link'     => $link,
+            'title'    => $title,
             'location' => AdvertisingLocationEnum::LOCATION_BLOG_PAGE->value,
-            'status' => AdvertisingStatusEnum::STATUS_INACTIVE->value,
+            'status'   => AdvertisingStatusEnum::STATUS_INACTIVE->value,
         ]);
         $response->assertSessionHas('alert');
         $response->assertRedirect(route('advertisings.index'));
 
         $this->assertDatabaseCount('advertisings', 1);
         $this->assertDatabaseHas('advertisings', [
-            'link' => $link,
-            'title' => $title,
+            'link'     => $link,
+            'title'    => $title,
             'location' => AdvertisingLocationEnum::LOCATION_BLOG_PAGE->value,
-            'status' => AdvertisingStatusEnum::STATUS_INACTIVE->value,
+            'status'   => AdvertisingStatusEnum::STATUS_INACTIVE->value,
         ]);
     }
 
@@ -233,17 +234,17 @@ class AdvertisingTest extends TestCase
         $title = $this->faker->title;
 
         $response = $this->patch(route('advertisings.update', $advertising->id), [
-            'image' => UploadedFile::fake()->image('advertisings-update.jpg'),
-            'link' => $link,
-            'title' => $title,
+            'image'    => UploadedFile::fake()->image('advertisings-update.jpg'),
+            'link'     => $link,
+            'title'    => $title,
             'location' => AdvertisingLocationEnum::LOCATION_BLOG_PAGE->value,
-            'status' => AdvertisingStatusEnum::STATUS_INACTIVE->value,
+            'status'   => AdvertisingStatusEnum::STATUS_INACTIVE->value,
         ]);
         $response->assertForbidden();
 
         $this->assertDatabaseCount('advertisings', 1);
         $this->assertDatabaseMissing('advertisings', [
-            'link' => $link,
+            'link'  => $link,
             'title' => $title,
         ]);
     }
@@ -297,7 +298,7 @@ class AdvertisingTest extends TestCase
 
         $advertising = Advertising::factory()->create(['status' => AdvertisingStatusEnum::STATUS_INACTIVE->value]);
         $response = $this->patch(route('advertisings.update.status', [
-            'id' => $advertising->id,
+            'id'     => $advertising->id,
             'status' => AdvertisingStatusEnum::STATUS_ACTIVE->value,
         ]));
         $response->assertOk();
@@ -320,7 +321,7 @@ class AdvertisingTest extends TestCase
 
         $advertising = Advertising::factory()->create(['status' => AdvertisingStatusEnum::STATUS_INACTIVE->value]);
         $response = $this->patch(route('advertisings.update.status', [
-            'id' => $advertising->id,
+            'id'     => $advertising->id,
             'status' => AdvertisingStatusEnum::STATUS_ACTIVE->value,
         ]));
         $response->assertForbidden();
@@ -343,7 +344,7 @@ class AdvertisingTest extends TestCase
 
         $advertising = Advertising::factory()->create();
         $response = $this->patch(route('advertisings.update.status', [
-            'id' => $advertising->id,
+            'id'     => $advertising->id,
             'status' => AdvertisingStatusEnum::STATUS_INACTIVE->value,
         ]));
         $response->assertOk();
@@ -366,7 +367,7 @@ class AdvertisingTest extends TestCase
 
         $advertising = Advertising::factory()->create();
         $response = $this->patch(route('advertisings.update.status', [
-            'id' => $advertising->id,
+            'id'     => $advertising->id,
             'status' => AdvertisingStatusEnum::STATUS_INACTIVE->value,
         ]));
         $response->assertForbidden();
@@ -381,7 +382,8 @@ class AdvertisingTest extends TestCase
     /**
      * Create user with login.
      *
-     * @param  bool $permission
+     * @param bool $permission
+     *
      * @return void
      */
     private function createUserWithLoginWithAssignPermissionWithAssignPermission(bool $permission = true): void

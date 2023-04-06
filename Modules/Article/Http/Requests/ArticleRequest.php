@@ -26,18 +26,18 @@ class ArticleRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'image' => ['required', 'file', 'mimes:jpg,jpeg,png', 'max:2048'],
-            'body' => ['required', 'string', 'min:3'],
-            'title' => ['required', 'string', 'min:3', 'max:255', 'unique:articles,title'],
-            'categories' => ['required', 'array'],
-            'status' => ['required', 'string', new Enum(ArticleStatusEnum::class)],
-            'keywords' => ['nullable', 'string', 'min:3', 'max:255'],
+            'image'       => ['required', 'file', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'body'        => ['required', 'string', 'min:3'],
+            'title'       => ['required', 'string', 'min:3', 'max:255', 'unique:articles,title'],
+            'categories'  => ['required', 'array'],
+            'status'      => ['required', 'string', new Enum(ArticleStatusEnum::class)],
+            'keywords'    => ['nullable', 'string', 'min:3', 'max:255'],
             'description' => ['nullable', 'string', 'min:3', 'max:1000'],
         ];
 
         if (request()->method === 'PATCH') {
             $rules['image'] = ['nullable', 'file', 'mimes:jpg,jpeg,png', 'max:2048'];
-            $rules['title'] = ['required', 'string', 'min:3', 'max:255', 'unique:articles,title,' . request()->id];
+            $rules['title'] = ['required', 'string', 'min:3', 'max:255', 'unique:articles,title,'.request()->id];
         }
 
         return $rules;

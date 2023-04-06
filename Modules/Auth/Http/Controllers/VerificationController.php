@@ -22,6 +22,7 @@ class VerificationController extends Controller
      * Return view verify email.
      *
      * @param Request $request
+     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function view(Request $request)
@@ -40,12 +41,13 @@ class VerificationController extends Controller
      */
     public function verify(VerifyRequest $request)
     {
-        if(! VerifyService::check(auth()->id(), $request->verify_code)) {
+        if (!VerifyService::check(auth()->id(), $request->verify_code)) {
             return back()->withErrors(['verify_code' => 'The entered code is invalid!']);
         }
 
         auth()->user()->markEmailAsVerified();
         ShareService::successToast('Your account has been successfully verified.');
+
         return redirect()->route('home.index');
     }
 
@@ -53,6 +55,7 @@ class VerificationController extends Controller
      * Reset verify code.
      *
      * @param Request $request
+     *
      * @return \Illuminate\Contracts\Foundation\Application|JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function resend(Request $request)
@@ -67,6 +70,7 @@ class VerificationController extends Controller
         SendMailVerificationJob::dispatch($request->user());
 
         ShareService::successToast('Verify code send successful');
+
         return $request->wantsJson()
             ? new JsonResponse([], 202)
             : back();

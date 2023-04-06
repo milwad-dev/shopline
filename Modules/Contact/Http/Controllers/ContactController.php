@@ -24,22 +24,26 @@ class ContactController extends Controller
     /**
      * Get the latest contacts with show view page.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      * @throws AuthorizationException
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
         $this->authorize('manage', $this->class);
+
         return view('Contact::index', ['contacts' => $this->repo->getLatest()->notRead()->paginate()]);
     }
 
     /**
      * Remove contact by route model binding.
      *
-     * @param  Contact $contact
-     * @return JsonResponse
+     * @param Contact $contact
+     *
      * @throws AuthorizationException
      * @throws \Throwable
+     *
+     * @return JsonResponse
      */
     public function destroy(Contact $contact)
     {
@@ -52,9 +56,11 @@ class ContactController extends Controller
     /**
      * Update is_read with route model binding.
      *
-     * @param  Contact $contact
-     * @return JsonResponse
+     * @param Contact $contact
+     *
      * @throws AuthorizationException
+     *
+     * @return JsonResponse
      */
     public function updateIsRead(Contact $contact)
     {

@@ -26,7 +26,7 @@ class Comment extends Model
      */
     protected $with = ['user', 'comments'];
 
-    # Attributes
+    // Attributes
 
     /**
      * Set comment_id (reply) attributes.
@@ -38,7 +38,7 @@ class Comment extends Model
         return (is_null($this->comment_id)) ? 'No reply' : $this->comment->title;
     }
 
-    # Relations
+    // Relations
 
     /**
      * Relation morph-to commentable.
@@ -80,7 +80,7 @@ class Comment extends Model
         return $this->hasMany(__CLASS__); // for reply
     }
 
-    # Methods
+    // Methods
 
     /**
      * Get status css.

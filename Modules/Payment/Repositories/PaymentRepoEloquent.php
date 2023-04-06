@@ -9,7 +9,8 @@ class PaymentRepoEloquent implements PaymentRepoEloquentInterface
     /**
      * Find payment by invoice id.
      *
-     * @param  string|int $invoiceId
+     * @param string|int $invoiceId
+     *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
      */
     public function findByInvoiceId(string|int $invoiceId)
