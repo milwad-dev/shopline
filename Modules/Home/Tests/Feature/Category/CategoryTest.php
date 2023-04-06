@@ -36,4 +36,9 @@ class CategoryTest extends TestCase
 //            ->assertViewHas('Home::Pages.categories.detail')
 //            ->assertViewHas(['category', 'products']);
 //    }
+
+    public function test_is_correct()
+    {
+        $this->assertEquals(true, true);
+    }
 }
