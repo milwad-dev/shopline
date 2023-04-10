@@ -126,7 +126,7 @@ class ProductTest extends TestCase
             'body'              => $this->faker->text,
             'status'            => ProductStatusEnum::STATUS_ACTIVE->value,
             'categories'        => Category::query()->get()->pluck('id')->toArray(),
-            'galleries' => [
+            'galleries'         => [
                 UploadedFile::fake()->image(Str::random(10).'.jpg'),
                 UploadedFile::fake()->image(Str::random(10).'.jpg'),
                 UploadedFile::fake()->image(Str::random(10).'.jpg'),
