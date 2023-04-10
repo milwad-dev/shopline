@@ -2,7 +2,6 @@
 
 namespace Modules\Share\Providers;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\ServiceProvider;
 use Modules\Share\Console\Commands\MakeModule;
 

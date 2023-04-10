@@ -8,7 +8,6 @@ use Modules\Category\Enums\CategoryStatusEnum;
 use Modules\Category\Models\Category;
 use Modules\RolePermission\Database\Seeds\PermissionSeeder;
 use Modules\RolePermission\Models\Permission;
-use Modules\Share\Services\ShareService;
 use Modules\User\Models\User;
 use Tests\TestCase;
 
