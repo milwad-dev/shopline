@@ -245,15 +245,7 @@ class CategoryTest extends TestCase
      */
     private function createCategory()
     {
-        return Category::factory()->create([
-            'user_id'     => auth()->id(),
-            'parent_id'   => null,
-            'title'       => $this->faker->title,
-            'slug'        => ShareService::makeSlug($this->faker->title),
-            'keywords'    => $this->faker->text(),
-            'status'      => CategoryStatusEnum::STATUS_ACTIVE->value,
-            'description' => null,
-        ]);
+        return Category::factory()->create();
     }
 
     /**

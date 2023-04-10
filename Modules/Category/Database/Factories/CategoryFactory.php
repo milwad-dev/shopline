@@ -1,13 +1,15 @@
 <?php
 
-namespace Modules\Share\Database\Factories;
+namespace Modules\Category\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\Category\Enums\CategoryStatusEnum;
 use Modules\Category\Models\Category;
 use Modules\Share\Services\ShareService;
-use Modules\User\Models\User;
 
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ */
 class CategoryFactory extends Factory
 {
     protected $model = Category::class;
@@ -17,18 +19,16 @@ class CategoryFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
-        $title = $this->faker->unique()->title;
-
         return [
+            'user_id'     => auth()->id(),
             'parent_id'   => null,
-            'user_id'     => User::factory()->create()->id,
-            'title'       => $title,
-            'slug'        => ShareService::makeSlug($title),
-            'keywords'    => $this->faker->text,
+            'title'       => $this->faker->title,
+            'slug'        => ShareService::makeSlug($this->faker->title),
+            'keywords'    => $this->faker->text(),
             'status'      => CategoryStatusEnum::STATUS_ACTIVE->value,
-            'description' => null,
+            'description' => fake()->text,
         ];
     }
 }
