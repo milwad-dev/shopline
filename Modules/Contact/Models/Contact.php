@@ -4,6 +4,7 @@ namespace Modules\Contact\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Contact\Database\Factories\ContactFactory;
 
 class Contact extends Model
 {
@@ -15,6 +16,16 @@ class Contact extends Model
      * @var string[]
      */
     protected $fillable = ['name', 'email', 'phone', 'subject', 'message', 'is_read'];
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return ContactFactory
+     */
+    protected static function newFactory()
+    {
+        return ContactFactory::new();
+    }
 
     // Scopes
 
