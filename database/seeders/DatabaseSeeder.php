@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
             $this->call($seeder);
         }
 
-        foreach (config('share.factories', []) as $count => $model) {
-            $model::factory($count)->create();
+        foreach (config('shareConfig.factories', []) as $key) {
+            $key['model']::factory($key['count'])->create();
         }
     }
 }
