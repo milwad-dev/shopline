@@ -81,8 +81,8 @@ class ProductTest extends TestCase
     public function test_admin_user_can_store_products_without_attributes_tags()
     {
         $this->createUserWithLoginWithAssignPermission();
+        $this->createMultiCategories();
 
-        Category::factory(5)->create();
         $response = $this->post(route('products.store'), $this->getStoreProductData());
         $response->assertRedirect(route('products.index'));
 
@@ -98,7 +98,8 @@ class ProductTest extends TestCase
     {
         $this->createUserWithLoginWithAssignPermission(false);
 
-        Category::factory(5)->create();
+        $this->createMultiCategories();
+
         $response = $this->post(route('products.store'), $this->getStoreProductData());
         $response->assertForbidden();
 
@@ -113,6 +114,7 @@ class ProductTest extends TestCase
     public function test_admin_user_can_store_products_with_attributes_tags()
     {
         $this->createUserWithLoginWithAssignPermission();
+        $this->createMultiCategories();
 
         $response = $this->post(route('products.store'), [
             'first_media'       => UploadedFile::fake()->image('first_media.jpg'), // Mock
@@ -123,12 +125,8 @@ class ProductTest extends TestCase
             'short_description' => $this->faker->text,
             'body'              => $this->faker->text,
             'status'            => ProductStatusEnum::STATUS_ACTIVE->value,
-            'categories'        => [
-                Category::factory()->create()->id,
-                Category::factory()->create()->id,
-                Category::factory()->create()->id,
-            ],
-            'galleries' => [
+            'categories'        => Category::query()->get()->pluck('id')->toArray(),
+            'galleries'         => [
                 UploadedFile::fake()->image(Str::random(10).'.jpg'),
                 UploadedFile::fake()->image(Str::random(10).'.jpg'),
                 UploadedFile::fake()->image(Str::random(10).'.jpg'),
@@ -357,5 +355,16 @@ class ProductTest extends TestCase
             ],
             'is_popular' => 1,
         ];
+    }
+
+    /**
+     * @return void
+     */
+    public function createMultiCategories(): void
+    {
+        Category::factory()->create(['title' => 'milwad', 'slug' => 'milwad']);
+        Category::factory()->create(['title' => 'digital', 'slug' => 'digital']);
+        Category::factory()->create(['title' => 'clothes-shoes', 'slug' => 'clothes-shoes']);
+        Category::factory()->create(['title' => 'tools', 'slug' => 'tools']);
     }
 }

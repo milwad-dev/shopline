@@ -14,6 +14,7 @@ use Modules\Auth\Notifications\ResetPasswordRequestNotification;
 use Modules\Auth\Notifications\VerifyMailNotification;
 use Modules\Category\Models\Category;
 use Modules\Slider\Models\Slider;
+use Modules\User\Database\Factories\UserFactory;
 use Modules\User\Enums\UserTypeEnum;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -49,6 +50,18 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
+     * Create a new factory instance for the model.
+     *
+     * @return UserFactory
+     */
+    protected static function newFactory()
+    {
+        return UserFactory::new();
+    }
+
+    // Methods
+
+    /**
      * Override verify mail notification.
      *
      * @return void
@@ -68,7 +81,6 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->notify(new ResetPasswordRequestNotification());
     }
 
-    // Methods
     /*
      * Get text email verified at.
      */

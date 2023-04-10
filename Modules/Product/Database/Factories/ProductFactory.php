@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Share\Database\Factories;
+namespace Modules\Product\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\Product\Enums\ProductStatusEnum;

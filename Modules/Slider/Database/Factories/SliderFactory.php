@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Share\Database\Factories;
+namespace Modules\Slider\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\Slider\Enums\SliderStatusEnum;

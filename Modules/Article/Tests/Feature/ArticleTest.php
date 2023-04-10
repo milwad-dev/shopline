@@ -89,8 +89,8 @@ class ArticleTest extends TestCase
             'description' => $this->faker->text,
             'status'      => ArticleStatusEnum::STATUS_ACTIVE->value,
             'categories'  => [
-                Category::factory()->create()->id,
-                Category::factory()->create()->id,
+                Category::factory()->create(['title' => 'digital', 'slug' => 'digital'])->id,
+                Category::factory()->create(['title' => 'tools', 'slug' => 'tools'])->id,
             ],
         ]);
         $response->assertSessionHas('alert');

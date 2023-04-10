@@ -5,6 +5,7 @@ namespace Modules\Category\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Article\Models\Article;
+use Modules\Category\Database\Factories\CategoryFactory;
 use Modules\Category\Enums\CategoryStatusEnum;
 use Modules\Product\Models\Product;
 use Modules\User\Models\User;
@@ -23,7 +24,18 @@ class Category extends Model
      */
     protected $fillable = ['user_id', 'parent_id', 'title', 'slug', 'keywords', 'status', 'description'];
 
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return CategoryFactory
+     */
+    protected static function newFactory()
+    {
+        return CategoryFactory::new();
+    }
+
     // Attributes
+
     /**
      * Set parent attributes.
      *

@@ -12,6 +12,7 @@ use Milwad\LaravelAttributes\Traits\Attributable;
 use Modules\Category\Models\Category;
 use Modules\Comment\Traits\Commentable;
 use Modules\Media\Models\Media;
+use Modules\Product\Database\Factories\ProductFactory;
 use Modules\Product\Enums\ProductStatusEnum;
 use Modules\User\Models\User;
 use Spatie\Tags\HasTags;
@@ -51,7 +52,18 @@ class Product extends Model implements Viewable
      */
     protected $with = ['vendor'];
 
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return ProductFactory
+     */
+    protected static function newFactory()
+    {
+        return ProductFactory::new();
+    }
+
     // Relations
+
     /**
      * Relation to User model, one to many.
      *
