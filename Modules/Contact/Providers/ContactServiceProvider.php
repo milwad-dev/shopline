@@ -77,6 +77,7 @@ class ContactServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->setMenuForPanel();
+        $this->setFactory();
     }
 
     /**
@@ -152,6 +153,19 @@ class ContactServiceProvider extends ServiceProvider
             'title' => 'Contact',
             'icon'  => 'phone',
             'url'   => route('contacts.index'),
+        ]);
+    }
+
+    /**
+     * Set factory.
+     *
+     * @return void
+     */
+    private function setFactory()
+    {
+        config()->set('shareConfig.factories.contact', [
+            'model'  => Contact::class,
+            'count'  => 1,
         ]);
     }
 }

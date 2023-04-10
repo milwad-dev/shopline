@@ -84,6 +84,7 @@ class UserServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->setMenuForPanel();
+        $this->setFactory();
     }
 
     /**
@@ -138,6 +139,19 @@ class UserServiceProvider extends ServiceProvider
             'title' => 'Users',
             'icon'  => 'user',
             'url'   => route('users.index'),
+        ]);
+    }
+
+    /**
+     * Set factory.
+     *
+     * @return void
+     */
+    private function setFactory()
+    {
+        config()->set('shareConfig.factories.user', [
+            'model'  => User::class,
+            'count'  => 1,
         ]);
     }
 

@@ -80,6 +80,7 @@ class ArticleServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->setMenuForPanel();
+        $this->setFactory();
     }
 
     /**
@@ -135,6 +136,19 @@ class ArticleServiceProvider extends ServiceProvider
             'title' => 'Article',
             'icon'  => 'book',
             'url'   => route('articles.index'),
+        ]);
+    }
+
+    /**
+     * Set factory.
+     *
+     * @return void
+     */
+    private function setFactory()
+    {
+        config()->set('shareConfig.factories.article', [
+            'model'  => Article::class,
+            'count'  => 1,
         ]);
     }
 

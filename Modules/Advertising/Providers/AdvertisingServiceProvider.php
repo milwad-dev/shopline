@@ -80,6 +80,20 @@ class AdvertisingServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->setMenuForPanel();
+        $this->setFactory();
+    }
+
+    /**
+     * Set factory.
+     *
+     * @return void
+     */
+    private function setFactory()
+    {
+        config()->set('shareConfig.factories.advertising', [
+            'model'  => Advertising::class,
+            'count'  => 1,
+        ]);
     }
 
     /**
