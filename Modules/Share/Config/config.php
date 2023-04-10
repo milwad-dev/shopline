@@ -15,5 +15,5 @@ return [
      *     'count'  => 1,
      * ]);
      */
-    'factories' => []
+    'factories' => [],
 ];
