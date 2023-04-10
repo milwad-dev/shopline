@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Share\Database\Factories;
+namespace Modules\About\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\About\Models\About;
