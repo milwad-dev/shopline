@@ -5,6 +5,7 @@ namespace Modules\Comment\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Comment\Database\Factories\CommentFactory;
 use Modules\Comment\Enums\CommentStatusEnum;
 use Modules\User\Models\User;
 
@@ -25,6 +26,16 @@ class Comment extends Model
      * @var string[]
      */
     protected $with = ['user', 'comments'];
+
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return CommentFactory
+     */
+    protected static function newFactory()
+    {
+        return CommentFactory::new();
+    }
 
     // Attributes
 
