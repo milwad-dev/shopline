@@ -5,6 +5,7 @@ namespace Modules\Slider\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Media\Models\Media;
+use Modules\Slider\Database\Factories\SliderFactory;
 use Modules\Slider\Enums\SliderStatusEnum;
 use Modules\User\Models\User;
 
@@ -33,7 +34,18 @@ class Slider extends Model
         });
     }
 
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return SliderFactory
+     */
+    protected static function newFactory()
+    {
+        return SliderFactory::new();
+    }
+
     // Relations
+
     /**
      * Relations to User model, relation is one to many.
      *
