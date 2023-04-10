@@ -5,6 +5,7 @@ namespace Modules\Advertising\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Modules\Advertising\Database\Factories\AdvertisingFactory;
 use Modules\Advertising\Enums\AdvertisingStatusEnum;
 use Modules\Media\Models\Media;
 use Modules\User\Models\User;
@@ -20,7 +21,18 @@ class Advertising extends Model
      */
     protected $fillable = ['user_id', 'media_id', 'link', 'title', 'location', 'status'];
 
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return AdvertisingFactory
+     */
+    protected static function newFactory()
+    {
+        return AdvertisingFactory::new();
+    }
+
     // Relations
+
     /**
      * Relations to User model, relation is one to many.
      *
