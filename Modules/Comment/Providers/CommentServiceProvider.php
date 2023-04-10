@@ -76,6 +76,7 @@ class CommentServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->setMenuForPanel();
+        $this->setFactory();
     }
 
     /**
@@ -89,6 +90,19 @@ class CommentServiceProvider extends ServiceProvider
             'title' => 'Comment',
             'icon'  => 'message-square',
             'url'   => route('comments.index'),
+        ]);
+    }
+
+    /**
+     * Set factory.
+     *
+     * @return void
+     */
+    private function setFactory()
+    {
+        config()->set('shareConfig.factories.comment', [
+            'model'  => Comment::class,
+            'count'  => 1,
         ]);
     }
 

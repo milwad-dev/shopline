@@ -80,6 +80,7 @@ class SliderServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->setMenuForPanel();
+        $this->setFactory();
     }
 
     /**
@@ -125,6 +126,19 @@ class SliderServiceProvider extends ServiceProvider
             'title' => 'Sliders',
             'icon'  => 'file',
             'url'   => route('sliders.index'),
+        ]);
+    }
+
+    /**
+     * Set factory.
+     *
+     * @return void
+     */
+    private function setFactory()
+    {
+        config()->set('shareConfig.factories.slider', [
+            'model'  => Slider::class,
+            'count'  => 1,
         ]);
     }
 

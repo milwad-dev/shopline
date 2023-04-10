@@ -80,6 +80,7 @@ class CategoryServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->setMenuForPanel();
+        $this->setFactory();
     }
 
     /**
@@ -135,6 +136,19 @@ class CategoryServiceProvider extends ServiceProvider
             'title' => 'Category',
             'icon'  => 'git-commit',
             'url'   => route('categories.index'),
+        ]);
+    }
+
+    /**
+     * Set factory.
+     *
+     * @return void
+     */
+    private function setFactory()
+    {
+        config()->set('shareConfig.factories.category', [
+            'model'  => Category::class,
+            'count'  => 1,
         ]);
     }
 

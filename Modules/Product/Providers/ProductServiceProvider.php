@@ -80,6 +80,7 @@ class ProductServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->setUpMenuForPanel();
+        $this->setFactory();
     }
 
     /**
@@ -155,6 +156,19 @@ class ProductServiceProvider extends ServiceProvider
             'title' => 'Products',
             'icon'  => 'gift',
             'url'   => route('products.index'),
+        ]);
+    }
+
+    /**
+     * Set factory.
+     *
+     * @return void
+     */
+    private function setFactory()
+    {
+        config()->set('shareConfig.factories.product', [
+            'model'  => Product::class,
+            'count'  => 1,
         ]);
     }
 }

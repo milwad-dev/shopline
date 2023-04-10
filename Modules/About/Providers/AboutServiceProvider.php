@@ -73,6 +73,7 @@ class AboutServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->setUpMenuForPanel();
+        $this->setFactory();
     }
 
     /**
@@ -86,6 +87,19 @@ class AboutServiceProvider extends ServiceProvider
             'title' => 'About-us',
             'icon'  => 'menu',
             'url'   => route('abouts.index'),
+        ]);
+    }
+
+    /**
+     * Set factory.
+     *
+     * @return void
+     */
+    private function setFactory()
+    {
+        config()->set('shareConfig.factories.about', [
+            'model'  => About::class,
+            'count'  => 1,
         ]);
     }
 
