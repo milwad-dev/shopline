@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Modules\Article\Database\Factories\ArticleFactory;
 use Modules\Article\Enums\ArticleStatusEnum;
 use Modules\Category\Models\Category;
 use Modules\Comment\Traits\Commentable;
@@ -34,7 +35,18 @@ class Article extends Model
      */
     protected $with = ['user'];
 
+    /**
+     * Create a new factory instance for the model.
+     *
+     * @return ArticleFactory
+     */
+    protected static function newFactory()
+    {
+        return ArticleFactory::new();
+    }
+
     // Relations
+
     /**
      * Relation to user, relation is one to many.
      *
