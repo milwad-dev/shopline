@@ -37,7 +37,6 @@ class ShareServiceProvider extends ServiceProvider
         $this->loadViewFiles();
         $this->loadMigrationFiles();
         $this->loadCommandFiles();
-        $this->loadFactoriesFiles();
         $this->loadConfigFiles();
 
         $this->loadShareComponents();
@@ -56,18 +55,6 @@ class ShareServiceProvider extends ServiceProvider
         $this->commands([
             MakeModule::class,
         ]);
-    }
-
-    /**
-     * Load factories.
-     *
-     * @return void
-     */
-    private function loadFactoriesFiles()
-    {
-        Factory::guessFactoryNamesUsing(static function (string $modelName) {
-            return 'Modules\Share\Database\\Factories\\'.class_basename($modelName).'Factory';
-        });
     }
 
     /**
