@@ -4,14 +4,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([], static function ($router) {
     // Logout
-    $router->any('logout', 'LogoutController')->name('logout');
+    $router->any('logout', 'LogoutController')->name('logout')->middleware('auth');
 
     // Register
-    $router->get('register', 'RegisterController@view')->name('register');
+    $router->get('register', 'RegisterController@view')->name('register')->middleware('guest');
     $router->post('register', 'RegisterController@register')->name('register');
 
     // Login
-    $router->get('login', 'LoginController@view')->name('login');
+    $router->get('login', 'LoginController@view')->name('login')->middleware('guest');
     $router->post('login', 'LoginController@login')->name('login');
 
     // Verification
@@ -20,8 +20,8 @@ Route::group([], static function ($router) {
     $router->post('email/resend', 'VerificationController@resend')->name('verification.resend');
 
     // Forgot Password
-    $router->get('password/reset', 'ForgotPasswordController@showVerifyCodeRequestForm')->name('password.request');
-    $router->get('password/reset/send', 'ForgotPasswordController@sendVerifyCodeEmail')->name('password.sendVerifyCodeEmail');
+    $router->get('password/reset', 'ForgotPasswordController@showVerifyCodeRequestForm')->name('password.request')->middleware('guest');
+    $router->get('password/reset/send', 'ForgotPasswordController@sendVerifyCodeEmail')->name('password.sendVerifyCodeEmail')->middleware('guest');
     $router->post('password/reset/check-verify-code', 'ForgotPasswordController@checkVerifyCode')->name('password.checkVerifyCode')
     ->middleware('throttle:5,1');
 
