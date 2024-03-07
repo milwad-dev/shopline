@@ -1,10 +1,11 @@
 ## Introduction
-The shopline is an open-sourcem free and advance eCommerce with [Laravel](https://github.com/laravel/laravel) framework. <br>
+The shopline is an open-source free and advanced eCommerce with [Laravel](https://github.com/laravel/laravel). <br>
 Shopline can help you to make your shop easy fast & free. <br>
-Shopline help to tutorial advance laravel. <br>
+Shopline helps to tutorial advance Laravel. <br>
 Shopline made with Laravel - JS - Bootstrap.
 
 ## Features
+
 * Modular architecture
 * Custom authentication
 * Dynamic menu
@@ -13,7 +14,7 @@ Shopline made with Laravel - JS - Bootstrap.
 * Sweetalert
 * Toast
 * Ajax
-* Jquery
+* JQuery
 * TDD
 * Laravel-crod package
 * Laravel-validation package
@@ -24,13 +25,13 @@ Shopline made with Laravel - JS - Bootstrap.
 * Gate & Policy
 * Many attributes
 * Spatie Tags
-* Invertation image
+* [Intervention Image](https://github.com/Intervention/image)
 * Test coverage
 * Laravel component
 * Polymorphic relationships
 
 ## Demos
-Comming soon
+Coming soon
 
 ## Contributors
 <a href="https://github.com/milwad-dev/shopline/graphs/contributors">
