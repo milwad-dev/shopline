@@ -29,6 +29,8 @@ Shopline made with Laravel - JS - Bootstrap.
 * Test coverage
 * Laravel component
 * Polymorphic relationships
+* Laravel Pint
+* PHPStan (Level 7)
 
 ## Demos
 Coming soon
