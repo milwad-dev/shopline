@@ -76,7 +76,7 @@
             "@php artisan key:generate --ansi"
         ],
         "pint": "vendor/bin/pint app config database lang Modules resources routes",
-        "stan": "vendor/bin/phpstan level=7 Modules"
+        "stan": "vendor/bin/phpstan --level=7 analyse Modules"
     },
     "extra": {
         "laravel": {
