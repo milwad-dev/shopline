@@ -249,6 +249,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+
         /*
          * Modules Service Providers...
          */
@@ -270,10 +271,11 @@ return [
         Modules\About\Providers\AboutServiceProvider::class,
         Modules\Discount\Providers\DiscountServiceProvider::class,
         Modules\Payment\Providers\PaymentServiceProvider::class,
-        /**
+
+        /*
          * Package Service Providers...
          */
-        Intervention\Image\ImageServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
