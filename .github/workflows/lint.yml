@@ -56,4 +56,4 @@ jobs:
         run: composer global require phpstan/phpstan
 
       - name: Run PHPStan
-        run: phpstan
+        run: phpstan --level=7 analyse Modules
