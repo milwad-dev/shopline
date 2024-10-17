@@ -2,6 +2,4 @@
 
 namespace Modules\Contact\Repositories;
 
-interface ContactRepoInterface
-{
-}
+interface ContactRepoInterface {}

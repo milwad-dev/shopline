@@ -2,6 +2,4 @@
 
 namespace Modules\Category\Services;
 
-interface CategoryServiceInterface
-{
-}
+interface CategoryServiceInterface {}

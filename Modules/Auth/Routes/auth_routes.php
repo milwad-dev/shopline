@@ -23,7 +23,7 @@ Route::group([], static function ($router) {
     $router->get('password/reset', 'ForgotPasswordController@showVerifyCodeRequestForm')->name('password.request')->middleware('guest');
     $router->get('password/reset/send', 'ForgotPasswordController@sendVerifyCodeEmail')->name('password.sendVerifyCodeEmail')->middleware('guest');
     $router->post('password/reset/check-verify-code', 'ForgotPasswordController@checkVerifyCode')->name('password.checkVerifyCode')
-    ->middleware('throttle:5,1');
+        ->middleware('throttle:5,1');
 
     // Reset Password
     $router->get('password/change', 'ResetPasswordController@view')->name('password.showResetForm')->middleware('auth');

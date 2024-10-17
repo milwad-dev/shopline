@@ -2,6 +2,4 @@
 
 namespace Modules\Article\Services;
 
-interface ArticleServiceInterface
-{
-}
+interface ArticleServiceInterface {}

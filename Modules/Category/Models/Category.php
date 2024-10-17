@@ -128,7 +128,6 @@ class Category extends Model
     /**
      * Actvie scope.
      *
-     * @param $query
      *
      * @return mixed
      */

@@ -11,13 +11,9 @@ class SliderRepoEloquent implements SliderRepoEloquentInterface
         return $this->query()->latest();
     }
 
-    public function findById($id)
-    {
-    }
+    public function findById($id) {}
 
-    public function delete($id)
-    {
-    }
+    public function delete($id) {}
 
     private function query()
     {

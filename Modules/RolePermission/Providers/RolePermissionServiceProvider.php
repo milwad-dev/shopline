@@ -17,29 +17,21 @@ class RolePermissionServiceProvider extends ServiceProvider
 {
     /**
      * Get namespace for controllers.
-     *
-     * @var string
      */
     private string $namespace = 'Modules\RolePermission\Http\Controllers';
 
     /**
      * Get view path.
-     *
-     * @var string
      */
     private string $viewPath = '/../Resources/Views/';
 
     /**
      * Get name.
-     *
-     * @var string
      */
     private string $name = 'RolePermission';
 
     /**
      * Get route path.
-     *
-     * @var string
      */
     private string $routePath = '/../Routes/rolepermission_routes.php';
 
@@ -81,22 +73,18 @@ class RolePermissionServiceProvider extends ServiceProvider
 
     /**
      * Set menu for panel.
-     *
-     * @return void
      */
     private function setMenuForPanel(): void
     {
         config()->set('panelConfig.menus.role-permissions', [
             'title' => 'Role & Permissions',
-            'icon'  => 'alert-triangle',
-            'url'   => route('role-permissions.index'),
+            'icon' => 'alert-triangle',
+            'url' => route('role-permissions.index'),
         ]);
     }
 
     /**
      * Bind permission seeder.
-     *
-     * @return void
      */
     private function bindSeeder(): void
     {
@@ -105,8 +93,6 @@ class RolePermissionServiceProvider extends ServiceProvider
 
     /**
      * Load permission migration files.
-     *
-     * @return void
      */
     private function loadMigrationFiles(): void
     {
@@ -115,8 +101,6 @@ class RolePermissionServiceProvider extends ServiceProvider
 
     /**
      * Load permission view files.
-     *
-     * @return void
      */
     private function loadViewFiles(): void
     {
@@ -125,8 +109,6 @@ class RolePermissionServiceProvider extends ServiceProvider
 
     /**
      * Set database seeder with permission seeder.
-     *
-     * @return void
      */
     private function setDatabaseSeederWithPermissionSeeder(): void
     {
@@ -135,8 +117,6 @@ class RolePermissionServiceProvider extends ServiceProvider
 
     /**
      * Load permission route files.
-     *
-     * @return void
      */
     private function loadRouteFiles(): void
     {
@@ -147,8 +127,6 @@ class RolePermissionServiceProvider extends ServiceProvider
 
     /**
      * Load permission policy files.
-     *
-     * @return void
      */
     private function loadPolicyFiles(): void
     {
@@ -157,8 +135,6 @@ class RolePermissionServiceProvider extends ServiceProvider
 
     /**
      * Set gate before for super admin permission.
-     *
-     * @return void
      */
     private function setGateBefore(): void
     {

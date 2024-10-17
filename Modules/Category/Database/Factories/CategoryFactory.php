@@ -22,12 +22,12 @@ class CategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id'     => auth()->id(),
-            'parent_id'   => null,
-            'title'       => $this->faker->title,
-            'slug'        => ShareService::makeSlug($this->faker->title),
-            'keywords'    => $this->faker->text(),
-            'status'      => CategoryStatusEnum::STATUS_ACTIVE->value,
+            'user_id' => auth()->id(),
+            'parent_id' => null,
+            'title' => $this->faker->title,
+            'slug' => ShareService::makeSlug($this->faker->title),
+            'keywords' => $this->faker->text(),
+            'status' => CategoryStatusEnum::STATUS_ACTIVE->value,
             'description' => fake()->text,
         ];
     }

@@ -9,12 +9,11 @@ class CartService implements CartServiceInterface
     /**
      * Add product into cart in session by product id.
      *
-     * @param $productId
+     *
+     * @return void
      *
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
-     *
-     * @return void
      */
     public function add($productId)
     {
@@ -27,12 +26,11 @@ class CartService implements CartServiceInterface
     /**
      * Remove product from session by product id.
      *
-     * @param $productId
+     *
+     * @return void
      *
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
-     *
-     * @return void
      */
     public function remove($productId)
     {
@@ -62,7 +60,6 @@ class CartService implements CartServiceInterface
     /**
      * Check item in cart by id.
      *
-     * @param $id
      *
      * @return bool
      */
@@ -76,16 +73,16 @@ class CartService implements CartServiceInterface
     /**
      * Handle total price.
      *
+     * @return float|int
+     *
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
-     *
-     * @return float|int
      */
     public static function handleTotalPrice()
     {
         $total = 0;
 
-        if (!is_null(session()->get('cart'))) {
+        if (! is_null(session()->get('cart'))) {
             foreach (session()->get('cart') as $item) {
                 $total += $item['price'] * $item['quantity'];
             }
@@ -97,12 +94,11 @@ class CartService implements CartServiceInterface
     /**
      * Handle one product price.
      *
-     * @param $productId
+     *
+     * @return float|int
      *
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
-     *
-     * @return float|int
      */
     public static function handleTotalOneItemPrice($productId)
     {
@@ -119,12 +115,6 @@ class CartService implements CartServiceInterface
 
     /**
      * Check & store item.
-     *
-     * @param       $productId
-     * @param mixed $cart
-     * @param       $product
-     *
-     * @return mixed
      */
     private function checkCart($productId, mixed $cart, $product): mixed
     {

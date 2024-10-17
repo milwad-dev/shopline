@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Schema;
 use Modules\Discount\Enums\DiscountStatusEnum;
 use Modules\Discount\Enums\DiscountTypeEnum;
 
-return new class() extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *

@@ -50,12 +50,12 @@ class RegisterTest extends TestCase
     public function test_user_can_register()
     {
         $response = $this->post(route('register'), [
-            'name'     => 'milwad',
-            'email'    => 'milwad@gmail.com',
-            'phone'    => '09103400042',
-            'type'     => 'customer',
+            'name' => 'milwad',
+            'email' => 'milwad@gmail.com',
+            'phone' => '09103400042',
+            'type' => 'customer',
             'password' => 'Milad123!',
-            'policy'   => '1',
+            'policy' => '1',
         ]);
 
         $response->assertRedirect(route('home.index'));

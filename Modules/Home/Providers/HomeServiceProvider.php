@@ -5,38 +5,34 @@ namespace Modules\Home\Providers;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Modules\Home\Repositories\Advertising\{AdvertisingRepoEloquent, AdvertisingRepoEloquentInterface};
-use Modules\Home\Repositories\Blog\{BlogRepoEloquent, BlogRepoEloquentInterface};
-use Modules\Home\Repositories\Home\{HomeRepoEloquent, HomeRepoEloquentInterface};
-use Modules\Home\Repositories\Product\{ProductRepoEloquent, ProductRepoEloquentInterface};
+use Modules\Home\Repositories\Advertising\AdvertisingRepoEloquent;
+use Modules\Home\Repositories\Advertising\AdvertisingRepoEloquentInterface;
+use Modules\Home\Repositories\Blog\BlogRepoEloquent;
+use Modules\Home\Repositories\Blog\BlogRepoEloquentInterface;
+use Modules\Home\Repositories\Home\HomeRepoEloquent;
+use Modules\Home\Repositories\Home\HomeRepoEloquentInterface;
+use Modules\Home\Repositories\Product\ProductRepoEloquent;
+use Modules\Home\Repositories\Product\ProductRepoEloquentInterface;
 
 class HomeServiceProvider extends ServiceProvider
 {
     /**
      * Get namespace for home controllers.
-     *
-     * @var string
      */
     private string $namespace = 'Modules\Home\Http\Controllers';
 
     /**
      * Get view path.
-     *
-     * @var string
      */
     private string $viewPath = '/../Resources/Views/';
 
     /**
      * Get name.
-     *
-     * @var string
      */
     private string $name = 'Home';
 
     /**
      * Get route path.
-     *
-     * @var string
      */
     private string $routePath = '/../Routes/home_routes.php';
 
@@ -73,8 +69,6 @@ class HomeServiceProvider extends ServiceProvider
 
     /**
      * Load panel view files.
-     *
-     * @return void
      */
     private function loadViewFiles(): void
     {
@@ -83,22 +77,18 @@ class HomeServiceProvider extends ServiceProvider
 
     /**
      * Set menu for panel.
-     *
-     * @return void
      */
     private function setMenuForPanel(): void
     {
         config()->set('panelConfig.menus.home', [
             'title' => 'Home',
-            'icon'  => 'home',
-            'url'   => route('home.index'),
+            'icon' => 'home',
+            'url' => route('home.index'),
         ]);
     }
 
     /**
      * Load panel route files.
-     *
-     * @return void
      */
     private function loadRouteFiles(): void
     {

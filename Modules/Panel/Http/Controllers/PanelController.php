@@ -10,9 +10,9 @@ class PanelController extends Controller
     /**
      * Show the panel page & get some data.
      *
-     * @throws \Illuminate\Auth\Access\AuthorizationException
-     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function __invoke()
     {

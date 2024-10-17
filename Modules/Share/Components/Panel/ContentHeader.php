@@ -7,7 +7,9 @@ use Illuminate\View\Component;
 class ContentHeader extends Component
 {
     public string $title;
+
     public ?string $createTitle;
+
     public ?string $createRoute;
 
     /**

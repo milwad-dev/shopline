@@ -15,26 +15,26 @@ class ProductFactory extends Factory
     /**
      * Define the model's default state.
      *
-     * @throws \Exception
-     *
      * @return array<string, mixed>
+     *
+     * @throws \Exception
      */
     public function definition()
     {
         $title = $this->faker->title;
 
         return [
-            'first_media_id'    => null,
-            'vendor_id'         => User::factory()->create()->id,
-            'title'             => $title,
-            'slug'              => ShareService::makeSlug($title),
-            'sku'               => ShareService::makeUniqueSku(Product::class),
-            'price'             => $this->faker->numberBetween(5, 15),
-            'count'             => 51,
-            'type'              => $this->faker->title,
+            'first_media_id' => null,
+            'vendor_id' => User::factory()->create()->id,
+            'title' => $title,
+            'slug' => ShareService::makeSlug($title),
+            'sku' => ShareService::makeUniqueSku(Product::class),
+            'price' => $this->faker->numberBetween(5, 15),
+            'count' => 51,
+            'type' => $this->faker->title,
             'short_description' => $this->faker->text,
-            'body'              => $this->faker->text,
-            'status'            => ProductStatusEnum::STATUS_ACTIVE->value,
+            'body' => $this->faker->text,
+            'status' => ProductStatusEnum::STATUS_ACTIVE->value,
         ];
     }
 }

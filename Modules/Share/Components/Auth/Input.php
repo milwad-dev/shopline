@@ -7,9 +7,13 @@ use Illuminate\View\Component;
 class Input extends Component
 {
     public string $name;
+
     public mixed $type;
+
     public mixed $placeholder;
+
     public mixed $id;
+
     public mixed $value;
 
     /**

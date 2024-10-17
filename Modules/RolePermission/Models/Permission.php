@@ -8,16 +8,27 @@ class Permission extends \Spatie\Permission\Models\Permission
      * Permissions.
      */
     public const PERMISSION_SUPER_ADMIN = 'permission super admin';
+
     public const PERMISSION_PANEL = 'permission panel';
+
     public const PERMISSION_USERS = 'permission users';
+
     public const PERMISSION_CATEGORIES = 'permission categories';
+
     public const PERMISSION_ROLE_PERMISSIONS = 'permission role permissions';
+
     public const PERMISSION_PRODUCTS = 'permission products';
+
     public const PERMISSION_ARTICLES = 'permission articles';
+
     public const PERMISSION_SLIDERS = 'permission sliders';
+
     public const PERMISSION_ADVERTISINGS = 'permission advertisings';
+
     public const PERMISSION_COMMENTS = 'permission comments';
+
     public const PERMISSION_CONTACTS = 'permission contacts';
+
     public const PERMISSION_ABOUTS = 'permission abouts';
 
     /**

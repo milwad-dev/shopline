@@ -2,6 +2,4 @@
 
 namespace Modules\Panel\Models;
 
-class Panel
-{
-}
+class Panel {}

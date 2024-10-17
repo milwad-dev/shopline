@@ -9,7 +9,6 @@ class UserRepoEloquent implements UserRepoEloquentInterface
     /**
      * Get the latest users without id.
      *
-     * @param int $id
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
@@ -21,7 +20,6 @@ class UserRepoEloquent implements UserRepoEloquentInterface
     /**
      * Find user by email address.
      *
-     * @param string $email
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|null
      */
@@ -33,7 +31,6 @@ class UserRepoEloquent implements UserRepoEloquentInterface
     /**
      * Find user by id.
      *
-     * @param int $id
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
      */
@@ -45,7 +42,6 @@ class UserRepoEloquent implements UserRepoEloquentInterface
     /**
      * Delete user by id.
      *
-     * @param int $id
      *
      * @return mixed
      */

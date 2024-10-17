@@ -22,7 +22,6 @@ class LoginController extends Controller
     /**
      * Login user by request.
      *
-     * @param LoginRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -44,10 +43,6 @@ class LoginController extends Controller
 
     /**
      * Filter string to give email or phone for login.
-     *
-     * @param string $field
-     *
-     * @return string
      */
     private function filterEmail(string $field): string
     {

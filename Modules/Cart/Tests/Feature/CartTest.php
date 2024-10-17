@@ -16,9 +16,9 @@ class CartTest extends TestCase
      *
      * @test
      *
-     * @throws \Exception
-     *
      * @return void
+     *
+     * @throws \Exception
      */
     public function login_user_can_add_product_into_cart()
     {
@@ -35,9 +35,9 @@ class CartTest extends TestCase
      *
      * @test
      *
-     * @throws \Exception
-     *
      * @return void
+     *
+     * @throws \Exception
      */
     public function guest_user_can_not_add_product_into_cart()
     {
@@ -51,9 +51,9 @@ class CartTest extends TestCase
      *
      * @test
      *
-     * @throws \Exception
-     *
      * @return void
+     *
+     * @throws \Exception
      */
     public function login_user_can_delete_product_from_cart()
     {
@@ -74,9 +74,9 @@ class CartTest extends TestCase
      *
      * @test
      *
-     * @throws \Exception
-     *
      * @return void
+     *
+     * @throws \Exception
      */
     public function guest_user_can_not_delete_product_from_cart()
     {
@@ -96,9 +96,9 @@ class CartTest extends TestCase
      *
      * @test
      *
-     * @throws \Exception
-     *
      * @return void
+     *
+     * @throws \Exception
      */
     public function login_user_can_remove_all_products_from_cart()
     {
@@ -120,9 +120,9 @@ class CartTest extends TestCase
      *
      * @test
      *
-     * @throws \Exception
-     *
      * @return void
+     *
+     * @throws \Exception
      */
     public function guest_user_can_not_remove_all_products_from_cart()
     {
@@ -149,11 +149,8 @@ class CartTest extends TestCase
     /**
      * Create product.
      *
-     * @param string $slug
      *
      * @throws \Exception
-     *
-     * @return mixed
      */
     private function createProduct(string $slug = 'product'): mixed
     {

@@ -83,7 +83,6 @@ class CommentTest extends TestCase
     /**
      * Create user with login & assign permission.
      *
-     * @param bool $permission
      *
      * @return void
      */

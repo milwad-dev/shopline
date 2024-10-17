@@ -22,6 +22,7 @@ class CategoryController extends Controller
     private string $class = Category::class;
 
     public CategoryServiceInterface $service;
+
     public CategoryRepoEloquentInterface $repo;
 
     public function __construct(CategoryServiceInterface $categoryService, CategoryRepoEloquentInterface $categoryRepo)
@@ -33,9 +34,9 @@ class CategoryController extends Controller
     /**
      * Read data with show list of categories.
      *
-     * @throws AuthorizationException
-     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
+     * @throws AuthorizationException
      */
     public function index()
     {
@@ -48,9 +49,9 @@ class CategoryController extends Controller
     /**
      * Show create category page.
      *
-     * @throws AuthorizationException
-     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
+     * @throws AuthorizationException
      */
     public function create()
     {
@@ -63,11 +64,10 @@ class CategoryController extends Controller
     /**
      * Store category with show message & redirect.
      *
-     * @param CategoryRequest $request
-     *
-     * @throws AuthorizationException
      *
      * @return RedirectResponse
+     *
+     * @throws AuthorizationException
      */
     public function store(CategoryRequest $request)
     {
@@ -80,11 +80,10 @@ class CategoryController extends Controller
     /**
      * Find category by id.
      *
-     * @param $id
-     *
-     * @throws AuthorizationException
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
+     * @throws AuthorizationException
      */
     public function edit($id)
     {
@@ -98,12 +97,10 @@ class CategoryController extends Controller
     /**
      * Update category by id.
      *
-     * @param CategoryRequest $request
-     * @param                 $id
-     *
-     * @throws AuthorizationException
      *
      * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws AuthorizationException
      */
     public function update(CategoryRequest $request, $id)
     {
@@ -116,11 +113,10 @@ class CategoryController extends Controller
     /**
      * Delete category by id.
      *
-     * @param $id
-     *
-     * @throws AuthorizationException
      *
      * @return \Illuminate\Http\JsonResponse
+     *
+     * @throws AuthorizationException
      */
     public function destroy($id)
     {
@@ -133,11 +129,10 @@ class CategoryController extends Controller
     /**
      * Change category status to active.
      *
-     * @param $id
-     *
-     * @throws AuthorizationException
      *
      * @return \Illuminate\Http\JsonResponse
+     *
+     * @throws AuthorizationException
      */
     public function active($id)
     {
@@ -150,11 +145,10 @@ class CategoryController extends Controller
     /**
      * Change category status to inactive.
      *
-     * @param $id
-     *
-     * @throws AuthorizationException
      *
      * @return \Illuminate\Http\JsonResponse
+     *
+     * @throws AuthorizationException
      */
     public function inactive($id)
     {

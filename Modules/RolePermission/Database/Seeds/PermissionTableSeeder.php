@@ -14,8 +14,6 @@ class PermissionTableSeeder extends Seeder
 
     /**
      * Find or create permission from model.
-     *
-     * @return void
      */
     private function createPermissionFromModel(): void
     {

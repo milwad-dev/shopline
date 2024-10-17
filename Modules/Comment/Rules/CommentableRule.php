@@ -14,8 +14,6 @@ class CommentableRule implements Rule
     /**
      * Check rule.
      *
-     * @param $attribute
-     * @param $value
      *
      * @return bool
      */

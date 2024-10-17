@@ -32,7 +32,6 @@ class Contact extends Model
     /**
      * Scope is_read is true.
      *
-     * @param $query
      *
      * @return mixed
      */
@@ -44,7 +43,6 @@ class Contact extends Model
     /**
      * Scope is_read is false.
      *
-     * @param $query
      *
      * @return mixed
      */

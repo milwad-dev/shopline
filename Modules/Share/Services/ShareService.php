@@ -9,7 +9,6 @@ class ShareService
     /**
      * Show success toast.
      *
-     * @param string $title
      *
      * @return mixed
      */
@@ -21,7 +20,6 @@ class ShareService
     /**
      * Show error toast.
      *
-     * @param string $title
      *
      * @return mixed
      */
@@ -33,7 +31,6 @@ class ShareService
     /**
      * Convert string to slug.
      *
-     * @param string $title
      *
      * @return string
      */
@@ -45,17 +42,16 @@ class ShareService
     /**
      * Make unique sku.
      *
-     * @param $model
-     *
-     * @throws \Exception
      *
      * @return string
+     *
+     * @throws \Exception
      */
     public static function makeUniqueSku($model)
     {
         $number = random_int(10000, 99999);
 
-        if ((new self())->checkSKU($model, $number)) {
+        if ((new self)->checkSKU($model, $number)) {
             return self::makeUniqueSku($model);
         }
 
@@ -65,8 +61,6 @@ class ShareService
     /**
      * Check sku is exists.
      *
-     * @param     $model
-     * @param int $number
      *
      * @return bool
      */
@@ -78,9 +72,6 @@ class ShareService
     /**
      * Upload media with add in request.
      *
-     * @param        $request
-     * @param string $file
-     * @param string $field
      *
      * @return mixed
      */
@@ -92,7 +83,6 @@ class ShareService
     /**
      * Convert text to read minute.
      *
-     * @param string $text
      *
      * @return float
      */

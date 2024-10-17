@@ -19,11 +19,11 @@ use Spatie\Tags\HasTags;
 
 class Product extends Model implements Viewable
 {
-    use HasFactory;
     use Attributable;
+    use Commentable;
+    use HasFactory;
     use HasTags;
     use InteractsWithViews;
-    use Commentable;
 
     /**
      * Set column in fillable.
@@ -134,7 +134,6 @@ class Product extends Model implements Viewable
     /**
      * Scope product popular.
      *
-     * @param $query
      *
      * @return mixed
      */
@@ -146,7 +145,6 @@ class Product extends Model implements Viewable
     /**
      * Scope active status.
      *
-     * @param $query
      *
      * @return mixed
      */
@@ -177,7 +175,6 @@ class Product extends Model implements Viewable
     /**
      * Check category id is in categories product.
      *
-     * @param int $categoryId
      *
      * @return mixed
      */
@@ -194,7 +191,7 @@ class Product extends Model implements Viewable
     public function path()
     {
         return route('products.details', [
-            'sku'  => $this->sku,
+            'sku' => $this->sku,
             'slug' => $this->slug,
         ]);
     }

@@ -9,22 +9,16 @@ class AuthServiceProvider extends ServiceProvider
 {
     /**
      * Get namespace for auth controllers.
-     *
-     * @var string
      */
     public string $namespace = 'Modules\Auth\Http\Controllers';
 
     /**
      * Get view path.
-     *
-     * @var string
      */
     private string $viewPath = '/../Resources/Views/';
 
     /**
      * Get name.
-     *
-     * @var string
      */
     private string $name = 'Auth';
 
@@ -37,8 +31,6 @@ class AuthServiceProvider extends ServiceProvider
 
     /**
      * Get route path.
-     *
-     * @var string
      */
     private string $routePath = '/../Routes/auth_routes.php';
 
@@ -55,8 +47,6 @@ class AuthServiceProvider extends ServiceProvider
 
     /**
      * Load view files.
-     *
-     * @return void
      */
     private function loadViewFiles(): void
     {
@@ -65,8 +55,6 @@ class AuthServiceProvider extends ServiceProvider
 
     /**
      * Load route files.
-     *
-     * @return void
      */
     private function loadRouteFiles(): void
     {

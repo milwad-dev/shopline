@@ -7,8 +7,11 @@ use Illuminate\View\Component;
 class Select extends Component
 {
     public string $name;
+
     public string $class;
+
     public ?string $id;
+
     public ?string $selectedText;
 
     /**

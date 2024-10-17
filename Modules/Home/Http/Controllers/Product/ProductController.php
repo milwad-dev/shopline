@@ -15,7 +15,6 @@ class ProductController extends Controller
     /**
      * Get latest products.
      *
-     * @param ProductRepoEloquentInterface $productRepoEloquent
      *
      * @return Application|Factory|View
      */

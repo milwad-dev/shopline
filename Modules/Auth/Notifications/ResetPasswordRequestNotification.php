@@ -19,7 +19,6 @@ class ResetPasswordRequestNotification extends Notification
     /**
      * Send via (email).
      *
-     * @param $notifiable
      *
      * @return string[]
      */
@@ -31,11 +30,10 @@ class ResetPasswordRequestNotification extends Notification
     /**
      * Send reset password code notification for email.
      *
-     * @param $notifiable
-     *
-     * @throws \Psr\SimpleCache\InvalidArgumentException
      *
      * @return ResetPasswordRequestMail
+     *
+     * @throws \Psr\SimpleCache\InvalidArgumentException
      */
     public function toMail($notifiable)
     {
@@ -48,7 +46,6 @@ class ResetPasswordRequestNotification extends Notification
     /**
      * Save into database.
      *
-     * @param $notifiable
      *
      * @return array
      */

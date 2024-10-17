@@ -10,7 +10,6 @@ class AjaxResponses
     /**
      * Return json response with status 200 (success).
      *
-     * @param string $message
      *
      * @return JsonResponse
      */
@@ -22,7 +21,6 @@ class AjaxResponses
     /**
      * Return json response with status 500 (serve error).
      *
-     * @param string $message
      *
      * @return JsonResponse
      */

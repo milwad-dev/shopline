@@ -13,7 +13,6 @@ class BlogController extends Controller
     /**
      * Blog index page.
      *
-     * @param BlogRepoEloquentInterface $blogRepoEloquent
      *
      * @return Application|Factory|View
      */
@@ -29,8 +28,6 @@ class BlogController extends Controller
     /**
      * Blog details page.
      *
-     * @param                           $slug
-     * @param BlogRepoEloquentInterface $blogRepoEloquent
      *
      * @return Application|Factory|View
      */

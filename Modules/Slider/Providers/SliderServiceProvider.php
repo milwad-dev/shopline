@@ -16,29 +16,21 @@ class SliderServiceProvider extends ServiceProvider
 {
     /**
      * Get namespace for slider controllers.
-     *
-     * @var string
      */
     private string $namespace = 'Modules\Slider\Http\Controllers';
 
     /**
      * Get migration path.
-     *
-     * @var string
      */
     private string $migrationPath = '/../Database/Migrations';
 
     /**
      * Get view path.
-     *
-     * @var string
      */
     private string $viewPath = '/../Resources/Views/';
 
     /**
      * Get name.
-     *
-     * @var string
      */
     private string $name = 'Slider';
 
@@ -51,8 +43,6 @@ class SliderServiceProvider extends ServiceProvider
 
     /**
      * Get route path.
-     *
-     * @var string
      */
     private string $routePath = '/../Routes/slider_routes.php';
 
@@ -85,8 +75,6 @@ class SliderServiceProvider extends ServiceProvider
 
     /**
      * Load migration files.
-     *
-     * @return void
      */
     private function loadMigrationFiles(): void
     {
@@ -95,8 +83,6 @@ class SliderServiceProvider extends ServiceProvider
 
     /**
      * Load view files.
-     *
-     * @return void
      */
     private function loadViewFiles(): void
     {
@@ -105,8 +91,6 @@ class SliderServiceProvider extends ServiceProvider
 
     /**
      * Load route files.
-     *
-     * @return void
      */
     private function loadRouteFiles(): void
     {
@@ -117,15 +101,13 @@ class SliderServiceProvider extends ServiceProvider
 
     /**
      * Set user menu in panel from config file.
-     *
-     * @return void
      */
     private function setMenuForPanel(): void
     {
         config()->set('panelConfig.menus.sliders', [
             'title' => 'Sliders',
-            'icon'  => 'file',
-            'url'   => route('sliders.index'),
+            'icon' => 'file',
+            'url' => route('sliders.index'),
         ]);
     }
 
@@ -137,8 +119,8 @@ class SliderServiceProvider extends ServiceProvider
     private function setFactory()
     {
         config()->set('shareConfig.factories.slider', [
-            'model'  => Slider::class,
-            'count'  => 1,
+            'model' => Slider::class,
+            'count' => 1,
         ]);
     }
 

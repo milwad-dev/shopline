@@ -22,7 +22,6 @@ class ResetPasswordController extends Controller
     /**
      * Reset password by request.
      *
-     * @param ResetPasswordRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */

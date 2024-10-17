@@ -33,7 +33,7 @@ class ArticleTest extends TestCase
 
         $response = $this->get(route('articles.index'));
         $response->assertViewIs('Article::index');
-        $response->assertViewHas('articles', (new ArticleRepoEloquent())->getLatestArticles()->paginate());
+        $response->assertViewHas('articles', (new ArticleRepoEloquent)->getLatestArticles()->paginate());
     }
 
     /**
@@ -50,7 +50,7 @@ class ArticleTest extends TestCase
 
         $response = $this->get(route('articles.create'));
         $response->assertViewIs('Article::create');
-        $response->assertViewHas('categories', (new CategoryRepoEloquent())->getActiveCategories()->get());
+        $response->assertViewHas('categories', (new CategoryRepoEloquent)->getActiveCategories()->get());
     }
 
     /**
@@ -82,13 +82,13 @@ class ArticleTest extends TestCase
 
         $title = $this->faker->unique()->title;
         $response = $this->post(route('articles.store'), [
-            'image'       => UploadedFile::fake()->image('image.jpg'),
-            'title'       => $title,
-            'body'        => $this->faker->text,
-            'keywords'    => $this->faker->title,
+            'image' => UploadedFile::fake()->image('image.jpg'),
+            'title' => $title,
+            'body' => $this->faker->text,
+            'keywords' => $this->faker->title,
             'description' => $this->faker->text,
-            'status'      => ArticleStatusEnum::STATUS_ACTIVE->value,
-            'categories'  => [
+            'status' => ArticleStatusEnum::STATUS_ACTIVE->value,
+            'categories' => [
                 Category::factory()->create(['title' => 'digital', 'slug' => 'digital'])->id,
                 Category::factory()->create(['title' => 'tools', 'slug' => 'tools'])->id,
             ],
@@ -133,14 +133,14 @@ class ArticleTest extends TestCase
 
         $title = $this->faker->unique()->title;
         $response = $this->patch(route('articles.update', $article->id), [
-            'id'          => $article->id,
-            'image'       => UploadedFile::fake()->image('image.jpg'),
-            'title'       => $title,
-            'body'        => $this->faker->text,
-            'keywords'    => $this->faker->title,
+            'id' => $article->id,
+            'image' => UploadedFile::fake()->image('image.jpg'),
+            'title' => $title,
+            'body' => $this->faker->text,
+            'keywords' => $this->faker->title,
             'description' => $this->faker->text,
-            'status'      => ArticleStatusEnum::STATUS_ACTIVE->value,
-            'categories'  => [
+            'status' => ArticleStatusEnum::STATUS_ACTIVE->value,
+            'categories' => [
                 Category::factory()->create()->id,
                 Category::factory()->create()->id,
             ],

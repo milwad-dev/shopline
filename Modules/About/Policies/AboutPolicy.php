@@ -23,7 +23,6 @@ class AboutPolicy
     /**
      * Check user have permission.
      *
-     * @param User $user
      *
      * @return bool
      */

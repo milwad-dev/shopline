@@ -19,7 +19,6 @@ class ProductRepoEloquent implements ProductRepoEloquentInterface
     /**
      * Find product by id.
      *
-     * @param $id
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
      */
@@ -31,7 +30,6 @@ class ProductRepoEloquent implements ProductRepoEloquentInterface
     /**
      * Delete product by id.
      *
-     * @param $id
      *
      * @return mixed
      */

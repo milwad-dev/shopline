@@ -27,11 +27,11 @@ class AdvertisingRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'image'     => ['required', 'file', 'mimes:jpeg,png,jpeg', 'max:2048'],
-            'link'      => ['nullable', 'string', 'min:3', 'max:255'],
-            'title'     => ['nullable', 'string', 'min:3', 'max:255'],
-            'location'  => ['required', 'string', 'max:255', new Enum(AdvertisingLocationEnum::class)],
-            'status'    => ['required', 'string', 'max:255', new Enum(AdvertisingStatusEnum::class)],
+            'image' => ['required', 'file', 'mimes:jpeg,png,jpeg', 'max:2048'],
+            'link' => ['nullable', 'string', 'min:3', 'max:255'],
+            'title' => ['nullable', 'string', 'min:3', 'max:255'],
+            'location' => ['required', 'string', 'max:255', new Enum(AdvertisingLocationEnum::class)],
+            'status' => ['required', 'string', 'max:255', new Enum(AdvertisingStatusEnum::class)],
         ];
 
         if (request()->method === 'PATCH') {

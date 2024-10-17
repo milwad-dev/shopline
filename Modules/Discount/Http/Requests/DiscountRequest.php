@@ -26,13 +26,13 @@ class DiscountRequest extends FormRequest
     public function rules()
     {
         return [
-            'code'             => 'nullable|string|unique:discounts,code|min:3|max:250',
-            'percent'          => 'required|numeric',
+            'code' => 'nullable|string|unique:discounts,code|min:3|max:250',
+            'percent' => 'required|numeric',
             'usage_limitation' => 'nullable|numeric',
-            'expire_at'        => 'nullable',
-            'link'             => 'nullable|string|min:3|max:250',
-            'type'             => ['required', 'string', 'max:250', new Enum(DiscountTypeEnum::class)],
-            'description'      => 'nullable|string|max:250',
+            'expire_at' => 'nullable',
+            'link' => 'nullable|string|min:3|max:250',
+            'type' => ['required', 'string', 'max:250', new Enum(DiscountTypeEnum::class)],
+            'description' => 'nullable|string|max:250',
         ];
     }
 }

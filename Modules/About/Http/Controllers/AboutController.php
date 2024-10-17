@@ -18,7 +18,9 @@ class AboutController extends Controller
     use SuccessToastMessageWithRedirectTrait;
 
     private string $class = About::class;
+
     private string $redirectRoute = 'abouts.index';
+
     protected AboutService $service;
 
     public function __construct(AboutService $aboutService)
@@ -29,9 +31,9 @@ class AboutController extends Controller
     /**
      * Get all abouts with show index about page.
      *
-     * @throws AuthorizationException
-     *
      * @return Application|Factory|View
+     *
+     * @throws AuthorizationException
      */
     public function index()
     {
@@ -43,9 +45,9 @@ class AboutController extends Controller
     /**
      * Show create about page.
      *
-     * @throws AuthorizationException
-     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
+     * @throws AuthorizationException
      */
     public function create()
     {
@@ -57,11 +59,10 @@ class AboutController extends Controller
     /**
      * Store about.
      *
-     * @param AboutRequest $request
-     *
-     * @throws AuthorizationException
      *
      * @return RedirectResponse
+     *
+     * @throws AuthorizationException
      */
     public function store(AboutRequest $request)
     {
@@ -77,11 +78,10 @@ class AboutController extends Controller
     /**
      * Show edit about page.
      *
-     * @param About $about
-     *
-     * @throws AuthorizationException
      *
      * @return Application|Factory|View
+     *
+     * @throws AuthorizationException
      */
     public function edit(About $about)
     {
@@ -93,12 +93,10 @@ class AboutController extends Controller
     /**
      * Update about by route model binding.
      *
-     * @param AboutRequest $request
-     * @param About        $about
-     *
-     * @throws AuthorizationException
      *
      * @return RedirectResponse
+     *
+     * @throws AuthorizationException
      */
     public function update(AboutRequest $request, About $about)
     {

@@ -2,6 +2,4 @@
 
 namespace Modules\User\Repositories;
 
-interface UserRepoEloquentInterface
-{
-}
+interface UserRepoEloquentInterface {}

@@ -10,19 +10,18 @@ class CategoryService implements CategoryServiceInterface
     /**
      * Store category.
      *
-     * @param $request
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
      */
     public function store($request)
     {
         return $this->query()->create([
-            'user_id'     => auth()->id(),
-            'parent_id'   => $request->parent_id,
-            'title'       => $request->title,
-            'slug'        => ShareService::makeSlug($request->title),
-            'keywords'    => $request->keywords,
-            'status'      => $request->status,
+            'user_id' => auth()->id(),
+            'parent_id' => $request->parent_id,
+            'title' => $request->title,
+            'slug' => ShareService::makeSlug($request->title),
+            'keywords' => $request->keywords,
+            'status' => $request->status,
             'description' => $request->description,
         ]);
     }
@@ -30,19 +29,17 @@ class CategoryService implements CategoryServiceInterface
     /**
      * Update category by id.
      *
-     * @param $request
-     * @param $id
      *
      * @return int
      */
     public function update($request, $id)
     {
         return $this->query()->where('id', $id)->update([
-            'parent_id'   => $request->parent_id,
-            'title'       => $request->title,
-            'slug'        => ShareService::makeSlug($request->title),
-            'keywords'    => $request->keywords,
-            'status'      => $request->status,
+            'parent_id' => $request->parent_id,
+            'title' => $request->title,
+            'slug' => ShareService::makeSlug($request->title),
+            'keywords' => $request->keywords,
+            'status' => $request->status,
             'description' => $request->description,
         ]);
     }

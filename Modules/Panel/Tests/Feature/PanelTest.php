@@ -19,7 +19,7 @@ class PanelTest extends TestCase
         $this->createUserWithLoginWithAssignPermission();
 
         $response = $this->get(route('panel.index'));
-//         $response->assertViewHas();
+        //         $response->assertViewHas();
         $response->assertViewIs('Panel::index');
     }
 
@@ -38,10 +38,6 @@ class PanelTest extends TestCase
 
     /**
      * Create user with login.
-     *
-     * @param bool $permission
-     *
-     * @return void
      */
     private function createUserWithLoginWithAssignPermission(bool $permission = true): void
     {

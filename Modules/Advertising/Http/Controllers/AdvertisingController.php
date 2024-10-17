@@ -19,9 +19,11 @@ class AdvertisingController extends Controller
     use SuccessToastMessageWithRedirectTrait;
 
     private string $class = Advertising::class;
+
     private string $redirectRoute = 'advertisings.index';
 
     public AdvertisingRepoEloquentInterface $repo;
+
     public AdvertisingServiceInterface $service;
 
     public function __construct(AdvertisingRepoEloquentInterface $advertisingRepoEloquent, AdvertisingServiceInterface $advertisingService)
@@ -33,9 +35,9 @@ class AdvertisingController extends Controller
     /**
      * Get latest adveritings & show index page.
      *
-     * @throws AuthorizationException
-     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
+     * @throws AuthorizationException
      */
     public function index()
     {
@@ -48,9 +50,9 @@ class AdvertisingController extends Controller
     /**
      * Show advertising create page.
      *
-     * @throws AuthorizationException
-     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
+     * @throws AuthorizationException
      */
     public function create()
     {
@@ -62,11 +64,10 @@ class AdvertisingController extends Controller
     /**
      * Store adveritisng by request.
      *
-     * @param AdvertisingRequest $request
-     *
-     * @throws AuthorizationException
      *
      * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws AuthorizationException
      */
     public function store(AdvertisingRequest $request)
     {
@@ -81,11 +82,10 @@ class AdvertisingController extends Controller
     /**
      * Show edit advertising page by id.
      *
-     * @param $id
-     *
-     * @throws AuthorizationException
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
+     * @throws AuthorizationException
      */
     public function edit($id)
     {
@@ -98,12 +98,10 @@ class AdvertisingController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param AdvertisingRequest $request
-     * @param                    $id
-     *
-     * @throws AuthorizationException
      *
      * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws AuthorizationException
      */
     public function update(AdvertisingRequest $request, $id)
     {
@@ -120,11 +118,10 @@ class AdvertisingController extends Controller
     /**
      * Delete advertising by id.
      *
-     * @param $id
-     *
-     * @throws AuthorizationException
      *
      * @return \Illuminate\Http\JsonResponse
+     *
+     * @throws AuthorizationException
      */
     public function destroy($id)
     {
@@ -137,12 +134,10 @@ class AdvertisingController extends Controller
     /**
      * Update advertising status by id.
      *
-     * @param        $id
-     * @param string $status
-     *
-     * @throws AuthorizationException
      *
      * @return JsonResponse
+     *
+     * @throws AuthorizationException
      */
     public function updateStatus($id, string $status)
     {
@@ -165,12 +160,6 @@ class AdvertisingController extends Controller
         return AjaxResponses::SuccessResponse();
     }
 
-    /**
-     * @param AdvertisingRequest $request
-     * @param Advertising        $advertising
-     *
-     * @return void
-     */
     private function uploadMediaForUpdateAdvertising(AdvertisingRequest $request, Advertising $advertising): void
     {
         if ($request->image) {

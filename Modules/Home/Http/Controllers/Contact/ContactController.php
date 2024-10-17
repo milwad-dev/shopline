@@ -23,7 +23,6 @@ class ContactController extends Controller
     /**
      * Store contact by request.
      *
-     * @param ContactRequest $request
      *
      * @return RedirectResponse
      */

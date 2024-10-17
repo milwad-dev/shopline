@@ -10,7 +10,6 @@ class AdvertisingRepoEloquent implements ProductRepoEloquentInterface
     /**
      * Get advertisings by location.
      *
-     * @param string $location
      *
      * @return mixed
      */

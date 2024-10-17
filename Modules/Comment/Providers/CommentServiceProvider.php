@@ -7,42 +7,33 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Modules\Comment\Models\Comment;
 use Modules\Comment\Policies\CommentPolicy;
-use Modules\Comment\Repositories\{CommentRepoEloquent, CommentRepoEloquentInterface};
+use Modules\Comment\Repositories\CommentRepoEloquent;
+use Modules\Comment\Repositories\CommentRepoEloquentInterface;
 
 class CommentServiceProvider extends ServiceProvider
 {
     /**
      * Get namespace for comment controllers.
-     *
-     * @var string
      */
     private string $namespace = 'Modules\Comment\Http\Controllers';
 
     /**
      * Get migration path.
-     *
-     * @var string
      */
     private string $migrationPath = '/../Database/Migrations';
 
     /**
      * Get view path.
-     *
-     * @var string
      */
     private string $viewPath = '/../Resources/Views/';
 
     /**
      * Get route path.
-     *
-     * @var string
      */
     private string $routePath = '/../Routes/comment_routes.php';
 
     /**
      * Get name.
-     *
-     * @var string
      */
     private string $name = 'Comment';
 
@@ -81,15 +72,13 @@ class CommentServiceProvider extends ServiceProvider
 
     /**
      * Set menu for panel.
-     *
-     * @return void
      */
     private function setMenuForPanel(): void
     {
         config()->set('panelConfig.menus.comments', [
             'title' => 'Comment',
-            'icon'  => 'message-square',
-            'url'   => route('comments.index'),
+            'icon' => 'message-square',
+            'url' => route('comments.index'),
         ]);
     }
 
@@ -101,15 +90,13 @@ class CommentServiceProvider extends ServiceProvider
     private function setFactory()
     {
         config()->set('shareConfig.factories.comment', [
-            'model'  => Comment::class,
-            'count'  => 1,
+            'model' => Comment::class,
+            'count' => 1,
         ]);
     }
 
     /**
      * Load policy files.
-     *
-     * @return void
      */
     private function loadPolicyFiles(): void
     {
@@ -118,8 +105,6 @@ class CommentServiceProvider extends ServiceProvider
 
     /**
      * Load migration files.
-     *
-     * @return void
      */
     private function loadMigrationFiles(): void
     {
@@ -128,8 +113,6 @@ class CommentServiceProvider extends ServiceProvider
 
     /**
      * Load view files.
-     *
-     * @return void
      */
     private function loadViewFiles(): void
     {
@@ -138,8 +121,6 @@ class CommentServiceProvider extends ServiceProvider
 
     /**
      * Load route files.
-     *
-     * @return void
      */
     private function loadRouteFiles(): void
     {
@@ -150,8 +131,6 @@ class CommentServiceProvider extends ServiceProvider
 
     /**
      * bind repository into interface.
-     *
-     * @return void
      */
     private function bindRepository(): void
     {

@@ -51,12 +51,8 @@ class VerifyTest extends TestCase
 
     /**
      * Create user with login.
-     *
-     * @param array|null $attributes
-     *
-     * @return void
      */
-    private function createUserWithLogin(array $attributes = null): void
+    private function createUserWithLogin(?array $attributes = null): void
     {
         $user = User::factory()->create($attributes);
         auth()->login($user);

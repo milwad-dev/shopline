@@ -17,9 +17,9 @@ use Spatie\Tags\HasTags;
 
 class Article extends Model
 {
+    use Commentable;
     use HasFactory;
     use HasTags;
-    use Commentable;
 
     /**
      * Add columns to fillable.
@@ -81,7 +81,6 @@ class Article extends Model
     /**
      * Scope active status.
      *
-     * @param $query
      *
      * @return mixed
      */
@@ -136,7 +135,6 @@ class Article extends Model
     /**
      * Check category in select.
      *
-     * @param int $id
      *
      * @return bool
      */
@@ -164,7 +162,6 @@ class Article extends Model
     /**
      * Get created at by format.
      *
-     * @param string $format
      *
      * @return string
      */

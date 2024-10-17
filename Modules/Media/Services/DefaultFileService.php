@@ -36,7 +36,7 @@ abstract class DefaultFileService
             },
             200,
             [
-                'Content-Type'        => Storage::mimeType(static::getFilename()),
+                'Content-Type' => Storage::mimeType(static::getFilename()),
                 'Content-disposition' => 'attachment; filename='.static::$media->filename,
             ]
         );

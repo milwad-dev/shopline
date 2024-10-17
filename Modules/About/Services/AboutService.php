@@ -9,7 +9,6 @@ class AboutService
     /**
      * Store about by array of data.
      *
-     * @param array $data
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
      */
@@ -23,8 +22,6 @@ class AboutService
     /**
      * Update about.
      *
-     * @param $about
-     * @param $body
      *
      * @return int
      */

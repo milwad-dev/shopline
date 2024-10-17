@@ -2,6 +2,4 @@
 
 namespace Modules\Advertising\Services;
 
-interface AdvertisingServiceInterface
-{
-}
+interface AdvertisingServiceInterface {}

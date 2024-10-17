@@ -22,8 +22,8 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
-    use Notifiable;
     use HasRoles;
+    use Notifiable;
 
     /**
      * Set fillable for columns.
@@ -46,7 +46,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'type'              => UserTypeEnum::class,
+        'type' => UserTypeEnum::class,
     ];
 
     /**
@@ -68,7 +68,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function sendEmailVerificationNotification()
     {
-        $this->notify(new VerifyMailNotification());
+        $this->notify(new VerifyMailNotification);
     }
 
     /**
@@ -78,7 +78,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function sendResetPasswordRequestNotification()
     {
-        $this->notify(new ResetPasswordRequestNotification());
+        $this->notify(new ResetPasswordRequestNotification);
     }
 
     /*

@@ -17,8 +17,6 @@ class CommentTest extends TestCase
 
     /**
      * Get table name.
-     *
-     * @var string
      */
     private string $tableName = 'comments';
 
@@ -35,8 +33,8 @@ class CommentTest extends TestCase
         $body = $this->faker->text;
 
         $response = $this->post(route('comments.store'), [
-            'body'             => $body,
-            'commentable_id'   => $product->id,
+            'body' => $body,
+            'commentable_id' => $product->id,
             'commentable_type' => get_class($product),
         ]);
         $response->assertRedirect();
@@ -63,8 +61,8 @@ class CommentTest extends TestCase
         $body = $this->faker->text;
 
         $response = $this->post(route('comments.store'), [
-            'body'             => $body,
-            'commentable_id'   => (string) $product->id,
+            'body' => $body,
+            'commentable_id' => (string) $product->id,
             'commentable_type' => get_class($product),
         ]);
         $response->assertRedirect();

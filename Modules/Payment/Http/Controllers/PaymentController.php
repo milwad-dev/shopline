@@ -27,7 +27,6 @@ class PaymentController extends Controller
     /**
      * Callback from gateway.
      *
-     * @param Request $request
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
@@ -45,7 +44,7 @@ class PaymentController extends Controller
             return redirect()->to($payment->paymentable->path());
         }
 
-//       TODO event(new PaymentWasSuccessful($payment));
+        //       TODO event(new PaymentWasSuccessful($payment));
         $this->changeStatus($payment, PaymentStatusEnum::STATUS_SUCCESS->value);
 
         $this->redirectRoute = $payment->paymentable->path();
@@ -55,11 +54,6 @@ class PaymentController extends Controller
 
     /**
      * Change payment status.
-     *
-     * @param        $payment
-     * @param string $status
-     *
-     * @return void
      */
     private function changeStatus($payment, string $status): void
     {

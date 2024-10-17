@@ -15,7 +15,7 @@ class ResetPasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'password' => ['required', new ValidStrongPassword(), 'confirmed'],
+            'password' => ['required', new ValidStrongPassword, 'confirmed'],
         ];
     }
 }

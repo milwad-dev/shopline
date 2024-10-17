@@ -22,9 +22,9 @@ class CommentController extends Controller
     /**
      * Get the latest comments & show view page.
      *
-     * @throws AuthorizationException
-     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
+     * @throws AuthorizationException
      */
     public function index()
     {
@@ -38,11 +38,10 @@ class CommentController extends Controller
     /**
      * Remove comment by route model binding.
      *
-     * @param Comment $comment
-     *
-     * @throws AuthorizationException
      *
      * @return \Illuminate\Http\JsonResponse
+     *
+     * @throws AuthorizationException
      */
     public function destroy(Comment $comment)
     {

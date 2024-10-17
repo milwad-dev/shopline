@@ -2,47 +2,40 @@
 
 namespace Modules\Contact\Providers;
 
-use Illuminate\Support\Facades\{Gate, Route};
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Modules\Contact\Models\Contact;
 use Modules\Contact\Policies\ContactPolicy;
-use Modules\Contact\Repositories\{ContactRepoEloquent, ContactRepoInterface};
-use Modules\Contact\Services\{ContactService, ContactServiceInterface};
+use Modules\Contact\Repositories\ContactRepoEloquent;
+use Modules\Contact\Repositories\ContactRepoInterface;
+use Modules\Contact\Services\ContactService;
+use Modules\Contact\Services\ContactServiceInterface;
 
 class ContactServiceProvider extends ServiceProvider
 {
     /**
      * Get namespace for contacts controllers.
-     *
-     * @var string
      */
     private string $namespace = 'Modules\Contact\Http\Controllers';
 
     /**
      * Get migration path.
-     *
-     * @var string
      */
     private string $migrationPath = '/../Database/Migrations';
 
     /**
      * Get view path.
-     *
-     * @var string
      */
     private string $viewPath = '/../Resources/Views/';
 
     /**
      * Get route path.
-     *
-     * @var string
      */
     private string $routePath = '/../Routes/contact_routes.php';
 
     /**
      * Get name.
-     *
-     * @var string
      */
     private string $name = 'Contact';
 
@@ -82,8 +75,6 @@ class ContactServiceProvider extends ServiceProvider
 
     /**
      * Load migration files.
-     *
-     * @return void
      */
     private function loadMigrationFiles(): void
     {
@@ -92,8 +83,6 @@ class ContactServiceProvider extends ServiceProvider
 
     /**
      * Load view files.
-     *
-     * @return void
      */
     private function loadViewFiles(): void
     {
@@ -102,8 +91,6 @@ class ContactServiceProvider extends ServiceProvider
 
     /**
      * Load route files.
-     *
-     * @return void
      */
     private function loadRouteFiles(): void
     {
@@ -114,8 +101,6 @@ class ContactServiceProvider extends ServiceProvider
 
     /**
      * Load policy files.
-     *
-     * @return void
      */
     private function loadPolicyFiles(): void
     {
@@ -124,8 +109,6 @@ class ContactServiceProvider extends ServiceProvider
 
     /**
      * Bind service into interface.
-     *
-     * @return void
      */
     private function bindService(): void
     {
@@ -134,8 +117,6 @@ class ContactServiceProvider extends ServiceProvider
 
     /**
      * Bind repository into interface.
-     *
-     * @return void
      */
     private function bindRepository(): void
     {
@@ -144,15 +125,13 @@ class ContactServiceProvider extends ServiceProvider
 
     /**
      * Set menu for panel.
-     *
-     * @return void
      */
     private function setMenuForPanel(): void
     {
         config()->set('panelConfig.menus.contacts', [
             'title' => 'Contact',
-            'icon'  => 'phone',
-            'url'   => route('contacts.index'),
+            'icon' => 'phone',
+            'url' => route('contacts.index'),
         ]);
     }
 
@@ -164,8 +143,8 @@ class ContactServiceProvider extends ServiceProvider
     private function setFactory()
     {
         config()->set('shareConfig.factories.contact', [
-            'model'  => Contact::class,
-            'count'  => 1,
+            'model' => Contact::class,
+            'count' => 1,
         ]);
     }
 }

@@ -21,7 +21,6 @@ class VerificationController extends Controller
     /**
      * Return view verify email.
      *
-     * @param Request $request
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
@@ -41,7 +40,7 @@ class VerificationController extends Controller
      */
     public function verify(VerifyRequest $request)
     {
-        if (!VerifyService::check(auth()->id(), $request->verify_code)) {
+        if (! VerifyService::check(auth()->id(), $request->verify_code)) {
             return back()->withErrors(['verify_code' => 'The entered code is invalid!']);
         }
 
@@ -54,7 +53,6 @@ class VerificationController extends Controller
     /**
      * Reset verify code.
      *
-     * @param Request $request
      *
      * @return \Illuminate\Contracts\Foundation\Application|JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */

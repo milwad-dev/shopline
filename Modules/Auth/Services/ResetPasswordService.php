@@ -7,8 +7,6 @@ class ResetPasswordService
     /**
      * Update password.
      *
-     * @param            $user
-     * @param string|int $newPassword
      *
      * @return void
      */

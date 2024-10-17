@@ -7,10 +7,15 @@ use Illuminate\View\Component;
 class Input extends Component
 {
     public string $name;
+
     public string $class;
+
     public string $type;
+
     public ?string $id;
+
     public ?string $placeholder;
+
     public ?string $value;
 
     /**

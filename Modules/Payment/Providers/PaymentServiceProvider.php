@@ -12,36 +12,26 @@ class PaymentServiceProvider extends ServiceProvider
 {
     /**
      * Namespace of user controllers.
-     *
-     * @var string
      */
     private string $namespace = 'Modules\Payment\Http\Controllers';
 
     /**
      * Get route path.
-     *
-     * @var string
      */
     private string $routePath = '/../Routes/payment_routes.php';
 
     /**
      * Get view path.
-     *
-     * @var string
      */
     private string $viewPath = '/../Resources/Views/';
 
     /**
      * Get migration path.
-     *
-     * @var string
      */
     private string $migrationPath = '/../Database/Migrations';
 
     /**
      * Namespace of payment view files.
-     *
-     * @var string
      */
     private string $namespaceUserView = 'Payment';
 
@@ -69,8 +59,6 @@ class PaymentServiceProvider extends ServiceProvider
 
     /**
      * Load migration files.
-     *
-     * @return void
      */
     private function loadMigrationFiles(): void
     {
@@ -79,8 +67,6 @@ class PaymentServiceProvider extends ServiceProvider
 
     /**
      * Load view files.
-     *
-     * @return void
      */
     private function loadViewFiles(): void
     {
@@ -89,8 +75,6 @@ class PaymentServiceProvider extends ServiceProvider
 
     /**
      * Load route files.
-     *
-     * @return void
      */
     private function loadRouteFiles(): void
     {
@@ -117,7 +101,7 @@ class PaymentServiceProvider extends ServiceProvider
     private function setGateway()
     {
         $this->app->singleton(Gateway::class, static function ($app) {
-//            return new PayClass();
+            //            return new PayClass();
         });
     }
 }

@@ -5,15 +5,17 @@ namespace Modules\Auth\Services;
 class VerifyService
 {
     private static int $min = 100000;
+
     private static int $max = 999999;
+
     private static string $prefix = 'verify_code_';
 
     /**
      * Generate code.
      *
-     * @throws \Exception
-     *
      * @return int
+     *
+     * @throws \Exception
      */
     public static function generate()
     {
@@ -23,13 +25,10 @@ class VerifyService
     /**
      * Store code in cache.
      *
-     * @param $id
-     * @param $code
-     * @param $time
-     *
-     * @throws \Psr\SimpleCache\InvalidArgumentException
      *
      * @return void
+     *
+     * @throws \Psr\SimpleCache\InvalidArgumentException
      */
     public static function store($id, $code, $time)
     {
@@ -39,12 +38,11 @@ class VerifyService
     /**
      * Get code from cache.
      *
-     * @param $id
+     *
+     * @return \Illuminate\Contracts\Cache\Repository|mixed
      *
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
-     *
-     * @return \Illuminate\Contracts\Cache\Repository|mixed
      */
     public static function get($id)
     {
@@ -54,11 +52,10 @@ class VerifyService
     /**
      * Check cache has code with id.
      *
-     * @param $id
-     *
-     * @throws \Psr\SimpleCache\InvalidArgumentException
      *
      * @return bool
+     *
+     * @throws \Psr\SimpleCache\InvalidArgumentException
      */
     public static function has($id)
     {
@@ -68,11 +65,10 @@ class VerifyService
     /**
      * Delete code from cache.
      *
-     * @param $id
-     *
-     * @throws \Psr\SimpleCache\InvalidArgumentException
      *
      * @return bool
+     *
+     * @throws \Psr\SimpleCache\InvalidArgumentException
      */
     public static function delete($id)
     {
@@ -92,14 +88,12 @@ class VerifyService
     /**
      * Check code is true.
      *
-     * @param $id
-     * @param $code
+     *
+     * @return bool
      *
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      * @throws \Psr\SimpleCache\InvalidArgumentException
-     *
-     * @return bool
      */
     public static function check($id, $code)
     {

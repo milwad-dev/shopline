@@ -78,7 +78,7 @@ class Advertising extends Model
     {
         $link = $this->link;
 
-        if (!is_null($link) && !startWith($link, 'https')) {
+        if (! is_null($link) && ! startWith($link, 'https')) {
             return "https://$link";
         }
 
@@ -90,7 +90,6 @@ class Advertising extends Model
     /**
      * Get active scope.
      *
-     * @param $query
      *
      * @return mixed
      */

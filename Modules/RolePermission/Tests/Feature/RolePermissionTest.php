@@ -93,7 +93,7 @@ class RolePermissionTest extends TestCase
         $this->createUserWithLoginWithAssignPermission();
 
         $response = $this->post(route('role-permissions.store'), [
-            'name'        => $this->faker->title,
+            'name' => $this->faker->title,
             'permissions' => [Permission::PERMISSION_SUPER_ADMIN, Permission::PERMISSION_CATEGORIES],
         ]);
         $response->assertSessionHas('alert');
@@ -112,7 +112,7 @@ class RolePermissionTest extends TestCase
         $this->createUserWithLoginWithAssignPermission(false);
 
         $response = $this->post(route('role-permissions.store'), [
-            'name'        => $this->faker->title,
+            'name' => $this->faker->title,
             'permissions' => [Permission::PERMISSION_SUPER_ADMIN, Permission::PERMISSION_CATEGORIES],
         ]);
         $response->assertStatus(403);
@@ -160,8 +160,8 @@ class RolePermissionTest extends TestCase
 
         $role = $this->createRole();
         $response = $this->patch(route('role-permissions.update', $role->id), [
-            'id'          => $role->id,
-            'name'        => 'Milwad',
+            'id' => $role->id,
+            'name' => 'Milwad',
             'permissions' => [Permission::PERMISSION_USERS, Permission::PERMISSION_PANEL],
         ]);
         $response->assertSessionHas('alert');
@@ -181,8 +181,8 @@ class RolePermissionTest extends TestCase
 
         $role = $this->createRole();
         $response = $this->patch(route('role-permissions.update', $role->id), [
-            'id'          => $role->id,
-            'name'        => 'Milwad',
+            'id' => $role->id,
+            'name' => 'Milwad',
             'permissions' => [Permission::PERMISSION_USERS, Permission::PERMISSION_PANEL],
         ]);
         $response->assertStatus(403);
@@ -240,10 +240,6 @@ class RolePermissionTest extends TestCase
 
     /**
      * Create user with login.
-     *
-     * @param bool $permission
-     *
-     * @return void
      */
     private function createUserWithLoginWithAssignPermission(bool $permission = true): void
     {

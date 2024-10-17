@@ -26,12 +26,11 @@ class ProductController extends Controller
 
     /**
      * Get product class.
-     *
-     * @var string
      */
     private string $class = Product::class;
 
     public ProductServiceInterface $service;
+
     public ProductRepoEloquentInterface $repo;
 
     public function __construct(ProductServiceInterface $productService, ProductRepoEloquentInterface $productRepo)
@@ -43,9 +42,9 @@ class ProductController extends Controller
     /**
      * Show index page of products.
      *
-     * @throws AuthorizationException
-     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
+     * @throws AuthorizationException
      */
     public function index()
     {
@@ -60,9 +59,9 @@ class ProductController extends Controller
     /**
      * Show create product page.
      *
-     * @throws AuthorizationException
-     *
      * @return Application|Factory|View
+     *
+     * @throws AuthorizationException
      */
     public function create(CategoryRepoEloquentInterface $categoryRepo)
     {
@@ -75,12 +74,11 @@ class ProductController extends Controller
     /**
      * Store product.
      *
-     * @param ProductRequest $request
+     *
+     * @return RedirectResponse
      *
      * @throws \Exception
      * @throws AuthorizationException
-     *
-     * @return RedirectResponse
      */
     public function store(ProductRequest $request)
     {
@@ -101,12 +99,10 @@ class ProductController extends Controller
     /**
      * Find product by id with show edit product page.
      *
-     * @param                               $id
-     * @param CategoryRepoEloquentInterface $categoryRepo
-     *
-     * @throws AuthorizationException
      *
      * @return Application|Factory|View
+     *
+     * @throws AuthorizationException
      */
     public function edit($id, CategoryRepoEloquentInterface $categoryRepo)
     {
@@ -121,12 +117,10 @@ class ProductController extends Controller
     /**
      * Update product with request by id.
      *
-     * @param ProductRequest $request
-     * @param                $id
-     *
-     * @throws AuthorizationException
      *
      * @return RedirectResponse
+     *
+     * @throws AuthorizationException
      */
     public function update(ProductRequest $request, $id)
     {
@@ -138,11 +132,11 @@ class ProductController extends Controller
         $this->service->update($request, $id);
         $this->service->firstOrCreateCategoriesToProduct($request->categories, $product);
 
-        if (!is_null($request->galleries)) {
+        if (! is_null($request->galleries)) {
             $this->service->attachGalleriesToProduct($request->galleries, $product);
         }
 
-        if (!empty($request->tags)) {
+        if (! empty($request->tags)) {
             $this->service->attachTagsToProduct($request->tags, $product);
         }
 
@@ -152,11 +146,10 @@ class ProductController extends Controller
     /**
      * Delete product by id.
      *
-     * @param $id
-     *
-     * @throws AuthorizationException
      *
      * @return JsonResponse
+     *
+     * @throws AuthorizationException
      */
     public function destroy($id)
     {
@@ -170,40 +163,26 @@ class ProductController extends Controller
 
     /**
      * Check & attach attributes.
-     *
-     * @param $attributes
-     * @param $product
-     *
-     * @return void
      */
     private function checkAndAttachAttributes($attributes, $product): void
     {
-        if (!is_null($attributes[0]['attributekeys'])) {
+        if (! is_null($attributes[0]['attributekeys'])) {
             $this->service->attachAttributesToProduct($attributes, $product);
         }
     }
 
     /**
      * Check & attach tags.
-     *
-     * @param $tags
-     * @param $product
-     *
-     * @return void
      */
     private function checkAndAttachTags($tags, $product): void
     {
-        if (!empty($tags)) {
+        if (! empty($tags)) {
             $this->service->attachTagsToProduct($tags, $product);
         }
     }
 
     /**
      * Upload product medias.
-     *
-     * @param ProductRequest $request
-     *
-     * @return void
      */
     private function uploadMedia(ProductRequest $request): void
     {
@@ -212,17 +191,10 @@ class ProductController extends Controller
 
     /**
      * Check & upload for media.
-     *
-     * @param ProductRequest $request
-     * @param                $product
-     * @param string         $file
-     * @param string         $field
-     *
-     * @return void
      */
     private function checkAndUploadMediaForUpdate(ProductRequest $request, $product, string $file, string $field): void
     {
-        if (!is_null($request->first_media)) {
+        if (! is_null($request->first_media)) {
             ShareService::uploadMediaWithAddInRequest($request, $file, $field);
         } else {
             $request->request->add([$field => $product->first_media_id]);

@@ -17,6 +17,7 @@ class UserController extends Controller
     private string $class = User::class;
 
     public UserRepoEloquentInterface $repo;
+
     public UserService $service;
 
     public function __construct(UserRepoEloquentInterface $userRepo, UserService $userService)
@@ -28,9 +29,9 @@ class UserController extends Controller
     /**
      * Get the latest users without user logged.
      *
-     * @throws AuthorizationException
-     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
+     * @throws AuthorizationException
      */
     public function index()
     {
@@ -43,9 +44,9 @@ class UserController extends Controller
     /**
      * Show create view for user.
      *
-     * @throws AuthorizationException
-     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
+     * @throws AuthorizationException
      */
     public function create()
     {
@@ -57,11 +58,10 @@ class UserController extends Controller
     /**
      * Store user by request.
      *
-     * @param UserRequest $request
-     *
-     * @throws AuthorizationException
      *
      * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws AuthorizationException
      */
     public function store(UserRequest $request)
     {
@@ -78,11 +78,10 @@ class UserController extends Controller
     /**
      * Show edit view & check user is exists by id.
      *
-     * @param $id
-     *
-     * @throws AuthorizationException
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
+     * @throws AuthorizationException
      */
     public function edit($id)
     {
@@ -95,12 +94,10 @@ class UserController extends Controller
     /**
      * Update user by request with id.
      *
-     * @param UserRequest $request
-     * @param             $id
-     *
-     * @throws AuthorizationException
      *
      * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws AuthorizationException
      */
     public function update(UserRequest $request, $id)
     {
@@ -118,11 +115,10 @@ class UserController extends Controller
     /**
      * Delete user by id.
      *
-     * @param $id
-     *
-     * @throws AuthorizationException
      *
      * @return \Illuminate\Http\JsonResponse
+     *
+     * @throws AuthorizationException
      */
     public function destroy($id)
     {
@@ -135,7 +131,6 @@ class UserController extends Controller
     /**
      * Show success message with redirect.
      *
-     * @param string $title
      *
      * @return \Illuminate\Http\RedirectResponse
      */

@@ -15,14 +15,12 @@ class ApprovedComment implements Rule
     /**
      * Check rule.
      *
-     * @param $attribute
-     * @param $value
      *
      * @return bool
      */
     public function passes($attribute, $value)
     {
-        return !is_null(resolve(CommentRepoEloquent::class)->findActiveCommentById($value));
+        return ! is_null(resolve(CommentRepoEloquent::class)->findActiveCommentById($value));
     }
 
     /**

@@ -2,6 +2,4 @@
 
 namespace Modules\RolePermission\Database\Seeds;
 
-class PermissionSeeder
-{
-}
+class PermissionSeeder {}

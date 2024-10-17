@@ -9,7 +9,9 @@ use Modules\Media\Models\Media;
 class MediaFileService
 {
     private static $file;
+
     private static $dir;
+
     private static $isPrivate;
 
     public static function privateUpload(UploadedFile $file)
@@ -35,7 +37,7 @@ class MediaFileService
         $extension = self::normalizeExtension(self::$file);
         foreach (config('mediaFile.MediaTypeServices') as $type => $service) {
             if (in_array($extension, $service['extensions'])) {
-                return self::uploadByHandler(new $service['handler'](), $type);
+                return self::uploadByHandler(new $service['handler'], $type);
             }
         }
     }
@@ -70,7 +72,7 @@ class MediaFileService
 
     private static function uploadByHandler(FileServiceContract $service, $key): Media
     {
-        $media = new Media();
+        $media = new Media;
         $media->files = $service::upload(self::$file, self::filenameGenerator(), self::$dir);
         $media->type = $key;
         $media->user_id = auth()->id();

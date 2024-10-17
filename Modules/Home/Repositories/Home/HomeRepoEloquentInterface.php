@@ -13,6 +13,4 @@ namespace Modules\Home\Repositories\Home;
  * @method getTopRatedProducts
  * @method getLatestArticles
  */
-interface HomeRepoEloquentInterface
-{
-}
+interface HomeRepoEloquentInterface {}

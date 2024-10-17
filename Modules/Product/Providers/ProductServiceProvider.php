@@ -16,36 +16,26 @@ class ProductServiceProvider extends ServiceProvider
 {
     /**
      * Get namespace for controllers.
-     *
-     * @var string
      */
     private string $namespace = 'Modules\Product\Http\Controllers';
 
     /**
      * Get migration path.
-     *
-     * @var string
      */
     private string $migrationPath = '/../Database/Migrations';
 
     /**
      * Get view path.
-     *
-     * @var string
      */
     private string $viewPath = '/../Resources/Views/';
 
     /**
      * Get name.
-     *
-     * @var string
      */
     private string $name = 'Product';
 
     /**
      * Get route path.
-     *
-     * @var string
      */
     private string $routePath = '/../Routes/product_routes.php';
 
@@ -105,8 +95,6 @@ class ProductServiceProvider extends ServiceProvider
 
     /**
      * Load product migration files.
-     *
-     * @return void
      */
     private function loadMigrationFiles(): void
     {
@@ -115,8 +103,6 @@ class ProductServiceProvider extends ServiceProvider
 
     /**
      * Load product view files.
-     *
-     * @return void
      */
     private function loadViewFiles(): void
     {
@@ -125,8 +111,6 @@ class ProductServiceProvider extends ServiceProvider
 
     /**
      * Load product policy files.
-     *
-     * @return void
      */
     private function loadPolicyFiles(): void
     {
@@ -135,8 +119,6 @@ class ProductServiceProvider extends ServiceProvider
 
     /**
      * Load product route files.
-     *
-     * @return void
      */
     private function loadRouteFiles(): void
     {
@@ -147,15 +129,13 @@ class ProductServiceProvider extends ServiceProvider
 
     /**
      * Set menu for panel.
-     *
-     * @return void
      */
     private function setUpMenuForPanel(): void
     {
         config()->set('panelConfig.menus.products', [
             'title' => 'Products',
-            'icon'  => 'gift',
-            'url'   => route('products.index'),
+            'icon' => 'gift',
+            'url' => route('products.index'),
         ]);
     }
 
@@ -167,8 +147,8 @@ class ProductServiceProvider extends ServiceProvider
     private function setFactory()
     {
         config()->set('shareConfig.factories.product', [
-            'model'  => Product::class,
-            'count'  => 1,
+            'model' => Product::class,
+            'count' => 1,
         ]);
     }
 }

@@ -14,29 +14,21 @@ class UserServiceProvider extends ServiceProvider
 {
     /**
      * Namespace of user controllers.
-     *
-     * @var string
      */
     private string $namespace = 'Modules\User\Http\Controllers';
 
     /**
      * Namespace of user view files.
-     *
-     * @var string
      */
     private string $namespaceUserView = 'User';
 
     /**
      * Path of user migration files.
-     *
-     * @var string
      */
     private string $migrationPath = '/../Database/Migrations';
 
     /**
      * Path of user view files.
-     *
-     * @var string
      */
     private string $viewPath = '/../Resources/Views/';
 
@@ -49,15 +41,11 @@ class UserServiceProvider extends ServiceProvider
 
     /**
      * Get user model.
-     *
-     * @var string
      */
     private string $model = User::class;
 
     /**
      * Get user policy.
-     *
-     * @var string
      */
     private string $policy = UserPolicy::class;
 
@@ -89,8 +77,6 @@ class UserServiceProvider extends ServiceProvider
 
     /**
      * Load user migration files.
-     *
-     * @return void
      */
     private function loadMigrationFiles(): void
     {
@@ -99,8 +85,6 @@ class UserServiceProvider extends ServiceProvider
 
     /**
      * Load user view files.
-     *
-     * @return void
      */
     private function loadViewFiles(): void
     {
@@ -109,8 +93,6 @@ class UserServiceProvider extends ServiceProvider
 
     /**
      * Load user route files.
-     *
-     * @return void
      */
     private function loadRouteFiles(): void
     {
@@ -120,8 +102,6 @@ class UserServiceProvider extends ServiceProvider
 
     /**
      * Load user policy files.
-     *
-     * @return void
      */
     private function loadPolicyFiles(): void
     {
@@ -130,15 +110,13 @@ class UserServiceProvider extends ServiceProvider
 
     /**
      * Set user menu in panel from config file.
-     *
-     * @return void
      */
     private function setMenuForPanel(): void
     {
         config()->set('panelConfig.menus.users', [
             'title' => 'Users',
-            'icon'  => 'user',
-            'url'   => route('users.index'),
+            'icon' => 'user',
+            'url' => route('users.index'),
         ]);
     }
 
@@ -150,8 +128,8 @@ class UserServiceProvider extends ServiceProvider
     private function setFactory()
     {
         config()->set('shareConfig.factories.user', [
-            'model'  => User::class,
-            'count'  => 1,
+            'model' => User::class,
+            'count' => 1,
         ]);
     }
 
