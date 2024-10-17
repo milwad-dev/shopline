@@ -9,7 +9,6 @@
         "cyrildewit/eloquent-viewable": "^7.0",
         "intervention/image": "^3.8",
         "laravel/framework": "^11.0",
-        "laravel/pint": "^1.18",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.7",
         "milwad/laravel-attributes": "^1.2",
@@ -21,9 +20,11 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
+        "laravel/pint": "^1.18",
         "laravel/sail": "^1.36.0",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.5",
+        "phpstan/phpstan": "^1.12",
         "phpunit/phpunit": "^11.4",
         "spatie/laravel-ignition": "^2.8"
     },
@@ -74,7 +75,8 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
-        "pint": "vendor/bin/pint app config database lang Modules resources routes"
+        "pint": "vendor/bin/pint app config database lang Modules resources routes",
+        "stan": "vendor/bin/phpstan level=7 Modules"
     },
     "extra": {
         "laravel": {
