@@ -53,7 +53,7 @@ jobs:
           coverage: none
 
       - name: Install PHPStan
-        run: composer require phpstan/phpstan
+        run: composer global require phpstan/phpstan
 
       - name: Run PHPStan
         run: phpstan
