@@ -9,11 +9,8 @@ class HomeController extends Controller
 {
     /**
      * Show home page.
-     *
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function index(HomeRepoEloquentInterface $homeRepo)
+    public function index(HomeRepoEloquentInterface $homeRepo): \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         return view('Home::Pages.home.index', compact('homeRepo'));
     }
