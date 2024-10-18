@@ -162,15 +162,19 @@
                                             <i data-feather="user"></i>
                                         </div>
                                         <div class="delivery-detail">
-                                            <h6>Hello,</h6>
+                                            <h6>Hello, {{ auth()->check() ? auth()->user()->name : '' }}</h6>
                                             <h5>My Account</h5>
                                         </div>
                                     </div>
                                     <div class="onhover-div onhover-div-login">
                                         <ul class="user-box-name">
                                             @auth
+                                                @if(auth()->user()->hasPermissionTo(\Modules\RolePermission\Models\Permission::PERMISSION_SUPER_ADMIN))
+                                                    <li class="product-box-contain">
+                                                        <a href="{{ route('panel.index') }}">Panel</a>
+                                                    </li>
+                                                @endif
                                                 <li class="product-box-contain">
-                                                    <i></i>
                                                     <a href="log-in.html">Profile</a>
                                                 </li>
                                                 <li class="product-box-contain">
