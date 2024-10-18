@@ -35,6 +35,15 @@ Shopline made with Laravel - JS - Bootstrap.
 ## Demos
 Coming soon
 
+## Run Pint & PHPStan
+
+For convenience, we are define two composer scripts to run `Pint` and `PHPStan`:
+
+```shell
+composer pint
+composer stan
+```
+
 ## Contributors
 <a href="https://github.com/milwad-dev/shopline/graphs/contributors">
     <img src="https://opencollective.com/shopline/contributors.svg?width=890&button=false" alt="contributes">
