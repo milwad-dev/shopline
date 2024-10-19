@@ -4,10 +4,15 @@
 
 @section('content')
     @include('Home::Pages.home.sliders', [
-         'sliders' => $homeRepo->getLatestSliders(),
-         'adv'     => $homeRepo->getOneLatestAdvByLocation(\Modules\Advertising\Enums\AdvertisingLocationEnum::LOCATION_SLIDER->value)->first()
-     ]) {{-- Include slider file --}}
-    @include('Home::Pages.home.categories') {{-- Include categories file --}}
+        'sliders' => $homeRepo->getLatestSliders(),
+        'adv'     => $homeRepo->getOneLatestAdvByLocation(\Modules\Advertising\Enums\AdvertisingLocationEnum::LOCATION_SLIDER->value)->first()
+    ]) {{-- Include slider file --}}
+
+    {{-- Include categories file --}}
+    @include('Home::Pages.home.categories', [
+        'categories' => $homeRepo->getLatestCategories()
+    ])
+
     @include('Home::Pages.home.discount') {{-- Include discount file --}}
     @include('Home::Pages.home.latest-products', ['products' => $homeRepo->getLatestActiveProducts()]) {{-- Include latest products file --}}
     @include('Home::Pages.home.top-products') {{-- Include top products file --}}
