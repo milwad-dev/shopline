@@ -4,33 +4,33 @@ Shopline can help you to make your shop easy fast & free. <br>
 Shopline helps to tutorial advance Laravel. <br>
 Shopline made with Laravel - JS - Bootstrap.
 
-## Features
+## Features 🎉
 
 * Modular architecture
 * Custom authentication
 * Dynamic menu
-* Design Pattern
+* Design Patterns
 * SOLID
 * Sweetalert
 * Toast
 * Ajax
 * JQuery
 * TDD
-* Laravel-crod package
-* Laravel-validation package
-* Laravel-attributes package
-* Role permission system
-* Use helper
-* Module maker command custom
+* [Laravel-Crod](https://github.com/milwad-dev/laravel-crod)
+* [Laravel-Validate](https://github.com/milwad-dev/laravel-validate/)
+* [Laravel-Attributes](https://github.com/milwad-dev/laravel-attributes)
+* Role-Permission system
+* Custom Helpers
+* Module maker custom command
 * Gate & Policy
 * Many attributes
-* Spatie Tags
+* [Spatie Tags](https://github.com/spatie/laravel-tags)
 * [Intervention Image](https://github.com/Intervention/image)
 * Test coverage
-* Laravel component
+* Laravel Components
 * Polymorphic relationships
-* Laravel Pint
-* PHPStan (Level 7)
+* [Laravel Pint](https://github.com/laravel/pint)
+* [PHPStan (Level 7)](https://github.com/phpstan/phpstan)
 
 ## Demos
 
