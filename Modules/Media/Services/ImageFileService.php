@@ -4,10 +4,10 @@ namespace Modules\Media\Services;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 use Modules\Media\Contracts\FileServiceContract;
 use Modules\Media\Models\Media;
-use Intervention\Image\Drivers\Gd\Driver;
 
 class ImageFileService extends DefaultFileService implements FileServiceContract
 {
@@ -23,7 +23,7 @@ class ImageFileService extends DefaultFileService implements FileServiceContract
 
     private static function resize($img, $dir, $filename, $extension)
     {
-        $manager = new ImageManager(new Driver());
+        $manager = new ImageManager(new Driver);
 
         $img = $manager->read($img);
         $imgs['original'] = $filename.'.'.$extension;

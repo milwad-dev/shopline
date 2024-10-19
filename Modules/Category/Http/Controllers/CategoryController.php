@@ -9,7 +9,6 @@ use Modules\Category\Http\Requests\CategoryRequest;
 use Modules\Category\Models\Category;
 use Modules\Category\Repositories\CategoryRepoEloquentInterface;
 use Modules\Category\Services\CategoryServiceInterface;
-use Modules\Product\Http\Requests\ProductRequest;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
 use Modules\Share\Services\ShareService;
@@ -23,8 +22,6 @@ class CategoryController extends Controller
 
     /**
      * Get class.
-     *
-     * @var string
      */
     private string $class = Category::class;
 

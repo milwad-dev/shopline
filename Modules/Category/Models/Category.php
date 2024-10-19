@@ -31,7 +31,7 @@ class Category extends Model
         'slug',
         'keywords',
         'status',
-        'description'
+        'description',
     ];
 
     /**
@@ -76,7 +76,6 @@ class Category extends Model
     {
         return $this->belongsTo(Media::class, 'media_id');
     }
-
 
     /**
      * Relation to user, relation is one to many.
