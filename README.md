@@ -33,7 +33,11 @@ Shopline made with Laravel - JS - Bootstrap.
 * PHPStan (Level 7)
 
 ## Demos
-Coming soon
+
+### Panel Demos
+
+- Category Index
+<img src="art/panel-category-index.png" alt="category-index">
 
 ## Run Pint & PHPStan
 
