@@ -1,6 +1,6 @@
 @extends('Home::Home.layouts.master')
 
-@section('title', 'Home page')
+@section('title', 'Home')
 
 @section('content')
     @include('Home::Pages.home.sliders', [

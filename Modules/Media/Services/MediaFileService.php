@@ -92,6 +92,20 @@ class MediaFileService
         }
     }
 
+    /**
+     * Get original media.
+     */
+    public static function original(Media $media): mixed
+    {
+        foreach (config('mediaFile.MediaTypeServices') as $type => $service) {
+            if ($media->type == $type) {
+                return $service['handler']::original($media);
+            }
+        }
+
+        return false;
+    }
+
     public static function getExtensions()
     {
         $extensions = [];

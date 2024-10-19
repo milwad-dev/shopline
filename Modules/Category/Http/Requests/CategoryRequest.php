@@ -27,6 +27,7 @@ class CategoryRequest extends FormRequest
     {
         $rules = [
             'parent_id' => 'nullable|exists:categories,id',
+            'image' => 'required|file|max:2048',
             'title' => 'required|string|min:3|max:255|unique:categories,title',
             'keywords' => 'nullable|string|min:3|max:255',
             'status' => ['required', 'string', new Enum(CategoryStatusEnum::class)],

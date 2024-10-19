@@ -15,8 +15,9 @@ class CategoryService implements CategoryServiceInterface
      */
     public function store($request)
     {
-        return $this->query()->create([
+        return Category::query()->create([
             'user_id' => auth()->id(),
+            'media_id' => $request->media_id,
             'parent_id' => $request->parent_id,
             'title' => $request->title,
             'slug' => ShareService::makeSlug($request->title),
@@ -30,11 +31,12 @@ class CategoryService implements CategoryServiceInterface
      * Update category by id.
      *
      *
-     * @return int
+     * @return bool
      */
-    public function update($request, $id)
+    public function update($request, Category $category)
     {
-        return $this->query()->where('id', $id)->update([
+        return $category->update([
+            'media_id' => $request->media_id,
             'parent_id' => $request->parent_id,
             'title' => $request->title,
             'slug' => ShareService::makeSlug($request->title),
@@ -42,15 +44,5 @@ class CategoryService implements CategoryServiceInterface
             'status' => $request->status,
             'description' => $request->description,
         ]);
-    }
-
-    /**
-     * Return category query.
-     *
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    private function query()
-    {
-        return Category::query();
     }
 }

@@ -9,8 +9,10 @@ use Modules\Category\Http\Requests\CategoryRequest;
 use Modules\Category\Models\Category;
 use Modules\Category\Repositories\CategoryRepoEloquentInterface;
 use Modules\Category\Services\CategoryServiceInterface;
+use Modules\Product\Http\Requests\ProductRequest;
 use Modules\Share\Http\Controllers\Controller;
 use Modules\Share\Responses\AjaxResponses;
+use Modules\Share\Services\ShareService;
 use Modules\Share\Traits\SuccessToastMessageWithRedirectTrait;
 
 class CategoryController extends Controller
@@ -19,17 +21,17 @@ class CategoryController extends Controller
 
     private string $redirectRoute = 'categories.index';
 
+    /**
+     * Get class.
+     *
+     * @var string
+     */
     private string $class = Category::class;
 
-    public CategoryServiceInterface $service;
-
-    public CategoryRepoEloquentInterface $repo;
-
-    public function __construct(CategoryServiceInterface $categoryService, CategoryRepoEloquentInterface $categoryRepo)
-    {
-        $this->repo = $categoryRepo;
-        $this->service = $categoryService;
-    }
+    public function __construct(
+        public CategoryServiceInterface $service,
+        public CategoryRepoEloquentInterface $repo,
+    ) {}
 
     /**
      * Read data with show list of categories.
@@ -72,6 +74,8 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         $this->authorize('manage', $this->class);
+
+        $this->uploadMedia($request);
         $this->service->store($request);
 
         return $this->successMessageWithRedirect('Create category');
@@ -102,10 +106,12 @@ class CategoryController extends Controller
      *
      * @throws AuthorizationException
      */
-    public function update(CategoryRequest $request, $id)
+    public function update(CategoryRequest $request, Category $category)
     {
         $this->authorize('manage', $this->class);
-        $this->service->update($request, $id);
+
+        $this->checkAndUploadMediaForUpdate($request, $category, 'media_id');
+        $this->service->update($request, $category);
 
         return $this->successMessageWithRedirect('Update category');
     }
@@ -156,5 +162,27 @@ class CategoryController extends Controller
         $this->repo->changeStatus($id, CategoryStatusEnum::STATUS_INACTIVE->value);
 
         return AjaxResponses::SuccessResponse();
+    }
+
+    // Private functions
+
+    /**
+     * Upload product medias.
+     */
+    private function uploadMedia(CategoryRequest $request): void
+    {
+        ShareService::uploadMediaWithAddInRequest($request);
+    }
+
+    /**
+     * Check & upload for media.
+     */
+    private function checkAndUploadMediaForUpdate(CategoryRequest $request, Category $category, string $field): void
+    {
+        if (! is_null($request->image)) {
+            ShareService::uploadMediaWithAddInRequest($request);
+        } else {
+            $request->request->add([$field => $category->media_id]);
+        }
     }
 }

@@ -1,6 +1,6 @@
 @extends('Panel::layouts.master')
 
-@section('title', 'New category')
+@section('title', 'New Category')
 
 @section('content')
     <div class="app-content content">
@@ -17,8 +17,11 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
+                                @foreach($errors->all() as $err)
+                                    <p>{{ $err }}</p>
+                                @endforeach
                                 <div class="card-body">
-                                    <form action="{{ route('categories.store') }}" method="POST">
+                                    <form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data">
                                         <div class="row">
                                             @csrf
                                             <div class="col-xl-6 col-md-6 col-12">
@@ -67,6 +70,21 @@
                                                     placeholder="Enter the description" value="{{ old('description') }}" />
                                                     <x-share-error name="description" />
                                                 </div>
+                                            </div>
+                                            <div class="upload__box">
+                                                <div class="upload__btn-box">
+                                                    <x-panel-label title="Image" />
+                                                    <br>
+                                                    <label class="upload__btn">
+                                                        <p>Upload Image</p>
+                                                        <input
+                                                            type="file"
+                                                            name="image"
+                                                            class="upload__inputfile"
+                                                        >
+                                                    </label>
+                                                </div>
+                                                <div class="upload__img-wrap"></div>
                                             </div>
                                             <x-panel-button />
                                         </div>

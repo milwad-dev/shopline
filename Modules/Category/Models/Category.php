@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use Modules\Article\Models\Article;
 use Modules\Category\Database\Factories\CategoryFactory;
 use Modules\Category\Enums\CategoryStatusEnum;
+use Modules\Media\Models\Media;
 use Modules\Product\Models\Product;
 use Modules\User\Models\User;
 
 /**
- * @property $status
+ * @property string $status
  */
 class Category extends Model
 {
@@ -22,7 +23,23 @@ class Category extends Model
      *
      * @var string[]
      */
-    protected $fillable = ['user_id', 'parent_id', 'title', 'slug', 'keywords', 'status', 'description'];
+    protected $fillable = [
+        'media_id',
+        'user_id',
+        'parent_id',
+        'title',
+        'slug',
+        'keywords',
+        'status',
+        'description'
+    ];
+
+    /**
+     * The relations to eager load on every query.
+     *
+     * @var string[]
+     */
+    protected $with = ['media'];
 
     /**
      * Create a new factory instance for the model.
@@ -43,10 +60,24 @@ class Category extends Model
      */
     public function getParentAttribute()
     {
-        return (is_null($this->parent_id)) ? 'No parent' : $this->parent->title;
+        return is_null($this->parent_id)
+            ? 'No parent'
+            : $this->parent->title;
     }
 
     // Relations
+
+    /**
+     * Relation to media, relation is one to many.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function media()
+    {
+        return $this->belongsTo(Media::class, 'media_id');
+    }
+
+
     /**
      * Relation to user, relation is one to many.
      *
@@ -106,11 +137,9 @@ class Category extends Model
      */
     public function getCssClassStatus()
     {
-        if ($this->status === CategoryStatusEnum::STATUS_ACTIVE->value) {
-            return 'success';
-        }
-
-        return 'warning';
+        return $this->status === CategoryStatusEnum::STATUS_ACTIVE->value
+            ? 'success'
+            : 'warning';
     }
 
     /**
