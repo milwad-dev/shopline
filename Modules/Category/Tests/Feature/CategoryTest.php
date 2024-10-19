@@ -4,6 +4,7 @@ namespace Modules\Category\Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\UploadedFile;
 use Modules\Category\Enums\CategoryStatusEnum;
 use Modules\Category\Models\Category;
 use Modules\RolePermission\Database\Seeds\PermissionSeeder;
@@ -93,6 +94,7 @@ class CategoryTest extends TestCase
         $title = $this->faker->unique()->title;
         $response = $this->post(route('categories.store'), [
             'parent_id' => null,
+            'image' => UploadedFile::fake()->image('milwad.png'),
             'title' => $title,
             'keywords' => $this->faker->text(),
             'status' => CategoryStatusEnum::STATUS_ACTIVE->value,
@@ -101,9 +103,7 @@ class CategoryTest extends TestCase
         $response->assertRedirect(route('categories.index'));
         $response->assertSessionHas('alert');
 
-        $this->assertDatabaseHas('categories', [
-            'title' => $title,
-        ]);
+        $this->assertDatabaseHas('categories', ['title' => $title]);
         $this->assertDatabaseCount('categories', 1);
         $this->assertEquals(1, Category::query()->count());
     }
@@ -124,7 +124,7 @@ class CategoryTest extends TestCase
     }
 
     /**
-     * Test validate for store category is successful.
+     * Test validate for update category is successful.
      *
      * @return void
      */
@@ -148,7 +148,7 @@ class CategoryTest extends TestCase
      *
      * @return void
      */
-    public function test_admin_user_can_update_categoroy()
+    public function test_admin_user_can_update_category()
     {
         $this->withoutExceptionHandling();
         $this->createUserWithLoginWithAssignPermission();
@@ -159,6 +159,7 @@ class CategoryTest extends TestCase
             'id' => $category->id,
             'title' => $title,
             'description' => 'shopline category',
+            'image' => UploadedFile::fake()->image('milwad.png'),
             'status' => CategoryStatusEnum::STATUS_INACTIVE->value,
         ]);
         $response->assertRedirect(route('categories.index'));
