@@ -1,8 +1,11 @@
+# Shopline
+
 ## Introduction
 
 Shopline is a full-stack e-commerce platform developed using Laravel, structured with a modular architecture to ensure scalability, maintainability, and efficient feature development. The platform integrates key features such as user management, product catalog, shopping cart, order processing, and payment gateway integration.
 
 ## Key Features
+
 1. User Management:
    - Authentication and authorization for both customers and admin users.
    - Profile management and order history access for registered customers.
@@ -49,9 +52,9 @@ Shopline is a full-stack e-commerce platform developed using Laravel, structured
 
 ## Demos
 
-### Panel Demos
+### Management
 
-- Category Index
+- Category
 <img src="art/panel-category-index.png" alt="category-index">
 
 ## Run Pint & PHPStan
