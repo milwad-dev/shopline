@@ -21,7 +21,7 @@ class VerifyCodeMail extends Mailable
     public function build()
     {
         return $this
-            ->markdown('Auth::Mails.verify-mail')
+            ->markdown('Auth::mails.verify-mail')
             ->subject('Verify account | '.config('app.name'));
     }
 }

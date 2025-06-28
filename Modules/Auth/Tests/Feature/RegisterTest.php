@@ -38,10 +38,9 @@ class RegisterTest extends TestCase
     public function test_logged_user_can_not_see_register_page()
     {
         $user = User::factory()->create();
-        auth()->login($user);
 
-        $response = $this->get(route('register'));
-        $response->assertOk(); // TODO BETTER
+        $response = $this->actingAs($user)->get(route('register'));
+        $response->assertFound(); // TODO: BETTER
     }
 
     /**
