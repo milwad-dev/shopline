@@ -2,6 +2,4 @@
 
 namespace Modules\Category\Repositories;
 
-interface CategoryRepoEloquentInterface
-{
-}
+interface CategoryRepoEloquentInterface {}

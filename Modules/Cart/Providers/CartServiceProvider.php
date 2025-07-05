@@ -9,8 +9,6 @@ class CartServiceProvider extends ServiceProvider
 {
     /**
      * Get namespace for cart controllers.
-     *
-     * @var string
      */
     private string $namespace = 'Modules\Cart\Http\Controllers';
 
@@ -23,8 +21,6 @@ class CartServiceProvider extends ServiceProvider
 
     /**
      * Get cart path.
-     *
-     * @var string
      */
     private string $cartPath = '/../Routes/cart_routes.php';
 

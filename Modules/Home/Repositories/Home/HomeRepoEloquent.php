@@ -72,7 +72,6 @@ class HomeRepoEloquent implements HomeRepoEloquentInterface
     /**
      * Get latest advs by location.
      *
-     * @param string $location
      *
      * @return mixed
      */

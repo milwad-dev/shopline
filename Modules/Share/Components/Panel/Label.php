@@ -7,8 +7,11 @@ use Illuminate\View\Component;
 class Label extends Component
 {
     public string $title;
+
     public ?string $for;
+
     public ?string $class;
+
     public ?string $nullable;
 
     /**

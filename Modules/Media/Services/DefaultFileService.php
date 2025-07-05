@@ -29,14 +29,14 @@ abstract class DefaultFileService
 
         return response()->stream(
             function () use ($stream) {
-            while (ob_get_level() > 0) {
-                ob_get_flush();
-            }
-            fpassthru($stream);
-        },
+                while (ob_get_level() > 0) {
+                    ob_get_flush();
+                }
+                fpassthru($stream);
+            },
             200,
             [
-                'Content-Type'        => Storage::mimeType(static::getFilename()),
+                'Content-Type' => Storage::mimeType(static::getFilename()),
                 'Content-disposition' => 'attachment; filename='.static::$media->filename,
             ]
         );

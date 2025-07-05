@@ -26,7 +26,7 @@ class RolePermissionRequest extends FormRequest
         $ruleName = 'required|min:3|max:255|unique:roles,name';
 
         $rules = [
-            'name'        => $ruleName,
+            'name' => $ruleName,
             'permissions' => 'required|array|min:1',
         ];
 

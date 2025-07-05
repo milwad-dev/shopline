@@ -28,6 +28,7 @@ class ArticleController extends Controller
     private string $redirectRoute = 'articles.index';
 
     public ArticleRepoEloquentInterface $repo;
+
     public ArticleServiceInterface $service;
 
     public CategoryRepoEloquentInterface $categoryRepo;
@@ -46,9 +47,9 @@ class ArticleController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @throws AuthorizationException
-     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
+     * @throws AuthorizationException
      */
     public function index()
     {
@@ -61,9 +62,9 @@ class ArticleController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @throws AuthorizationException
-     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
+     * @throws AuthorizationException
      */
     public function create()
     {
@@ -76,11 +77,10 @@ class ArticleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param ArticleRequest $request
-     *
-     * @throws AuthorizationException
      *
      * @return RedirectResponse
+     *
+     * @throws AuthorizationException
      */
     public function store(ArticleRequest $request)
     {
@@ -97,11 +97,10 @@ class ArticleController extends Controller
     /**
      * Show edit page by id.
      *
-     * @param $id
-     *
-     * @throws AuthorizationException
      *
      * @return Application|Factory|View
+     *
+     * @throws AuthorizationException
      */
     public function edit($id)
     {
@@ -115,19 +114,17 @@ class ArticleController extends Controller
     /**
      * Update article by id.
      *
-     * @param ArticleRequest $request
-     * @param                $id
-     *
-     * @throws AuthorizationException
      *
      * @return RedirectResponse
+     *
+     * @throws AuthorizationException
      */
     public function update(ArticleRequest $request, $id)
     {
         $this->authorize('manage', $this->class);
         $product = $this->repo->findById($id);
 
-        if (!is_null($request->image)) {
+        if (! is_null($request->image)) {
             ShareService::uploadMediaWithAddInRequest($request);
         } else {
             $request->request->add(['media_id' => $product->media_id]);
@@ -141,11 +138,10 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param $id
-     *
-     * @throws AuthorizationException
      *
      * @return JsonResponse
+     *
+     * @throws AuthorizationException
      */
     public function destroy($id)
     {
@@ -158,12 +154,10 @@ class ArticleController extends Controller
     /**
      * Change article status by id.
      *
-     * @param        $id
-     * @param string $status
-     *
-     * @throws AuthorizationException
      *
      * @return JsonResponse
+     *
+     * @throws AuthorizationException
      */
     public function changeStatus($id, string $status)
     {

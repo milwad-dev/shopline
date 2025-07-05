@@ -23,7 +23,6 @@ class AdvertisingPolicy
     /**
      * Check user have permissions.
      *
-     * @param User $user
      *
      * @return bool
      */

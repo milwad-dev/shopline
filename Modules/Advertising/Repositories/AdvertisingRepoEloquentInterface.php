@@ -2,6 +2,4 @@
 
 namespace Modules\Advertising\Repositories;
 
-interface AdvertisingRepoEloquentInterface
-{
-}
+interface AdvertisingRepoEloquentInterface {}

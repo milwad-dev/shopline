@@ -16,36 +16,26 @@ class CategoryServiceProvider extends ServiceProvider
 {
     /**
      * Get namespace for category controllers.
-     *
-     * @var string
      */
     private string $namespace = 'Modules\Category\Http\Controllers';
 
     /**
      * Get migration path.
-     *
-     * @var string
      */
     private string $migrationPath = '/../Database/Migrations';
 
     /**
      * Get view path.
-     *
-     * @var string
      */
     private string $viewPath = '/../Resources/Views/';
 
     /**
      * Get name.
-     *
-     * @var string
      */
     private string $name = 'Category';
 
     /**
      * Get route path.
-     *
-     * @var string
      */
     private string $routePath = '/../Routes/category_routes.php';
 
@@ -85,8 +75,6 @@ class CategoryServiceProvider extends ServiceProvider
 
     /**
      * Load migration files.
-     *
-     * @return void
      */
     private function loadMigrationFiles(): void
     {
@@ -95,8 +83,6 @@ class CategoryServiceProvider extends ServiceProvider
 
     /**
      * Load view files.
-     *
-     * @return void
      */
     private function loadViewFiles(): void
     {
@@ -105,8 +91,6 @@ class CategoryServiceProvider extends ServiceProvider
 
     /**
      * Load route files.
-     *
-     * @return void
      */
     private function loadRouteFiles(): void
     {
@@ -117,8 +101,6 @@ class CategoryServiceProvider extends ServiceProvider
 
     /**
      * Load policy files.
-     *
-     * @return void
      */
     private function loadPolicyFiles(): void
     {
@@ -127,15 +109,13 @@ class CategoryServiceProvider extends ServiceProvider
 
     /**
      * Set menu for panel.
-     *
-     * @return void
      */
     private function setMenuForPanel(): void
     {
         config()->set('panelConfig.menus.categories', [
             'title' => 'Category',
-            'icon'  => 'git-commit',
-            'url'   => route('categories.index'),
+            'icon' => 'git-commit',
+            'url' => route('categories.index'),
         ]);
     }
 
@@ -147,8 +127,8 @@ class CategoryServiceProvider extends ServiceProvider
     private function setFactory()
     {
         config()->set('shareConfig.factories.category', [
-            'model'  => Category::class,
-            'count'  => 1,
+            'model' => Category::class,
+            'count' => 1,
         ]);
     }
 

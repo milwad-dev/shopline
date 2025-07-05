@@ -23,7 +23,6 @@ class CommentPolicy
     /**
      * Check user have permissions.
      *
-     * @param User $user
      *
      * @return bool
      */

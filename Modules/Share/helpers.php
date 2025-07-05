@@ -1,10 +1,9 @@
 <?php
 
-if (!function_exists('get_value_enums')) {
+if (! function_exists('get_value_enums')) {
     /**
      * Get value from enums file.
      *
-     * @param array $data
      *
      * @return array
      */
@@ -20,12 +19,10 @@ if (!function_exists('get_value_enums')) {
     }
 }
 
-if (!function_exists('startWith')) {
+if (! function_exists('startWith')) {
     /**
      * Check start with character.
      *
-     * @param string $string
-     * @param string $startString
      *
      * @return bool
      */

@@ -2,6 +2,4 @@
 
 namespace Modules\Product\Repositories;
 
-interface ProductRepoEloquentInterface
-{
-}
+interface ProductRepoEloquentInterface {}

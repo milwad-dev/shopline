@@ -18,7 +18,7 @@
                                     <thead>
                                         <tr class="text-center">
                                             <th>#</th>
-                                            <th>Title</th>
+                                            <th>Name</th>
                                             <th>Permissions</th>
                                             <th>Created At</th>
                                             <th>Actions</th>
@@ -29,7 +29,7 @@
                                             <tr class="text-center">
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>
-                                                    {{ $role->title }}
+                                                    {{ $role->name }}
                                                 </td>
                                                 <td>
                                                     @foreach ($role->permissions as $permission)

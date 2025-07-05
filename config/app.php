@@ -87,6 +87,17 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Application Description
+    |--------------------------------------------------------------------------
+    |
+    | Get main description of the application.
+    |
+    */
+
+    'description' => env('APP_DESCRIPTION', 'Shopline is a full-stack e-commerce platform developed using Laravel, structured with a modular architecture to ensure scalability, maintainability, and efficient feature development. The platform integrates key features such as user management, product catalog, shopping cart, order processing, and payment gateway integration.'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Environment
     |--------------------------------------------------------------------------
     |
@@ -249,6 +260,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+
         /*
          * Modules Service Providers...
          */
@@ -270,10 +282,11 @@ return [
         Modules\About\Providers\AboutServiceProvider::class,
         Modules\Discount\Providers\DiscountServiceProvider::class,
         Modules\Payment\Providers\PaymentServiceProvider::class,
-        /**
+
+        /*
          * Package Service Providers...
          */
-        Intervention\Image\ImageServiceProvider::class,
+
         /*
          * Application Service Providers...
          */

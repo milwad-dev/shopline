@@ -2,6 +2,4 @@
 
 namespace Modules\Slider\Repositories;
 
-interface SliderRepoEloquentInterface
-{
-}
+interface SliderRepoEloquentInterface {}

@@ -11,59 +11,54 @@ class ProductService implements ProductServiceInterface
     /**
      * Store product with request.
      *
-     * @param array $data
-     *
-     * @throws \Exception
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
+     *
+     * @throws \Exception
      */
     public function store(array $data)
     {
         return $this->query()->create([
-            'vendor_id'         => auth()->id(),
-            'slug'              => ShareService::makeSlug($data['title']),
-            'sku'               => ShareService::makeUniqueSku(Product::class),
-            'first_media_id'    => $data['first_media_id'],
-            'title'             => $data['title'],
-            'price'             => $data['price'],
-            'count'             => $data['count'],
-            'type'              => $data['type'],
+            'vendor_id' => auth()->id(),
+            'slug' => ShareService::makeSlug($data['title']),
+            'sku' => ShareService::makeUniqueSku(Product::class),
+            'first_media_id' => $data['first_media_id'],
+            'title' => $data['title'],
+            'price' => $data['price'],
+            'count' => $data['count'],
+            'type' => $data['type'],
             'short_description' => $data['short_description'],
-            'body'              => $data['body'],
-            'status'            => $data['status'],
-            'is_popular'        => $data['is_popular'],
+            'body' => $data['body'],
+            'status' => $data['status'],
+            'is_popular' => $data['is_popular'],
         ]);
     }
 
     /**
      * Update product with request by id.
      *
-     * @param $request
-     * @param $id
      *
      * @return mixed
      */
     public function update($request, $id)
     {
         return $this->query()->whereId($id)->update([
-            'first_media_id'    => $request->first_media_id,
-            'title'             => $request->title,
-            'slug'              => ShareService::makeSlug($request->title),
-            'price'             => $request->price,
-            'count'             => $request->count,
-            'type'              => $request->type,
+            'first_media_id' => $request->first_media_id,
+            'title' => $request->title,
+            'slug' => ShareService::makeSlug($request->title),
+            'price' => $request->price,
+            'count' => $request->count,
+            'type' => $request->type,
             'short_description' => $request->short_description,
-            'body'              => $request->body,
-            'status'            => $request->status,
-            'is_popular'        => $request->is_popular,
+            'body' => $request->body,
+            'status' => $request->status,
+            'is_popular' => $request->is_popular,
         ]);
     }
 
     /**
      * Attach categories to product.
      *
-     * @param $categories
-     * @param $product
      *
      * @return void
      */
@@ -77,8 +72,6 @@ class ProductService implements ProductServiceInterface
     /**
      * Attach categories to product.
      *
-     * @param $galleries
-     * @param $product
      *
      * @return void
      */
@@ -92,8 +85,6 @@ class ProductService implements ProductServiceInterface
     /**
      * Attach attributes to product.
      *
-     * @param $attributes
-     * @param $product
      *
      * @return void
      */
@@ -107,8 +98,6 @@ class ProductService implements ProductServiceInterface
     /**
      * Attach tags to product.
      *
-     * @param array $tags
-     * @param       $product
      *
      * @return mixed
      */
@@ -120,8 +109,6 @@ class ProductService implements ProductServiceInterface
     /**
      * First or create categories product.
      *
-     * @param array $categories
-     * @param       $product
      *
      * @return void
      */

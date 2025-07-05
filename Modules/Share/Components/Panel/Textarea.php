@@ -7,10 +7,15 @@ use Illuminate\View\Component;
 class Textarea extends Component
 {
     public string $name;
+
     public ?string $id;
+
     public string $class;
+
     public string $rows;
+
     public ?string $placeholder;
+
     public ?string $value;
 
     /**

@@ -18,6 +18,7 @@
                                     <thead>
                                         <tr class="text-center">
                                             <th>#</th>
+                                            <th>Image</th>
                                             <th>Title</th>
                                             <th>Parent</th>
                                             <th>Status</th>
@@ -30,6 +31,9 @@
                                         @foreach ($categories as $category)
                                             <tr class="text-center">
                                                 <td>{{ $loop->iteration }}</td>
+                                                <td>
+                                                    <img src="{{ $category->media?->original }}" alt="img" width="80">
+                                                </td>
                                                 <td>
                                                     {{ $category->title }}
                                                 </td>

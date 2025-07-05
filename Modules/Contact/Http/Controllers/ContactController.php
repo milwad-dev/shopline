@@ -24,9 +24,9 @@ class ContactController extends Controller
     /**
      * Get the latest contacts with show view page.
      *
-     * @throws AuthorizationException
-     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
+     * @throws AuthorizationException
      */
     public function index()
     {
@@ -38,12 +38,11 @@ class ContactController extends Controller
     /**
      * Remove contact by route model binding.
      *
-     * @param Contact $contact
+     *
+     * @return JsonResponse
      *
      * @throws AuthorizationException
      * @throws \Throwable
-     *
-     * @return JsonResponse
      */
     public function destroy(Contact $contact)
     {
@@ -56,11 +55,10 @@ class ContactController extends Controller
     /**
      * Update is_read with route model binding.
      *
-     * @param Contact $contact
-     *
-     * @throws AuthorizationException
      *
      * @return JsonResponse
+     *
+     * @throws AuthorizationException
      */
     public function updateIsRead(Contact $contact)
     {

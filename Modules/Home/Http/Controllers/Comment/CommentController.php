@@ -12,7 +12,6 @@ class CommentController extends Controller
     /**
      * Store comment by request.
      *
-     * @param CommentRequest $request
      *
      * @return \Illuminate\Http\RedirectResponse
      */

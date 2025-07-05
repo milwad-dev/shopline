@@ -9,7 +9,6 @@ class SearchRepoEloquent
     /**
      * Search products.
      *
-     * @param string $search
      *
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */

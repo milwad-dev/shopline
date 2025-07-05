@@ -11,22 +11,21 @@ class DiscountService
     /**
      * Store discount & sync discount to products by array of data.
      *
-     * @param array $data
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
      */
     public function store(array $data)
     {
         $discount = $this->query()->create([
-            'user_id'          => auth()->id(),
-            'code'             => $data['code'],
-            'percent'          => $data['percent'],
+            'user_id' => auth()->id(),
+            'code' => $data['code'],
+            'percent' => $data['percent'],
             'usage_limitation' => $data['usage_limitation'],
-            'expire_at'        => $this->setExpiredAt($data['expire_at']),
-            'link'             => $data['link'],
-            'type'             => $data['type'],
-            'description'      => $data['description'],
-            'uses'             => 0,
+            'expire_at' => $this->setExpiredAt($data['expire_at']),
+            'link' => $data['link'],
+            'type' => $data['type'],
+            'description' => $data['description'],
+            'uses' => 0,
         ]);
         $this->syncDiscountToProducts($discount, $data['products']);
 
@@ -36,8 +35,6 @@ class DiscountService
     /**
      * Update discount with sync to products by id & array of data.
      *
-     * @param array $data
-     * @param int   $id
      *
      * @return null
      */
@@ -45,13 +42,13 @@ class DiscountService
     {
         $discount = resolve(DiscountRepoEloquentInterface::class)->findById($id);
         $discount->update([
-            'code'             => $data['code'],
-            'percent'          => $data['percent'],
+            'code' => $data['code'],
+            'percent' => $data['percent'],
             'usage_limitation' => $data['usage_limitation'],
-            'expire_at'        => $this->setExpiredAt($data['expire_at']),
-            'link'             => $data['link'],
-            'type'             => $data['type'],
-            'description'      => $data['description'],
+            'expire_at' => $this->setExpiredAt($data['expire_at']),
+            'link' => $data['link'],
+            'type' => $data['type'],
+            'description' => $data['description'],
         ]);
 
         $this->syncDiscountToProducts($discount, $data['products']);
@@ -73,11 +70,6 @@ class DiscountService
 
     /**
      * Sync discount & products.
-     *
-     * @param $discount
-     * @param $products
-     *
-     * @return void
      */
     private function syncDiscountToProducts($discount, $products): void
     {
@@ -89,7 +81,6 @@ class DiscountService
     /**
      * Set expire_at.
      *
-     * @param $expire_at
      *
      * @return \Carbon\Carbon|null
      */

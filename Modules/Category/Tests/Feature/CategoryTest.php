@@ -4,6 +4,7 @@ namespace Modules\Category\Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\UploadedFile;
 use Modules\Category\Enums\CategoryStatusEnum;
 use Modules\Category\Models\Category;
 use Modules\RolePermission\Database\Seeds\PermissionSeeder;
@@ -63,9 +64,9 @@ class CategoryTest extends TestCase
     /**
      * Test check parent id validation is successful.
      *
-     * @throws \Exception
-     *
      * @return void
+     *
+     * @throws \Exception
      */
     public function test_parent_id_validation_successful()
     {
@@ -92,18 +93,17 @@ class CategoryTest extends TestCase
 
         $title = $this->faker->unique()->title;
         $response = $this->post(route('categories.store'), [
-            'parent_id'   => null,
-            'title'       => $title,
-            'keywords'    => $this->faker->text(),
-            'status'      => CategoryStatusEnum::STATUS_ACTIVE->value,
+            'parent_id' => null,
+            'image' => UploadedFile::fake()->image('milwad.png'),
+            'title' => $title,
+            'keywords' => $this->faker->text(),
+            'status' => CategoryStatusEnum::STATUS_ACTIVE->value,
             'description' => null,
         ]);
         $response->assertRedirect(route('categories.index'));
         $response->assertSessionHas('alert');
 
-        $this->assertDatabaseHas('categories', [
-            'title' => $title,
-        ]);
+        $this->assertDatabaseHas('categories', ['title' => $title]);
         $this->assertDatabaseCount('categories', 1);
         $this->assertEquals(1, Category::query()->count());
     }
@@ -124,7 +124,7 @@ class CategoryTest extends TestCase
     }
 
     /**
-     * Test validate for store category is successful.
+     * Test validate for update category is successful.
      *
      * @return void
      */
@@ -148,7 +148,7 @@ class CategoryTest extends TestCase
      *
      * @return void
      */
-    public function test_admin_user_can_update_categoroy()
+    public function test_admin_user_can_update_category()
     {
         $this->withoutExceptionHandling();
         $this->createUserWithLoginWithAssignPermission();
@@ -156,18 +156,19 @@ class CategoryTest extends TestCase
         $title = 'milwad dev';
         $category = $this->createCategory();
         $response = $this->patch(route('categories.update', $category->id), [
-            'id'          => $category->id,
-            'title'       => $title,
+            'id' => $category->id,
+            'title' => $title,
             'description' => 'shopline category',
-            'status'      => CategoryStatusEnum::STATUS_INACTIVE->value,
+            'image' => UploadedFile::fake()->image('milwad.png'),
+            'status' => CategoryStatusEnum::STATUS_INACTIVE->value,
         ]);
         $response->assertRedirect(route('categories.index'));
         $response->assertSessionHas('alert');
 
         $this->assertDatabaseHas('categories', [
-            'id'          => $category->id,
-            'title'       => $title,
-            'status'      => CategoryStatusEnum::STATUS_INACTIVE->value,
+            'id' => $category->id,
+            'title' => $title,
+            'status' => CategoryStatusEnum::STATUS_INACTIVE->value,
             'description' => 'shopline category',
         ]);
         $this->assertDatabaseCount('categories', 1);
@@ -225,8 +226,6 @@ class CategoryTest extends TestCase
 
     /**
      * Create user with login.
-     *
-     * @return void
      */
     private function createUserWithLoginWithAssignPermission(): void
     {

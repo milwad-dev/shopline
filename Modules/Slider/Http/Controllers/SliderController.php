@@ -22,22 +22,16 @@ class SliderController extends Controller
 
     /**
      * Get model.
-     *
-     * @var string
      */
     private string $class = Slider::class;
 
     /**
      * Get service.
-     *
-     * @var SliderServiceInterface
      */
     public SliderServiceInterface $service;
 
     /**
      * Get respository.
-     *
-     * @var SliderRepoEloquentInterface
      */
     public SliderRepoEloquentInterface $repo;
 
@@ -50,9 +44,9 @@ class SliderController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @throws AuthorizationException
-     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
+     * @throws AuthorizationException
      */
     public function index()
     {
@@ -65,9 +59,9 @@ class SliderController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @throws AuthorizationException
-     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
+     * @throws AuthorizationException
      */
     public function create()
     {
@@ -79,11 +73,10 @@ class SliderController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param SliderRequest $request
-     *
-     * @throws AuthorizationException
      *
      * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws AuthorizationException
      */
     public function store(SliderRequest $request)
     {
@@ -98,11 +91,10 @@ class SliderController extends Controller
     /**
      * Edit slider with route model binding.
      *
-     * @param Slider $slider
-     *
-     * @throws AuthorizationException
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
+     * @throws AuthorizationException
      */
     public function edit(Slider $slider)
     {
@@ -114,12 +106,10 @@ class SliderController extends Controller
     /**
      * Update slider with route model binding & request.
      *
-     * @param SliderRequest $request
-     * @param Slider        $slider
-     *
-     * @throws AuthorizationException
      *
      * @return \Illuminate\Http\RedirectResponse
+     *
+     * @throws AuthorizationException
      */
     public function update(SliderRequest $request, Slider $slider)
     {
@@ -134,11 +124,10 @@ class SliderController extends Controller
     /**
      * Delete slider route model binding.
      *
-     * @param Slider $slider
-     *
-     * @throws AuthorizationException
      *
      * @return JsonResponse
+     *
+     * @throws AuthorizationException
      */
     public function destroy(Slider $slider)
     {
@@ -151,11 +140,10 @@ class SliderController extends Controller
     /**
      * Update status to active.
      *
-     * @param Slider $slider
-     *
-     * @throws AuthorizationException
      *
      * @return JsonResponse
+     *
+     * @throws AuthorizationException
      */
     public function active(Slider $slider)
     {
@@ -168,11 +156,10 @@ class SliderController extends Controller
     /**
      * Update status to inactive.
      *
-     * @param Slider $slider
-     *
-     * @throws AuthorizationException
      *
      * @return JsonResponse
+     *
+     * @throws AuthorizationException
      */
     public function inactive(Slider $slider)
     {
@@ -184,11 +171,6 @@ class SliderController extends Controller
 
     /**
      * Upload image by request.
-     *
-     * @param SliderRequest $request
-     * @param Slider        $slider
-     *
-     * @return void
      */
     private function uploadMediaForUpdateSlider(SliderRequest $request, Slider $slider): void
     {

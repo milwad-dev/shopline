@@ -22,8 +22,6 @@ class ProductRepoEloquent implements ProductRepoEloquentInterface
     /**
      * Find product by sku & slug.
      *
-     * @param $sku
-     * @param $slug
      *
      * @return mixed
      */
@@ -41,7 +39,6 @@ class ProductRepoEloquent implements ProductRepoEloquentInterface
     /**
      * Get similar products by categories.
      *
-     * @param array|object $categories
      *
      * @return Collection
      */

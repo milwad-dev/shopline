@@ -12,36 +12,26 @@ class AboutServiceProvider extends ServiceProvider
 {
     /**
      * Get namespace for controllers.
-     *
-     * @var string
      */
     private string $namespace = 'Modules\About\Http\Controllers';
 
     /**
      * Get migration path.
-     *
-     * @var string
      */
     private string $migrationPath = '/../Database/Migrations';
 
     /**
      * Get view path.
-     *
-     * @var string
      */
     private string $viewPath = '/../Resources/Views/';
 
     /**
      * Get name.
-     *
-     * @var string
      */
     private string $name = 'About';
 
     /**
      * Get route path.
-     *
-     * @var string
      */
     private string $routePath = '/../Routes/about_routes.php';
 
@@ -50,7 +40,7 @@ class AboutServiceProvider extends ServiceProvider
      *
      * @var array|string[]
      */
-    private array  $routeMiddleware = ['web', 'verify'];
+    private array $routeMiddleware = ['web', 'verify'];
 
     /**
      * Register files.
@@ -78,15 +68,13 @@ class AboutServiceProvider extends ServiceProvider
 
     /**
      * Set menu for panel.
-     *
-     * @return void
      */
     private function setUpMenuForPanel(): void
     {
         config()->set('panelConfig.menus.abouts', [
             'title' => 'About-us',
-            'icon'  => 'menu',
-            'url'   => route('abouts.index'),
+            'icon' => 'menu',
+            'url' => route('abouts.index'),
         ]);
     }
 
@@ -98,15 +86,13 @@ class AboutServiceProvider extends ServiceProvider
     private function setFactory()
     {
         config()->set('shareConfig.factories.about', [
-            'model'  => About::class,
-            'count'  => 1,
+            'model' => About::class,
+            'count' => 1,
         ]);
     }
 
     /**
      * Load migration files.
-     *
-     * @return void
      */
     private function loadMigrationFiles(): void
     {
@@ -115,8 +101,6 @@ class AboutServiceProvider extends ServiceProvider
 
     /**
      * Load view files.
-     *
-     * @return void
      */
     private function loadViewFiles(): void
     {
@@ -125,8 +109,6 @@ class AboutServiceProvider extends ServiceProvider
 
     /**
      * Load route files.
-     *
-     * @return void
      */
     private function loadRouteFiles(): void
     {
@@ -137,8 +119,6 @@ class AboutServiceProvider extends ServiceProvider
 
     /**
      * Load policy files.
-     *
-     * @return void
      */
     private function loadPolicyFiles(): void
     {

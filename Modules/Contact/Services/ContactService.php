@@ -9,7 +9,6 @@ class ContactService implements ContactServiceInterface
     /**
      * Update is_read to true.
      *
-     * @param Contact $contact
      *
      * @return bool
      */

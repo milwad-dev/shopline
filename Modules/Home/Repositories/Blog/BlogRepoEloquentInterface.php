@@ -8,6 +8,4 @@ namespace Modules\Home\Repositories\Blog;
  * @method mixed getArticlesWithCount
  * @method mixed findArticleBySlug
  */
-interface BlogRepoEloquentInterface
-{
-}
+interface BlogRepoEloquentInterface {}

@@ -11,7 +11,7 @@ class MediaController extends Controller
 {
     public function download(Media $media, Request $request)
     {
-//        if (!$request->hasValidSignature()) abort(401);
+        //        if (!$request->hasValidSignature()) abort(401);
         // TODO CORRECT
         return MediaFileService::stream($media);
     }

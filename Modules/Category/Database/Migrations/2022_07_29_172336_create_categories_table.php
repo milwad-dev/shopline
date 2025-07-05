@@ -5,7 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Modules\Category\Enums\CategoryStatusEnum;
 
-return new class() extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -15,13 +16,17 @@ return new class() extends Migration {
     {
         Schema::create('categories', static function (Blueprint $table) {
             $table->id();
+
+            $table->foreignId('media_id')->nullable()->constrained('medias')->nullOnDelete();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('parent_id')->nullable()->constrained('categories')->nullOnDelete();
+
             $table->string('title')->unique();
             $table->string('slug')->unique();
             $table->string('keywords')->nullable();
             $table->enum('status', get_value_enums(CategoryStatusEnum::cases()));
             $table->text('description')->nullable();
+
             $table->timestamps();
         });
     }

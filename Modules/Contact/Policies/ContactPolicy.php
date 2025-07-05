@@ -23,7 +23,6 @@ class ContactPolicy
     /**
      * Check user has permission.
      *
-     * @param User $user
      *
      * @return bool
      */

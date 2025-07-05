@@ -2,6 +2,4 @@
 
 namespace Modules\Slider\Services;
 
-interface SliderServiceInterface
-{
-}
+interface SliderServiceInterface {}

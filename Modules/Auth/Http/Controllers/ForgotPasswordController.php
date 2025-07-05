@@ -25,18 +25,16 @@ class ForgotPasswordController extends Controller
     /**
      * Send email to user.
      *
-     * @param SendResetPasswordVerifyCodeRequest $request
-     * @param UserRepoEloquent                   $userRepo
-     *
-     * @throws \Psr\SimpleCache\InvalidArgumentException
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
+     * @throws \Psr\SimpleCache\InvalidArgumentException
      */
     public function sendVerifyCodeEmail(SendResetPasswordVerifyCodeRequest $request, UserRepoEloquent $userRepo)
     {
         $user = $userRepo->findByEmail($request->email);
 
-        if ($user && !VerifyService::has($user->id)) {
+        if ($user && ! VerifyService::has($user->id)) {
             SendResetPasswordMailJob::dispatch($user);
         }
 
@@ -46,18 +44,17 @@ class ForgotPasswordController extends Controller
     /**
      * Check verify code.
      *
-     * @param ResetPasswordVerifyCodeRequest $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      * @throws \Psr\SimpleCache\InvalidArgumentException
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function checkVerifyCode(ResetPasswordVerifyCodeRequest $request)
     {
         $user = resolve(UserRepoEloquent::class)->findByEmail($request->email);
-        if ($user == null || !VerifyService::check($user->id, $request->verify_code)) {
+        if ($user == null || ! VerifyService::check($user->id, $request->verify_code)) {
             return back()->withErrors(['verify_code' => 'code is invalid!']);
         }
 

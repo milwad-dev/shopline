@@ -11,19 +11,18 @@ class CommentService
     /**
      * Store comment by data.
      *
-     * @param array $data
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
      */
     public function store(array $data)
     {
         return $this->query()->create([
-            'user_id'           => auth()->id(),
-            'status'            => $this->getStatusByUserPermission(),
-            'comment_id'        => $this->getCommentId($data),
-            'body'              => $data['body'],
-            'commentable_id'    => $data['commentable_id'],
-            'commentable_type'  => $data['commentable_type'],
+            'user_id' => auth()->id(),
+            'status' => $this->getStatusByUserPermission(),
+            'comment_id' => $this->getCommentId($data),
+            'body' => $data['body'],
+            'commentable_id' => $data['commentable_id'],
+            'commentable_type' => $data['commentable_type'],
         ]);
     }
 
@@ -39,8 +38,6 @@ class CommentService
 
     /**
      * Get status comment by user permission.
-     *
-     * @return string
      */
     private function getStatusByUserPermission(): string
     {
@@ -51,10 +48,6 @@ class CommentService
 
     /**
      * Check comment_id is exists.
-     *
-     * @param array $data
-     *
-     * @return mixed
      */
     private function getCommentId(array $data): mixed
     {

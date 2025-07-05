@@ -20,7 +20,6 @@ class RolePermissionRepoEloquent implements RolePermissionRepoEloquentInterface
     /**
      * Find role by id.
      *
-     * @param $id
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
      */
@@ -32,7 +31,6 @@ class RolePermissionRepoEloquent implements RolePermissionRepoEloquentInterface
     /**
      * Delete role by id.
      *
-     * @param $id
      *
      * @return mixed
      */

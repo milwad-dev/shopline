@@ -16,15 +16,11 @@ class ArticleServiceProvider extends ServiceProvider
 {
     /**
      * Get namespace for article controllers.
-     *
-     * @var string
      */
     private string $namespace = 'Modules\Article\Http\Controllers';
 
     /**
      * Get migration path.
-     *
-     * @var string
      */
     private string $migrationPath = '/../Database/Migrations';
 
@@ -37,22 +33,16 @@ class ArticleServiceProvider extends ServiceProvider
 
     /**
      * Get view path.
-     *
-     * @var string
      */
     private string $viewPath = '/../Resources/Views/';
 
     /**
      * Get name.
-     *
-     * @var string
      */
     private string $name = 'Article';
 
     /**
      * Get route path.
-     *
-     * @var string
      */
     private string $routePath = '/../Routes/article_routes.php';
 
@@ -85,8 +75,6 @@ class ArticleServiceProvider extends ServiceProvider
 
     /**
      * Load article policy files.
-     *
-     * @return void
      */
     private function loadPolicyFiles(): void
     {
@@ -95,8 +83,6 @@ class ArticleServiceProvider extends ServiceProvider
 
     /**
      * Load article route files.
-     *
-     * @return void
      */
     private function loadRouteFiles(): void
     {
@@ -107,8 +93,6 @@ class ArticleServiceProvider extends ServiceProvider
 
     /**
      * Load article view files.
-     *
-     * @return void
      */
     private function loadViewFiles(): void
     {
@@ -117,8 +101,6 @@ class ArticleServiceProvider extends ServiceProvider
 
     /**
      * Load article migration files.
-     *
-     * @return void
      */
     private function loadMigrationFiles(): void
     {
@@ -127,15 +109,13 @@ class ArticleServiceProvider extends ServiceProvider
 
     /**
      * Set menu for panel.
-     *
-     * @return void
      */
     private function setMenuForPanel(): void
     {
         config()->set('panelConfig.menus.articles', [
             'title' => 'Article',
-            'icon'  => 'book',
-            'url'   => route('articles.index'),
+            'icon' => 'book',
+            'url' => route('articles.index'),
         ]);
     }
 
@@ -147,8 +127,8 @@ class ArticleServiceProvider extends ServiceProvider
     private function setFactory()
     {
         config()->set('shareConfig.factories.article', [
-            'model'  => Article::class,
-            'count'  => 1,
+            'model' => Article::class,
+            'count' => 1,
         ]);
     }
 

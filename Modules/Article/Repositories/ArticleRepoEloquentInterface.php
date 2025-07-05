@@ -2,6 +2,4 @@
 
 namespace Modules\Article\Repositories;
 
-interface ArticleRepoEloquentInterface
-{
-}
+interface ArticleRepoEloquentInterface {}

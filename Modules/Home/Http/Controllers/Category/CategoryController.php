@@ -11,7 +11,6 @@ class CategoryController extends Controller
     /**
      * Get products from category and show view page.
      *
-     * @param Category $category
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */

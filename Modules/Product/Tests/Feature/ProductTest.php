@@ -117,16 +117,16 @@ class ProductTest extends TestCase
         $this->createMultiCategories();
 
         $response = $this->post(route('products.store'), [
-            'first_media'       => UploadedFile::fake()->image('first_media.jpg'), // Mock
-            'title'             => $this->faker->title,
-            'price'             => $this->faker->numberBetween(5, 15),
-            'count'             => 51,
-            'type'              => $this->faker->title,
+            'first_media' => UploadedFile::fake()->image('first_media.jpg'), // Mock
+            'title' => $this->faker->title,
+            'price' => $this->faker->numberBetween(5, 15),
+            'count' => 51,
+            'type' => $this->faker->title,
             'short_description' => $this->faker->text,
-            'body'              => $this->faker->text,
-            'status'            => ProductStatusEnum::STATUS_ACTIVE->value,
-            'categories'        => Category::query()->get()->pluck('id')->toArray(),
-            'galleries'         => [
+            'body' => $this->faker->text,
+            'status' => ProductStatusEnum::STATUS_ACTIVE->value,
+            'categories' => Category::query()->get()->pluck('id')->toArray(),
+            'galleries' => [
                 UploadedFile::fake()->image(Str::random(10).'.jpg'),
                 UploadedFile::fake()->image(Str::random(10).'.jpg'),
                 UploadedFile::fake()->image(Str::random(10).'.jpg'),
@@ -138,19 +138,19 @@ class ProductTest extends TestCase
             ],
             'attributes' => [
                 [
-                    'attributekeys'   => $this->faker->title,
+                    'attributekeys' => $this->faker->title,
                     'attributevalues' => $this->faker->text,
                 ],
                 [
-                    'attributekeys'   => $this->faker->title,
+                    'attributekeys' => $this->faker->title,
                     'attributevalues' => $this->faker->text,
                 ],
                 [
-                    'attributekeys'   => $this->faker->title,
+                    'attributekeys' => $this->faker->title,
                     'attributevalues' => $this->faker->text,
                 ],
                 [
-                    'attributekeys'   => $this->faker->title,
+                    'attributekeys' => $this->faker->title,
                     'attributevalues' => $this->faker->text,
                 ],
             ],
@@ -274,7 +274,6 @@ class ProductTest extends TestCase
     /**
      * Create user with login & assign permission.
      *
-     * @param bool $permission
      *
      * @return void
      */
@@ -301,22 +300,20 @@ class ProductTest extends TestCase
 
     /**
      * Return store product data.
-     *
-     * @return array
      */
     private function getStoreProductData(): array
     {
         return [
-            'first_media'       => UploadedFile::fake()->image('first_media.jpg'), // Mock
-            'title'             => $this->faker->title,
-            'price'             => $this->faker->numberBetween(5, 15),
-            'count'             => 51,
-            'type'              => $this->faker->title,
+            'first_media' => UploadedFile::fake()->image('first_media.jpg'), // Mock
+            'title' => $this->faker->title,
+            'price' => $this->faker->numberBetween(5, 15),
+            'count' => 51,
+            'type' => $this->faker->title,
             'short_description' => $this->faker->text,
-            'body'              => $this->faker->text,
-            'status'            => ProductStatusEnum::STATUS_ACTIVE->value,
-            'categories'        => Category::query()->inRandomOrder()->get()->pluck('id')->toArray(),
-            'galleries'         => [
+            'body' => $this->faker->text,
+            'status' => ProductStatusEnum::STATUS_ACTIVE->value,
+            'categories' => Category::query()->inRandomOrder()->get()->pluck('id')->toArray(),
+            'galleries' => [
                 UploadedFile::fake()->image(Str::random(10).'.jpg'),
                 UploadedFile::fake()->image(Str::random(10).'.jpg'),
                 UploadedFile::fake()->image(Str::random(10).'.jpg'),
@@ -332,34 +329,26 @@ class ProductTest extends TestCase
 
     /**
      * Return update product data.
-     *
-     * @param mixed $product
-     * @param mixed $category
-     *
-     * @return array
      */
     private function getProductUpdateData(mixed $product, mixed $category): array
     {
         return [
-            'id'                => $product->id,
-            'first_media'       => UploadedFile::fake()->image('first_media.jpg'),
-            'title'             => $this->faker->title,
-            'price'             => $this->faker->numberBetween(5, 15),
-            'count'             => 51,
-            'type'              => $this->faker->title,
+            'id' => $product->id,
+            'first_media' => UploadedFile::fake()->image('first_media.jpg'),
+            'title' => $this->faker->title,
+            'price' => $this->faker->numberBetween(5, 15),
+            'count' => 51,
+            'type' => $this->faker->title,
             'short_description' => $this->faker->text,
-            'body'              => $this->faker->text,
-            'status'            => ProductStatusEnum::STATUS_ACTIVE->value,
-            'categories'        => [
+            'body' => $this->faker->text,
+            'status' => ProductStatusEnum::STATUS_ACTIVE->value,
+            'categories' => [
                 $category->id,
             ],
             'is_popular' => 1,
         ];
     }
 
-    /**
-     * @return void
-     */
     public function createMultiCategories(): void
     {
         Category::factory()->create(['title' => 'milwad', 'slug' => 'milwad']);

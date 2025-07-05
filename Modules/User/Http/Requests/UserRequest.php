@@ -28,19 +28,19 @@ class UserRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'name'              => ['required', 'string', 'min:3', 'max:190'],
-            'email'             => ['required', 'email', 'min:3', 'max:190', 'unique:users,email'],
-            'phone'             => ['required', 'numeric', 'digits:11', 'unique:users,phone', new ValidPhoneNumber()],
-            'type'              => ['required', 'string', new Enum(UserTypeEnum::class)],
-            'password'          => ['required', 'string', 'min:8', 'max:150', new ValidStrongPassword()],
+            'name' => ['required', 'string', 'min:3', 'max:190'],
+            'email' => ['required', 'email', 'min:3', 'max:190', 'unique:users,email'],
+            'phone' => ['required', 'numeric', 'digits:11', 'unique:users,phone', new ValidPhoneNumber],
+            'type' => ['required', 'string', new Enum(UserTypeEnum::class)],
+            'password' => ['required', 'string', 'min:8', 'max:150', new ValidStrongPassword],
             'email_verified_at' => 'nullable',
         ];
 
         // Add id for some rules for update users
         if (request()->method === 'PATCH') {
             $rules['email'] = ['required', 'email', 'min:3', 'max:190', 'unique:users,email,'.request()->id];
-            $rules['phone'] = ['required', 'numeric', 'digits:11', 'unique:users,phone,'.request()->id, new ValidPhoneNumber()];
-            $rules['password'] = ['nullable', 'string', 'min:8', 'max:150', new ValidStrongPassword()];
+            $rules['phone'] = ['required', 'numeric', 'digits:11', 'unique:users,phone,'.request()->id, new ValidPhoneNumber];
+            $rules['password'] = ['nullable', 'string', 'min:8', 'max:150', new ValidStrongPassword];
         }
 
         return $rules;

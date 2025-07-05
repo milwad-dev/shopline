@@ -2,6 +2,4 @@
 
 namespace Modules\Contact\Services;
 
-interface ContactServiceInterface
-{
-}
+interface ContactServiceInterface {}

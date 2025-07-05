@@ -2,6 +2,4 @@
 
 namespace Modules\Panel\Repositories;
 
-class PanelRepo
-{
-}
+class PanelRepo {}

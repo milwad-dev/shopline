@@ -10,7 +10,6 @@ class RolePermissionService
     /**
      * Store role with assign permissions.
      *
-     * @param $request
      *
      * @return mixed
      */
@@ -24,14 +23,12 @@ class RolePermissionService
     /**
      * Update role with sync permissions.
      *
-     * @param $request
-     * @param $id
      *
      * @return mixed
      */
     public function update($request, $id)
     {
-        $roleRepo = new RolePermissionRepoEloquent();
+        $roleRepo = new RolePermissionRepoEloquent;
         $role = $roleRepo->findById($id);
 
         return $role

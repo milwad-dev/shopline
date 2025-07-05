@@ -17,8 +17,6 @@ class ContactTest extends TestCase
 
     /**
      * Get table name.
-     *
-     * @var string
      */
     private string $tableName = 'contacts';
 
@@ -66,9 +64,9 @@ class ContactTest extends TestCase
 
         $this->delete(route('contacts.destroy', $contact->id))->assertOk();
         $this->assertDatabaseMissing($this->tableName, [
-            'name'    => $contact->name,
-            'email'   => $contact->email,
-            'phone'   => $contact->phone,
+            'name' => $contact->name,
+            'email' => $contact->email,
+            'phone' => $contact->phone,
             'subject' => $contact->subject,
             'message' => $contact->message,
         ]);
@@ -91,9 +89,9 @@ class ContactTest extends TestCase
 
         $this->delete(route('contacts.destroy', $contact->id))->assertForbidden();
         $this->assertDatabaseHas($this->tableName, [
-            'name'    => $contact->name,
-            'email'   => $contact->email,
-            'phone'   => $contact->phone,
+            'name' => $contact->name,
+            'email' => $contact->email,
+            'phone' => $contact->phone,
             'subject' => $contact->subject,
             'message' => $contact->message,
         ]);
@@ -116,9 +114,9 @@ class ContactTest extends TestCase
 
         $this->patch(route('contacts.update-is-read', $contact->id))->assertOk();
         $this->assertDatabaseHas($this->tableName, [
-            'name'    => $contact->name,
-            'email'   => $contact->email,
-            'phone'   => $contact->phone,
+            'name' => $contact->name,
+            'email' => $contact->email,
+            'phone' => $contact->phone,
             'subject' => $contact->subject,
             'message' => $contact->message,
             'is_read' => 1,
@@ -150,7 +148,6 @@ class ContactTest extends TestCase
     /**
      * Create user with login & assign permission.
      *
-     * @param bool $permission
      *
      * @return void
      */

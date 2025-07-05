@@ -2,6 +2,4 @@
 
 namespace Modules\Product\Services;
 
-interface ProductServiceInterface
-{
-}
+interface ProductServiceInterface {}

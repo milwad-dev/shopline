@@ -17,8 +17,6 @@ class AboutTest extends TestCase
 
     /**
      * Get table name.
-     *
-     * @var string
      */
     private string $tableName = 'abouts';
 
@@ -215,7 +213,6 @@ class AboutTest extends TestCase
     /**
      * Create user with login & assign permission.
      *
-     * @param bool $permission
      *
      * @return void
      */

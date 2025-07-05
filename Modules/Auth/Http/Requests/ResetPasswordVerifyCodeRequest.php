@@ -16,7 +16,7 @@ class ResetPasswordVerifyCodeRequest extends FormRequest
     {
         return [
             'verify_code' => VerifyService::getRule(),
-            'email'       => 'required|email',
+            'email' => 'required|email',
         ];
     }
 }

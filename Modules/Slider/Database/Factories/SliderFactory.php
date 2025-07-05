@@ -22,10 +22,10 @@ class SliderFactory extends Factory
     public function definition()
     {
         return [
-            'user_id'   => User::query()->inRandomOrder()->first()->id,
-            'media_id'  => null,
-            'link'      => $this->faker->title,
-            'status'    => SliderStatusEnum::STATUS_ACTIVE->value,
+            'user_id' => User::query()->inRandomOrder()->first()->id,
+            'media_id' => null,
+            'link' => $this->faker->title,
+            'status' => SliderStatusEnum::STATUS_ACTIVE->value,
         ];
     }
 }

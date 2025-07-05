@@ -17,8 +17,7 @@ class TopSellProduct extends Component
         public string $title,
         public string $rates,
         public string $price,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the view / contents that represent the component.

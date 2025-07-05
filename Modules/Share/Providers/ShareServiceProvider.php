@@ -9,22 +9,16 @@ class ShareServiceProvider extends ServiceProvider
 {
     /**
      * Get migration path.
-     *
-     * @var string
      */
     private string $migrationPath = '/../Database/Migrations/';
 
     /**
      * Get view path.
-     *
-     * @var string
      */
     private string $viewPath = '/../Resources/Views/';
 
     /**
      * Get name.
-     *
-     * @var string
      */
     private string $name = 'Share';
 
@@ -68,8 +62,6 @@ class ShareServiceProvider extends ServiceProvider
 
     /**
      * Load share view files.
-     *
-     * @return void
      */
     private function loadViewFiles(): void
     {

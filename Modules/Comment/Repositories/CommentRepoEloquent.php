@@ -20,7 +20,6 @@ class CommentRepoEloquent implements CommentRepoEloquentInterface
     /**
      * Find comment by id.
      *
-     * @param $id
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
      */
@@ -32,7 +31,6 @@ class CommentRepoEloquent implements CommentRepoEloquentInterface
     /**
      * Get active comment by id.
      *
-     * @param $id
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|null
      */

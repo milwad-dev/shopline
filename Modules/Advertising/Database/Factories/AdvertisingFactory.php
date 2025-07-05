@@ -23,12 +23,12 @@ class AdvertisingFactory extends Factory
     public function definition()
     {
         return [
-            'user_id'   => User::factory()->create()->id,
-            'media_id'  => null,
-            'link'      => $this->faker->url,
-            'title'     => $this->faker->title,
-            'location'  => AdvertisingLocationEnum::LOCATION_BANNER->value,
-            'status'    => AdvertisingStatusEnum::STATUS_ACTIVE->value,
+            'user_id' => User::factory()->create()->id,
+            'media_id' => null,
+            'link' => $this->faker->url,
+            'title' => $this->faker->title,
+            'location' => AdvertisingLocationEnum::LOCATION_BANNER->value,
+            'status' => AdvertisingStatusEnum::STATUS_ACTIVE->value,
         ];
     }
 }

@@ -10,7 +10,6 @@ class ArticleService implements ArticleServiceInterface
     /**
      * Store article by request.
      *
-     * @param $request
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
      */
@@ -20,23 +19,21 @@ class ArticleService implements ArticleServiceInterface
         $body = $request->body;
 
         return $this->query()->create([
-            'user_id'       => auth()->id(),
-            'media_id'      => $request->media_id,
-            'title'         => $title,
-            'slug'          => ShareService::makeSlug($title),
-            'min_read'      => ShareService::convertTextToReadMinute($body),
-            'body'          => $body,
-            'keywords'      => $request->keywords,
-            'description'   => $request->description,
-            'status'        => $request->status,
+            'user_id' => auth()->id(),
+            'media_id' => $request->media_id,
+            'title' => $title,
+            'slug' => ShareService::makeSlug($title),
+            'min_read' => ShareService::convertTextToReadMinute($body),
+            'body' => $body,
+            'keywords' => $request->keywords,
+            'description' => $request->description,
+            'status' => $request->status,
         ]);
     }
 
     /**
      * Update article by id & request.
      *
-     * @param $request
-     * @param $id
      *
      * @return mixed
      */
@@ -46,22 +43,20 @@ class ArticleService implements ArticleServiceInterface
         $body = $request->body;
 
         return $this->query()->whereId($id)->update([
-            'media_id'    => $request->media_id,
-            'title'       => $title,
-            'slug'        => ShareService::makeSlug($title),
-            'min_read'    => ShareService::convertTextToReadMinute($body),
-            'body'        => $body,
-            'keywords'    => $request->keywords,
+            'media_id' => $request->media_id,
+            'title' => $title,
+            'slug' => ShareService::makeSlug($title),
+            'min_read' => ShareService::convertTextToReadMinute($body),
+            'body' => $body,
+            'keywords' => $request->keywords,
             'description' => $request->description,
-            'status'      => $request->status,
+            'status' => $request->status,
         ]);
     }
 
     /**
      * Change status article by id.
      *
-     * @param        $id
-     * @param string $status
      *
      * @return int
      */

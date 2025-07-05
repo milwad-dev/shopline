@@ -21,7 +21,7 @@ class ResetPasswordRequestMail extends Mailable
     public function build()
     {
         return $this
-            ->markdown('Auth::Mails.reset-password-verify-code')
+            ->markdown('Auth::mails.reset-password-verify-code')
             ->subject('Reset password | '.config('app.name'));
     }
 }

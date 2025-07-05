@@ -7,7 +7,9 @@ use Illuminate\View\Component;
 class Button extends Component
 {
     public string $title;
+
     public string $class;
+
     public string $type;
 
     /**

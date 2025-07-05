@@ -18,8 +18,19 @@ class Media extends Model
         });
     }
 
+    /**
+     * Get thumb media.
+     */
     public function getThumbAttribute()
     {
         return MediaFileService::thumb($this);
+    }
+
+    /**
+     * Get original media.
+     */
+    public function getOriginalAttribute()
+    {
+        return MediaFileService::original($this);
     }
 }

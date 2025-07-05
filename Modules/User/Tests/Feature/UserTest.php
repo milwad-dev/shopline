@@ -95,10 +95,10 @@ class UserTest extends TestCase
         $phone = 12345678900;
 
         $response = $this->post(route('users.store'), [
-            'name'     => $this->faker->name,
-            'email'    => $email,
-            'phone'    => $phone,
-            'type'     => UserTypeEnum::TYPE_CUSTOMER->value,
+            'name' => $this->faker->name,
+            'email' => $email,
+            'phone' => $phone,
+            'type' => UserTypeEnum::TYPE_CUSTOMER->value,
             'password' => 'Milwad123!',
         ]);
         $response->assertRedirect(route('users.index'));
@@ -124,10 +124,10 @@ class UserTest extends TestCase
         $phone = 12345678900;
 
         $response = $this->post(route('users.store'), [
-            'name'     => $this->faker->name,
-            'email'    => $email,
-            'phone'    => $phone,
-            'type'     => UserTypeEnum::TYPE_CUSTOMER->value,
+            'name' => $this->faker->name,
+            'email' => $email,
+            'phone' => $phone,
+            'type' => UserTypeEnum::TYPE_CUSTOMER->value,
             'password' => 'Milwad123!',
         ]);
         $response->assertStatus(403);
@@ -175,12 +175,12 @@ class UserTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->patch(route('users.update', $user->id), [
-            'id'        => $user->id,
-            'name'      => $this->faker->name,
-            'email'     => $email,
-            'phone'     => $phone,
-            'type'      => UserTypeEnum::TYPE_VENDOR->value,
-            'password'  => 'Milwad123!',
+            'id' => $user->id,
+            'name' => $this->faker->name,
+            'email' => $email,
+            'phone' => $phone,
+            'type' => UserTypeEnum::TYPE_VENDOR->value,
+            'password' => 'Milwad123!',
         ]);
         $response->assertRedirect(route('users.index'));
         $response->assertSessionHas('alert');
@@ -206,12 +206,12 @@ class UserTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->patch(route('users.update', $user->id), [
-            'id'        => $user->id,
-            'name'      => $this->faker->name,
-            'email'     => $email,
-            'phone'     => $phone,
-            'type'      => UserTypeEnum::TYPE_VENDOR->value,
-            'password'  => 'Milwad123!',
+            'id' => $user->id,
+            'name' => $this->faker->name,
+            'email' => $email,
+            'phone' => $phone,
+            'type' => UserTypeEnum::TYPE_VENDOR->value,
+            'password' => 'Milwad123!',
         ]);
         $response->assertStatus(403);
     }
@@ -250,10 +250,6 @@ class UserTest extends TestCase
 
     /**
      * Create user with login.
-     *
-     * @param bool $permission
-     *
-     * @return void
      */
     private function createUserWithLoginWithAssignPermission(bool $permission = true): void
     {

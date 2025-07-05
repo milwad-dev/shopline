@@ -90,7 +90,7 @@ class Slider extends Model
     {
         $link = $this->link;
 
-        if (!startWith($link, 'https')) {
+        if (! startWith($link, 'https')) {
             return "https://$link";
         }
 

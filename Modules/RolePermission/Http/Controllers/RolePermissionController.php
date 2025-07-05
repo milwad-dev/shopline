@@ -24,6 +24,7 @@ class RolePermissionController extends Controller
     private string $class = Permission::class;
 
     public RolePermissionRepoEloquentInterface $repo;
+
     public RolePermissionService $service;
 
     public function __construct(RolePermissionService $rolePermissionService, RolePermissionRepoEloquentInterface $permissionRepo)
@@ -35,9 +36,9 @@ class RolePermissionController extends Controller
     /**
      * Get latest roles.
      *
-     * @throws AuthorizationException
-     *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
+     * @throws AuthorizationException
      */
     public function index()
     {
@@ -50,9 +51,9 @@ class RolePermissionController extends Controller
     /**
      * Create page for role.
      *
-     * @throws AuthorizationException
-     *
      * @return Application|Factory|View
+     *
+     * @throws AuthorizationException
      */
     public function create()
     {
@@ -65,11 +66,10 @@ class RolePermissionController extends Controller
     /**
      * Store role with redirect.
      *
-     * @param RolePermissionRequest $request
-     *
-     * @throws AuthorizationException
      *
      * @return RedirectResponse
+     *
+     * @throws AuthorizationException
      */
     public function store(RolePermissionRequest $request)
     {
@@ -82,11 +82,10 @@ class RolePermissionController extends Controller
     /**
      * Edit role by id.
      *
-     * @param $id
-     *
-     * @throws AuthorizationException
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     *
+     * @throws AuthorizationException
      */
     public function edit($id)
     {
@@ -100,12 +99,10 @@ class RolePermissionController extends Controller
     /**
      * Update role by id.
      *
-     * @param RolePermissionRequest $request
-     * @param                       $id
-     *
-     * @throws AuthorizationException
      *
      * @return RedirectResponse
+     *
+     * @throws AuthorizationException
      */
     public function update(RolePermissionRequest $request, $id)
     {
@@ -118,11 +115,10 @@ class RolePermissionController extends Controller
     /**
      * Delete role by id.
      *
-     * @param $id
-     *
-     * @throws AuthorizationException
      *
      * @return \Illuminate\Http\JsonResponse
+     *
+     * @throws AuthorizationException
      */
     public function destroy($id)
     {

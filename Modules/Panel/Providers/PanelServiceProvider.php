@@ -12,29 +12,21 @@ class PanelServiceProvider extends ServiceProvider
 {
     /**
      * Get namespace for panel controller.
-     *
-     * @var string
      */
     public string $namespace = 'Modules\Panel\Http\Controllers';
 
     /**
      * Get view path.
-     *
-     * @var string
      */
     public string $viewPath = '/../Resources/Views/';
 
     /**
      * Get name.
-     *
-     * @var string
      */
     public string $name = 'Panel';
 
     /**
      * Get config path.
-     *
-     * @var string
      */
     public string $configPath = '/../Config/config.php';
 
@@ -47,8 +39,6 @@ class PanelServiceProvider extends ServiceProvider
 
     /**
      * Get route path.
-     *
-     * @var string
      */
     public string $routePath = '/../Routes/panel_routes.php';
 
@@ -79,8 +69,6 @@ class PanelServiceProvider extends ServiceProvider
 
     /**
      * Load panel view files.
-     *
-     * @return void
      */
     private function loadViewFiles(): void
     {
@@ -89,8 +77,6 @@ class PanelServiceProvider extends ServiceProvider
 
     /**
      * Load panel config files.
-     *
-     * @return void
      */
     private function loadConfigFiles(): void
     {
@@ -99,8 +85,6 @@ class PanelServiceProvider extends ServiceProvider
 
     /**
      * Load panel route files.
-     *
-     * @return void
      */
     private function loadRouteFiles(): void
     {
@@ -111,8 +95,6 @@ class PanelServiceProvider extends ServiceProvider
 
     /**
      * Load panel policy files.
-     *
-     * @return void
      */
     private function loadPolicyFiles(): void
     {
@@ -121,15 +103,13 @@ class PanelServiceProvider extends ServiceProvider
 
     /**
      * Set menu for panel.
-     *
-     * @return void
      */
     private function setMenuForPanel(): void
     {
         config()->set('panelConfig.menus.panel', [
             'title' => 'Panel',
-            'icon'  => 'home',
-            'url'   => route('panel.index'),
+            'icon' => 'home',
+            'url' => route('panel.index'),
         ]);
     }
 }

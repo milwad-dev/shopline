@@ -16,36 +16,26 @@ class AdvertisingServiceProvider extends ServiceProvider
 {
     /**
      * Get namespace for advertising controllers.
-     *
-     * @var string
      */
     private string $namespace = 'Modules\Advertising\Http\Controllers';
 
     /**
      * Get migration path.
-     *
-     * @var string
      */
     private string $migrationPath = '/../Database/Migrations';
 
     /**
      * Get view path.
-     *
-     * @var string
      */
     private string $viewPath = '/../Resources/Views/';
 
     /**
      * Get route path.
-     *
-     * @var string
      */
     private string $routePath = '/../Routes/advertising_routes.php';
 
     /**
      * Get name.
-     *
-     * @var string
      */
     private string $name = 'Advertising';
 
@@ -91,15 +81,13 @@ class AdvertisingServiceProvider extends ServiceProvider
     private function setFactory()
     {
         config()->set('shareConfig.factories.advertising', [
-            'model'  => Advertising::class,
-            'count'  => 1,
+            'model' => Advertising::class,
+            'count' => 1,
         ]);
     }
 
     /**
      * bind repository into interface.
-     *
-     * @return void
      */
     private function bindRepository(): void
     {
@@ -118,8 +106,6 @@ class AdvertisingServiceProvider extends ServiceProvider
 
     /**
      * Load policy files.
-     *
-     * @return void
      */
     private function loadPolicyFiles(): void
     {
@@ -128,8 +114,6 @@ class AdvertisingServiceProvider extends ServiceProvider
 
     /**
      * Load migration files.
-     *
-     * @return void
      */
     private function loadMigrationFiles(): void
     {
@@ -138,8 +122,6 @@ class AdvertisingServiceProvider extends ServiceProvider
 
     /**
      * Load view files.
-     *
-     * @return void
      */
     private function loadViewFiles(): void
     {
@@ -148,8 +130,6 @@ class AdvertisingServiceProvider extends ServiceProvider
 
     /**
      * Load route files.
-     *
-     * @return void
      */
     private function loadRouteFiles(): void
     {
@@ -160,15 +140,13 @@ class AdvertisingServiceProvider extends ServiceProvider
 
     /**
      * Set menu for panel.
-     *
-     * @return void
      */
     private function setMenuForPanel(): void
     {
         config()->set('panelConfig.menus.advertisings', [
             'title' => 'Advertising',
-            'icon'  => 'youtube',
-            'url'   => route('advertisings.index'),
+            'icon' => 'youtube',
+            'url' => route('advertisings.index'),
         ]);
     }
 }

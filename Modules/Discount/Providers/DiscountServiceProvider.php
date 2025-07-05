@@ -11,29 +11,21 @@ class DiscountServiceProvider extends ServiceProvider
 {
     /**
      * Namespace of discount controllers.
-     *
-     * @var string
      */
     private string $namespace = 'Modules\Discount\Http\Controllers';
 
     /**
      * Namespace of user view files.
-     *
-     * @var string
      */
     private string $namespaceDiscountView = 'Discount';
 
     /**
      * Path of user migration files.
-     *
-     * @var string
      */
     private string $migrationPath = '/../Database/Migrations';
 
     /**
      * Path of user view files.
-     *
-     * @var string
      */
     private string $viewPath = '/../Resources/Views/';
 
@@ -46,8 +38,6 @@ class DiscountServiceProvider extends ServiceProvider
 
     /**
      * Get route path.
-     *
-     * @var string
      */
     private string $routePath = '/../Routes/discount_routes.php';
 
@@ -67,8 +57,6 @@ class DiscountServiceProvider extends ServiceProvider
 
     /**
      * Load route files.
-     *
-     * @return void
      */
     private function loadRouteFiles(): void
     {
@@ -79,8 +67,6 @@ class DiscountServiceProvider extends ServiceProvider
 
     /**
      * Load view files.
-     *
-     * @return void
      */
     private function loadViewFiles(): void
     {
@@ -89,8 +75,6 @@ class DiscountServiceProvider extends ServiceProvider
 
     /**
      * Load migration files.
-     *
-     * @return void
      */
     private function loadMigrationFiles(): void
     {

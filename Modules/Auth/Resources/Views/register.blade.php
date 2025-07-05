@@ -18,33 +18,57 @@
                                 @csrf
                                 <div class="col-12">
                                     <div class="form-floating theme-form-floating log-in-form">
-                                        <x-auth-input name="name" id="name" value="{{ old('name') }}" placeholder="Name" />
+                                        <label for="name">Name</label>{{-- TODO: Component --}}
+                                        <x-auth-input
+                                            name="name"
+                                            id="name"
+                                            value="{{ old('name') }}"
+                                            placeholder="Name"
+                                        />
                                         <x-share-error name="name" />
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating theme-form-floating log-in-form">
-                                        <x-auth-input name="email" id="email" value="{{ old('email') }}" type="email"
-                                        placeholder="Email" />
+                                        <label for="name">Email</label>
+                                        <x-auth-input
+                                            name="email"
+                                            id="email"
+                                            value="{{ old('email') }}"
+                                            type="email"
+                                            placeholder="Email"
+                                        />
                                         <x-share-error name="email" />
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating theme-form-floating log-in-form">
-                                        <x-auth-input name="phone" id="phone" value="{{ old('phone') }}"
-                                        type="number" placeholder="Phone" />
+                                        <label for="phone">Phone</label>
+                                        <x-auth-input
+                                            name="phone"
+                                            id="phone"
+                                            value="{{ old('phone') }}"
+                                            type="number"
+                                            placeholder="Phone"
+                                        />
                                         <x-share-error name="phone" />
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating theme-form-floating log-in-form">
-                                        <x-auth-input name="password" id="password" type="password" placeholder="Password" />
+                                        <label for="password">Password</label>
+                                        <x-auth-input
+                                            name="password"
+                                            id="password"
+                                            type="password"
+                                            placeholder="Password"
+                                        />
                                         <x-share-error name="password" />
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-floating theme-form-floating log-in-form">
-                                        <input name="type" id="type" type="checkbox" value="customer" />  Customer
+                                        <input name="type" id="type" type="radio" value="customer" />  Customer
                                         <input name="type" id="type" type="radio" value="vendor" />  Vendor
                                         <x-share-error name="type" />
                                     </div>

@@ -48,7 +48,7 @@
                                                     </span>
                                                 </td>
                                                 <td>
-                                                    {{ $product->price }}
+                                                    ${{ number_format($product->price) }}
                                                 </td>
                                                 <td>
                                                     {{ $product->count }}
