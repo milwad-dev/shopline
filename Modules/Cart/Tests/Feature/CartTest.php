@@ -3,6 +3,7 @@
 namespace Modules\Cart\Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Str;
 use Modules\Product\Models\Product;
 use Modules\User\Models\User;
 use Tests\TestCase;
@@ -105,7 +106,7 @@ class CartTest extends TestCase
         $this->createUserWithLogin();
 
         $product = $this->createProduct();
-        $product2 = $this->createProduct('product 2');
+        $product2 = Product::factory()->create(['slug' => 'product 2', 'title' => 'product title 2']);
 
         $this->get(route('cart.add', ['id' => $product->id]))->assertRedirect();
         $this->get(route('cart.add', ['id' => $product2->id]))->assertRedirect();
@@ -127,7 +128,7 @@ class CartTest extends TestCase
     public function guest_user_can_not_remove_all_products_from_cart()
     {
         $product = $this->createProduct();
-        $product2 = $this->createProduct('product 2');
+        $product2 = Product::factory()->create(['slug' => 'product 2', 'title' => 'product title 2']);
 
         $this->get(route('cart.add', ['id' => $product->id]))->assertRedirect();
         $this->get(route('cart.add', ['id' => $product2->id]))->assertRedirect();
@@ -149,11 +150,10 @@ class CartTest extends TestCase
     /**
      * Create product.
      *
-     *
      * @throws \Exception
      */
     private function createProduct(string $slug = 'product'): mixed
     {
-        return Product::factory()->create(['slug' => $slug, 'title' => 'product title '.random_int(1, 99)]);
+        return Product::factory()->create(['slug' => $slug, 'title' => 'product title ' . Str::random()]);
     }
 }
