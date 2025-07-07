@@ -28,4 +28,11 @@ class LoginRequest extends FormRequest
             'password' => 'required|min:6|max:190',
         ];
     }
+
+    protected function passedValidation()
+    {
+        $field = filter_var($this->email, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
+
+        $this->merge([$field => $this->email]);
+    }
 }
