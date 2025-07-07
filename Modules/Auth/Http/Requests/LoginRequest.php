@@ -33,8 +33,6 @@ class LoginRequest extends FormRequest
     {
         $field = filter_var($this->email, FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
 
-        $this->merge([
-            $field => $this->email
-        ]);
+        $this->merge([$field => $this->email]);
     }
 }
