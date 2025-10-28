@@ -67,9 +67,9 @@ composer stan
 ```
 
 ## Contributors
-<a href="https://github.com/milwad-dev/shopline/graphs/contributors">
-    <img src="https://opencollective.com/shopline/contributors.svg?width=890&button=false" alt="contributes">
+<a href="https://github.com/milwad-dev/shopsent/graphs/contributors">
+    <img src="https://opencollective.com/shopsent/contributors.svg?width=890&button=false" alt="contributes">
 </a>
 
 ## License
-Shopline is an open-source E-Commerce that will always be free under the [MIT License](https://github.com/bagisto/bagisto/blob/master/LICENSE).
+Shopsent is an open-source E-Commerce that will always be free under the [MIT License](https://github.com/milwad-dev/shopsent/blob/1.x/LICENSE).
