@@ -1,8 +1,8 @@
-# Shopline
+# Shopsent
 
 ## Introduction
 
-Shopline is a full-stack e-commerce platform developed using Laravel, structured with a modular architecture to ensure scalability, maintainability, and efficient feature development. The platform integrates key features such as user management, product catalog, shopping cart, order processing, and payment gateway integration.
+Shopsent is a full-stack e-commerce platform developed using Laravel, structured with a modular architecture to ensure scalability, maintainability, and efficient feature development. The platform integrates key features, including user management, product catalog, shopping cart, order processing, and payment gateway integration.
 
 ## Key Features
 
