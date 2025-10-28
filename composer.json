@@ -33,24 +33,7 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "Modules\\User\\": "Modules/User/",
-            "Modules\\Share\\": "Modules/Share/",
-            "Modules\\Home\\": "Modules/Home/",
-            "Modules\\Auth\\": "Modules/Auth/",
-            "Modules\\Panel\\": "Modules/Panel/",
-            "Modules\\Media\\": "Modules/Media/",
-            "Modules\\Category\\": "Modules/Category/",
-            "Modules\\RolePermission\\": "Modules/RolePermission/",
-            "Modules\\Product\\": "Modules/Product/",
-            "Modules\\Article\\": "Modules/Article/",
-            "Modules\\Slider\\": "Modules/Slider/",
-            "Modules\\Advertising\\": "Modules/Advertising/",
-            "Modules\\Comment\\": "Modules/Comment/",
-            "Modules\\Contact\\": "Modules/Contact/",
-            "Modules\\Cart\\": "Modules/Cart/",
-            "Modules\\About\\": "Modules/About/",
-            "Modules\\Discount\\": "Modules/Discount/",
-            "Modules\\Payment\\": "Modules/Payment/"
+            "modules\\": "modules/"
         },
         "files": [
             "Modules/Share/helpers.php"
