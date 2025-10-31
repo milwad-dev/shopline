@@ -2,7 +2,7 @@
 
 return [
     'phone' => '111 - 111',
-    'email' => 'shopline@gmail.com',
+    'email' => 'shopsent@gmail.com',
     'address' => 'Iran, Tehran',
 
     /*
