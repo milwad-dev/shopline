@@ -158,7 +158,7 @@ class CategoryTest extends TestCase
         $response = $this->patch(route('categories.update', $category->id), [
             'id' => $category->id,
             'title' => $title,
-            'description' => 'shopline category',
+            'description' => 'shopsent category',
             'image' => UploadedFile::fake()->image('milwad.png'),
             'status' => CategoryStatusEnum::STATUS_INACTIVE->value,
         ]);
@@ -169,7 +169,7 @@ class CategoryTest extends TestCase
             'id' => $category->id,
             'title' => $title,
             'status' => CategoryStatusEnum::STATUS_INACTIVE->value,
-            'description' => 'shopline category',
+            'description' => 'shopsent category',
         ]);
         $this->assertDatabaseCount('categories', 1);
         $this->assertEquals(1, Category::query()->count());

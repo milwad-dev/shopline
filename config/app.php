@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Shopline'),
+    'name' => env('APP_NAME', 'Shopsent'),
 
     /*
     |--------------------------------------------------------------------------
@@ -38,7 +38,7 @@ return [
     |
     */
 
-    'facebook' => env('APP_FACEBOOK', 'shopline'),
+    'facebook' => env('APP_FACEBOOK', 'shopsent'),
 
     /*
     |--------------------------------------------------------------------------
@@ -49,7 +49,7 @@ return [
     |
     */
 
-    'twitter' => env('APP_TWITTER', 'shopline'),
+    'twitter' => env('APP_TWITTER', 'shopsent'),
 
     /*
     |--------------------------------------------------------------------------
@@ -60,7 +60,7 @@ return [
     |
     */
 
-    'instagram' => env('APP_INSTAGRAM', 'shopline'),
+    'instagram' => env('APP_INSTAGRAM', 'shopsent'),
 
     /*
     |--------------------------------------------------------------------------
@@ -72,7 +72,7 @@ return [
     |
     */
 
-    'email' => env('APP_EMAIL', 'info@shopline.com'),
+    'email' => env('APP_EMAIL', 'info@shopsent.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -94,7 +94,7 @@ return [
     |
     */
 
-    'description' => env('APP_DESCRIPTION', 'Shopline is a full-stack e-commerce platform developed using Laravel, structured with a modular architecture to ensure scalability, maintainability, and efficient feature development. The platform integrates key features such as user management, product catalog, shopping cart, order processing, and payment gateway integration.'),
+    'description' => env('APP_DESCRIPTION', 'Shopsent is a full-stack e-commerce platform developed using Laravel, structured with a modular architecture to ensure scalability, maintainability, and efficient feature development. The platform integrates key features such as user management, product catalog, shopping cart, order processing, and payment gateway integration.'),
 
     /*
     |--------------------------------------------------------------------------

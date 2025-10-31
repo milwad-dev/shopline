@@ -54,9 +54,6 @@ Shopsent is a full-stack e-commerce platform developed using Laravel, structured
 
 ### Management
 
-- Category
-<img src="art/panel-category-index.png" alt="category-index">
-
 ## Run Pint & PHPStan
 
 For convenience, we are define two composer scripts to run `Pint` and `PHPStan`:
