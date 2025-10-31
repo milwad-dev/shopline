@@ -38,7 +38,7 @@ return [
     |
     */
 
-    'facebook' => env('APP_FACEBOOK', 'shopline'),
+    'facebook' => env('APP_FACEBOOK', 'shopsent'),
 
     /*
     |--------------------------------------------------------------------------
@@ -49,7 +49,7 @@ return [
     |
     */
 
-    'twitter' => env('APP_TWITTER', 'shopline'),
+    'twitter' => env('APP_TWITTER', 'shopsent'),
 
     /*
     |--------------------------------------------------------------------------
@@ -60,7 +60,7 @@ return [
     |
     */
 
-    'instagram' => env('APP_INSTAGRAM', 'shopline'),
+    'instagram' => env('APP_INSTAGRAM', 'shopsent'),
 
     /*
     |--------------------------------------------------------------------------
@@ -72,7 +72,7 @@ return [
     |
     */
 
-    'email' => env('APP_EMAIL', 'info@shopline.com'),
+    'email' => env('APP_EMAIL', 'info@shopsent.com'),
 
     /*
     |--------------------------------------------------------------------------
